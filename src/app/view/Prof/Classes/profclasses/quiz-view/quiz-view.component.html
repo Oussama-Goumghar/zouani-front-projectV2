@@ -1,0 +1,72 @@
+<p-dialog [(visible)]="viewDialogQuiz" [style]="{width: '1200px'}" header="Quiz Details" [modal]="true" styleClass="p-fluid">
+    <div class="p-grid ">
+        <div class="p-col">
+            <p-toast></p-toast>
+            <div class="card" style="background-color: gainsboro">
+                <p-toolbar styleClass="p-mb-4 inline">
+
+
+                    <ng-template pTemplate="right">
+                        <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
+                        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2" (click)="dt.exportCSV()"></button>
+                    </ng-template>
+                </p-toolbar>
+
+                <p-table #dt [value]="itemsquizClassRoom" [columns]="cols" [rows]="6" [paginator]="true" [globalFilterFields]="['quiz']"
+                         [(selection)]="selectesquizClassRoom" [rowHover]="true" dataKey="id"
+                         styleClass="p-datatable-customers"
+                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                            <h5 class="p-m-0">Manage Parcours</h5>
+                            <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text"  placeholder="Search..." />
+                    </span>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th pSortableColumn="quiz.numero">Number <p-sortIcon field="quiz.numero"></p-sortIcon></th>
+                            <th pSortableColumn="quiz.ref">Reference <p-sortIcon field="quiz.ref"></p-sortIcon></th>
+                            <th pSortableColumn="quiz.lib">Title <p-sortIcon field="quiz.lib"></p-sortIcon></th>
+                            <th pSortableColumn="quiz.seuilReussite">Threshold of success <p-sortIcon field="quiz.seuilReussite"></p-sortIcon></th>
+                            <th pSortableColumn="quiz.dateDebut">Start date <p-sortIcon field="quiz.dateDebut"></p-sortIcon></th>
+                            <th pSortableColumn="quiz.dateFin">final date <p-sortIcon field="quiz.dateFin"></p-sortIcon></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-quizClassRoom>
+                        <tr>
+                            <td>
+                                <p-tableCheckbox [value]="quizClassRoom.quiz"></p-tableCheckbox>
+                            </td>
+                            <td>{{quizClassRoom.quiz.numero}}</td>
+                            <td>{{quizClassRoom.quiz.ref}}</td>
+                            <td>{{quizClassRoom.quiz.lib}}</td>
+                            <td>{{quizClassRoom.quiz.seuilReussite}}</td>
+                            <td>{{quizClassRoom.quiz.dateDebut}}</td>
+                            <td>{{quizClassRoom.quiz.dateFin}}</td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{itemsquizClassRoom ? itemsquizClassRoom.length : 0 }} items.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+        </div>
+    </div>
+
+
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>
+

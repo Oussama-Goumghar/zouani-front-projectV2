@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+
+}
+.buttonAdd{
+  float: right;
+  position: page;
+  bottom: 0px;
+  right: 100px;
+}
+#quizTitre{
+  font-size: 55px;
+  font-family: Algerian, serif;
+
+  color: white ;
+
+}
+.reponseLib{
+  text-align: center;
+  margin: auto;
+  font-family: "Chaparral Pro", serif;
+  font-weight: bold;
+  font-size: 20px;
+
+}
+#titleQuiz{
+  background-color: #dcdcdc;
+  color:#252529;
+  text-align: center;
+  margin: auto;
+  font-family: "Chaparral Pro", serif;
+  font-weight: bold;
+  font-size: 70px;
+  border: none;
+
+}
+::placeholder{
+  color:#252529;
+}
+.labelFormat{
+  font-family: "Chaparral Pro", serif;
+  font-weight: bold;
+  color: black;
+}

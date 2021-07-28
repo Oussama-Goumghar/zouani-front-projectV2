@@ -1,0 +1,18 @@
+<div class="card">
+    <p-dataView [value]="quizsClassroom">
+        <ng-template let-quizs pTemplate="listItem">
+            <div class="p-grid">
+                <div class="p-col-4" >
+                    <div class="box">
+                        <h4>{{quizs.quiz.lib}}</h4>
+                        <h4>{{quizs.quiz.dateDebut}}</h4>
+                        <h4>{{quizs.quiz.dateFin}}</h4>
+                        <button pButton pRipple class="p-button-rounded p-button-success p-mr-2" (click)="view(quizs)" [routerLink]="['/pages/quiz-view']"></button>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
+
+<button pButton pRipple class="p-button-rounded p-mr-2" icon="pi pi-caret-left" style="background-color: #b835e6" label="Back to classrooms" [routerLink]="['/pages/classroom-liste']"></button>

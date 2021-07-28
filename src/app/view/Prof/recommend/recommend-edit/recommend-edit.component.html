@@ -1,0 +1,39 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Recommend Edit" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="ref">LastName</label>
+            <input type="text" pInputText id="ref" [(ngModel)]="selected.nom" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.nom">LastName is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="total">FirstName</label>
+            <input type="text" pInputText id="total" [(ngModel)]="selected.prenom" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.prenom">FirstName is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="login">UserName</label>
+            <input type="text" pInputText id="login" [(ngModel)]="selected.login" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.login">UserName is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="Commentaire">Comment</label>
+            <input type="text" pInputText id="Commentaire" [(ngModel)]="selected.commentaire" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.commentaire">Comment is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="phone">Phone Number </label>
+            <input type="text" pInputText id="phone" [(ngModel)]="selected.telephone" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.telephone">Phone Number is required.</small>
+        </div>
+
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+    </ng-template>
+</p-dialog>
+

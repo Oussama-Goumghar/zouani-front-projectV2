@@ -1,0 +1,60 @@
+<p-dialog [(visible)]="viewDialogQuiz" [style]="{width: '800px'}"  [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="box">
+            <div class="p-col-4" >
+                <div class="box">
+                    <h4>Note : {{this.quizEtudiantList.note}}</h4>
+                    <h4>Resultat : {{this.quizEtudiantList.resultat}}</h4>
+                </div>
+            </div>
+            <p-table #dt [value]="reponsesEtudiantList" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['quizEtudiant','reponse','note']"
+                     [rowHover]="true" dataKey="id"
+                     styleClass="p-datatable-customers"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Quiz</h5>
+                        <span class="p-input-icon-left">
+                        <i class="pi pi-search"></i>
+                        <input pInputText type="text"  placeholder="Search..." />
+                    </span>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="reference">Number <p-sortIcon field="quizEtudiant"></p-sortIcon></th>
+                        <th pSortableColumn="reference">Question <p-sortIcon field="quizEtudiant"></p-sortIcon></th>
+                        <th pSortableColumn="total">Your Answer <p-sortIcon field="reponse"></p-sortIcon></th>
+                        <th pSortableColumn="totalPaye">Note <p-sortIcon field="note"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-commande>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="commande"></p-tableCheckbox>
+                        </td>
+                        <td>{{commande.reponse.question.numero}}</td>
+                        <td>{{commande.reponse.question.libelle}}</td>
+                        <td>{{commande.reponse.lib}}</td>
+                        <td>{{commande.note}}</td>
+
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+
+                </ng-template>
+            </p-table>
+
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+        <button pButton pRipple label="Passer le quiz" id="quiz" icon="pi pi-arrow-circle-right" class="p-button-text" [routerLink]="['/pages/quiz-etudiant']"></button>
+    </ng-template>
+</p-dialog>

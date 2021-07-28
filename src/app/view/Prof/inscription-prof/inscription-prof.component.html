@@ -1,0 +1,46 @@
+<div class="p-grid" style="  margin-left: 30px; margin-top: 20px">
+<div class="card p-col-11" style="background-color: gainsboro;  margin-left: 30px; margin-top: 20px">
+    <h1 s style="margin-left: 520px; margin-bottom: 30px; color: black">Registration Teacher</h1>
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname6" style="color: black;">Firstname</label>
+            <input id="firstname6" type="text" pInputText [(ngModel)]="selectedProf.prenom">
+            <small class="p-invalid" *ngIf="submitted && !selectedProf.prenom">FirstName is required.</small>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="lastname6" style="color: black;">Lastname</label>
+            <input id="lastname6" type="text" pInputText [(ngModel)]="selectedProf.nom">
+            <small class="p-invalid" *ngIf="submitted && !selectedProf.nom">LastName is required.</small>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="integeronly" style="color: black;">Phone Number </label>
+            <input  id="integeronly" pInputText [(ngModel)]="selectedProf.numero">
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+            <label for="email" style="color: black;">email</label>
+            <input id="email" type="text" pInputText [(ngModel)]="selectedProf.email">
+            <small class="p-invalid" *ngIf="submitted && !selectedProf.email">Email is required.</small>
+        </div>
+        <div class="p-field p-col-12">
+        <label for="address" style="color: black;">Address</label>
+        <textarea id="address" type="text" rows="4" pInputTextarea [(ngModel)]="selectedProf.addresse" ></textarea>
+    </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="username" style="color: black;">UserName</label>
+            <input id="username" type="text" pInputText [(ngModel)]="selectedProf.login" >
+            <small class="p-invalid" *ngIf="submitted && !selectedProf.login">UserName is required.</small>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="Passwrd" style="color: black;">Password</label>
+            <input id="Passwrd" type="password" pInputText [(ngModel)]="selectedProf.password">
+            <small class="p-invalid" *ngIf="submitted && !selectedProf.password">Password is required.</small>
+        </div>
+
+        <div class="card-footer" style="margin-left: 1200px;width: 200px">
+            <p-button label="Submit" icon="pi pi-check" iconPos="right" (click)="save()" [routerLink]="submitted? ['']: ['/inscriptionTeacher']"></p-button>
+        </div>
+
+    </div>
+</div>
+</div>

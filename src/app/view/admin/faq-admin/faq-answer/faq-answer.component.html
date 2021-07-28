@@ -1,0 +1,16 @@
+<p-tabMenu [model]="menu" [activeItem]="menu[0]" (click)="init()"></p-tabMenu>
+<p-tree [value]="nodes">
+    <ng-template let-node pTemplate="default" >
+        <b class="libelle">{{node.label}}</b>
+    </ng-template>
+    <ng-template let-node pTemplate="string" >
+        <b class="description" style="color: blue">{{node.label}}</b><br>
+        <p></p>
+        <textarea [rows]="5" [cols]="50" pInputTextarea [(ngModel)]="answer" placeholder="Your answer"></textarea>
+        <button pButton pRipple class="p-button-rounded p-button-success p-mr-2" style="background-color: #0C8990" label="Answer" (click)="update(node.parent.label)"></button>
+    </ng-template>
+</p-tree>
+
+
+
+

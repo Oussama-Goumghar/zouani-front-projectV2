@@ -1,0 +1,26 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Registration Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="numeroInscription">Registration Number</label>
+            <input type="text" pInputText id="numeroInscription" [(ngModel)]="selected.numeroInscription" disabled />
+        </div>
+        <div class="p-field">
+            <label for="datedebutinscription">Registration Start date</label>
+            <input type="text" pInputText id="datedebutinscription" [(ngModel)]="selected.datedebutinscription" disabled />
+        </div>
+
+
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="datefininscription">Registration End date</label>
+                <p-inputNumber id="datefininscription" [(ngModel)]="selected.datefininscription" disabled></p-inputNumber>
+            </div>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>
+

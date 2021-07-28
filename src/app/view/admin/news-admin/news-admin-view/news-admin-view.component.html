@@ -1,0 +1,15 @@
+<p-dialog [(visible)]="viewDialogNews" [style]="{width: '800px'}"  [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="box">
+            <h2>{{this.selected.libelle}}</h2>
+            <h6>{{this.selected.dateDebut}}</h6>
+            <img src="{{this.selected.image}}">
+            <p>{{this.selected.description}}</p>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="delete()"></button>
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>

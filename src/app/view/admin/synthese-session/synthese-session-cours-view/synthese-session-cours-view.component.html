@@ -1,0 +1,35 @@
+<p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Synthese-Session-Cours Details" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="reference">Reference</label>
+            <input type="text" pInputText id="reference" [(ngModel)]="selected.reference" disabled />
+        </div>
+        <div class="p-field">
+            <label for="id">Id</label>
+            <input type="text" pInputText id="id" [(ngModel)]="selected.id" disabled />
+        </div>
+        <div class="p-field">
+            <label for="username">Username</label>
+            <input type="text" pInputText id="username" [(ngModel)]="selected.username" disabled />
+        </div>
+        <div class="p-field">
+            <label for="firstName">FirstName</label>
+            <input type="text" pInputText id="firstName" [(ngModel)]="selected.firstName" disabled />
+        </div>
+        <div class="p-field">
+            <label for="lastName">LastName</label>
+            <input type="text" pInputText id="lastName" [(ngModel)]="selected.lastName" disabled />
+        </div>
+        <div class="p-field">
+            <label for="nationallite">Nationnalité</label>
+            <input type="text" pInputText id="nationallite" [(ngModel)]="selected.nationallite" disabled />
+        </div>
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>

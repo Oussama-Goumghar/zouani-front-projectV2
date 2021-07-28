@@ -1,0 +1,26 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Edit Registration" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div>
+            <label class="primaryLab">Registration status</label><br>
+            <select pInputText  type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: gainsboro" name="etat" (click)="findAllEtat()" [(ngModel)]="selected.etatInscription.id" >
+                <option  selected="selected" *ngFor="let e of etatinscriptionslist"  [ngValue]="e.id"  > {{e.libelle}}</option>
+            </select>
+        </div>
+
+        <div class="p-field">
+            <label class="primaryLab">Teacher</label>
+            <select pInputText type="text"  class="btn btn-block btn-outline-light form-control " name="fieldName" style="background-color: gainsboro" name="prof" (click)="findAllProf()" [(ngModel)]="selected.prof.id" >
+                <option  selected="selected" *ngFor="let c of profList " [ngValue]="c.id" > {{c.prenom}}</option>
+            </select>
+        </div>
+
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+
+    </ng-template>
+</p-dialog>

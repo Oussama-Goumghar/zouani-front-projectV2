@@ -1,0 +1,52 @@
+<div>
+    <div class="p-grid">
+        <div class="p-col-fixed" style="width:100px">
+            <div class="box">
+                <div *ngFor="let q of items" id="btn-{{q.id}}">
+                    <button pButton pRipple type="button" style="width: 75px" label="{{q.numero}}" (click)="choose(q.numero)" class="p-button-outlined"></button>
+                </div>
+            </div>
+        </div>
+        <div class="p-col">
+            <div class="box">
+                <div class="col-md-8 mt-lg-5"  >
+                    <div class="card" id="card" >
+                        <div class="card-header">
+                            <output id="quizGrammar">Quiz Grammar</output>
+                        </div>
+                        <div class="card-body" id="quiz">
+
+                            <div class="p-grid" id="resultat">
+                                <div class="p-col">
+                                    Note : {{this.quizEtudiantList.note}}
+                                </div>
+                                <div class="p-col">
+                                    Resultat : {{this.quizEtudiantList.resultat}}
+                                </div>
+                            </div>
+                            <div class="question" id="question">
+
+                                <br><br><br><output style="margin-left: 100px"><B>{{questionView.numero}} - {{questionView.libelle}} </B></output>
+
+                                <div *ngFor="let r of reponsesView" class="question_answer" id="rep-{{r.id}}">
+
+                                    <input type="radio" value="{{r.ref}}" name="groupname" ngModel>
+                                    <label>{{r.lib}}</label><br>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                        <div class="card-footer">
+                            <button pButton pRipple class="p-button-rounded p-mr-2" icon="pi pi-caret-left" id="btn-previous" style="background-color: #0C8990" label="Previous" (click)="previous()"></button>
+                            <button pButton pRipple class="p-button-rounded p-mr-2" icon="pi pi-caret-right" id="btn-next" style="background-color: #0C8990; margin-left: 800px" label="Next" (click)="next()"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

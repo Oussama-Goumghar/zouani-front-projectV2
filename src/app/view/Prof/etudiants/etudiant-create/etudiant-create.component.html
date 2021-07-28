@@ -1,0 +1,41 @@
+<p-dialog [(visible)]="createDialogEtud" [style]="{width: '450px'}" header="Etudiant Create"
+          [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="nom">LastName</label>
+            <input type="text" pInputText id="nom" [(ngModel)]="selected.nom" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.nom">FirstName is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="prenom">FirstName</label>
+            <input type="text" pInputText id="prenom" [(ngModel)]="selected.prenom" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.prenom">LastName is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="login">Usernamer</label>
+            <input type="text" pInputText id="login" [(ngModel)]="selected.login" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.login">Usernamer required.</small>
+        </div>
+        <div class="p-field">
+            <label for="prof">Teacher</label><br>
+            <select type="text" pInputText class="btn btn-block btn-outline-light form-control" id="prof"  name="Parcours"  style=" background-color: gainsboro;margin-left: 5px" (click)="findAllProf()"  [(ngModel)]="selected.prof.id" >
+                <option  selected="selected" *ngFor="let p of itemsprof"  [ngValue]="p.id"> {{p.nom}}</option>
+
+            </select>            <small class="p-invalid" *ngIf="submitted && !selected.parcours.libelle">Teacher is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="parcours">Parcours</label><br>
+            <select type="text" pInputText class="btn btn-block btn-outline-light form-control" id="parcours"  name="Parcours"  style=" background-color: gainsboro;margin-left: 5px" (click)="findAllParcours()"  [(ngModel)]="selected.parcours.id" >
+                <option  selected="selected" *ngFor="let p of parcoursList"  [ngValue]="p.id"> {{p.libelle}}</option>
+            </select>            <small class="p-invalid" *ngIf="submitted && !selected.parcours.libelle">parcours is required.</small>
+        </div>
+
+    </ng-template>
+
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+    </ng-template>
+</p-dialog>
+

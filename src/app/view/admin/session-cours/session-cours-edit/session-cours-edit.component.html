@@ -1,0 +1,45 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Session Edit" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="reference">Reference</label>
+            <input type="text" pInputText id="reference" [(ngModel)]="selected.reference" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.reference">ref is required.</small>
+        </div>
+        <div class="p-field">
+            <label class="primaryLab">Teacher</label>
+            <select pInputText type="text"  class="btn btn-block btn-outline-light form-control " name="fieldName" style="background-color: gainsboro" name="prof" (click)="findAllProf()" [(ngModel)]="selected.prof.id" >
+                <option  selected="selected" *ngFor="let c of itemsProf " [ngValue]="c.id" > {{c.nom}}</option>
+            </select>
+        </div>
+
+        <div class="p-field">
+            <label class="primaryLab">Student</label>
+            <select pInputText type="text"  class="btn btn-block btn-outline-light form-control " name="fieldName" style="background-color: gainsboro" name="prof" (click)="findAllEtudiant()" [(ngModel)]="selected.etudiant.id" >
+                <option  selected="selected" *ngFor="let c of itemsEtudiant " [ngValue]="c.id" > {{c.nom}}</option>
+            </select>
+        </div>
+
+        <div class="p-field">
+            <label for="dateDebut">Start at</label>
+            <input type="text" pInputText id="dateDebut" [(ngModel)]="selected.dateDebut" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.dateDebut">date  is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="dateFin">Finish at</label>
+            <input type="text" pInputText id="dateFin" [(ngModel)]="selected.dateFin" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.dateFin">date is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="duree">Duration</label>
+            <input type="text" pInputText id="duree" [(ngModel)]="selected.duree" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.duree">duration is required.</small>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+    </ng-template>
+</p-dialog>

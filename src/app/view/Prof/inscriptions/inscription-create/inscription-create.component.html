@@ -1,0 +1,40 @@
+<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}"
+          header="Registration Create" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+
+
+        <div class="p-field">
+            <label for="prof">Teacher</label>
+            <input type="text" pInputText id="prof" [(ngModel)]="selected.prof.numero" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.prof.numero">prof is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="etat">Registration status</label>
+            <input type="text" pInputText id="etat" [(ngModel)]="selected.etatInscription.ref" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.etatInscription.ref">etat is required.</small>
+        </div>
+
+
+        <div class="p-field">
+            <label for="etudiant">Student</label>
+            <input type="text" pInputText id="etudiant" [(ngModel)]="selected.nom" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.nom">etudiant LastNme is required.</small>
+        </div>
+
+        <div class="p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label for="numeroInscription">Registration Number</label>
+                <p-inputNumber id="numeroInscription" [(ngModel)]="selected.numeroInscription"></p-inputNumber>
+            </div>
+        </div>
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+    </ng-template>
+</p-dialog>
+

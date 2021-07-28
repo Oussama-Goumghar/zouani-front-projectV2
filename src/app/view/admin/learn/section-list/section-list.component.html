@@ -1,0 +1,65 @@
+<div class="p-grid"  style="position:initial " >
+    <div class="p-col">
+        <p-toast></p-toast>
+        <div class="card" style="margin-left: 3% ;background-color: gainsboro;">
+            <p-toolbar styleClass="p-mb-5">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteMultiple()" [disabled]="!itemssection || !itemssection.length"></button>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2" (click)="dt.exportCSV()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="itemssection" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['libelle','categorieSection','url','content']"
+                     [(selection)]="selectessection" [rowHover]="true" dataKey="id">
+                     <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <h5 class="p-m-0">Manage Section</h5>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="libelle">Title <p-sortIcon field="libelle"></p-sortIcon></th>
+                        <th pSortableColumn="categorieSection">Categories <p-sortIcon field="categorieSection"></p-sortIcon></th>
+                        <th >Action </th>
+
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-section>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="section"></p-tableCheckbox>
+                        </td>
+                        <td [style.color]="(section.url+section.content) == 2? 'green' :(section.url+section.content) == 1? 'orange': 'red'">{{section.libelle}} (c:{{section.content}}; L:{{section.url}})</td>
+                        <td>{{section.categorieSection.libelle}}</td>
+
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editSection(section)" ></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(section)" ></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(section)"></button>
+                            <button pButton pRipple icon="pi pi-book" class="p-button-rounded p-button-sm " style="background-color: #8bf4c1" *ngIf="this.section.categorieSection.libelle != 'Vocabulary'" (click)="getSection(section)" ></button>
+                            <button pButton pRipple icon="pi pi-images" class="p-button-rounded p-button-lg " style="background-color: #0C8990" *ngIf="this.section.categorieSection.libelle == 'Vocabulary'" (click)="createVocab(section.id)"   ></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        In total there are {{itemssection ? itemssection.length : 0 }} items.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <app-section-view></app-section-view>
+        <app-section-edit></app-section-edit>
+
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>

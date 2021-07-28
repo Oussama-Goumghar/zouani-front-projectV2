@@ -1,0 +1,58 @@
+<meta name="referrer" content="no-referrer">
+<p-toast></p-toast>
+<p-card [style]="{backgroundColor: ' gainsboro',width: '1200px'}" class="container">
+    <ng-template pTemplate="header">
+         <h1  class="titre">VOCABULARY</h1>
+    </ng-template>
+
+    <div class="p-fluid p-formgrid p-grid">
+         <div class="p-field p-col">
+            <label>Number</label>
+         <input  type="text" pInputText [(ngModel)]="selected.numero">
+        </div>
+        <div class="p-field p-col">
+            <label>word</label>
+            <input  type="text" pInputText [(ngModel)]="selected.word" #word name="word">
+        </div>
+       <!-- <div class="p-field p-col-1">
+            <br/><br/>
+            <i class="pi pi-volume-up" style="font-size: 1.5rem; cursor: pointer" (click)="sound(word.value)"></i>
+        </div>-->
+        <div class="p-field p-col">
+            <label for="lastname2">Translated word</label>
+            <input id="lastname2" type="text" pInputText [(ngModel)]="selected.result" #tsword>
+        </div>
+        <div class="p-field p-col-1">
+            <br/><br/>
+            <i class="pi pi-volume-up" style="font-size: 1.5rem; cursor: pointer" (click)="sound1(tsword.value)"></i>
+        </div>
+        <audio src="" id="speach" hidden></audio>
+</div>
+    <div class="p-grid">
+        <div class="p-col-6">
+            <p-panel header="Explanation">
+
+                    <textarea cols="75" pInputTextarea autoResize="autoResize" [(ngModel)]="selected.explication"></textarea>
+            </p-panel>
+        </div>
+        <div class="p-col-6">
+            <p-panel header="Exemple">
+                    <textarea cols="75" pInputTextarea autoResize="autoResize" [(ngModel)]="selected.exemple"></textarea>
+            </p-panel>
+        </div> </div>
+        <div class="p-col-12">
+            <p-panel header="Image">
+                    <textarea  cols="160" pInputTextarea placeholder="Enter Image URL" autoResize="autoResize" [(ngModel)]="selected.image" ></textarea>
+                <br/>
+                <div class="p-col" *ngIf="selected.image != null">
+                <img *ngIf="selected.image != null" src="{{selected.image}}" alt="image" style="width: 600px; height: 400px; margin-left: 250px" />
+                </div>
+            </p-panel>
+           <!-- <input type="file" multiple  accept="image/*" [(ngModel)]="selected.image"  (click)=" handleFileInput($event)"  >-->
+        </div>
+
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple class="p-button p-col-3 p-button-secondary p-button-raised" id="buttonSave" label="save" (click)="save()"></button>
+    </ng-template>
+</p-card>

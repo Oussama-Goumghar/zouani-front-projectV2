@@ -1,0 +1,42 @@
+<div class="p-grid" style="  margin-left: 30px; margin-top: 20px">
+<div class="card p-col-11" style="background-color: gainsboro; margin-left: 30px; margin-top: 20px">
+    <h1  style="margin-left: 530px; margin-bottom: 30px; color: black">Registration Admin</h1>
+    <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col-12 p-md-6">
+            <label for="firstname6" style="color: black;">Firstname</label>
+            <input id="firstname6" type="text" pInputText [(ngModel)]="selected.prenom" >
+            <small class="p-invalid" *ngIf="submitted && !selected.prenom">FirstName is required.</small>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="lastname6" style="color: black;">Lastname</label>
+            <input id="lastname6" type="text" pInputText [(ngModel)]="selected.nom">
+            <small class="p-invalid" *ngIf="submitted && !selected.nom">LastName is required.</small>
+        </div>
+        <div class="p-field p-col-12">
+            <label for="address" style="color: black;">Address</label>
+            <textarea id="address" type="text" rows="4" pInputTextarea [(ngModel)]="selected.addresse" ></textarea>
+        </div>
+
+        <div class="p-field p-col-12 p-md-6">
+            <label for="integeronly" style="color: black;">Number phone</label>
+            <input   id="integeronly" [(ngModel)]="selected.numero" pInputText>
+            <small class="p-invalid" *ngIf="submitted && !selected.numero">Lastname is required.</small>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="login" style="color: black;">Username</label>
+            <input id="login" type="text" pInputText [(ngModel)]="selected.login">
+            <small class="p-invalid" *ngIf="submitted && !selected.login">Username is required.</small>
+        </div>
+        <div class="p-field p-col-12 p-md-6">
+            <label for="Passwrd" type="password" style="color: black;">Password</label>
+            <input id="Passwrd" type="password" pInputText [(ngModel)]="selected.password">
+            <small class="p-invalid" *ngIf="submitted && !selected.password">Password is required.</small>
+
+        </div>
+        <div class="card-footer" style="margin-left: 1200px;width: 200px">
+            <p-button label="Submit" icon="pi pi-check" iconPos="right" (click)="save()" [routerLink]="submitted? ['']: ['/inscriptionAdmin']"></p-button>
+        </div>
+
+    </div>
+</div>
+</div>

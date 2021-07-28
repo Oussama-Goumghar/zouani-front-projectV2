@@ -1,0 +1,53 @@
+
+<div class=" card">
+    <div class="p-grid">
+        <div class="p-col">
+            <div class="product-grid-item card" style="background-color: gainsboro;">
+                <div class="product-grid-item-content" style="cursor: pointer">
+                    <div class="product-name" style="margin-bottom: 15px"><h1>-{{this.selectedsection.libelle}}-</h1></div>
+                    <iframe *ngIf=" this.selectedsection.libelle != 'Watch the video'" [src]='photoURL()' width="400" height="200" frameborder="0"
+                            webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                    <div ><h3 style="box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); background-color: white;">{{this.selectedsection.contenu}}</h3></div>
+                    <div class="product-description"><h6>{{this.selectedsection.indicationProf}}</h6></div>
+                    <div class="product-description" style="margin-top: 4px" *ngIf=" this.selectedsection.libelle == 'Watch the video'">
+                        <iframe *ngIf=" this.selectedsection.libelle == 'Watch the video'" width="500" height="400" [src]='URLVideo()'></iframe></div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class=" p-col" style="width:   300px;height: 90px">
+
+            <p-table  [value]="itemssection2"  [rows]="10" >
+                <ng-template pTemplate="header">
+                    <tr>
+
+                        <th pSortableColumn="libelle" style="text-align: center">Categorie<p-sortIcon field="libelle"></p-sortIcon></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-section>
+                    <tr>
+
+                        <td style ="text-align: center" [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? 'green' :'orange' "  ><u >{{section.categorieSection.libelle}}</u></td>
+
+
+                    </tr>
+
+
+                </ng-template>
+
+            </p-table>
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="card-footer " >
+        <button pButton pRipple type="button" icon="pi pi-caret-left" style="margin-left: 15px; width: 120px" label="Previous" class="p-button-rounded" *ngIf="this.selectedsection.numeroOrder != 1" (click)="PreviousSection()" ></button>
+        <button pButton pRipple type="button" icon="pi pi-caret-right" label="Next" style="margin-left: 940px; width: 120px" class="p-button-rounded" *ngIf="this.selectedsection.numeroOrder < this.itemssection2.length"  (click)="NextSection()" ></button>
+    </div>
+</div>

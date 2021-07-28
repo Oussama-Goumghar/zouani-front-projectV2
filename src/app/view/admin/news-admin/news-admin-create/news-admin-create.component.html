@@ -1,0 +1,43 @@
+<p-dialog [(visible)]="createDialogNews" [style]="{width: '800px'}"  [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="box">
+            <h1>Create a news</h1>
+            <span class="p-float-label" style="margin-bottom: 50px">
+                <input id="float-input-ref" type="text" [(ngModel)]="selected.ref" pInputText>
+                <label for="float-input-ref">Reference</label>
+            </span>
+            <p-dropdown [options]="destinataire" [(ngModel)]="des" optionLabel="label"></p-dropdown>
+            <span class="p-float-label" style="margin-top: 50px">
+                <input id="float-input-title" type="text" [(ngModel)]="selected.libelle" pInputText>
+                <label for="float-input-title">Title</label>
+            </span>
+            <textarea style="margin-top: 50px" [rows]="5" [cols]="50" [(ngModel)]="selected.description" pInputTextarea placeholder="Description"></textarea>
+            <span class="p-float-label" style="margin-top: 50px">
+                <input id="float-input-dateDebut" type="text" [(ngModel)]="selected.dateDebut" pInputText>
+                <label for="float-input-dateDebut">Start date(DD/MM/YYYY)</label>
+            </span>
+            <span class="p-float-label" style="margin-top: 50px">
+                <input id="float-input-dateFin" type="text" [(ngModel)]="selected.dateFin" pInputText>
+                <label for="float-input-dateFin">End date(DD/MM/YYYY)</label>
+            </span >
+            <span class="p-float-label" style="margin-top: 50px">
+                <input id="float-input-date" type="text" [(ngModel)]="selected.date" pInputText>
+                <label for="float-input-date">Date(DD/MM/YYYY)</label>
+            </span>
+            <span class="p-float-label" style="margin-top: 50px">
+                <p-inputNumber [(ngModel)]="selected.numeroOrdre" [min]="0" [showButtons]="true"></p-inputNumber>
+                <label for="float-input-date">Order</label>
+            </span>
+
+            <p>Picture : </p>
+            <textarea [rows]="5" [cols]="50" [(ngModel)]="selected.image" pInputTextarea placeholder="Picture"></textarea>
+            <img src="{{selected.image}}" alt=" " style="height: 400px; width: 400px">
+
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+    </ng-template>
+</p-dialog>

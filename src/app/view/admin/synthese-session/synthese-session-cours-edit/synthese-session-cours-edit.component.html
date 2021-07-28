@@ -1,0 +1,39 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Synthese-Session-Cours Edit" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="p-field">
+            <label for="reference">Reference</label>
+            <input type="text" pInputText id="reference" [(ngModel)]="selected.reference" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !selected.reference">reference is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="username">Username</label>
+            <input type="text" pInputText id="username" [(ngModel)]="selected.username" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !selected.username">id is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="firstName">firstName</label>
+            <input type="text" pInputText id="firstName" [(ngModel)]="selected.firstName" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !selected.firstName">first Name is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="lastName">lastName</label>
+            <input type="text" pInputText id="lastName" [(ngModel)]="selected.lastName" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !selected.lastName">Last Name is required.</small>
+        </div>
+
+        <div class="p-field">
+            <label for="nationallité">Nationnalité</label>
+            <input type="text" pInputText id="nationallité" [(ngModel)]="selected.nationallite" required autofocus/>
+            <small class="p-invalid" *ngIf="submitted && !selected.nationallite">nationnalité is required.</small>
+        </div>
+
+
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text"
+                (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+    </ng-template>
+</p-dialog>

@@ -1,0 +1,54 @@
+<p-dialog [(visible)]="editDialogSection" [style]="{width: '550px'}" header="Section Edit" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+        <div class="p-field">
+            <label for="cours" > Courses </label>
+            <select pInputText type="text" class="btn btn-block btn-outline-light form-control" id="cours" style="background-color: lavender" name="Parcours" (click)="findAllCours()" [(ngModel)]="selectedsection.cours.id" >
+                <option  selected="selected" *ngFor="let c of itemscours"  [ngValue]="c.id"> {{c.libelle}}</option>
+            </select>
+            <small class="p-invalid" *ngIf="submittedSection && !selectedsection.cours.libelle">cours is required.</small>
+            <label for="categorie" > CategorieSections </label>
+            <select pInputText type="text" class="btn btn-block btn-outline-light form-control" id="categorie" style="background-color: lavender" name="Parcours" (click)="findAllCategorie()" [(ngModel)]="selectedsection.categorieSection.id" >
+                <option  selected="selected" *ngFor="let s of itemscategoriesection"  [ngValue]="s.id"> {{s.libelle}}</option>
+            </select>
+            <small class="p-invalid" *ngIf="submittedSection && !selectedsection.categorieSection.libelle">categorie is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="Number">Number</label>
+            <input type="text" pInputText id="Number" [(ngModel)]="selectedsection.numeroOrder" required autofocus />
+            <small class="p-invalid" *ngIf="submittedSection && !selectedsection.numeroOrder">Number is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="libelle">Title</label>
+            <input type="text" pInputText id="libelle" [(ngModel)]="selectedsection.libelle" required autofocus />
+            <small class="p-invalid" *ngIf="submittedSection && !selectedsection.libelle">Title is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="contenu">Content</label>
+            <input type="text" pInputText id="contenu" [(ngModel)]="selectedsection.contenu" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="questions">Questions </label>
+            <input type="text" pInputText id="questions" [(ngModel)]="selectedsection.questions" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="indicationProf">Indication of Teacher's </label>
+            <input type="text" pInputText id="indicationProf" [(ngModel)]="selectedsection.indicationProf" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="urlImage"> Url Image </label>
+            <input type="text" pInputText id="urlImage" [(ngModel)]="selectedsection.urlImage" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="urlVideo"> Url Video </label>
+            <input type="text" pInputText id="urlVideo" [(ngModel)]="selectedsection.urlVideo" required autofocus />
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer" style="background-color: lavender;">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="editSection()"></button>
+    </ng-template>
+</p-dialog>
+
+
+

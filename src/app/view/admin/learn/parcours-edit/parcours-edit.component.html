@@ -1,0 +1,31 @@
+<p-dialog [(visible)]="editDialog" [style]="{width: '550px'}" header="Parcours Edit" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+        <div class="p-field">
+            <label for="centre" > Center </label>
+            <select type="text" pInputText class="btn btn-block btn-outline-light form-control" id="centre" style="background-color: lavender" name="Parcours" (click)="findAllCentre()" [(ngModel)]="selectedparcours.centre.ref" >
+                <option  selected="selected" *ngFor="let c of itemscentre"  [ngValue]="c.ref"> {{c.libelle}}</option>
+            </select>
+            <small class="p-invalid" *ngIf="submitted && !selectedparcours.centre.libelle">centre is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="ref">Title</label>
+            <input type="text" pInputText id="ref" [(ngModel)]="selectedparcours.libelle" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selectedparcours.libelle">ref is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="libelle">Description</label>
+            <input type="text" pInputText id="libelle" [(ngModel)]="selectedparcours.description" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="nombreCours">Number of Courses</label>
+            <input type="text" pInputText id="nombreCours" [(ngModel)]="selectedparcours.nombreCours" required autofocus />
+        </div>
+
+    </ng-template>
+
+    <ng-template pTemplate="footer" style="background-color: lavender;">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="editParcours()"></button>
+    </ng-template>
+</p-dialog>
+

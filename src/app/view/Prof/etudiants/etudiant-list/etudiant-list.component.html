@@ -1,0 +1,84 @@
+<div class="p-grid">
+    <div class="p-col-12">
+
+        <p-toast></p-toast>
+
+        <div class="card" style="background-color: gainsboro;">
+            <p-toolbar styleClass="p-mb-4">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" style="width: 90px" (click)="openCreateEtud()"></button>
+
+                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length"></button>
+                </ng-template>
+
+                <ng-template pTemplate="right">
+                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
+                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2" (click)="dt.exportCSV()"></button>
+                </ng-template>
+            </p-toolbar>
+
+            <p-table #dt [value]="items" [columns]="cols" [rows]="8" [paginator]="true" [globalFilterFields]="['nom','prenom','login','parcours','centre']"
+                     [(selection)]="selectes" [rowHover]="true" dataKey="id"
+                     styleClass="p-datatable-customers"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <ng-template pTemplate="caption">
+                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                        <div class="p-col"> <h5 class="p-m-0">Manage Students</h5><br>
+                        <span >
+                        <input pInputText type="text"  placeholder="Search by LastName" [(ngModel)]="etudiantVo.nom  " style="margin-right: 10px;width: 200px"/>
+                        <input pInputText type="text"  placeholder="Search by FirstName" [(ngModel)]="etudiantVo.prenom  " style="margin-right: 10px;width: 200px"/>
+                        <input pInputText type="text"  placeholder="Search by UserName" [(ngModel)]="etudiantVo.login  " style="margin-right: 10px;width: 200px"/>
+
+             <i class="pi pi-search"  (click)="findByCriteria()"></i>
+<!-- search -->
+                    </span></div>
+                    </div>
+                </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th style="width: 3rem">
+                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                        </th>
+                        <th pSortableColumn="nom">LastName <p-sortIcon field="nom"></p-sortIcon></th>
+                        <th pSortableColumn="prenom">FirsName <p-sortIcon field="prenom"></p-sortIcon></th>
+                        <th pSortableColumn="login">Username<p-sortIcon field="login"></p-sortIcon></th>
+                        <th pSortableColumn="prenom">Teacher Name <p-sortIcon field="prenom"></p-sortIcon></th>
+                        <th pSortableColumn="Parcours">Parcours<p-sortIcon field="Parcours"></p-sortIcon></th>
+                        <th pSortableColumn="centre">Center<p-sortIcon field="centre"></p-sortIcon></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-etudiant>
+                    <tr>
+                        <td>
+                            <p-tableCheckbox [value]="etudiant"></p-tableCheckbox>
+                        </td>
+                        <td>{{etudiant.nom}}</td>
+                        <td>{{etudiant.prenom}}</td>
+                        <td>{{etudiant.login}}</td>
+                        <td>{{etudiant.prof.nom}} {{etudiant.prof.prenom}}</td>
+                        <td>{{etudiant.parcours.libelle}}</td>
+                        <td>{{etudiant.parcours.centre.libelle}}</td>
+
+                        <td>
+                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(etudiant)"></button>
+                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(etudiant)"></button>
+                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(etudiant)"></button>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="summary">
+                    <div class="p-d-flex p-ai-center p-jc-between">
+                        In total there are {{items ? items.length : 0 }} items.
+                    </div>
+                </ng-template>
+            </p-table>
+        </div>
+
+       <app-etudiant-create></app-etudiant-create>
+       <app-etudiant-edit></app-etudiant-edit>
+       <app-etudiantss-view></app-etudiantss-view>
+        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+    </div>
+</div>
+

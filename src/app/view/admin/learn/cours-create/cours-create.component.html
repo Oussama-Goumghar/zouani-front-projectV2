@@ -1,0 +1,33 @@
+<p-dialog [(visible)]="createDialogCours" [style]="{width: '550px'}" header="Course Create" [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+        <div class="p-field">
+            <label for="centre" > Parcours </label>
+            <select pInputText class="btn btn-block btn-outline-light form-control" id="centre" style="background-color: lavender" name="Parcours" (click)="findAllParcours()" [(ngModel)]="selectedcours.parcours.id" >
+                <option  selected="selected" *ngFor="let c of itemsparcours"  [ngValue]="c.id"> {{c.libelle}}</option>
+            </select>
+            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.parcours.libelle">parcours is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="libelle">Title</label>
+            <input type="text" pInputText id="libelle" [(ngModel)]="selectedcours.libelle" required autofocus />
+            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.libelle">ref is required.</small>
+        </div>
+        <div class="p-field">
+            <label for="description">Description</label>
+            <input type="text" pInputText id="description" [(ngModel)]="selectedcours.description" required autofocus />
+        </div>
+        <div class="p-field">
+            <label for="image">Image </label>
+            <input type="text" pInputText id="image" [(ngModel)]="selectedcours.image" required autofocus />
+        </div>
+    </ng-template>
+
+
+    <ng-template pTemplate="footer" style="background-color: lavender;">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCours()"></button>
+    </ng-template>
+</p-dialog>
+
+
+
