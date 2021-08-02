@@ -78,11 +78,17 @@ export class DictionaryCreateComponent implements OnInit {
 
       this.dictionnaryService.findAll().subscribe( data => this.items = data);
       this.selected = new Dictionary();
+    }, error => {
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Warning',
+        detail: 'Error',
+        life: 3000
+      });
     });
-
-    // tslint:disable-next-line:no-unused-expression
-    this.selected == null;
+    this.selected = new Dictionary();
     this.editDialog = false;
+    this.createDialogDict = false;
   }
 
 

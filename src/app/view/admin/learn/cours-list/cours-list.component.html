@@ -26,6 +26,7 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
+                        <th pSortableColumn="numeroOrder">Number <p-sortIcon field="numeroOrder"></p-sortIcon></th>
                         <th pSortableColumn="libelle">Title <p-sortIcon field="libelle"></p-sortIcon></th>
                         <th >Actions </th>
                     </tr>
@@ -35,6 +36,7 @@
                         <td >
                             <p-tableCheckbox [value]="cours"></p-tableCheckbox>
                         </td>
+                        <td> {{cours.numeroOrder}}</td>
                         <td [style.color]="(cours.nombreLinkFinalise+cours.nombreSectionFinalise) == 10? 'green' :(cours.nombreLinkFinalise+cours.nombreSectionFinalise) < 5? 'red':'orange' ">{{cours.libelle}} (c:
                             {{ cours.nombreSectionFinalise}},
                             L:{{ cours.nombreLinkFinalise}})</td>

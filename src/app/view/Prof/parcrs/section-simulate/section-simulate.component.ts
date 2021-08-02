@@ -18,7 +18,12 @@ export class SectionSimulateComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(private messageService: MessageService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
   value = 0;
-
+  public Section(libelle: string){
+    this.service.afficheSection(libelle).subscribe(
+        data => {
+          this.selectedsection = data;
+        }, error => console.log('erreeeeeeeeeeeeeeeeur') );
+  }
   get image(): string {
     return this.service.image;
   }

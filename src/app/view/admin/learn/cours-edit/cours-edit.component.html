@@ -10,17 +10,19 @@
         <div class="p-field">
             <label for="libelle">Title</label>
             <input type="text" pInputText id="libelle" [(ngModel)]="selectedcours.libelle" required autofocus />
-            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.libelle">ref is required.</small>
+            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.libelle">Title is required.</small>
         </div>
         <div class="p-field">
             <label for="description">Description</label>
             <input type="text" pInputText id="description" [(ngModel)]="selectedcours.description" required autofocus />
-            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.description">ref is required.</small>
+            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.description">description is required.</small>
         </div>
+
         <div class="p-field">
-            <label for="image">Image </label>
-            <input type="text" pInputText id="image" [(ngModel)]="selectedcours.image" required autofocus />
-            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.image">total is required.</small>
+            <label for="numeroOrder">Number </label>
+            <input type="text" pInputText id="numeroOrder" [(ngModel)]="selectedcours.numeroOrder" required autofocus />
+            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.numeroOrder">Number is required.</small>
+
         </div>
     </ng-template>
 

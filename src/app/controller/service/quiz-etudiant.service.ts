@@ -23,6 +23,7 @@ export class QuizEtudiantService {
   private _quiz: Quiz;
   private _section: Section;
   private _quizSelct: Quiz;
+  private _quizItems: Array<Quiz>;
   private _items: Array<Question>;
   private _selected: Question;
   private _reponses: Array<Reponse>;
@@ -50,6 +51,17 @@ export class QuizEtudiantService {
   private _passerQuiz: string;
   private _quizView: boolean;
 
+
+  get quizItems(): Array<Quiz> {
+    if (this._quizItems == null){
+      this._quizItems = new Array<Quiz>();
+    }
+    return this._quizItems;
+  }
+
+  set quizItems(value: Array<Quiz>) {
+    this._quizItems = value;
+  }
 
   get section(): Section {
     if (this._section == null){
@@ -514,6 +526,10 @@ export class QuizEtudiantService {
   public findQuizBySectionId(section: Section): Observable<Quiz>
   {
     return this.http.get<Quiz>(this.url + 'quiz/section/id/' + section.id);
+  }
+  public findAllQuiz(): Observable<Array<Quiz>>
+  {
+    return this.http.get<Array<Quiz>>(this.url + 'quiz/');
   }
   constructor(private http: HttpClient) { }
 }

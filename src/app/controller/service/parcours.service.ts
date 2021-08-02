@@ -8,7 +8,6 @@ import {CategorieSection} from '../model/categorie-section.model';
 import {SuperCategorieSection} from '../model/super-categorie-section.model';
 import {Centre} from '../model/centre.model';
 import {Observable} from 'rxjs';
-import {Quiz} from "../model/quiz.model";
 import {Vocabulary} from '../model/vocabulary.model';
 
 
@@ -472,10 +471,10 @@ export class ParcoursService {
     return this.http.put<Cours>('http://localhost:8036/learn/cours/', this.selectedcours);
   }
   public SaveCours(): Observable<number> {
-      return this.http.post<number>('http://localhost:8036/learn/cours/', this.selectedcours);
+    return this.http.post<number>('http://localhost:8036/learn/cours/', this.selectedcours);
   }
   public AjoutSection(id: number): Observable<number> {
-      return this.http.get<number>('http://localhost:8036/learn/cours/id/' + id);
+    return this.http.get<number>('http://localhost:8036/learn/cours/id/' + id);
   }
   public updateSection(): Observable<Section> {
     return this.http.put<Section>('http://localhost:8036/learn/section/', this.selectedsection);
@@ -505,24 +504,24 @@ export class ParcoursService {
     return this.http.get< Array<Cours> >('http://localhost:8036/learn/cours/');
   }
   public findAllSection(): Observable<Array<Section>> {
-   return this.http.get< Array<Section> >('http://localhost:8036/learn/section/');
+    return this.http.get< Array<Section> >('http://localhost:8036/learn/section/');
   }
   public findAllCategorieSection(): Observable< Array<CategorieSection> > {
-   return this.http.get< Array<CategorieSection> >('http://localhost:8036/learn/categoriesection/');
+    return this.http.get< Array<CategorieSection> >('http://localhost:8036/learn/categoriesection/');
 
   }
   public findAllSuperCategorieSection(): Observable< Array<SuperCategorieSection> > {
-   return this.http.get< Array<SuperCategorieSection> >('http://localhost:8036/learn/supercategoriesection/');
+    return this.http.get< Array<SuperCategorieSection> >('http://localhost:8036/learn/supercategoriesection/');
   }
   public deleteSection(): Observable<number> {
-   return this.http.delete<number>('http://localhost:8036/learn/section/id/' + this.selectedsection.id);
+    return this.http.delete<number>('http://localhost:8036/learn/section/id/' + this.selectedsection.id);
   }
   public deleteCours(): Observable<number>{
     return this.http.delete<number >('http://localhost:8036/learn/cours/id/' + this.selectedcours.id );
 
   }
   public deleteParcours(): Observable<number>{
-   return  this.http.delete<number>('http://localhost:8036/learn/parcours/id/' + this.selectedparcours.id);
+    return  this.http.delete<number>('http://localhost:8036/learn/parcours/id/' + this.selectedparcours.id);
   }
 
   public findSectionIndexById(id: number): number {
@@ -638,23 +637,27 @@ export class ParcoursService {
     return this.http.get<Array<Cours>>('http://localhost:8036/learn/cours/parcours/id/5' );
   }
   public afficheCours(): Observable<Array<Cours>> {
-   return this.http.get<Array<Cours>>('http://localhost:8036/learn/cours/parcours/id/' + this.selectedparcours.id );
+    return this.http.get<Array<Cours>>('http://localhost:8036/learn/cours/order/id/' + this.selectedparcours.id );
   }
 
   affichelistSection(): Observable<Array<Section>> {
-    return this.http.get<Array<Section>>('http://localhost:8036/learn/section/cours/id/' + this.selectedcours.id  );
+    return this.http.get<Array<Section>>('http://localhost:8036/learn/section/order/id/' + this.selectedcours.id  );
   }
   afficheOneSection2(): Observable<Section> {
     this.selectedsection.numeroOrder = this.selectedsection.numeroOrder++;
     // tslint:disable-next-line:max-line-length
     return this.http.get<Section>('http://localhost:8036/learn/section/cours/id/' + this.selectedcours.id + '/numeroOrder/' + this.selectedsection.numeroOrder   );
   }
+  afficheSection( libelle: string): Observable<Section> {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<Section>('http://localhost:8036/learn/section/cours/id/' + this.selectedcours.id + '/categorie/libelle/' + libelle );
+  }
   afficheOneSection(): Observable<Section> {
     // tslint:disable-next-line:max-line-length
     return this.http.get<Section>('http://localhost:8036/learn/section/cours/id/' + this.selectedcours.id + '/numeroOrder/1'  );
   }
   public findSectionByLibelle(libel: string): Observable<Array<Section>> {
-   return this.http.get<Array<Section>>('http://localhost:8036/learn/section/libelle/' + libel );
+    return this.http.get<Array<Section>>('http://localhost:8036/learn/section/libelle/' + libel );
   }
   public findCoursByLibelle(libel: string): Observable<Array<Cours>> {
     return this.http.get<Array<Cours>>('http://localhost:8036/learn/cours/libelle/' + libel );
@@ -672,7 +675,7 @@ export class ParcoursService {
   }
 
   public findCoursByid(id: number): Observable<Array<Cours>> {
-   return  this.http.get<Array<Cours>>('http://localhost:8036/learn/cours/cours/id/' + id );
+    return  this.http.get<Array<Cours>>('http://localhost:8036/learn/cours/cours/id/' + id );
   }
 
   public findSectionByid(id: number): Observable<Section> {
