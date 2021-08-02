@@ -26,15 +26,23 @@
 
 }
 #titleQuiz{
-  background-color: #dcdcdc;
   color:#252529;
   text-align: center;
-  margin: auto;
+  //margin: auto;
+  margin-top: 40px;
+  margin-left: -250px;
   font-family: "Chaparral Pro", serif;
   font-weight: bold;
-  font-size: 70px;
-  border: none;
+  font-size: 30px;
 
+}
+
+#name-quiz{
+  margin-left: 100px;
+  text-align: center;
+  font-family: "Chaparral Pro", serif;
+  font-weight: bold;
+  font-size: 30px;
 }
 ::placeholder{
   color:#252529;
@@ -43,4 +51,16 @@
   font-family: "Chaparral Pro", serif;
   font-weight: bold;
   color: black;
+}
+.card-header{
+  background-color: black;
+  height: 80px;
+  color: cyan;
+}
+#header{
+  margin-left: 35%;
+  margin-right: 80px;
+  font-size: 45px;
+  font-family: Algerian;
+  color: cyan;
 }

@@ -106,6 +106,8 @@ export class LoginAdminComponent implements OnInit {
                   {label: 'FAQ ANSWER', icon: 'pi pi-fw pi-reply', routerLink: ['/pages/faq-admin']},
                   {label: 'FAQ List', icon: 'pi pi-fw pi-info-circle', routerLink: ['/pages/faq-admin-list']},
                   {label: 'CREATE NEWS', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/news-admin']},
+                  {label: 'CREATE Quiz', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/quiz-create-admin']},
+                  {label: 'CREATE Quiz 222', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/quiz-create']},
 
                   {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
             ];

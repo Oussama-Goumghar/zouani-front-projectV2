@@ -1,6 +1,7 @@
+
 import { Component, OnInit } from '@angular/core';
 import {QuizService} from '../../../../controller/service/quiz.service';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService, TreeNode} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Router} from '@angular/router';
 import {Quiz} from '../../../../controller/model/quiz.model';
@@ -11,10 +12,10 @@ import {Section} from '../../../../controller/model/section.model';
 
 
 @Component({
-  selector: 'app-quiz-create',
-  templateUrl: './quiz-create.component.html',
-  styleUrls: ['./quiz-create.component.scss'],
-  providers: [MessageService, ConfirmationService]
+    selector: 'app-quiz-create',
+    templateUrl: './quiz-create.component.html',
+    styleUrls: ['./quiz-create.component.scss'],
+    providers: [MessageService, ConfirmationService]
 })
 export class QuizCreateComponent implements OnInit {
 
@@ -22,6 +23,9 @@ export class QuizCreateComponent implements OnInit {
     constructor(private service: QuizService, private messageService: MessageService, private confirmationService: ConfirmationService, private router: Router, private serviceParcours: ParcoursService) { }
     cols: any[];
     num: number = 0;
+    numQuestion: number = -1;
+    nodes: TreeNode[];
+    question2: Question;
     get question(): Question {
         return this.service.question;
     }
@@ -104,11 +108,12 @@ export class QuizCreateComponent implements OnInit {
                 console.log('can\'t bring data from database');
             }
         );
-       // this.service.findSections().subscribe(data => this.service.sections = data);
+        // this.service.findSections().subscribe(data => this.service.sections = data);
         this.service.findQuizByRef(this.selected.ref);
         this.initCol();
         this.question = new Question();
         this.selected.questions.push(this.question);
+        this.nodes = [];
     }
 
     defaultchecked() {
@@ -133,12 +138,110 @@ export class QuizCreateComponent implements OnInit {
         this.service.quizSelected();
     }
 
+    public clone(question: Question)
+    {
+        let myClone = new Question();
+        myClone.reponses = question.reponses;
+        myClone.libelle = question.libelle;
+        myClone.numero = question.numero;
+        myClone.id = question.id;
+        myClone.quiz = question.quiz;
+        myClone.ref = question.ref;
+        myClone.pointReponsefausse = question.pointReponsefausse;
+        myClone.pointReponseJuste = question.pointReponseJuste;
+        myClone.typeDeQuestion = question.typeDeQuestion;
+        return myClone;
+    }
 
 
     public addFormule() {
-   this.question = new Question();
-   this.num++;
-   this.selected.questions.push(this.question);
+        //this.num++;
+        this.selected.questions.push(this.clone(this.question));
+        this.question2 = this.question;
+
+        console.log(this.selected.questions);
+        this.question = new Question();
+        this.nodes = [];
+        for(let i = 0 ; i < this.selected.questions.length ; i++)
+        {
+            if(this.selected.questions[i].reponses.length == 1)
+            {
+                this.nodes.push(
+                    {
+                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 2)
+            {
+                this.nodes.push(
+                    {
+                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 3)
+            {
+                this.nodes.push(
+                    {
+                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 4)
+            {
+                this.nodes.push(
+                    {
+                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 5)
+            {
+                this.nodes.push(
+                    {
+                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'}
+                        ]
+                    },
+                );
+            }
+        }
+
+
+
+
+        console.log(this.questions);
+
     }
     get selectedsection(): Section {
         return this.service.sectionSelected;
@@ -163,7 +266,7 @@ export class QuizCreateComponent implements OnInit {
                     summary: 'Successful',
                     detail: 'Quiz Created',
                     life: 3000
-                    });
+                });
             });
     }
 

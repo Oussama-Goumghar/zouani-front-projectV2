@@ -1,0 +1,49 @@
+<div>
+    <div class="card-header">
+        Create Quiz
+    </div>
+    <div class="card-body">
+        <div class="p-grid">
+            <div class="p-col-fixed" style="width:60%">
+                <div class="box">
+                    <div class="p-grid">
+                        <div class="p-col-fixed" style="width:50%">
+                            <div class="box">
+                                <span class="p-float-label">
+                                    <input id="quiz-name" type="text" pInputText>
+                                    <label for="quiz-name">Quiz's name</label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-col">
+                            <div class="box">
+                                <div>
+                                    <label for="note">success threshold : </label>
+                                    <input id="note" type="number" [min]="0" pInputText>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label>Question's number : </label>
+                            <input type="number" [min]="0" pInputText>
+                        </div>
+                        <div>
+                            <label>Question's type : </label>
+                            <p-dropdown [options]="typesQuestion" [(ngModel)]="typeQuestion" optionLabel="lib"></p-dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="p-col">
+                <div class="box">
+                    hi
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+
+    </div>
+</div>

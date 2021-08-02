@@ -87,6 +87,7 @@ import {NewsEtudiantListComponent} from './view/std/news-etudiant/news-etudiant-
 import {PaiementComponent} from './view/admin/paiement/paiement.component';
 import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-vocabulary.component';
 import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabulary/quiz-create-vocabulary.component';
+import {QuizCreateAdminComponent} from './view/admin/quiz/quiz-create/quiz-create.component';
 
 
 
@@ -150,6 +151,7 @@ import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabu
                     {path: 'pages/quiz-liste', component: QuizEtudiantListComponent},
                     {path: 'pages/quiz-view', component: QuizEtudiantViewComponent},
                     {path: 'pages/quiz-create-vocabulary', component: QuizCreateVocabularyComponent},
+                    {path: 'pages/quiz-create-admin', component: QuizCreateAdminComponent},
                     {path: 'view/quiz-vocabulary', component: QuizVocabularyComponent},
                     {path: 'pages/paiement', component: PaiementComponent},
                     {path: 'view/quiz-preview', component: QuizPreviewComponent},
