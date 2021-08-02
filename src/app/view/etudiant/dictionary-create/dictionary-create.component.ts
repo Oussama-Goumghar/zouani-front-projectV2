@@ -79,7 +79,12 @@ export class DictionaryCreateComponent implements OnInit {
       this.dictionnaryService.findAll().subscribe( data => this.items = data);
       this.selected = new Dictionary();
     }, error => {
-    console.log('word exist');
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'Warning',
+        detail: 'Error',
+        life: 3000
+      });
     });
     this.selected = new Dictionary();
     this.editDialog = false;
