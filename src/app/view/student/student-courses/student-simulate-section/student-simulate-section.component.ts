@@ -88,7 +88,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     ngOnInit(): void {
 
         this.quizService.section.id = this.selectedsection.id;
-        this.quizService.findQuizSection().subscribe( data => this.selectedQuiz);
+        this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
         this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
         });
     }

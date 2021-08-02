@@ -39,7 +39,6 @@
             <td [style.color]="(section.url+section.content) == 2? 'green' :(section.url+section.content) == 1? 'orange': 'red'">{{section.libelle}} (c:{{section.content}}; L:{{section.url}})</td>
             <td>{{section.categorieSection.libelle}}</td>
 
-
             <td>
               <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editSection(section)" ></button>
               <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(section)" ></button>
