@@ -23,6 +23,18 @@ export class SectionListComponent implements OnInit {
   constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService) { }
   ngOnInit(): void {
     this.initCol();
+    this.quizService.findAllQuiz().subscribe(
+        data => {
+          this.quizItems = data;
+        }
+    );
+  }
+  public findAllQuiz(){
+    this.quizService.findAllQuiz().subscribe(
+        data => {
+          this.quizItems = data;
+        }
+    );
   }
   public findQuiz(section: Section){
     this.quizService.findQuizBySectionId(section).subscribe(
@@ -183,7 +195,17 @@ public getSection(section: Section){
     console.log(section.categorieSection.id);
     this.serviceQuiz.sectionSelected = section;
     console.log(this.serviceQuiz.sectionSelected);
-    this.router.navigate(['/pages/quiz-create']);
+    this.quizService.findQuizBySectionId(section).subscribe(
+      data => {
+        this.selectedQuiz = data;
+        if (this.selectedQuiz.section.id == null){
+          this.router.navigate(['/pages/quiz-create']);
+        }
+      }, error =>
+      {
+        // tslint:disable-next-line:no-unused-expression
+        this.selectedQuiz == null;
+      });
 }
 
     createVocab(id: number) {

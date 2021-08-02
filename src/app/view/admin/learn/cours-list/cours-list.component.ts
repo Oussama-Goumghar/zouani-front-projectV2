@@ -38,6 +38,17 @@ export class CoursListComponent implements OnInit {
     this.service.affichelistSection().subscribe(
         data => {
           this.itemssection = data;
+          for (let i = 0; i <= this.itemssection.length; i++){
+          this.quizService.findQuizBySectionId(this.itemssection[i]).subscribe(
+              // tslint:disable-next-line:no-shadowed-variable
+              data => {
+                this.selectedQuiz = data;
+              }, error =>
+              {
+                // tslint:disable-next-line:no-unused-expression
+                this.selectedQuiz == null;
+              });
+          }
         });
   }
   get selectedQuiz(): Quiz {
