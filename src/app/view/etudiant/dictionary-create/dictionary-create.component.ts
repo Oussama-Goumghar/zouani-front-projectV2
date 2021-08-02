@@ -78,11 +78,12 @@ export class DictionaryCreateComponent implements OnInit {
 
       this.dictionnaryService.findAll().subscribe( data => this.items = data);
       this.selected = new Dictionary();
+    }, error => {
+    console.log('word exist');
     });
-
-    // tslint:disable-next-line:no-unused-expression
-    this.selected == null;
+    this.selected = new Dictionary();
     this.editDialog = false;
+    this.createDialogDict = false;
   }
 
 
