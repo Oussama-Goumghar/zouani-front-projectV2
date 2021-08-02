@@ -37,14 +37,14 @@
                             <p-tableCheckbox [value]="section"></p-tableCheckbox>
                         </td>
                         <td [style.color]="(section.url+section.content) == 2? 'green' :(section.url+section.content) == 1? 'orange': 'red'">{{section.libelle}} (c:{{section.content}}; L:{{section.url}})</td>
-                        <td>{{section.categorieSection.libelle}}</td>
+                        <td >{{section.categorieSection.libelle}}</td>
 
 
                         <td>
                             <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editSection(section)" ></button>
                             <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(section)" ></button>
                             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(section)"></button>
-                            <button pButton pRipple icon="pi pi-book" class="p-button-rounded p-button-sm " style="background-color: #8bf4c1" *ngIf="this.section.categorieSection.libelle != 'Vocabulary'" (click)="getSection(section)" ></button>
+                            <button pButton pRipple icon="pi pi-book" class="p-button-rounded  " style="background-color: #8bf4c1" *ngIf="this.section.categorieSection.libelle != 'Vocabulary'" [style.color]="(this.selectedQuiz.section.id == null )?'blue':'red'" (click)="getSection(section)" ></button>
                             <button pButton pRipple icon="pi pi-images" class="p-button-rounded p-button-lg " style="background-color: #0C8990" *ngIf="this.section.categorieSection.libelle == 'Vocabulary'" (click)="createVocab(section.id)"   ></button>
                         </td>
                     </tr>
