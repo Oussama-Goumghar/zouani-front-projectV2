@@ -5,8 +5,8 @@ import {QuizService} from '../../../../controller/service/quiz.service';
 import {Router} from '@angular/router';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
-import {QuizEtudiantService} from "../../../../controller/service/quiz-etudiant.service";
-import {Quiz} from "../../../../controller/model/quiz.model";
+import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
+import {Quiz} from '../../../../controller/model/quiz.model';
 
 
 
@@ -20,21 +20,35 @@ export class SectionListComponent implements OnInit {
 
   cols: any[];
   // tslint:disable-next-line:max-line-length no-shadowed-variable
-  constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService,private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService) { }
+  constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService) { }
   ngOnInit(): void {
     this.initCol();
-    this.quizService.findQuizBySectionId(this.selectedsection).subscribe(
+  }
+  public findQuiz(section: Section){
+    this.quizService.findQuizBySectionId(section).subscribe(
         data => {
           this.selectedQuiz = data;
+        }, error =>
+        {
+          // tslint:disable-next-line:no-unused-expression
+          this.selectedQuiz == null;
         });
   }
   get selectedQuiz(): Quiz {
     return this.quizService.selectedQuiz;
   }
 
-  set selectedQuiz(value: Quiz) {
-    this.quizService.selectedQuiz = value;
+  set quizItems(value: Array<Quiz>) {
+    this.quizService.quizItems = value;
   }
+    get quizItems(): Array<Quiz> {
+      return this.quizService.quizItems;
+    }
+
+  // tslint:disable-next-line:adjacent-overload-signatures
+    set selectedQuiz(value: Quiz) {
+      this.quizService.selectedQuiz = value;
+    }
   get idSection(): number {
     return this.VocabularyService.idSection;
   }

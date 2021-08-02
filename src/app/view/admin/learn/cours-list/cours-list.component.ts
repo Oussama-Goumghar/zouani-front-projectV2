@@ -3,6 +3,8 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Section} from '../../../../controller/model/section.model';
 import {Cours} from '../../../../controller/model/cours.model';
+import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
+import {Quiz} from '../../../../controller/model/quiz.model';
 
 @Component({
   selector: 'app-cours-list',
@@ -13,7 +15,7 @@ import {Cours} from '../../../../controller/model/cours.model';
 export class CoursListComponent implements OnInit {
   cols: any[];
   // tslint:disable-next-line:max-line-length
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
+  constructor( private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
   ngOnInit(): void {
     this.initCol();
   }
@@ -37,6 +39,13 @@ export class CoursListComponent implements OnInit {
         data => {
           this.itemssection = data;
         });
+  }
+  get selectedQuiz(): Quiz {
+    return this.quizService.selectedQuiz;
+  }
+
+  set selectedQuiz(value: Quiz) {
+    this.quizService.selectedQuiz = value;
   }
   set itemssection(value: Array<Section>) {
     this.service.itemssection = value;
