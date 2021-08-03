@@ -10,6 +10,7 @@ import {EtatEtudiantSchedule} from "../../../controller/model/etat-etudiant-sche
 import {CalendrierProf} from "../../../controller/model/schedule-prof.model";
 import {CalendrierVo} from "../../../controller/model/calendrier-vo.model";
 import {Commande} from "../../../controller/model/commande.model";
+import {LoginService} from "../../../controller/service/login.service";
 
 @Component({
   selector: 'app-schedule',
@@ -19,7 +20,7 @@ import {Commande} from "../../../controller/model/commande.model";
 
 })
 export class ScheduleComponent implements OnInit {
-  constructor(private service: ScheduleService, private messageService: MessageService,private confirmationService: ConfirmationService) {
+  constructor(private service: ScheduleService, private messageService: MessageService,private confirmationService: ConfirmationService, private user: LoginService) {
   }
  calendar: FullCalendar;
 
@@ -161,7 +162,8 @@ export class ScheduleComponent implements OnInit {
     }
 
   ngOnInit() {
- this.service.getStudents().subscribe(data => this.students = data);
+    this.selected.prof.id = this.user.prof.id;
+    this.service.getStudents().subscribe(data => this.students = data);
     this.service.findAll();
     this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
     this.changedEvent = {title: '', etat: '', start: null, end: '', allDay: null};
