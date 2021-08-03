@@ -8,6 +8,7 @@ import {EtatEtudiantSchedule} from "../model/etat-etudiant-schedule.model";
 import {CalendrierProf} from "../model/schedule-prof.model";
 import {CalendrierVo} from "../model/calendrier-vo.model";
 import {Prof} from "../model/prof.model";
+import {LoginService} from "./login.service";
 
 @Injectable({
     providedIn: 'root'
@@ -35,7 +36,7 @@ private _professors: Array<Prof>;
 
 
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private user: LoginService) {
     }
     get selectedVo(): CalendrierVo {
         return this._selectedVo;
@@ -179,7 +180,7 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
 
     public findAll() {
 
-        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/').subscribe(data => {
+        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/id/' + this.selected.prof.id).subscribe(data => {
             this.itemsVo = data;
             console.log(this.itemsVo);
         });
@@ -194,6 +195,7 @@ public delete(): Observable<number>{
 }
     save() {
         this.eventDialog = false;
+        this.selected.prof = this.user.prof;
         this.selected.etudiant.nom = this.selectedVo.title;
       this.selected.startTime = this.selectedVo.startTime;
       this.selected.endTime = this.selectedVo.endTime;
@@ -202,6 +204,7 @@ public delete(): Observable<number>{
               this.items.push({...data});
           }
       );
+        this.findAll();
     }
 public edit() : Observable<CalendrierProf>{
         return this.http.put<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
