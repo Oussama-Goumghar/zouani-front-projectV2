@@ -220,7 +220,7 @@ public edit() : Observable<CalendrierProf>{
         return this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
     }
 public getStudents(): Observable<Array<Etudiant>>{
-        return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/');
+        return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/prof/id/{id}?id=' + this.selected.prof.id);
 }
 public getProf():Observable<Array<Prof>>{
         return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof');
