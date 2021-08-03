@@ -5,12 +5,12 @@ import interactionPlugin from '@fullcalendar/interaction';
 import {FullCalendar} from 'primeng/fullcalendar';
 import {ScheduleService} from '../../../controller/service/schedule.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {Etudiant} from "../../../controller/model/etudiant.model";
-import {EtatEtudiantSchedule} from "../../../controller/model/etat-etudiant-schedule.model";
-import {CalendrierProf} from "../../../controller/model/schedule-prof.model";
-import {CalendrierVo} from "../../../controller/model/calendrier-vo.model";
-import {Commande} from "../../../controller/model/commande.model";
-import {LoginService} from "../../../controller/service/login.service";
+import {Etudiant} from '../../../controller/model/etudiant.model';
+import {EtatEtudiantSchedule} from '../../../controller/model/etat-etudiant-schedule.model';
+import {CalendrierProf} from '../../../controller/model/schedule-prof.model';
+import {CalendrierVo} from '../../../controller/model/calendrier-vo.model';
+import {Commande} from '../../../controller/model/commande.model';
+import {LoginService} from '../../../controller/service/login.service';
 
 @Component({
   selector: 'app-schedule',
@@ -20,7 +20,7 @@ import {LoginService} from "../../../controller/service/login.service";
 
 })
 export class ScheduleComponent implements OnInit {
-  constructor(private service: ScheduleService, private messageService: MessageService,private confirmationService: ConfirmationService, private user: LoginService) {
+  constructor(private service: ScheduleService, private messageService: MessageService, private confirmationService: ConfirmationService, private user: LoginService) {
   }
  calendar: FullCalendar;
 
@@ -190,8 +190,8 @@ export class ScheduleComponent implements OnInit {
           this.clickedEvent = e.event;
 
           this.changedEvent.title = this.clickedEvent.title;
-         this.changedEvent.start = this.clickedEvent.start;
-         this.changedEvent.end = this.clickedEvent.end;
+          this.changedEvent.start = this.clickedEvent.start;
+          this.changedEvent.end = this.clickedEvent.end;
       }
     };
   }
@@ -202,7 +202,7 @@ export class ScheduleComponent implements OnInit {
 
     public edit() {
         this.submitted = true;
-            if (this.selectedVo.id) {
+        if (this.selectedVo.id) {
                 this.service.edit().subscribe(data => {
                     this.selected.startTime = this.selectedVo.startTime;
                     this.selected.endTime = this.selectedVo.endTime;
@@ -215,9 +215,9 @@ export class ScheduleComponent implements OnInit {
                     });
                 });
             }
-            this.eventDialog = false;
-            this.selected = new CalendrierProf();
-            this.selectedVo = new CalendrierVo();
+        this.eventDialog = false;
+        this.selected = new CalendrierProf();
+        this.selectedVo = new CalendrierVo();
 
     }
   public findIndexById(id: number): number {
@@ -284,7 +284,7 @@ export class ScheduleComponent implements OnInit {
         });
       }
     });
-     this.calendar.getCalendar().getEvents().forEach(event => event.remove());
+    this.calendar.getCalendar().getEvents().forEach(event => event.remove());
     this.eventDialog = false ;
   }
 

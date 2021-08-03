@@ -195,7 +195,7 @@ public delete(): Observable<number>{
 }
     save() {
         this.eventDialog = false;
-        this.selected.prof.id = this.user.prof.id;
+        this.selected.prof = this.user.prof;
         this.selected.etudiant.nom = this.selectedVo.title;
       this.selected.startTime = this.selectedVo.startTime;
       this.selected.endTime = this.selectedVo.endTime;
@@ -204,6 +204,7 @@ public delete(): Observable<number>{
               this.items.push({...data});
           }
       );
+        this.findAll();
     }
 public edit() : Observable<CalendrierProf>{
         return this.http.put<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
