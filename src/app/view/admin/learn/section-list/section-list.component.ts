@@ -200,6 +200,10 @@ public getSection(section: Section){
         this.selectedQuiz = data;
         if (this.selectedQuiz.section.id == null){
           this.router.navigate(['/pages/quiz-create']);
+        } else{
+          this.serviceQuiz.refQuiz = this.selectedQuiz.ref;
+          console.log(this.serviceQuiz.refQuiz);
+          this.router.navigate(['/view/quiz-preview']);
         }
       }, error =>
       {
