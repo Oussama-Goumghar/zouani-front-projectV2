@@ -195,18 +195,19 @@ public delete(): Observable<number>{
 }
     save() {
         this.eventDialog = false;
-        this.selected.prof = this.user.prof;
-        this.selected.etudiant.nom = this.selectedVo.title;
-      this.selected.startTime = this.selectedVo.startTime;
-      this.selected.endTime = this.selectedVo.endTime;
+        this.selected.etudiant.nom = this.changedEvent.title;
+      this.selected.startTime = this.changedEvent.startTime;
+      this.selected.endTime = this.changedEvent.endTime;
       this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected).subscribe(
-          data =>{
+          data => {
               this.items.push({...data});
-          }
+          }, error => {
+              console.log('erreuuur');
+        }
       );
         this.findAll();
     }
-public edit() : Observable<CalendrierProf>{
+public edit(): Observable<CalendrierProf>{
         return this.http.put<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
 }
 

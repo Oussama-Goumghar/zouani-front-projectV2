@@ -81,7 +81,7 @@
                     </ng-template>
 
                     <ng-template pTemplate="footer">
-                        <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+                        <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
                         <button pButton label="Reset" icon="pi pi-refresh" class="p-button-text" (click)="reset()"></button>
                     </ng-template>
                 </p-dialog>
@@ -89,7 +89,7 @@
         </div>
     </div>
 </p-card>
-<p-dialog [(visible)]="createDialog" [style]="{width: '700px'}" id="addStudent"  [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [style]="{width: '900px'}" id="addStudent"  [modal]="true" styleClass="p-fluid">
     <ng-template pTemplate="content">
 
         <div class="p-field">

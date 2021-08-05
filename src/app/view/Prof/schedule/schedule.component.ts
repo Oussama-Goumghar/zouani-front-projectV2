@@ -202,10 +202,9 @@ export class ScheduleComponent implements OnInit {
 
     public edit() {
         this.submitted = true;
-        if (this.selectedVo.id) {
                 this.service.edit().subscribe(data => {
-                    this.selected.startTime = this.selectedVo.startTime;
-                    this.selected.endTime = this.selectedVo.endTime;
+                    this.selected.startTime = this.changedEvent.startTime;
+                    this.selected.endTime = this.changedEvent.endTime;
                     this.selected = data;
                     this.messageService.add({
                         severity: 'success',
@@ -214,7 +213,6 @@ export class ScheduleComponent implements OnInit {
                         life: 3000
                     });
                 });
-            }
         this.eventDialog = false;
         this.selected = new CalendrierProf();
         this.selectedVo = new CalendrierVo();
@@ -254,6 +252,10 @@ export class ScheduleComponent implements OnInit {
       this.service.addStudent().subscribe(data => {
         this.items.push({...data});
         console.log(this.selected);
+        this.selected.prof.id = this.user.prof.id;
+        this.service.getStudents().subscribe(data => this.students = data);
+        this.service.findAll();
+        this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
         this.messageService.add({
           severity: 'success',
           summary: 'Successful',
