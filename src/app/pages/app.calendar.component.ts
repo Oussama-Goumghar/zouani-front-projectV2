@@ -33,7 +33,7 @@ export class AppCalendarComponent implements OnInit{
 
     ngOnInit() {
         this.eventService.getEvents().then(events => {this.events = events; });
-        this.changedEvent = {title: '', start: null, end: '', allDay: null};
+        this.changedEvent = {title: '', start: null, prof: '', end: '', allDay: null};
 
         this.options = {
             plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],

@@ -1,14 +1,4 @@
 <p-toast></p-toast>
-<div class="card toolbar-demo">
-    <p-toolbar >
-        <div class="p-toolbar-group-left" >
-            <button label="Instruction" pButton pRipple icon="pi pi-question" iconPos="left"    (click)="showBasicDialog()" > </button>
-        </div>
-        <div class="p-tooltip-right">
-            <button pRipple pButton class=" p-button-secondary" label="add Student"  (click)="openCreate()"></button>
-        </div>
-    </p-toolbar>
-</div>
 <div class="p-col" style=" float: left">
 
     <p-dialog  [(visible)]="displayBasic" [style]="{width: '30vw'}" [baseZIndex]="10000">
@@ -18,16 +8,16 @@
         </ng-template>
     </p-dialog>
 </div>
-<p-card  styleClass="p-card-shadow" class="container"  [style]="{width: '1200px', backgroundColor: 'gainsboro'}">
-    <ng-template pTemplate="header" >
-        <div>
-            <h1  style=" text-align: center" id="scheduleTitre">Schedule</h1>
-        </div>
-    </ng-template>
+<p-card  styleClass="p-card-shadow" class="container"  [style]="{width: '1600px'}">
+    <button label="Instruction" pButton pRipple icon="pi pi-question"     (click)="showBasicDialog()" > </button>
+    <button pRipple pButton class=" p-button-secondary" style="float: right" label="add Student"  (click)="openCreate()"></button>
+
     <div class="p-grid container"  style="text-align:center; margin: 0 auto" >
-        <div class="p-col-10" >
+        <div class="p-col-12" >
             <div class="card " >
-                <p-fullCalendar #fc [events]="itemsVo" [options]="options"></p-fullCalendar>
+                    <p-fullCalendar #fc [events]="itemsVo" [options]="options"></p-fullCalendar>
+
+
 
                <!-- <p-dialog [(visible)]="eventDialog" [style]="{width: '450px'}" header="Event Details" [modal]="true" [closable]="true">
                     <ng-template pTemplate="content">

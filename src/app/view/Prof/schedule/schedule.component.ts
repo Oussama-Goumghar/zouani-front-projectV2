@@ -162,14 +162,16 @@ export class ScheduleComponent implements OnInit {
     }
 
   ngOnInit() {
+
     this.selected.prof.id = this.user.prof.id;
     this.service.getStudents().subscribe(data => this.students = data);
-    this.service.findAll();
-    this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
-    this.changedEvent = {title: '', etat: '', start: null, end: '', allDay: null};
-    this.options = {
+    this.service.findByProf();
+            this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
+            this.changedEvent = {title: '', etat: '', teacher: '', start: null, end: '', allDay: null};
+
+        this.options = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      defaultDate: '2021-05-18',
+      defaultDate: new Date(),
       header: {
         left: 'prev,next',
         center: 'title ,addEventButton',
@@ -192,6 +194,7 @@ export class ScheduleComponent implements OnInit {
           this.changedEvent.title = this.clickedEvent.title;
           this.changedEvent.start = this.clickedEvent.start;
           this.changedEvent.end = this.clickedEvent.end;
+          this.changedEvent.teacher = this.clickedEvent.teacher;
       }
     };
   }
@@ -202,9 +205,10 @@ export class ScheduleComponent implements OnInit {
 
     public edit() {
         this.submitted = true;
-                this.service.edit().subscribe(data => {
+        this.service.edit().subscribe(data => {
                     this.selected.startTime = this.changedEvent.startTime;
                     this.selected.endTime = this.changedEvent.endTime;
+                    this.selected.prof.prenom = this.changedEvent.teacher;
                     this.selected = data;
                     this.messageService.add({
                         severity: 'success',
@@ -254,7 +258,7 @@ export class ScheduleComponent implements OnInit {
         console.log(this.selected);
         this.selected.prof.id = this.user.prof.id;
         this.service.getStudents().subscribe(data => this.students = data);
-        this.service.findAll();
+        this.service.findByProf();
         this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
         this.messageService.add({
           severity: 'success',

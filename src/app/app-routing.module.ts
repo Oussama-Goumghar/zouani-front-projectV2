@@ -88,6 +88,8 @@ import {PaiementComponent} from './view/admin/paiement/paiement.component';
 import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-vocabulary.component';
 import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabulary/quiz-create-vocabulary.component';
 import {QuizCreateAdminComponent} from './view/admin/quiz/quiz-create/quiz-create.component';
+import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin.component';
+import {ScheduleStudentComponent} from "./view/student/schedule-student/schedule-student.component";
 
 
 
@@ -156,6 +158,8 @@ import {QuizCreateAdminComponent} from './view/admin/quiz/quiz-create/quiz-creat
                     {path: 'pages/paiement', component: PaiementComponent},
                     {path: 'view/quiz-preview', component: QuizPreviewComponent},
                     {path: 'view/schedule', component: ScheduleComponent},
+                    {path: 'pages/schedule', component: ScheduleAdminComponent},
+                    {path: 'pages/scheduleStudent', component: ScheduleStudentComponent},
                     {path: 'inscriptionEtudiant', component: FormLayoutDemoComponent},
                     {path: 'uikit/floatlabel', component: FloatLabelDemoComponent},
                     {path: 'uikit/invalidstate', component: InvalidStateDemoComponent},

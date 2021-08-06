@@ -48,6 +48,7 @@
 
     <div class="card-footer " >
         <button pButton pRipple type="button" icon="pi pi-caret-left" style="margin-left: 15px; width: 120px" label="Previous" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder != 1)? 'visible':'hidden'"   (click)="PreviousSection()" ></button>
-        <button pButton pRipple type="button" icon="pi pi-caret-right" label="Next" style="margin-left: 850px; width: 120px" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'visible':'hidden'"   (click)="NextSection()" ></button>
+        <button pButton pRipple type="button" icon="pi pi-caret-right" label="Next" style="margin-left: 830px; width: 120px" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'visible':'hidden'"   (click)="NextSection()" ></button>
+        <button pButton pRipple type="button" icon="pi " label="Finish" style=" width: 120px" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'hidden':'visible'"    ></button>
     </div>
 </div>

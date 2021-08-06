@@ -249,6 +249,8 @@ import { PaiementComponent } from './view/admin/paiement/paiement.component';
 import { PaiementListComponent } from './view/admin/paiement/paiement-list/paiement-list.component';
 import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabulary/quiz-create-vocabulary.component';
 import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-vocabulary.component';
+import { ScheduleAdminComponent } from './view/admin/schedule-admin/schedule-admin.component';
+import { ScheduleStudentComponent } from './view/student/schedule-student/schedule-student.component';
 
 
 
@@ -503,7 +505,9 @@ import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-voc
         PaiementComponent,
         PaiementListComponent,
         QuizCreateVocabularyComponent,
-        QuizVocabularyComponent
+        QuizVocabularyComponent,
+        ScheduleAdminComponent,
+        ScheduleStudentComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
