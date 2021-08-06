@@ -1,0 +1,132 @@
+
+<p-toast></p-toast>
+
+<div class="p-col" style=" float: left">
+
+    <p-dialog  [(visible)]="displayBasic" [style]="{width: '30vw'}" [baseZIndex]="10000">
+        <p>This is the schedule of your part of teaching , the students how are in color green are the students that they are just start the courses, the others how are in color orange are the students active in your courses.</p>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-dialog>
+</div>
+
+<p-card  styleClass="p-card-shadow" class="container"  [style]="{width: '1600px'}">
+    <button label="Instruction" pButton pRipple icon="pi pi-question"     (click)="showBasicDialog()" > </button>
+    <button pRipple pButton class=" p-button-secondary" iconPos="right" label="add Student" style="float: right" (click)="openCreate()"></button>
+
+    <div class="p-grid container"  style="text-align:center; margin: 0 auto" >
+        <div class="p-col-12" >
+            <div class="card " >
+                <p-fullCalendar #fc [events]="itemsVo" [options]="options"></p-fullCalendar>
+
+                <!-- <p-dialog [(visible)]="eventDialog" [style]="{width: '450px'}" header="Event Details" [modal]="true" [closable]="true">
+                     <ng-template pTemplate="content">
+                         <div class="p-fluid">
+                             <div class="p-field">
+                                 <label for="title">Title</label>
+                                 <input id="title" type="text" pInputText  [(ngModel)]="selectedVo.title" disabled>
+                             </div>
+                             <div class="p-field">
+                                 <label >State </label>
+                                 <p-dropdown inputId="etat"  [options]="etatEtudiantSchedule" [(ngModel)]="selected.etudiant.etatEtudiantSchedule" placeholder="State of student" optionLabel="libelle"></p-dropdown>
+                             </div>
+                             <div class="p-field">
+                                 <label for="start">From</label>
+                                 <p-calendar id="start" [(ngModel)]="selectedVo.startTime" [timeOnly]="true" inputId="timeonly"></p-calendar>
+                             </div>
+                             <div class="p-field">
+                                 <label for="end">To</label>
+                                 <p-calendar id="end"  [(ngModel)]="selectedVo.endTime" [timeOnly]="true" inputId="timeonly" appendTo="body"></p-calendar>
+                             </div>
+                         </div>
+                     </ng-template>
+
+                     <ng-template pTemplate="footer">
+                         <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+                         <button pButton label="Reset" icon="pi pi-refresh" class="p-button-text" (click)="reset()"></button>
+                         <button pButton label="Delete" icon="pi pi-trash" class="p-button-text" (click)="delete(selected)"></button>
+                     </ng-template>
+                 </p-dialog>-->
+                <p-dialog [(visible)]="eventDialog" [style]="{width: '450px'}" header="Event Details" [modal]="true" [closable]="true">
+                    <ng-template pTemplate="content">
+                        <div class="p-fluid">
+                            <div class="p-field">
+                                <label for="title">Title</label>
+                                <input id="title" type="text" pInputText *ngIf="clickedEvent" [(ngModel)]="changedEvent.title" [required]="true" disabled>
+                            </div>
+                            <div class="p-field">
+                                <label for="Teacher">Teacher</label>
+                                <input id="Teacher" type="text" pInputText *ngIf="clickedEvent" [(ngModel)]="changedEvent.prof.nom" [required]="true" disabled>
+                            </div>
+
+                            <div class="p-field">
+                                <label for="start">From</label>
+                                <p-calendar id="start" *ngIf="clickedEvent" [(ngModel)]="changedEvent.start" [showTime]="true" appendTo="body" disabled></p-calendar>
+                            </div>
+                            <div class="p-field">
+                                <label for="end">To</label>
+                                <p-calendar id="end" *ngIf="clickedEvent" [(ngModel)]="changedEvent.end" [showTime]="true" appendTo="body" disabled></p-calendar>
+                            </div>
+                        </div>
+                    </ng-template>
+
+                    <ng-template pTemplate="footer">
+                        <button pButton label="Save" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+                        <button pButton label="Reset" icon="pi pi-refresh" class="p-button-text" (click)="reset()"></button>
+                    </ng-template>
+                </p-dialog>
+            </div>
+        </div>
+    </div>
+</p-card>
+<p-dialog [(visible)]="createDialog" [style]="{width: '900px'}" id="addStudent"  [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+
+        <div class="p-field">
+            <label >Name</label>
+            <p-dropdown [(ngModel)]="selected.etudiant" [options]="students" placeholder="Name of student" optionLabel="nom"></p-dropdown>
+        </div>
+        <!--  <div class="p-field">
+              <label >Name</label>
+              <p-dropdown [(ngModel)]="selected.prof" [options]="students" placeholder="Name of professor" optionLabel="nom"></p-dropdown>
+          </div>-->
+
+        <div class="p-field">
+            <label for="ref">Reference</label>
+            <input type="text" pInputText id="ref" [(ngModel)]="selected.ref" required autofocus />
+            <small class="p-invalid" *ngIf="submitted && !selected.ref">ref is required.</small>
+        </div>
+        <div class="p-field">
+            <label >State </label>
+            <p-dropdown inputId="etat"  [options]="etatEtudiantSchedule" [(ngModel)]="selected.etudiant.etatEtudiantSchedule" placeholder="Etat Etudiant" optionLabel="libelle"></p-dropdown>
+        </div>
+        <div class="p-field">
+            <label for="start">Debut Date</label>
+            <p-calendar inputId="start" [showTime]="false" [(ngModel)]="selected.startRecur" dateFormat="yy-mm-dd"></p-calendar>
+            <small class="p-invalid" *ngIf="submitted && !selected.startRecur">start date is required.</small>
+        </div>
+
+        <div class="p-field ">
+            <label for="end">Finish Date </label>
+            <p-calendar inputId="basic" [showTime]="false" [(ngModel)]="selected.endRecur" dateFormat="yy-mm-dd"></p-calendar>
+            <small class="p-invalid" *ngIf="submitted && !selected.endRecur">end date is required.</small>
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <div class="p-field p-col">
+                <label >Start time (hh:mm:sss)</label>
+                <input pInputText type="text" required autofocus [(ngModel)]="selected.startTime">
+                <small class="p-invalid" *ngIf="submitted && !selected.startTime">start time is required.</small>
+            </div>
+            <div class="p-field p-col">
+                <label >End time (hh:mm:sss)</label>
+                <input pInputText type="text" required autofocus [(ngModel)]="selected.endTime">
+                <small class="p-invalid" *ngIf="submitted && !selected.endTime">end time is required.</small>
+            </div>
+        </div>
+    </ng-template>
+    <!--  <ng-template pTemplate="footer">
+        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
+      <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addStudent()"></button>
+    </ng-template>-->
+</p-dialog>

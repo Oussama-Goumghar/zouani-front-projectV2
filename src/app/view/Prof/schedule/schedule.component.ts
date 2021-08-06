@@ -162,29 +162,16 @@ export class ScheduleComponent implements OnInit {
     }
 
   ngOnInit() {
-        if (this.user.prof.id != null){
+
     this.selected.prof.id = this.user.prof.id;
     this.service.getStudents().subscribe(data => this.students = data);
     this.service.findByProf();
             this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
             this.changedEvent = {title: '', etat: '', teacher: '', start: null, end: '', allDay: null};
-        }
-      else  if (this.user.admin.id != null){
-            this.service.getAllStudents().subscribe(data => this.students = data);
-            this.service.findAll();
-            this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
-            this.changedEvent = {title: '', etat: '', teacher: '', start: null, end: '', allDay: null};
-        }
-      else if (this.user.etudiant.id != null){
-            this.selected.etudiant.id = this.user.etudiant.id;
-            this.service.findByStudent();
-            this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
-            this.changedEvent = {title: '', etat: '', teacher: '', start: null, end: '', allDay: null};
-        }
 
         this.options = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
-      defaultDate: '2021-05-18',
+      defaultDate: new Date(),
       header: {
         left: 'prev,next',
         center: 'title ,addEventButton',

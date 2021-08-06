@@ -1,8 +1,11 @@
+import {Prof} from './prof.model';
+
 export class CalendrierVo {
-    public id:number;
+    public id: number;
     public ref: string;
     public title: string;
-    public color:string;
+    public prof = new Prof();
+    public color: string;
     public startTime: string;
     public endTime: string;
     public startRecur: Date = new Date();

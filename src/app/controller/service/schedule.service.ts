@@ -2,13 +2,13 @@ import {Injectable} from '@angular/core';
 import {ScheduleProf} from '../model/calendrier-prof.model';
 import {HttpClient} from '@angular/common/http';
 import {ScheduleVo} from '../model/schedule-vo.model';
-import {Observable} from "rxjs";
-import {Etudiant} from "../model/etudiant.model";
-import {EtatEtudiantSchedule} from "../model/etat-etudiant-schedule.model";
-import {CalendrierProf} from "../model/schedule-prof.model";
-import {CalendrierVo} from "../model/calendrier-vo.model";
-import {Prof} from "../model/prof.model";
-import {LoginService} from "./login.service";
+import {Observable} from 'rxjs';
+import {Etudiant} from '../model/etudiant.model';
+import {EtatEtudiantSchedule} from '../model/etat-etudiant-schedule.model';
+import {CalendrierProf} from '../model/schedule-prof.model';
+import {CalendrierVo} from '../model/calendrier-vo.model';
+import {Prof} from '../model/prof.model';
+import {LoginService} from './login.service';
 
 @Injectable({
     providedIn: 'root'
@@ -17,8 +17,8 @@ export class ScheduleService {
 
     private _selected: CalendrierProf;
     private _items: Array<CalendrierProf>;
-    private _selectedVo : CalendrierVo;
-    private _itemsVo : Array<CalendrierVo>;
+    private _selectedVo: CalendrierVo;
+    private _itemsVo: Array<CalendrierVo>;
     private _etatEtudiantSchedule: Array<EtatEtudiantSchedule>;
     private _etudiant: Etudiant;
     private _displayBasic: boolean;
@@ -31,10 +31,25 @@ export class ScheduleService {
     private _createDialog: boolean;
     private _submitted: boolean;
 private _students: Array<Etudiant>;
+private _student: Etudiant;
 private _professors: Array<Prof>;
 
 
+    get student(): Etudiant {
+        return this._student;
+    }
 
+    set student(value: Etudiant) {
+        this._student = value;
+    }
+
+    get professors(): Array<Prof> {
+        return this._professors;
+    }
+
+    set professors(value: Array<Prof>) {
+        this._professors = value;
+    }
 
     constructor(private http: HttpClient, private user: LoginService) {
     }
@@ -65,9 +80,9 @@ private _professors: Array<Prof>;
     }
 get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         if (this._etatEtudiantSchedule == null){
-            this._etatEtudiantSchedule =new Array<EtatEtudiantSchedule>();
+            this._etatEtudiantSchedule = new Array<EtatEtudiantSchedule>();
         }
-            return this._etatEtudiantSchedule;
+        return this._etatEtudiantSchedule;
     }
 
     set etatEtudiantSchedule(value: Array<EtatEtudiantSchedule>) {
@@ -183,7 +198,7 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         });
     }
     public findByStudent() {
-        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/etudiant/id' + this.selected.etudiant.id).subscribe(data => {
+        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/etudiant/id/' + this.selected.etudiant.id).subscribe(data => {
             this.itemsVo = data;
             console.log(this.itemsVo);
         });
@@ -200,21 +215,21 @@ public remove(){
         this.clickedEvent.remove();
 }
 public delete(): Observable<number>{
-       return  this.http.delete<number>('http://localhost:8036/learn/calendrierProf/id'+ this.selected.id);
+       return  this.http.delete<number>('http://localhost:8036/learn/calendrierProf/id' + this.selected.id);
 }
     save() {
         this.eventDialog = false;
         this.selected.etudiant.nom = this.changedEvent.title;
-      this.selected.startTime = this.changedEvent.startTime;
-      this.selected.endTime = this.changedEvent.endTime;
-      this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected).subscribe(
+        this.selected.startTime = this.changedEvent.startTime;
+        this.selected.endTime = this.changedEvent.endTime;
+        this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected).subscribe(
           data => {
               this.items.push({...data});
           }, error => {
               console.log('erreuuur');
         }
       );
-        this.findAll();
+        this.findByProf();
     }
 public edit(): Observable<CalendrierProf>{
         return this.http.put<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
@@ -225,6 +240,7 @@ public edit(): Observable<CalendrierProf>{
         this.changedEvent.title = this.clickedEvent.title;
         this.changedEvent.start = this.clickedEvent.start;
         this.changedEvent.end = this.clickedEvent.end;
+        this.changedEvent.prof.nom = this.clickedEvent.prof.nom;
     }
     public  addStudent(): Observable<CalendrierProf>{
         return this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
