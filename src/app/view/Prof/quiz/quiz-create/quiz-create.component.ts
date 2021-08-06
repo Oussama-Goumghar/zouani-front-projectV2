@@ -61,6 +61,10 @@ export class QuizCreateComponent implements OnInit {
         return this.service.question.reponses;
     }
 
+    set reponses(value: Array<Reponse>) {
+        this.service.reponses = value;
+    }
+
     get type(): TypeDeQuestion {
         if (this.service.type == null){
             this.service.type = new TypeDeQuestion();
@@ -121,7 +125,6 @@ export class QuizCreateComponent implements OnInit {
     }
 
 
-
     checked(event) {
         return this.service.checked(event);
     }
@@ -154,6 +157,17 @@ export class QuizCreateComponent implements OnInit {
     }
 
 
+    update(key: string)
+    {
+        this.question.libelle = this.selected.questions[key].libelle;
+        this.question.numero = this.selected.questions[key].numero;
+        this.question.typeDeQuestion = this.selected.questions[key].typeDeQuestion;
+        for(var i = 0 ; i < this.selected.questions[key].reponses.length ; i++)
+        {
+            this.reponses.push(this.selected.questions[key].reponses[i]);
+        }
+    }
+
     public addFormule() {
         //this.num++;
         this.selected.questions.push(this.clone(this.question));
@@ -168,7 +182,7 @@ export class QuizCreateComponent implements OnInit {
             {
                 this.nodes.push(
                     {
-                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
                         children: [
                             {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
                             //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
@@ -182,7 +196,7 @@ export class QuizCreateComponent implements OnInit {
             {
                 this.nodes.push(
                     {
-                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
                         children: [
                             {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
                             {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
@@ -196,7 +210,7 @@ export class QuizCreateComponent implements OnInit {
             {
                 this.nodes.push(
                     {
-                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
                         children: [
                             {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
                             {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
@@ -210,7 +224,7 @@ export class QuizCreateComponent implements OnInit {
             {
                 this.nodes.push(
                     {
-                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
                         children: [
                             {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
                             {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
@@ -224,7 +238,7 @@ export class QuizCreateComponent implements OnInit {
             {
                 this.nodes.push(
                     {
-                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
                         children: [
                             {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
                             {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},

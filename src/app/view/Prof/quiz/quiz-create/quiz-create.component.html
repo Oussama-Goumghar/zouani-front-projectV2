@@ -118,8 +118,9 @@
                         </ng-template>
                         <ng-template let-node pTemplate="default">
                             <b>{{node.label}}</b>
-                        </ng-template>
+                           <button pButton pRipple type="button" style="background-color: white;" icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-text" (click)="update(node.key)"></button>
 
+                        </ng-template>
                     </p-tree>
                 </div>
             </div>
