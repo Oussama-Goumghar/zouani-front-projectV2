@@ -10,6 +10,7 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import {Prof} from "../../../controller/model/prof.model";
 
 @Component({
   selector: 'app-schedule-admin',
@@ -158,10 +159,21 @@ export class ScheduleAdminComponent implements OnInit {
   set students(value: Array<Etudiant>) {
     this.service.students = value;
   }
+  get professors(): Array<Prof> {
 
+    return this.service.professors;
+  }
+
+  set professors(value: Array<Prof>) {
+    this.service.professors = value;
+  }
+  public getProf(){
+    this.service.getProf().subscribe(data => this.professors = data);
+  }
   ngOnInit() {
     this.service.findAll();
     this.service.getAllStudents().subscribe(data => this.students = data);
+    this.service.getProf().subscribe(data => this.professors = data);
     this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
     this.changedEvent = {title: '', etat: '', prof: '', start: null, end: '', allDay: null};
     this.options = {
@@ -252,8 +264,6 @@ export class ScheduleAdminComponent implements OnInit {
     this.service.addStudent().subscribe(data => {
       this.items.push({...data});
       console.log(this.selected);
-      this.selected.prof.id = this.user.prof.id;
-      this.service.getAllStudents().subscribe(data => this.students = data);
       this.service.findAll();
       this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
       this.messageService.add({

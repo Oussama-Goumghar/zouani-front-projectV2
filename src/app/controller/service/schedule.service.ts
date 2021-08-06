@@ -44,6 +44,9 @@ private _professors: Array<Prof>;
     }
 
     get professors(): Array<Prof> {
+        if( this._professors == null){
+            this._professors = new Array<Prof>();
+        }
         return this._professors;
     }
 
@@ -252,7 +255,7 @@ public getStudents(): Observable<Array<Etudiant>>{
         return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/');
     }
 public getProf(): Observable<Array<Prof>>{
-        return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof');
+        return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof/');
 }
 
 public findEtat(): Observable<Array<EtatEtudiantSchedule>>{
