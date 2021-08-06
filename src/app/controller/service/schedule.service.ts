@@ -174,12 +174,21 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
     }
 
     set items(value: Array<CalendrierProf>) {
-        
         this._items = value;
     }
-
     public findAll() {
-
+        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/prof/').subscribe(data => {
+            this.itemsVo = data;
+            console.log(this.itemsVo);
+        });
+    }
+    public findByStudent() {
+        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/etudiant/id' + this.selected.etudiant.id).subscribe(data => {
+            this.itemsVo = data;
+            console.log(this.itemsVo);
+        });
+    }
+    public findByProf() {
         return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/id/' + this.selected.prof.id).subscribe(data => {
             this.itemsVo = data;
             console.log(this.itemsVo);
@@ -223,7 +232,10 @@ public edit(): Observable<CalendrierProf>{
 public getStudents(): Observable<Array<Etudiant>>{
         return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/prof/id/' + this.selected.prof.id);
 }
-public getProf():Observable<Array<Prof>>{
+    public getAllStudents(): Observable<Array<Etudiant>>{
+        return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/');
+    }
+public getProf(): Observable<Array<Prof>>{
         return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof');
 }
 
