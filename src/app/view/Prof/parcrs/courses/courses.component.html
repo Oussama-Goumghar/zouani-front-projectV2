@@ -23,7 +23,7 @@
                     <ng-template pTemplate="body" let-cours>
                         <tr>
 
-                            <td style="color: #0c799f" (click)="viewType(cours)" ><u style="cursor: pointer">{{cours.libelle}}</u></td>
+                            <td [style.color]="(cours.etatCours =='Finish')? 'green':'blue'" (click)="viewType(cours)" ><u style="cursor: pointer">{{cours.libelle}}</u></td>
                             <td >{{cours.nombreSectionFinalise+cours.nombreSectionEnCours}}</td>
 
                         </tr>

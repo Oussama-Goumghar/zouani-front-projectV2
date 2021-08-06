@@ -47,8 +47,9 @@
 
 
     <div class="card-footer " >
-        <button pButton pRipple type="button" icon="pi pi-caret-left" style="margin-left: 15px; width: 120px" label="Previous" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder != 1)? 'visible':'hidden'"   (click)="PreviousSection()" ></button>
-        <button pButton pRipple type="button" icon="pi pi-caret-right" label="Next" style="margin-left: 830px; width: 120px" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'visible':'hidden'"   (click)="NextSection()" ></button>
-        <button pButton pRipple type="button" icon="pi " label="Finish" style=" width: 120px" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'hidden':'visible'"    ></button>
+        <button pButton pRipple type="button" id="previous" icon="pi pi-caret-left" style="margin-left: 15px; width: 120px" label="Previous"  class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder != 1)? 'visible':'hidden'"  (click)="PreviousSection()" ></button>
+        <button pButton pRipple type="button" style="margin-left: 360px; width: 120px" id="quiz" *ngIf="this.selectedsection.categorieSection.libelle != 'Vocabulary'  " [style.visibility]="(this.selectedQuiz.section.id == this.selectedsection.id )? 'visible':'hidden'"  label="quiz"  class="p-button-rounded" (click)="quiz()" ></button>
+        <button pButton pRipple type="button" icon="pi pi-caret-right" label="Next" id="next" style="margin-left: 360px; width: 120px" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'visible':'hidden'"  (click)="NextSection()" ></button>
+        <button pButton pRipple type="button" icon="pi " label="Finish" style=" width: 120px" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'hidden':'visible'" (click)="finish()"   ></button>
     </div>
 </div>

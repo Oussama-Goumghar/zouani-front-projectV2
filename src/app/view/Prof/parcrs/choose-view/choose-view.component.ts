@@ -3,6 +3,8 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Cours} from '../../../../controller/model/cours.model';
 import {Section} from '../../../../controller/model/section.model';
+import {Quiz} from '../../../../controller/model/quiz.model';
+import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
 
 @Component({
   selector: 'app-choose-view',
@@ -12,7 +14,7 @@ import {Section} from '../../../../controller/model/section.model';
 export class ChooseViewComponent implements OnInit {
   value = 0;
   // tslint:disable-next-line:max-line-length
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
+  constructor( private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
   ngOnInit(): void {
   }
   public FindSection(cour: Cours) {
@@ -49,7 +51,17 @@ export class ChooseViewComponent implements OnInit {
           this.service.image += 'preview';
           console.log(this.service.image);
     });
+    this.quizService.section.id = this.selectedsection.id;
+    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
   }
+  get selectedQuiz(): Quiz {
+    return this.quizService.selectedQuiz;
+  }
+
+  set selectedQuiz(value: Quiz) {
+    this.quizService.selectedQuiz = value;
+  }
+
   set selectessection(value: Array<Section>) {
     this.service.selectessection = value;
   }
