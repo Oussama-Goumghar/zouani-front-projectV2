@@ -61,8 +61,17 @@ export class ParcoursService {
   private _image2 = '';
   private _image3 = '';
   private _video = '';
+  private _img = '';
   constructor(private http: HttpClient ) {  }
 
+
+  get img(): string {
+    return this._img;
+  }
+
+  set img(value: string) {
+    this._img = value;
+  }
 
   get itemsvocab(): Array<Vocabulary> {
     if (this._itemsvocab == null) {

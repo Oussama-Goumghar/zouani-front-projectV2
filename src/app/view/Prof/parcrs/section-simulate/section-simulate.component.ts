@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {Section} from '../../../../controller/model/section.model';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
@@ -7,6 +7,15 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {HttpClient} from '@angular/common/http';
 import {style} from '@angular/animations';
 import {position} from 'html2canvas/dist/types/css/property-descriptors/position';
+import {ChooseViewComponent} from '../choose-view/choose-view.component';
+
+@Pipe({ name: 'safe' })
+export class SafePipe1 implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) { }
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 @Component({
   selector: 'app-section-simulate',
@@ -15,6 +24,7 @@ import {position} from 'html2canvas/dist/types/css/property-descriptors/position
 })
 export class SectionSimulateComponent implements OnInit {
 
+  srcImg: string;
   // tslint:disable-next-line:max-line-length
   constructor(private messageService: MessageService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
   value = 0;
@@ -47,11 +57,23 @@ export class SectionSimulateComponent implements OnInit {
       this.service.video += this.selectedsection.urlVideo[m];
     }
     console.log( this.service.video);
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
+   // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
+    return this.service.video;
   }
   ngOnInit(): void {
-    console.log(this.selectedsection.id );
+    // this.service.image = '';
+    //  for (let j = 0; j < 76 ; j++)
+    //  {
+    /*this.service.image = this.selectedsection.urlImage;
+    //  }
+    //  this.service.image += 'preview';
+    console.log('ana image ' + this.service.image + this.selectedsection.urlImage);
+    this.srcImg = this.service.image;
+   // this.photoURL();
     console.log(this.selectedsection.urlVideo );
+   // this.srcImg = this.photoURL();
+   // this.srcImg = this.service.image;
+    console.log(this.srcImg);*/
   }
   get progress(): number {
     return this.service.progress;
@@ -82,16 +104,20 @@ export class SectionSimulateComponent implements OnInit {
       this.NextSection();
     }
   }
+
   photoURL() {
     this.service.image = '';
-    for (let j = 0; j < 66 ; j++)
-    {
-      this.service.image += this.selectedsection.urlImage[j];
-    }
-    this.service.image += 'preview';
-    console.log(this.selectedsection.id );
+  //  for (let j = 0; j < 76 ; j++)
+  //  {
+    this.service.image = this.selectedsection.urlImage;
+  //  }
+  //  this.service.image += 'preview';
+    console.log(this.service.image);
+    this.srcImg = this.service.image;
+    return this.srcImg;
     // const blob = UrlFetch(this.image,{headers})
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
+  //  return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
+   // return this.service.image;
   }
   Contenu() {
     this.service.contenu = '';

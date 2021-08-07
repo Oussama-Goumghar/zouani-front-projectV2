@@ -19,6 +19,7 @@ export class EtudiantCoursesComponent implements OnInit {
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
   ngOnInit(): void {
     this.initCol();
+    this.viewChooseType2 = false;
   }
   public Console() {
     this.service.FindCoursByParcours().subscribe(data => this.selectesscours = data);

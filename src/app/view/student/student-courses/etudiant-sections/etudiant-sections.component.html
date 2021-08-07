@@ -14,8 +14,10 @@
                 <ng-template let-section pTemplate="listItem">
                     <div class="p-col-12">
                         <div class="product-list-item">
-                            <iframe [src]='this.sanitizer.bypassSecurityTrustResourceUrl(section.urlImage)' frameborder="0"
-                                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                        <!--    <iframe [src]='this.sanitizer.bypassSecurityTrustResourceUrl(section.urlImage)' frameborder="0"
+                                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                            <img [src]="section.urlImage | safe" width = "250" height="300" >
+
                             <div class="product-list-detail">
                                 <div class="product-name">{{section.libelle}}</div>
                                 <div class="product-description">{{section.description}}</div>
@@ -29,8 +31,10 @@
                     <div class="p-col-12 p-md-4">
                         <div class="product-grid-item card">
                             <div class="product-grid-item-content" style="cursor: pointer">
-                                <iframe [src]='this.sanitizer.bypassSecurityTrustResourceUrl(section.urlImage)' frameborder="0"
-                                        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                             <!--   <iframe [src]='this.sanitizer.bypassSecurityTrustResourceUrl(section.urlImage)' frameborder="0"
+                                        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                                <img [src]="section.urlImage | safe" width = "250" height="300" >
+
                                 <div class="product-name">{{section.libelle}}</div>
                                 <div class="product-description">{{section.description}}</div>
                             </div>
