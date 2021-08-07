@@ -7,6 +7,10 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {HttpClient} from '@angular/common/http';
 import {style} from '@angular/animations';
 import {position} from 'html2canvas/dist/types/css/property-descriptors/position';
+import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
+import {Quiz} from '../../../../controller/model/quiz.model';
+import {QuizService} from '../../../../controller/service/quiz.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-section-simulate',
@@ -16,7 +20,7 @@ import {position} from 'html2canvas/dist/types/css/property-descriptors/position
 export class SectionSimulateComponent implements OnInit {
 
   // tslint:disable-next-line:max-line-length
-  constructor(private messageService: MessageService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
+  constructor(private messageService: MessageService,  private router: Router, private serviceQuiz: QuizService, private sanitizer: DomSanitizer, private quizService: QuizEtudiantService,  private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
   value = 0;
   public Section(libelle: string){
     this.service.afficheSection(libelle).subscribe(
@@ -27,14 +31,37 @@ export class SectionSimulateComponent implements OnInit {
   get image(): string {
     return this.service.image;
   }
-  get contenu(): string {
-    return this.service.contenu;
-  }
-
   set contenu(value: string) {
     this.service.contenu = value;
   }
-
+  get contenu(): string {
+    return this.service.contenu;
+  }
+  get selectedQuiz(): Quiz {
+    return this.quizService.selectedQuiz;
+  }
+public quiz(){
+  this.serviceQuiz.refQuiz = this.selectedQuiz.ref;
+  console.log(this.serviceQuiz.refQuiz);
+  this.router.navigate(['/view/quiz-preview']);
+}
+  set selectedQuiz(value: Quiz) {
+    this.quizService.selectedQuiz = value;
+  }
+  public finish() {
+    if (this.selectedcours.id) {
+      this.selectedcours.etatCours = 'Finish';
+      this.service.updateCours().subscribe(data => {
+        this.selectedcours = data;
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Cours Finish',
+          life: 3000
+        });
+      });
+    }
+  }
   // tslint:disable-next-line:adjacent-overload-signatures
   set image(value: string) {
     this.service.image = value;
@@ -57,6 +84,8 @@ export class SectionSimulateComponent implements OnInit {
   ngOnInit(): void {
     console.log(this.selectedsection.id );
     console.log(this.selectedsection.urlVideo );
+    this.quizService.section.id = this.selectedsection.id;
+    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
   }
   get progress(): number {
     return this.service.progress;
@@ -73,6 +102,8 @@ export class SectionSimulateComponent implements OnInit {
     this.service.progress = value;
   }
   PreviousSection() {
+    this.quizService.section.id = this.selectedsection.id;
+    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.service.affichelistSection().subscribe(
         data => {
           this.itemssection2 = data;
@@ -119,6 +150,8 @@ export class SectionSimulateComponent implements OnInit {
     return this.service.contenu;
   }
   NextSection() {
+    this.quizService.section.id = this.selectedsection.id;
+    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.service.affichelistSection().subscribe(
         data => {
           this.itemssection2 = data;

@@ -84,13 +84,14 @@
     <ng-template pTemplate="content">
 
         <div class="p-field">
-            <label >Name</label>
+            <label >Student Name </label>
             <p-dropdown [(ngModel)]="selected.etudiant" [options]="students" placeholder="Name of student" optionLabel="nom"></p-dropdown>
         </div>
-        <!--  <div class="p-field">
-              <label >Name</label>
-              <p-dropdown [(ngModel)]="selected.prof" [options]="students" placeholder="Name of professor" optionLabel="nom"></p-dropdown>
-          </div>-->
+        <div class="p-field">
+            <label >Teacher Name </label>
+            <p-dropdown [(ngModel)]="selected.prof" [options]="professors" (click)="getProf()" placeholder="Name of Teacher" optionLabel="nom"></p-dropdown>
+        </div>
+
 
         <div class="p-field">
             <label for="ref">Reference</label>
@@ -125,8 +126,8 @@
             </div>
         </div>
     </ng-template>
-    <!--  <ng-template pTemplate="footer">
+     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
       <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="addStudent()"></button>
-    </ng-template>-->
+    </ng-template>
 </p-dialog>

@@ -23,6 +23,8 @@ export class SectionListComponent implements OnInit {
   constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService) { }
   ngOnInit(): void {
     this.initCol();
+    this.quizService.section.id = this.selectedsection.id;
+    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.quizService.findAllQuiz().subscribe(
         data => {
           this.quizItems = data;
