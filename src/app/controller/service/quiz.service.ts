@@ -50,7 +50,26 @@ export class QuizService {
     private _sectionSelected: Section;
     private _refQuiz: string;
     private _idQst: number;
+    private _questionNumero: number = 1;
+    private _reponseNumero: number = 1;
+    private nombreReponseJuste: number = 0;
 
+
+    get questionNumero(): number {
+        return this._questionNumero;
+    }
+
+    set questionNumero(value: number) {
+        this._questionNumero = value;
+    }
+
+    get reponseNumero(): number {
+        return this._reponseNumero;
+    }
+
+    set reponseNumero(value: number) {
+        this._reponseNumero = value;
+    }
 
     get idQst(): number {
         return this._idQst;
@@ -389,6 +408,29 @@ public findConfig(): Observable<Array<QuizConfig>>{
         const cloneReponse = JSON.parse(JSON.stringify(this.reponse));
         this.question.reponses.push(cloneReponse);
         this.reponse = null;
+        this.reponseNumero = this.reponseNumero + 1;
+        this.reponse.numero = this.reponseNumero;
+        if(this.question.typeDeQuestion.ref == 't1')
+        {
+            for (let i = 0 ; i < this.question.reponses.length ; i++)
+            {
+                if(this.question.reponses[i].etatReponse == 'true')
+                {
+                    this.nombreReponseJuste = this.nombreReponseJuste + 1;
+                }
+            }
+            if(this.nombreReponseJuste == 0)
+            {
+                this.reponse.etatReponse = 'true';
+            }
+            else{
+                this.reponse.etatReponse = 'false';
+            }
+        }
+        else
+        {
+            this.reponse.etatReponse = 'true';
+        }
     }
 
     public displayTime() {

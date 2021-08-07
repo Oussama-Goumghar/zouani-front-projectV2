@@ -18,16 +18,16 @@
                     <div class="card-header">
                         <output id="header">Create Quiz</output>
                     </div>
-                    <div class="container">
+                    <!--<div class="container">
                         <label class="labelFormat" id="name-quiz" >Name Quiz</label><br/>
                         <input type="text"  pInputText  id="titleQuiz" [(ngModel)]="selected.lib">
                     </div>
-                    <br/><br/>
+                    <br/><br/>-->
                     <div class="p-fluid p-formgrid p-grid">
-                        <div class="p-field p-col-12 p-md-3">
+                        <!--<div class="p-field p-col-12 p-md-3">
                             <label class="labelFormat" >Reference Quiz</label><br/>
                             <input  type="text" pInputText  class="refQuiz" [(ngModel)]="selected.ref" >
-                        </div>
+                        </div>-->
                         <div class="p-field p-col-12 p-md-3">
                             <label class="labelFormat">debut date</label><br/>
                             <p-calendar inputId="debut"    [(ngModel)]="selected.dateDebut" dateFormat="yy-mm-dd"></p-calendar>
@@ -77,7 +77,8 @@
                                 <textarea type="text" rows="2"  pInputTextarea [(ngModel)]="reponse.lib"></textarea>
                             </div>
                             <div class="p-field  p-col-2" >
-                                <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-primary p-button-raised" (click)="addReponse()"></button>
+                                <!--<button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded p-button-primary p-button-raised" (click)="addReponse()"></button>-->
+                                <p-button label="Add Answer" icon="pi pi-plus" iconPos="right" (click)="addReponse()" styleClass="p-button-sm"></p-button>
                             </div>
                             <div class="p-formgroup-inline p-col-12">
                                 <h6>Correct : </h6>
@@ -118,14 +119,20 @@
                         </ng-template>
                         <ng-template let-node pTemplate="default">
                             <b>{{node.label}}</b>
-                           <button pButton pRipple type="button" style="background-color: white;" icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-text" (click)="update(node.key)"></button>
+                            <!--<button pButton pRipple type="button" label="Update this question" class="p-button-outlined" (click)="update(node.key)"></button>-->
+                            <button pButton pRipple type="button" icon="pi pi-undo" class="p-button-rounded p-button-success" (click)="update(node.key)"></button>
+                            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="deleteQuestion(node.key)"></button>
+                           <!--<button pButton pRipple type="button" style="background-color: white;" icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-text" (click)="update(node.key)"></button>-->
 
                         </ng-template>
                     </p-tree>
                 </div>
             </div>
+            <button pButton pRipple type="button" label="Update" class="p-button-raised" icon="pi pi-undo" iconPos="right" style="margin-left: 200px" (click)="updateQuestion()"></button>
+            <button pButton pRipple type="button" label="Add question" class="p-button-raised p-button-success" icon="pi pi-plus" iconPos="right" style="margin-left: 150px" (click)="addFormule()"></button>
             <div class="p-field  p-col-2 buttonAdd">
-                <button pButton pRipple type="button" style="background-color: white;" icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-text" (click)="addFormule()"></button>
+
+                <!--<button pButton pRipple type="button" style="background-color: white;" icon="pi pi-plus" class="p-button-rounded p-button-raised p-button-text" (click)="addFormule()"></button>-->
             </div>
             <!--<div class="p-field  p-col buttonAdd" >
                 <button  pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-raised" (click)="deleteCard(1)"></button>

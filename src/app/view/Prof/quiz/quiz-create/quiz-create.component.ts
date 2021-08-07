@@ -26,6 +26,25 @@ export class QuizCreateComponent implements OnInit {
     numQuestion: number = -1;
     nodes: TreeNode[];
     question2: Question;
+    numeroQuestion : string = '';
+    deleteNumber: number;
+
+    get questionNumero(): number {
+        return this.service.questionNumero;
+    }
+
+    set questionNumero(value: number) {
+        this.service.questionNumero = value;
+    }
+
+    get reponseNumero(): number {
+        return this.service.reponseNumero;
+    }
+
+    set reponseNumero(value: number) {
+        this.service.reponseNumero = value;
+    }
+
     get question(): Question {
         return this.service.question;
     }
@@ -118,6 +137,9 @@ export class QuizCreateComponent implements OnInit {
         this.question = new Question();
         this.selected.questions.push(this.question);
         this.nodes = [];
+        this.question.numero = this.questionNumero;
+        this.reponse.numero = this.reponseNumero;
+        this.reponse.etatReponse = 'true';
     }
 
     defaultchecked() {
@@ -159,22 +181,211 @@ export class QuizCreateComponent implements OnInit {
 
     update(key: string)
     {
+        this.numeroQuestion = key;
         this.question.libelle = this.selected.questions[key].libelle;
         this.question.numero = this.selected.questions[key].numero;
         this.question.typeDeQuestion = this.selected.questions[key].typeDeQuestion;
+        this.question.pointReponseJuste = this.selected.questions[key].pointReponseJuste;
+        this.question.pointReponsefausse = this.selected.questions[key].pointReponsefausse;
         for(var i = 0 ; i < this.selected.questions[key].reponses.length ; i++)
         {
             this.reponses.push(this.selected.questions[key].reponses[i]);
         }
+        this.reponseNumero = this.selected.questions[key].reponses.length + 1;
+        this.reponse.numero = this.reponseNumero;
+    }
+
+    deleteQuestion(key: string)
+    {
+        this.deleteNumber = Number(key);
+        this.selected.questions.splice(this.deleteNumber,1);
+        for(let i = this.deleteNumber ; i < this.selected.questions.length ; i++)
+        {
+            this.selected.questions[i].numero = this.selected.questions[i].numero - 1;
+        }
+        this.nodes = [];
+        for(let i = 0 ; i < this.selected.questions.length ; i++)
+        {
+            if(this.selected.questions[i].reponses.length == 1)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 2)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 3)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 4)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 5)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',  type: 'url'}
+                        ]
+                    },
+                );
+            }
+        }
+        this.questionNumero = this.selected.questions.length + 1;
+        this.reponseNumero = 1;
+        this.question.numero = this.questionNumero;
+        this.reponse.numero = this.reponseNumero;
+        this.reponse.etatReponse = 'true';
+    }
+
+    updateQuestion()
+    {
+        this.selected.questions[this.numeroQuestion].libelle = this.question.libelle;
+        this.selected.questions[this.numeroQuestion].numero = this.question.numero;
+        this.selected.questions[this.numeroQuestion].typeDeQuestion = this.question.typeDeQuestion;
+        this.selected.questions[this.numeroQuestion].reponses = this.reponses;
+        this.question = new Question();
+        this.nodes = [];
+        for(let i = 0 ; i < this.selected.questions.length ; i++)
+        {
+            if(this.selected.questions[i].reponses.length == 1)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 2)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 3)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                            //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 4)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'}
+                        ]
+                    },
+                );
+            }
+            else if(this.selected.questions[i].reponses.length == 5)
+            {
+                this.nodes.push(
+                    {
+                        key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: [
+                            {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'},
+                            {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',  type: 'url'}
+                        ]
+                    },
+                );
+            }
+        }
+        this.questionNumero = this.selected.questions.length + 1;
+        this.reponseNumero = 1;
+        this.question.numero = this.questionNumero;
+        this.reponse.numero = this.reponseNumero;
+        this.reponse.etatReponse = 'true';
     }
 
     public addFormule() {
+
         //this.num++;
         this.selected.questions.push(this.clone(this.question));
         this.question2 = this.question;
 
         console.log(this.selected.questions);
         this.question = new Question();
+        this.questionNumero = this.questionNumero + 1;
+        this.reponseNumero = 1;
+        this.question.numero = this.questionNumero;
+        this.reponse.numero = this.reponseNumero;
         this.nodes = [];
         for(let i = 0 ; i < this.selected.questions.length ; i++)
         {
@@ -254,9 +465,10 @@ export class QuizCreateComponent implements OnInit {
 
 
 
-        console.log(this.questions);
+        this.reponse.etatReponse = 'true';
 
     }
+
     get selectedsection(): Section {
         return this.service.sectionSelected;
     }
@@ -265,6 +477,7 @@ export class QuizCreateComponent implements OnInit {
         this.service.sectionSelected = value;
     }*/
     public save() {
+        this.selected.ref = 'quiz-' + this.selectedsection.id;
         this.selected.section.id =  this.selectedsection.id;
         console.log(this.selected.section.id);
         this.service.refQuiz = this.service.selected.ref;
