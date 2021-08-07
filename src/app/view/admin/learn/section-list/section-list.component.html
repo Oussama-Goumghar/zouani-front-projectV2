@@ -44,7 +44,6 @@
               <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(section)" ></button>
               <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(section)"></button>
               <button pButton pRipple icon="pi pi-book" class="p-button-rounded p-button-sm " *ngIf="this.section.categorieSection.libelle != 'Vocabulary'" [style.background-color]="(this.selectedQuiz.section.id != section.id)?'red':'blue'" (click)="getSection(section)" ></button>
-              <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-lg " style="background-color: #0C8990" *ngIf="this.section.categorieSection.libelle != 'Vocabulary'" [style.visibility]="(this.selectedQuiz.section.id == this.selectedsection.id )? 'visible':'hidden'" ></button>
               <button pButton pRipple icon="pi pi-image" class="p-button-rounded p-button-lg " style="background-color: #0C8990" *ngIf="this.section.categorieSection.libelle == 'Vocabulary'" (click)="createVocab(section.id)"   ></button>
             </td>
           </tr>

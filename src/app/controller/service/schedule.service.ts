@@ -195,7 +195,7 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         this._items = value;
     }
     public findAll() {
-        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/prof/').subscribe(data => {
+        return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/').subscribe(data => {
             this.itemsVo = data;
             console.log(this.itemsVo);
         });

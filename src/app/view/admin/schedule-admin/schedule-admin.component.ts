@@ -10,7 +10,7 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import {Prof} from "../../../controller/model/prof.model";
+import {Prof} from '../../../controller/model/prof.model';
 
 @Component({
   selector: 'app-schedule-admin',
@@ -21,7 +21,7 @@ export class ScheduleAdminComponent implements OnInit {
 
   constructor(private service: ScheduleService, private messageService: MessageService, private confirmationService: ConfirmationService, private user: LoginService) {
   }
-  calendar2: FullCalendar;
+  calendar: FullCalendar;
 
   get selectedVo(): CalendrierVo {
     return this.service.selectedVo;
@@ -296,7 +296,7 @@ export class ScheduleAdminComponent implements OnInit {
         });
       }
     });
-    this.calendar2.getCalendar().getEvents().forEach(event => event.remove());
+    this.calendar.getCalendar().getEvents().forEach(event => event.remove());
     this.eventDialog = false ;
   }
 
