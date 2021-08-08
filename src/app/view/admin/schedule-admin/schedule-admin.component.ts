@@ -183,7 +183,7 @@ export class ScheduleAdminComponent implements OnInit {
       // Date().toString()
       header: {
         left: 'prev,next',
-        center: 'title ,addEventButton, titleProf',
+        center: 'title, titleProf ,addEventButton, ',
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       allDaySlot: false,

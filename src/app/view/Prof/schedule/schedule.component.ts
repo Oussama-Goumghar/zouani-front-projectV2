@@ -22,7 +22,8 @@ import {LoginService} from '../../../controller/service/login.service';
 export class ScheduleComponent implements OnInit {
   constructor(private service: ScheduleService, private messageService: MessageService, private confirmationService: ConfirmationService, private user: LoginService) {
   }
- calendar: FullCalendar;
+    @ViewChild('fm') calendar: FullCalendar;
+
 
     get selectedVo(): CalendrierVo {
         return this.service.selectedVo;

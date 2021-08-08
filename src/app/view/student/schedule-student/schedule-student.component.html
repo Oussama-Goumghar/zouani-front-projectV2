@@ -13,7 +13,7 @@
     <div class="p-grid container"  style="text-align:center; margin: 0 auto" >
         <div class="p-col-12" >
             <div class="card " >
-                <p-fullCalendar #fc [events]="itemsVo" [options]="options"></p-fullCalendar>
+                <p-fullCalendar #fr [events]="itemsVo" [options]="options"></p-fullCalendar>
 
                 <p-dialog [(visible)]="eventDialog"  [style]="{width: '450px'}" header="Event Details" [modal]="true" [closable]="true">
                     <ng-template pTemplate="content">

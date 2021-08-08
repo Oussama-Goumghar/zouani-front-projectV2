@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ScheduleService} from '../../../controller/service/schedule.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {LoginService} from '../../../controller/service/login.service';
@@ -20,7 +20,7 @@ export class ScheduleStudentComponent implements OnInit {
 
   constructor(private service: ScheduleService, private messageService: MessageService, private confirmationService: ConfirmationService, private user: LoginService) {
   }
-  calendar: FullCalendar;
+  @ViewChild('fr') calendar: FullCalendar;
 
   get selectedVo(): CalendrierVo {
     return this.service.selectedVo;
