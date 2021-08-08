@@ -165,14 +165,14 @@ export class ScheduleStudentComponent implements OnInit {
       this.user.etudiant = this.student;
       this.service.findByStudent();
       this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
-      this.changedEvent = {title: '', etat: '', prof: '', start: null, end: '', allDay: null};
+      this.changedEvent = {title: '', etat: '', titleProf: '', start: null, end: '', allDay: null};
 
       this.options = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       defaultDate:  new Date(),
       header: {
         left: 'prev,next',
-        center: 'title ,addEventButton',
+        center: 'title , titleProf,addEventButton',
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       allDaySlot: false,
@@ -188,11 +188,10 @@ export class ScheduleStudentComponent implements OnInit {
         this.eventDialog = true;
 
         this.clickedEvent = e.event;
-        this.clickedEvent.prof = selected.prof.nom;
         this.changedEvent.title = this.clickedEvent.title;
         this.changedEvent.start = this.clickedEvent.start;
         this.changedEvent.end = this.clickedEvent.end;
-        this.changedEvent.prof = this.clickedEvent.prof;
+        this.changedEvent.titleProf = this.clickedEvent.titleProf;
       }
     };
   }
@@ -206,7 +205,7 @@ export class ScheduleStudentComponent implements OnInit {
     this.service.edit().subscribe(data => {
       this.selected.startTime = this.changedEvent.startTime;
       this.selected.endTime = this.changedEvent.endTime;
-      this.selected.prof.prenom = this.changedEvent.teacher;
+      this.selected.prof.nom = this.changedEvent.titleProf;
       this.selected = data;
       this.messageService.add({
         severity: 'success',

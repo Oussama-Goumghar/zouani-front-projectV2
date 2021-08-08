@@ -65,6 +65,9 @@ private _professors: Array<Prof>;
     }
 
     get itemsVo(): Array<CalendrierVo> {
+        if (this._itemsVo == null){
+            this._itemsVo = new Array<CalendrierVo>();
+        }
         return this._itemsVo;
     }
 
@@ -243,7 +246,7 @@ public edit(): Observable<CalendrierProf>{
         this.changedEvent.title = this.clickedEvent.title;
         this.changedEvent.start = this.clickedEvent.start;
         this.changedEvent.end = this.clickedEvent.end;
-        this.changedEvent.prof.nom = this.clickedEvent.prof.nom;
+        this.changedEvent.titleProf = this.clickedEvent.titleProf;
     }
     public  addStudent(): Observable<CalendrierProf>{
         return this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
