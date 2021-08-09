@@ -227,17 +227,17 @@ export class StudentSimulateSectionComponent implements OnInit {
     URLVideo() {
         this.service.video = '';
         // tslint:disable-next-line:prefer-for-of
-        for (let m = 0; m < 24 ; m++)
-        {
-            this.service.video += this.selectedsection.urlVideo[m];
-        }
-        this.service.video += 'embed/';
-        for (let m = 32; m < 43 ; m++)
-        {
-            this.service.video += this.selectedsection.urlVideo[m];
-        }
+        // for (let m = 0; m < 24 ; m++)
+        // {
+        this.service.video = this.selectedsection.urlVideo;
+        // }
+        //   for (let m = 32; m < 43 ; m++)
+        //   {
+        //  }
         console.log( this.service.video);
+        // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
         return this.service.video;
+
     }
     NextSection() {
         this.service.affichelistSection().subscribe(

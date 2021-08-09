@@ -18,7 +18,7 @@
                                       webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
                             <img *ngIf="section.urlImage.exists" [src]="section.urlImage | safe" width = "250" height="300" >
                             <img *ngIf="!section.urlImage && !section.urlVideo" src="assets/notfound.jpg" width = "250" height="300" >
-                            <iframe *ngIf="section.urlVideo.exists" [src]="section.urlVideo | safe" width = "250" height="300" allowfullscreen></iframe>
+                            <iframe *ngIf="section.urlVideo.exists" [src]="section.urlVideo | safe" width = "500" height="400" allowfullscreen></iframe>
 
                             <div class="product-list-detail">
                                   <div class="product-name">{{section.libelle}}</div>

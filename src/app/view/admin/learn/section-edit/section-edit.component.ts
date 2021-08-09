@@ -30,12 +30,30 @@ export class SectionEditComponent implements OnInit {
     return link;
   }
 
+  public urlvideo(link: any){
+    if (link !== null){
+      if (link.startsWith('https://www.youtube.com/watch')){
+        const found = link.substring(32, 43);
+        if (found !== null){
+        console.log('hadaaaaa found== ' + found);
+        return 'https://www.youtube.com/embed/' + found ;
+      }
+    }
+    }
+
+    return link;
+  }
+
   public editSection() {
     this.submittedSection = true;
     if (this.selectedsection.id) {
       if (this.selectedsection.urlImage){
         console.log(this.selectedsection.urlImage);
         this.selectedsection.urlImage = this.urlfind(this.selectedsection.urlImage); }
+      if (this.selectedsection.urlVideo){
+        console.log(this.selectedsection.urlVideo);
+        this.selectedsection.urlVideo = this.urlvideo(this.selectedsection.urlVideo); }
+
       this.itemssection[this.service.findSectionIndexById(this.selectedsection.id)] = this.selectedsection;
       this.service.updateSection().subscribe(data => {
         this.selectedsection = data;

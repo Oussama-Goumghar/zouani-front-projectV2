@@ -28,7 +28,7 @@ export class SectionSimulateComponent implements OnInit {
   // tslint:disable-next-line:max-line-length
   constructor(private messageService: MessageService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
   value = 0;
-
+  srcvideo = 'https://www.youtube.com/embed/JGwWNGJdvx8';
   get image(): string {
     return this.service.image;
   }
@@ -43,22 +43,6 @@ export class SectionSimulateComponent implements OnInit {
   // tslint:disable-next-line:adjacent-overload-signatures
   set image(value: string) {
     this.service.image = value;
-  }
-  URLVideo() {
-    this.service.video = '';
-    // tslint:disable-next-line:prefer-for-of
-    for (let m = 0; m < 24 ; m++)
-    {
-      this.service.video += this.selectedsection.urlVideo[m];
-    }
-    this.service.video += 'embed/';
-    for (let m = 32; m < 43 ; m++)
-    {
-      this.service.video += this.selectedsection.urlVideo[m];
-    }
-    console.log( this.service.video);
-   // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
-    return this.service.video;
   }
   ngOnInit(): void {
     // this.service.image = '';
@@ -104,7 +88,20 @@ export class SectionSimulateComponent implements OnInit {
       this.NextSection();
     }
   }
-
+  URLVideo() {
+    this.service.video = '';
+    // tslint:disable-next-line:prefer-for-of
+   // for (let m = 0; m < 24 ; m++)
+    // {
+    this.service.video = this.selectedsection.urlVideo;
+   // }
+ //   for (let m = 32; m < 43 ; m++)
+ //   {
+  //  }
+    console.log( this.service.video);
+    // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
+    return this.service.video;
+  }
   photoURL() {
     this.service.image = '';
   //  for (let j = 0; j < 76 ; j++)
