@@ -254,6 +254,7 @@ import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabu
 import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-vocabulary.component';
 import { ScheduleAdminComponent } from './view/admin/schedule-admin/schedule-admin.component';
 import { ScheduleStudentComponent } from './view/student/schedule-student/schedule-student.component';
+import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.component';
 
 
 
@@ -513,7 +514,8 @@ import { ScheduleStudentComponent } from './view/student/schedule-student/schedu
         QuizCreateVocabularyComponent,
         QuizVocabularyComponent,
         ScheduleAdminComponent,
-        ScheduleStudentComponent
+        ScheduleStudentComponent,
+        QuizUpdateComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
