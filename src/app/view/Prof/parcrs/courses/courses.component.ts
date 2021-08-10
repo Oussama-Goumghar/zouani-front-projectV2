@@ -18,6 +18,7 @@ export class CoursesComponent implements OnInit {
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
   ngOnInit(): void {
     this.initCol();
+    this.viewChooseType = false;
   }
   get viewChooseType(): boolean {
     return this.service.viewChooseType;

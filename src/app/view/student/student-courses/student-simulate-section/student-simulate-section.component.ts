@@ -1,5 +1,5 @@
 /* tslint:disable:no-shadowed-variable whitespace */
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Section} from '../../../../controller/model/section.model';
 import {Cours} from '../../../../controller/model/cours.model';
@@ -16,12 +16,23 @@ import {Dictionary} from '../../../../controller/model/dictionary.model';
 import {Router} from '@angular/router';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
 
+@Pipe({ name: 'safe' })
+export class SafePipe implements PipeTransform {
+    constructor(private sanitizer: DomSanitizer) { }
+    transform(url) {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
+}
+
+
 @Component({
     selector: 'app-student-simulate-section',
     templateUrl: './student-simulate-section.component.html',
     styleUrls: ['./student-simulate-section.component.scss']
 })
 export class StudentSimulateSectionComponent implements OnInit {
+
+    srcImg: string;
 
     // tslint:disable-next-line:max-line-lengthg max-line-length
     constructor(private messageService: MessageService, private router: Router, private dictionnaryService: DictionaryService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient, private quizService: QuizEtudiantService, private loginService: LoginService, private  vocab: VocabularyService) { }
@@ -86,6 +97,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.selectedDict = new Dictionary();
     }
     ngOnInit(): void {
+        // this.photoURL();
 
         this.quizService.section.id = this.selectedsection.id;
         this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
@@ -213,28 +225,42 @@ export class StudentSimulateSectionComponent implements OnInit {
         }
     }
     photoURL() {
+        // this.service.image = '';
+        //  for (let j = 0; j < 76 ; j++)
+        //  {
+        // this.service.image = this.selectedsection.urlImage;
+        //  }
+        //  this.service.image += 'preview';
+        console.log(this.selectedsection.id );
+        // const blob = UrlFetch(this.image,{headers})
+        //  return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
+        // return this.service.image;
         this.service.image = '';
-        for (let j = 0; j < 66 ; j++)
-        {
-            this.service.image += this.selectedsection.urlImage[j];
-        }
-        this.service.image += 'preview';
-        return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
+        //  for (let j = 0; j < 76 ; j++)
+        //  {
+        this.service.image = this.selectedsection.urlImage;
+        //  }
+        //  this.service.image += 'preview';
+        console.log(this.service.image);
+        this.srcImg = this.service.image;
+        return this.srcImg;
+
+        //   return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
     }
     URLVideo() {
         this.service.video = '';
         // tslint:disable-next-line:prefer-for-of
-        for (let m = 0; m < 24 ; m++)
-        {
-            this.service.video += this.selectedsection.urlVideo[m];
-        }
-        this.service.video += 'embed/';
-        for (let m = 32; m < 43 ; m++)
-        {
-            this.service.video += this.selectedsection.urlVideo[m];
-        }
+        // for (let m = 0; m < 24 ; m++)
+        // {
+        this.service.video = this.selectedsection.urlVideo;
+        // }
+        //   for (let m = 32; m < 43 ; m++)
+        //   {
+        //  }
         console.log( this.service.video);
-        return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
+        // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
+        return this.service.video;
+
     }
     NextSection() {
         this.service.affichelistSection().subscribe(

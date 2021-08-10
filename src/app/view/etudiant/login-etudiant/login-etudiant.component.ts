@@ -4,6 +4,7 @@ import {LoginService} from '../../../controller/service/login.service';
 import {Prof} from '../../../controller/model/prof.model';
 import {Admin} from '../../../controller/model/admin.model';
 import {Etudiant} from '../../../controller/model/etudiant.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-etudiant',
@@ -13,7 +14,8 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 export class LoginEtudiantComponent implements OnInit {
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: LoginService) {
+              private service: LoginService, private router: Router
+  ) {
 
   }
   private _role: string;
@@ -103,6 +105,7 @@ export class LoginEtudiantComponent implements OnInit {
             {label: 'Schedule', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/scheduleStudent']},
             {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
             ];
+          this.router.navigate(['/pages/etudiantparcours']);
         },
             error =>
         {

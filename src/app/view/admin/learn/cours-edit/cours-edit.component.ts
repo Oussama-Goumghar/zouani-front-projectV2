@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Parcours} from '../../../../controller/model/parcours.model';
@@ -16,9 +16,23 @@ export class CoursEditComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  public urlfind(link: any) {
+    if (link !== null){
+      const found = link.match( /d\/([A-Za-z0-9\-\_]+)/ );
+      if (found !== null){
+        console.log('hadaaaaa found== ' + found[1]);
+        return 'https://drive.google.com/uc?export=view&id=' + found[1] ;
+      }
+    }
+    return link;
+  }
+
   public edit() {
     this.submittedCours = true;
     if (this.selectedcours.id) {
+      if (this.selectedcours.image) {
+        this.selectedcours.image = this.urlfind(this.selectedcours.image);
+      }
       this.itemscours[this.service.findCoursIndexById(this.selectedcours.id)] = this.selectedcours;
       this.service.updateCours().subscribe(data => {
         this.selectedcours = data;

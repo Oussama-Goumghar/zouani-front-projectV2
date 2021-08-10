@@ -14,23 +14,31 @@
                 <ng-template let-section pTemplate="listItem">
                     <div class="p-col-12">
                         <div class="product-list-item">
-                            <iframe [src]='this.sanitizer.bypassSecurityTrustResourceUrl(section.urlImage)' alt="Section Image" frameborder="0"
-                                    webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                            <!--    <iframe [src]='section.urlImage | safe' alt="Section Image" frameborder="0"
+                                      webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                            <img *ngIf="section.urlImage.exists" [src]="section.urlImage | safe" width = "250" height="300" >
+                            <img *ngIf="!section.urlImage && !section.urlVideo" src="assets/notfound.jpg" width = "250" height="300" >
+                            <iframe *ngIf="section.urlVideo.exists" [src]="section.urlVideo | safe" width = "500" height="400" allowfullscreen></iframe>
+
                             <div class="product-list-detail">
-                                <div class="product-name">{{section.libelle}}</div>
-                                <div class="product-description">{{section.description}}</div>
+                                  <div class="product-name">{{section.libelle}}</div>
+                                  <div class="product-description">{{section.description}}</div>
 
-                            </div>
+                              </div>
 
-                        </div>
-                    </div>
-                </ng-template>
-                <ng-template let-section pTemplate="gridItem">
-                    <div class="p-col-12 p-md-4">
-                        <div class="product-grid-item card">
-                            <div class="product-grid-item-content" style="cursor: pointer">
-                                <iframe [src]='this.sanitizer.bypassSecurityTrustResourceUrl(section.urlImage)' frameborder="0"
-                                        webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                          </div>
+                      </div>
+                  </ng-template>
+                  <ng-template let-section pTemplate="gridItem">
+                      <div class="p-col-12 p-md-4">
+                          <div class="product-grid-item card">
+                              <div class="product-grid-item-content" style="cursor: pointer">
+                               <!--   <iframe [src]='this.sanitizer.bypassSecurityTrustResourceUrl(section.urlImage)' frameborder="0" -->
+                                <!--  <iframe [src]='section.urlImage | safe' frameborder="0"
+                                         webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> -->
+                                  <img *ngIf="section.urlImage" [src]="section.urlImage | safe" width = "250" height="300" >
+                                  <img *ngIf="!section.urlImage && !section.urlVideo" src="assets/notfound.jpg" width = "250" height="300" >
+                                  <iframe *ngIf="section.urlVideo" [src]="section.urlVideo | safe" width = "250" height="300" allowfullscreen></iframe>
                                 <div class="product-name">{{section.libelle}}</div>
                                 <div class="product-description">{{section.description}}</div>
                             </div>
