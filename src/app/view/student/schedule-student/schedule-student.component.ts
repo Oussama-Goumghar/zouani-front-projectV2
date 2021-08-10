@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ScheduleService} from '../../../controller/service/schedule.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {LoginService} from '../../../controller/service/login.service';
@@ -20,7 +20,7 @@ export class ScheduleStudentComponent implements OnInit {
 
   constructor(private service: ScheduleService, private messageService: MessageService, private confirmationService: ConfirmationService, private user: LoginService) {
   }
-  calendar: FullCalendar;
+  @ViewChild('fr') calendar: FullCalendar;
 
   get selectedVo(): CalendrierVo {
     return this.service.selectedVo;
@@ -160,19 +160,18 @@ export class ScheduleStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-
-      this.selected.etudiant.id = this.user.etudiant.id;
       this.user.etudiant = this.student;
+      this.selected.etudiant.id = this.user.etudiant.id;
       this.service.findByStudent();
       this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
-      this.changedEvent = {title: '', etat: '', prof: '', start: null, end: '', allDay: null};
+      this.changedEvent = {title: '', etat: '', titleProf: '', start: null, end: '', allDay: null};
 
       this.options = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       defaultDate:  new Date(),
       header: {
         left: 'prev,next',
-        center: 'title ,addEventButton',
+        center: 'title , titleProf,addEventButton',
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       allDaySlot: false,
@@ -183,16 +182,15 @@ export class ScheduleStudentComponent implements OnInit {
       events: {
         rendering: 'background'
       },
-      eventClick:  (e, selected: CalendrierProf) => {
+      eventClick:  (e) => {
         // this.editEvent(e.event);
         this.eventDialog = true;
 
         this.clickedEvent = e.event;
-        this.clickedEvent.prof = selected.prof.nom;
         this.changedEvent.title = this.clickedEvent.title;
         this.changedEvent.start = this.clickedEvent.start;
         this.changedEvent.end = this.clickedEvent.end;
-        this.changedEvent.prof = this.clickedEvent.prof;
+        this.changedEvent.titleProf = this.clickedEvent.titleProf;
       }
     };
   }
@@ -206,7 +204,7 @@ export class ScheduleStudentComponent implements OnInit {
     this.service.edit().subscribe(data => {
       this.selected.startTime = this.changedEvent.startTime;
       this.selected.endTime = this.changedEvent.endTime;
-      this.selected.prof.prenom = this.changedEvent.teacher;
+      this.selected.prof.nom = this.changedEvent.titleProf;
       this.selected = data;
       this.messageService.add({
         severity: 'success',
