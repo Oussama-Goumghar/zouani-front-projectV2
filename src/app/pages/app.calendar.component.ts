@@ -33,14 +33,14 @@ export class AppCalendarComponent implements OnInit{
 
     ngOnInit() {
         this.eventService.getEvents().then(events => {this.events = events; });
-        this.changedEvent = {title: '', start: null, prof: '', end: '', allDay: null};
+        this.changedEvent = {title: '', start: null, titleProf: '', end: '', allDay: null};
 
         this.options = {
             plugins: [ dayGridPlugin, timeGridPlugin, interactionPlugin ],
             defaultDate: '2017-02-01',
             header: {
                 left: 'prev,next',
-                center: 'title',
+                center: 'title,titleProf',
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             editable: true,
@@ -52,6 +52,7 @@ export class AppCalendarComponent implements OnInit{
                 this.changedEvent.title = this.clickedEvent.title;
                 this.changedEvent.start = this.clickedEvent.start;
                 this.changedEvent.end = this.clickedEvent.end;
+                this.changedEvent.titleProf = this.clickedEvent.titleProf;
             }
         };
     }
@@ -71,5 +72,6 @@ export class AppCalendarComponent implements OnInit{
         this.changedEvent.title = this.clickedEvent.title;
         this.changedEvent.start = this.clickedEvent.start;
         this.changedEvent.end = this.clickedEvent.end;
+        this.changedEvent.titleProf = this.clickedEvent.titleProf;
     }
 }

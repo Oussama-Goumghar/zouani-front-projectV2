@@ -7,5 +7,5 @@ export class ScheduleVo {
     public start = new Date();
     public end = new Date();
     public color: string;
-    public prof = new Prof();
+    public titleProf: string;
 }

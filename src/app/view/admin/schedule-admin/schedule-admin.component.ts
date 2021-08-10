@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ScheduleService} from '../../../controller/service/schedule.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {LoginService} from '../../../controller/service/login.service';
@@ -10,7 +10,7 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-import {Prof} from "../../../controller/model/prof.model";
+import {Prof} from '../../../controller/model/prof.model';
 
 @Component({
   selector: 'app-schedule-admin',
@@ -21,7 +21,8 @@ export class ScheduleAdminComponent implements OnInit {
 
   constructor(private service: ScheduleService, private messageService: MessageService, private confirmationService: ConfirmationService, private user: LoginService) {
   }
-  calendar2: FullCalendar;
+
+  @ViewChild('fc') fc: FullCalendar;
 
   get selectedVo(): CalendrierVo {
     return this.service.selectedVo;
@@ -175,14 +176,14 @@ export class ScheduleAdminComponent implements OnInit {
     this.service.getAllStudents().subscribe(data => this.students = data);
     this.service.getProf().subscribe(data => this.professors = data);
     this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
-    this.changedEvent = {title: '', etat: '', prof: '', start: null, end: '', allDay: null};
+    this.changedEvent = {title: '', etat: '', titleProf: '', start: null, end: '', allDay: null};
     this.options = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       defaultDate: new Date(),
       // Date().toString()
       header: {
         left: 'prev,next',
-        center: 'title ,addEventButton, prof',
+        center: 'title, titleProf ,addEventButton, ',
         right: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
       allDaySlot: false,
@@ -202,7 +203,7 @@ export class ScheduleAdminComponent implements OnInit {
         this.changedEvent.title = this.clickedEvent.title;
         this.changedEvent.start = this.clickedEvent.start;
         this.changedEvent.end = this.clickedEvent.end;
-        this.changedEvent.prof.nom = this.clickedEvent.prof.nom;
+        this.changedEvent.titleProf = this.clickedEvent.titleProf;
       }
     };
   }
@@ -216,7 +217,7 @@ export class ScheduleAdminComponent implements OnInit {
     this.service.edit().subscribe(data => {
       this.selected.startTime = this.changedEvent.startTime;
       this.selected.endTime = this.changedEvent.endTime;
-      this.selected.prof = this.changedEvent.prof ;
+      this.selected.prof.nom = this.changedEvent.titleProf ;
       this.selected = data;
       this.messageService.add({
         severity: 'success',
@@ -296,7 +297,7 @@ export class ScheduleAdminComponent implements OnInit {
         });
       }
     });
-    this.calendar2.getCalendar().getEvents().forEach(event => event.remove());
+    this.fc.getCalendar().getEvents().forEach(event => event.remove());
     this.eventDialog = false ;
   }
 
