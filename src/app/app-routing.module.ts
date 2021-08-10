@@ -90,6 +90,7 @@ import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabu
 import {QuizCreateAdminComponent} from './view/admin/quiz/quiz-create/quiz-create.component';
 import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin.component';
 import {ScheduleStudentComponent} from "./view/student/schedule-student/schedule-student.component";
+import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.component';
 
 
 
@@ -149,6 +150,7 @@ import {ScheduleStudentComponent} from "./view/student/schedule-student/schedule
                     {path: 'pages/login-etudiant', component: LoginEtudiantComponent},
                     {path: 'pages/quiz-etudiant', component: QuizEtudiantComponent},
                     {path: 'pages/quiz-create', component: QuizCreateComponent},
+                    {path: 'pages/quiz-update', component: QuizUpdateComponent},
                     {path: 'pages/classroom-liste', component: ClassroomEtudiantComponent},
                     {path: 'pages/quiz-liste', component: QuizEtudiantListComponent},
                     {path: 'pages/quiz-view', component: QuizEtudiantViewComponent},

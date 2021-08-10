@@ -571,5 +571,25 @@ public findConfig(): Observable<Array<QuizConfig>>{
 public findQuiz(): Observable<Array<Quiz>>{
         return this.http.get<Array<Quiz>>(this._url + this._urlQuiz + '/');
 }
+    public findQuizSection(section: number): Observable<Quiz>
+    {
+        return this.http.get<Quiz>('http://localhost:8036/learn/quiz/section/id/' + section);
+    }
+
+    public findQuestionByQuiz(quiz: Quiz): Observable<Array<Question>>
+    {
+        return this.http.get<Array<Question>>('http://localhost:8036/learn/question/quiz/ref/' + quiz.ref);
+    }
+
+    public findAnswersByQuestion(question: Question): Observable<Array<Reponse>>
+    {
+        return this.http.get<Array<Reponse>>('http://localhost:8036/learn/reponse/question/id/' + question.id);
+    }
+
+    public deleteQuiz(ref: string): Observable<Quiz>
+    {
+        //return this.http.delete<Quiz>('http://localhost:8036/learn/quiz/ref/' + ref);
+        return this.http.post<Quiz>('http://localhost:8036/learn/quiz/update/' , this.selected);
+    }
 }
 
