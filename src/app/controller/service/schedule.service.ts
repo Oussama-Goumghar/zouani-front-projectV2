@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
-import {ScheduleProf} from '../model/calendrier-prof.model';
 import {HttpClient} from '@angular/common/http';
-import {ScheduleVo} from '../model/schedule-vo.model';
+
 import {Observable} from 'rxjs';
 import {Etudiant} from '../model/etudiant.model';
 import {EtatEtudiantSchedule} from '../model/etat-etudiant-schedule.model';

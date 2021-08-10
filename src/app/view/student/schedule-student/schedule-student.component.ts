@@ -160,9 +160,8 @@ export class ScheduleStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-
-      this.selected.etudiant.id = this.user.etudiant.id;
       this.user.etudiant = this.student;
+      this.selected.etudiant.id = this.user.etudiant.id;
       this.service.findByStudent();
       this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
       this.changedEvent = {title: '', etat: '', titleProf: '', start: null, end: '', allDay: null};
@@ -183,7 +182,7 @@ export class ScheduleStudentComponent implements OnInit {
       events: {
         rendering: 'background'
       },
-      eventClick:  (e, selected: CalendrierProf) => {
+      eventClick:  (e) => {
         // this.editEvent(e.event);
         this.eventDialog = true;
 
