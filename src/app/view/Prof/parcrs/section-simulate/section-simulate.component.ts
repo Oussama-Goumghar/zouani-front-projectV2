@@ -58,20 +58,7 @@ public quiz(){
   set selectedQuiz(value: Quiz) {
     this.quizService.selectedQuiz = value;
   }
-  public finish() {
-    if (this.selectedcours.id) {
-      this.selectedcours.etatCours = 'Finish';
-      this.service.updateCours().subscribe(data => {
-        this.selectedcours = data;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Cours Finish',
-          life: 3000
-        });
-      });
-    }
-  }
+
   // tslint:disable-next-line:adjacent-overload-signatures
   set image(value: string) {
     this.service.image = value;
