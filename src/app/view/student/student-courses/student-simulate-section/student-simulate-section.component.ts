@@ -103,12 +103,6 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.service.saveEtudiantCours().subscribe(data => {
                 // @ts-ignore
                 this.itemsEtudiantCours.push({...data});
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Successful',
-                    detail: 'Cours Created',
-                    life: 3000
-                });
             });
         this.router.navigate(['/pages/etudiantcours']);
     }

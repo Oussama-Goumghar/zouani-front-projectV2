@@ -7,6 +7,7 @@ import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
 import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
 import {Quiz} from '../../../../controller/model/quiz.model';
+import {Cours} from "../../../../controller/model/cours.model";
 
 
 
@@ -30,6 +31,11 @@ export class SectionListComponent implements OnInit {
           this.quizItems = data;
         }
     );
+  }
+  public openCreateSection() {
+    this.submittedSection = false;
+    this.createDialogSection = true;
+    this.selectedsection = new Section();
   }
   public findAllQuiz(){
     this.quizService.findAllQuiz().subscribe(
