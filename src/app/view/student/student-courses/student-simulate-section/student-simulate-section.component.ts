@@ -110,6 +110,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                     life: 3000
                 });
             });
+        this.router.navigate(['/pages/etudiantcours']);
     }
     get itemsEtudiantCours(): Array<EtudiantCours> {
         return this.service.itemsEtudiantCours;
