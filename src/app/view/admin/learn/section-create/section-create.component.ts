@@ -4,6 +4,7 @@ import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Section} from '../../../../controller/model/section.model';
 import {CategorieSection} from '../../../../controller/model/categorie-section.model';
 import {Cours} from '../../../../controller/model/cours.model';
+import {Parcours} from "../../../../controller/model/parcours.model";
 
 @Component({
   selector: 'app-section-create',
@@ -67,6 +68,26 @@ export class SectionCreateComponent implements OnInit {
   public hideCreateDialog() {
     this.createDialogSection = false;
     this.submittedSection = false;
+  }
+  public save() {
+    this.submittedSection = true;
+    if (this.selectedsection.id == null) {
+      this.service.saveSection().subscribe(data => {
+        // @ts-ignore
+        this.itemssection.push({...data});
+        // tslint:disable-next-line:no-shadowed-variable
+        this.service.affichelistSection().subscribe(data => this.itemssection = data);
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Successful',
+          detail: 'Section Created',
+          life: 3000
+        });
+      });
+      this.service.affichelistSection().subscribe(data => this.itemssection = data);
+      this.createDialogSection = false;
+      this.selectedsection = new Section();
+    }
   }
   set selectedcategoriesection(value: CategorieSection) {
     this.service.selectedcategoriesection = value;

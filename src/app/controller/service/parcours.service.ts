@@ -521,6 +521,10 @@ export class ParcoursService {
     if (this.selecteddparcours.id == null){
       return this.http.post<number>('http://localhost:8036/learn/parcours/', this.selecteddparcours); }
   }
+  public saveSection(): Observable<number> {
+    if (this.selectedsection.id == null){
+      return this.http.post<number>('http://localhost:8036/learn/section/', this.selectedsection); }
+  }
   public saveEtudiantCours(): Observable<number> {
       return this.http.post<number>('http://localhost:8036/learn/etudiantCours/', this.selectedEtudiantCours);
   }
@@ -542,6 +546,7 @@ export class ParcoursService {
     return this.http.get< Array<Cours> >('http://localhost:8036/learn/cours/');
   }
   public findEtudiantCours(): Observable<EtudiantCours> {
+    // tslint:disable-next-line:max-line-length
     return this.http.get< EtudiantCours >('http://localhost:8036/learn/etudiantCours/id/' + this.selectedEtudiantCours.cours.id + '/ids/' + this.selectedEtudiantCours.etudiant.id);
   }
   public findAllSection(): Observable<Array<Section>> {
