@@ -45,23 +45,14 @@ export class EtudiantCoursesComponent implements OnInit {
     this.service.FindCoursByParcours().subscribe(data => this.selectesscours = data);
     console.log(this.selectesscours);
   }
-  public findEtudiantCours() {
-    for (let i = 0 ; i < this.selectesscours.length; i++) {
-      for (let j = 0; j < this.itemsEtudiantCours.length; j++)
-      {
-        // tslint:disable-next-line:triple-equals
-        if (this.selectesscours[i].id == this.itemsEtudiantCours[j].cours.id && this.itemsEtudiantCours[j].etudiant.id == this.loginService.etudiant.id){
 
-        }
-      }
-    }
-  }
   public findAllEtudiantCours(cours: Cours) {
+    // tslint:disable-next-line:prefer-for-of
       for (let j = 0; j < this.itemsEtudiantCours.length; j++)
       {
         // tslint:disable-next-line:triple-equals
         if (cours.id == this.itemsEtudiantCours[j].cours.id && this.itemsEtudiantCours[j].etudiant.id == this.loginService.etudiant.id){
-return 1;
+           return 1;
         }else{
           return  null;
         }
