@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8036/learn/'
+  baseUrl: 'http://localhost:8036/learn/',
+  sectionItemUrl:'http://localhost:8036/learn/sectionItem/'
 };
 
 /*
