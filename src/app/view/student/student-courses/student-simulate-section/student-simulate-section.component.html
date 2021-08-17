@@ -3,7 +3,7 @@
         <div class="p-col">
 
             <div class="product-grid-item ">
-                <div class="product-grid-item-content" style="cursor: pointer">
+                <div class="product-grid-item-content" >
                     <div class="product-name" style="margin-bottom: 15px"><h1>-{{this.selectedsection.libelle}}-</h1>
                     </div>
                     <!-- <iframe *ngIf=" this.selectedsection.libelle != 'Watch the video' && this.selectedsection.urlImage != null"
@@ -79,7 +79,8 @@
                 </ng-template>
             </p-timeline>
         </div>-->
-        <div class="p-col-2" style="width:  300px;height: 200px">
+        <div class="p-col-2 product-grid-item" style="width:  300px">
+            <div class="product-grid-item-content" >
             <div style="width: 250px;margin-top: 20px">
                  <span class="p-input-icon-left" style="margin-top: 3px; margin-bottom: 5px">
                      <h5><u style="color: #64b58d; margin-left: 5px">{{this.selectedDict.word}}</u>  {{this.selectedDict.definition}}</h5>
@@ -89,10 +90,10 @@
                      <p-button (click)="openCreateDict()" icon="pi pi-plus" style="margin-left: 2px;" ></p-button>
                 </span>
         </div>
-            <h5 style="margin-top: 10px">Categorie</h5>
-            <p-timeline align="alternate" [value]="itemssection2">
+            <h5 style="margin-top: 20px; margin-bottom: 10px"><u style="color: #0a80bb">Categorie</u></h5>
+            <p-timeline align="alternate"  [value]="itemssection2">
 
-                <ng-template let-section pTemplate="content" style="margin-top: 10px">
+                <ng-template let-section pTemplate="content" style="margin-top: 20px">
                     <tr>
 
                         <td (click)="Section(section.categorieSection.libelle)"
@@ -103,7 +104,7 @@
             </p-timeline>
 
         </div>
-
+</div>
     </div>
 
 
