@@ -7,6 +7,7 @@ import {Quiz} from '../model/quiz.model';
 import {Observable} from 'rxjs';
 import {QuizConfig} from '../model/quiz-config.model';
 import {Section} from '../model/section.model';
+import {MessageService} from 'primeng/api';
 
 
 
@@ -53,7 +54,16 @@ export class QuizService {
     private _questionNumero: number = 1;
     private _reponseNumero: number = 1;
     private nombreReponseJuste: number = 0;
+    private _viewDialogType: boolean;
 
+
+    get viewDialogType(): boolean {
+        return this._viewDialogType;
+    }
+
+    set viewDialogType(value: boolean) {
+        this._viewDialogType = value;
+    }
 
     get questionNumero(): number {
         return this._questionNumero;
@@ -253,7 +263,7 @@ return this._reponse;
         this._questions = value;
     }
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient, private messageService: MessageService,) {
     }
 
     get types(): Array<TypeDeQuestion> {
@@ -365,9 +375,9 @@ public findConfig(): Observable<Array<QuizConfig>>{
 
 
 
-    public saveQuestion(): Observable<Question> {
+    /*public saveQuestion(): Observable<Question> {
         return this.http.post<Question>(this._url + this._urlQuestion + '/', this.question);
-    }
+    }*/
 
     public save(): Observable<Quiz> {
         return this.http.post<Quiz>(this._url + this._urlQuiz + '/save/', this.selected);
@@ -405,13 +415,14 @@ public findConfig(): Observable<Array<QuizConfig>>{
     }
 
     public addReponse() {
-        const cloneReponse = JSON.parse(JSON.stringify(this.reponse));
-        this.question.reponses.push(cloneReponse);
-        this.reponse = null;
-        this.reponseNumero = this.reponseNumero + 1;
-        this.reponse.numero = this.reponseNumero;
+
         if(this.question.typeDeQuestion.ref == 't1')
         {
+            const cloneReponse = JSON.parse(JSON.stringify(this.reponse));
+            this.question.reponses.push(cloneReponse);
+            this.reponse = null;
+            this.reponseNumero = this.reponseNumero + 1;
+            this.reponse.numero = this.reponseNumero;
             for (let i = 0 ; i < this.question.reponses.length ; i++)
             {
                 if(this.question.reponses[i].etatReponse == 'true')
@@ -425,11 +436,33 @@ public findConfig(): Observable<Array<QuizConfig>>{
             }
             else{
                 this.reponse.etatReponse = 'false';
+
             }
+        }
+        else if(this.question.typeDeQuestion.ref == 't2')
+        {
+            const cloneReponse = JSON.parse(JSON.stringify(this.reponse));
+            this.question.reponses.push(cloneReponse);
+            this.reponse = null;
+            this.reponseNumero = this.reponseNumero + 1;
+            this.reponse.numero = this.reponseNumero;
+            this.reponse.etatReponse = 'true';
         }
         else
         {
-            this.reponse.etatReponse = 'true';
+            if(this.question.reponses.length == 0)
+            {
+                const cloneReponse = JSON.parse(JSON.stringify(this.reponse));
+                this.question.reponses.push(cloneReponse);
+                this.reponse = null;
+                this.reponseNumero = this.reponseNumero + 1;
+                this.reponse.numero = this.reponseNumero;
+                this.reponse.etatReponse = 'true';
+            }
+            else if(this.question.reponses.length > 0)
+            {
+                this.viewDialogType = true;
+            }
         }
     }
 
@@ -568,9 +601,13 @@ public findConfig(): Observable<Array<QuizConfig>>{
         this.numQuestion = this.numQuestion + 1;
         return this.http.get<Question>(this._url + this._urlQuestion + '/numero/' + this.numQuestion);
     }
+
+
 public findQuiz(): Observable<Array<Quiz>>{
         return this.http.get<Array<Quiz>>(this._url + this._urlQuiz + '/');
 }
+
+/////////////////////////////////////////////////////////
     public findQuizSection(section: number): Observable<Quiz>
     {
         return this.http.get<Quiz>('http://localhost:8036/learn/quiz/section/id/' + section);
@@ -588,8 +625,47 @@ public findQuiz(): Observable<Array<Quiz>>{
 
     public deleteQuiz(ref: string): Observable<Quiz>
     {
-        //return this.http.delete<Quiz>('http://localhost:8036/learn/quiz/ref/' + ref);
-        return this.http.post<Quiz>('http://localhost:8036/learn/quiz/update/' , this.selected);
+        return this.http.delete<Quiz>('http://localhost:8036/learn/quiz/ref/' + ref);
+    }
+
+    public updateQuiz(): Observable<Quiz>
+    {
+        return this.http.put<Quiz>('http://localhost:8036/learn/quiz/' , this.selected);
+    }
+
+    public deleteQuestion(id: string): Observable<Question>
+    {
+        return this.http.delete<Question>('http://localhost:8036/learn/question/id/' + id);
+    }
+
+    public saveQuetion(): Observable<Question>
+    {
+        return this.http.post<Question>('http://localhost:8036/learn/question/' , this.question);
+    }
+
+    public updateQuestion(): Observable<Question>
+    {
+        return this.http.put<Question>('http://localhost:8036/learn/question/' , this.question);
+    }
+
+    public findQuestionById(id: string): Observable<Question>
+    {
+    return this.http.get<Question>('http://localhost:8036/learn/question/id/' + id);
+    }
+
+    public findAnswersByQuestionId(id: string): Observable<Array<Reponse>>
+    {
+        return this.http.get<Array<Reponse>>('http://localhost:8036/learn/reponse/question/id/' + id);
+    }
+
+    public deleteAnswer(id: number): Observable<Reponse>
+    {
+        return this.http.delete<Reponse>('http://localhost:8036/learn/reponse/id/' + id);
+    }
+
+    public saveAnswer(answer: Reponse): Observable<Reponse>
+    {
+        return this.http.post<Reponse>('http://localhost:8036/learn/reponse/save/' , answer);
     }
 }
 
