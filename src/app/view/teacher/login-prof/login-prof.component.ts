@@ -5,6 +5,7 @@ import {LoginService} from '../../../controller/service/login.service';
 import {Prof} from '../../../controller/model/prof.model';
 import {Admin} from '../../../controller/model/admin.model';
 import {Etudiant} from '../../../controller/model/etudiant.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-prof',
@@ -14,7 +15,7 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 export class LoginProfComponent implements OnInit {
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: LoginService) {
+              private service: LoginService, private router: Router) {
 
   }
   private _role: string;
@@ -110,6 +111,7 @@ export class LoginProfComponent implements OnInit {
             {label: 'FAQ', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/faq-teacher']},
             {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
           ];
+          this.router.navigate(['/pages/home']);
         }, error =>
         {
           document.getElementById('log-pass').style.visibility = 'visible';

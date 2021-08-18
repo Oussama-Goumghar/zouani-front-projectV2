@@ -172,7 +172,7 @@ import {CategorieProfViewComponent} from './view/Prof/parcrs/categorie-prof-view
 import {CoursesComponent} from './view/Prof/parcrs/courses/courses.component';
 import {EdCoursesComponent} from './view/Prof/parcrs/ed-courses/ed-courses.component';
 import {SalaryComponent} from './view/Prof/parcrs/salary/salary.component';
-import {SectionsComponent} from './view/Prof/parcrs/sections/sections.component';
+import {SafePipe2, SectionsComponent} from './view/Prof/parcrs/sections/sections.component';
 import {ParcrsComponent} from './view/Prof/parcrs/parcrs.component';
 import {EtudiantsComponent} from './view/Prof/etudiants/etudiants.component';
 import { QuizPreviewComponent } from './view/Prof/quiz/quiz-preview/quiz-preview.component';
@@ -228,7 +228,10 @@ import {EtudiantSectionsComponent} from './view/student/student-courses/etudiant
 import {EtudiantParcoursComponent} from './view/student/student-courses/etudiant-parcours/etudiant-parcours.component';
 import {EtudiantCoursesComponent} from './view/student/student-courses/etudiant-courses/etudiant-courses.component';
 import {StudentChooseViewComponent} from './view/student/student-courses/student-choose-view/student-choose-view.component';
-import {StudentSimulateSectionComponent} from './view/student/student-courses/student-simulate-section/student-simulate-section.component';
+import {
+    SafePipe,
+    StudentSimulateSectionComponent
+} from './view/student/student-courses/student-simulate-section/student-simulate-section.component';
 import {QuizStudentViewComponent} from './view/student/quiz-student-view/quiz-student-view.component';
 import {QuizStudentListComponent} from './view/student/quiz-student-list/quiz-student-list.component';
 import {ClassroomStudentListComponent} from './view/student/classroom-student-list/classroom-student-list.component';
@@ -252,7 +255,6 @@ import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-voc
 import { ScheduleAdminComponent } from './view/admin/schedule-admin/schedule-admin.component';
 import { ScheduleStudentComponent } from './view/student/schedule-student/schedule-student.component';
 import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.component';
-import { TakeQuizComponent } from './view/etudiant/take-quiz/take-quiz.component';
 
 
 
@@ -511,7 +513,6 @@ import { TakeQuizComponent } from './view/etudiant/take-quiz/take-quiz.component
         ScheduleAdminComponent,
         ScheduleStudentComponent,
         QuizUpdateComponent,
-        TakeQuizComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

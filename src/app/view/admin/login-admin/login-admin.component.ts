@@ -4,6 +4,7 @@ import {LoginService} from '../../../controller/service/login.service';
 import {Prof} from '../../../controller/model/prof.model';
 import {Admin} from '../../../controller/model/admin.model';
 import {Etudiant} from '../../../controller/model/etudiant.model';
+import {Router, RouterModule} from '@angular/router';
 
 @Component({
   selector: 'app-login-admin',
@@ -13,7 +14,7 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 export class LoginAdminComponent implements OnInit {
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: LoginService) {
+              private service: LoginService, private router: Router) {
 
   }
   private _role: string;
@@ -110,7 +111,8 @@ export class LoginAdminComponent implements OnInit {
                   {label: 'Update Quiz', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/quiz-update']},
                   {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
             ];
-            document.getElementById('log-pass').style.visibility = 'hidden';
+            this.router.navigate(['pages/parcours']);
+              //  document.getElementById('log-pass').style.visibility = 'hidden';
           }, error =>
           {
             document.getElementById('log-pass').style.visibility = 'visible';

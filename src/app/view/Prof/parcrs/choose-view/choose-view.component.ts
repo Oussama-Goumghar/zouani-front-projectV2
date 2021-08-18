@@ -13,6 +13,7 @@ import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.
 })
 export class ChooseViewComponent implements OnInit {
   value = 0;
+  img = '';
   // tslint:disable-next-line:max-line-length
   constructor( private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
   ngOnInit(): void {
@@ -44,11 +45,13 @@ export class ChooseViewComponent implements OnInit {
     this.service.afficheOneSection().subscribe(
         data => {
           this.selectedsection = data;
-          for (let j = 0; j < 66 ; j++)
-          {
-            this.service.image += this.service.selectedsection.urlImage[j];
-          }
-          this.service.image += 'preview';
+      //    for (let j = 0; j < 76 ; j++)
+        //  {
+        //  this.service.image = this.service.selectedsection.urlImage;
+          this.service.image = this.selectedsection.urlImage;
+       //   this.img = this.service.image;
+         // }
+          // this.service.image += 'preview';
           console.log(this.service.image);
     });
     this.quizService.section.id = this.selectedsection.id;

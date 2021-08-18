@@ -3,6 +3,9 @@ import {Cours} from '../../../../controller/model/cours.model';
 import {Section} from '../../../../controller/model/section.model';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
+import {EtudiantCours} from "../../../../controller/model/etudiant-cours.model";
+import {LoginService} from "../../../../controller/service/login.service";
+import {style} from "@angular/animations";
 
 @Component({
   selector: 'app-etudiant-courses',
@@ -16,17 +19,49 @@ export class EtudiantCoursesComponent implements OnInit {
   sortKey: any[];
   cols: any[];
   // tslint:disable-next-line:max-line-length
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
+  constructor(private messageService: MessageService, private loginService: LoginService,  private confirmationService: ConfirmationService, private service: ParcoursService ) { }
   ngOnInit(): void {
     this.initCol();
+    this.viewChooseType2 = false;
+    this.service.findAllEtudiantCours().subscribe(
+        data => this.itemsEtudiantCours = data
+    );
+  }
+  get itemsEtudiantCours(): Array<EtudiantCours> {
+    return this.service.itemsEtudiantCours;
+  }
+
+  set itemsEtudiantCours(value: Array<EtudiantCours>) {
+    this.service.itemsEtudiantCours = value;
+  }
+  get selectedEtudiantCours(): EtudiantCours {
+    return this.service.selectedEtudiantCours;
+  }
+
+  set selectedEtudiantCours(value: EtudiantCours) {
+    this.service.selectedEtudiantCours = value;
   }
   public Console() {
     this.service.FindCoursByParcours().subscribe(data => this.selectesscours = data);
     console.log(this.selectesscours);
   }
+
+  public findAllEtudiantCours(cours: Cours) {
+    // tslint:disable-next-line:prefer-for-of
+      for (let j = 0; j < this.itemsEtudiantCours.length; j++)
+      {
+        // tslint:disable-next-line:triple-equals
+        if (cours.id == this.itemsEtudiantCours[j].cours.id && this.itemsEtudiantCours[j].etudiant.id == this.loginService.etudiant.id){
+           return 1;
+        }else{
+          return  null;
+        }
+    }
+  }
   get viewChooseType2(): boolean {
     return this.service.viewChooseType2;
   }
+
   public viewType2(cours: Cours) {
     this.selectedcours = {...cours};
     this.viewChooseType2 = true;

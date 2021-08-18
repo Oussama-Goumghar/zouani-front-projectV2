@@ -28,9 +28,24 @@ export class CoursCreateComponent implements OnInit {
       this.itemsparcours = data;
     });
   }
+  public urlfind(link: any) {
+    if (link !== null){
+      const url = link;
+      const found = url.match( /d\/([A-Za-z0-9\-\_]+)/ );
+      if (found !== null){
+        console.log('hadaaaaa found== ' + found[1]);
+        return 'https://drive.google.com/uc?export=view&id=' + found[1] ;
+      }
+    }
+    return link;
+  }
+
   public saveCours() {
     this.submittedCours = true;
     if (this.selectedcours.id == null) {
+      if (this.selectedcours.image){
+      this.selectedcours.image = this.urlfind(this.selectedcours.image);
+      }
       this.service.SaveCours().subscribe(data => {
         // @ts-ignore
         this.itemscours.push({...data});

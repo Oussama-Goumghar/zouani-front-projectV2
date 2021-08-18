@@ -201,10 +201,13 @@ export class QuizCreateComponent implements OnInit {
         this.question.typeDeQuestion = this.selected.questions[key].typeDeQuestion;
         this.question.pointReponseJuste = this.selected.questions[key].pointReponseJuste;
         this.question.pointReponsefausse = this.selected.questions[key].pointReponsefausse;
+        this.reponses.length=0
         for(var i = 0 ; i < this.selected.questions[key].reponses.length ; i++)
         {
             this.reponses.push(this.selected.questions[key].reponses[i]);
         }
+
+
         this.reponseNumero = this.selected.questions[key].reponses.length + 1;
         this.reponse.numero = this.reponseNumero;
         this.isUpdate = 'true';

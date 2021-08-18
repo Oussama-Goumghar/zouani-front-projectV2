@@ -160,7 +160,7 @@ export class ScheduleStudentComponent implements OnInit {
   }
 
   ngOnInit() {
-      this.user.etudiant = this.student;
+      this.student = this.user.etudiant;
       this.selected.etudiant.id = this.user.etudiant.id;
       this.service.findByStudent();
       this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);

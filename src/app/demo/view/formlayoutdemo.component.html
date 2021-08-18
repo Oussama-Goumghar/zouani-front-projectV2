@@ -150,6 +150,10 @@
 					<label for="city" style="color: black;">City</label>
 					<input id="city" type="text" pInputText [(ngModel)]="selected.ville">
 				</div>
+				<div class="p-field p-col-12 p-md-6">
+					<label for="email" style="color: black;">Email</label>
+					<input id="email" type="text" pInputText [(ngModel)]="selected.gmail">
+				</div>
 				<div class="p-field p-col-12 p-md-3" >
 					<label for="parcours" style="color: black;">Parcours</label>
 					<select type="text" class="btn btn-block btn-outline-light form-control" id="parcours"  name="Parcours"  style="width: 300px; height: 30px ; border-color: darkgray;margin-left: 5px" (click)="findAllParcours()"  [(ngModel)]="selected.parcours.id" >

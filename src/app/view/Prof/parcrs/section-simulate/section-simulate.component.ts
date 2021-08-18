@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {Section} from '../../../../controller/model/section.model';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
@@ -11,6 +11,15 @@ import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.
 import {Quiz} from '../../../../controller/model/quiz.model';
 import {QuizService} from '../../../../controller/service/quiz.service';
 import {Router} from '@angular/router';
+import {ChooseViewComponent} from '../choose-view/choose-view.component';
+
+@Pipe({ name: 'safe' })
+export class SafePipe1 implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) { }
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 @Component({
   selector: 'app-section-simulate',
@@ -19,6 +28,7 @@ import {Router} from '@angular/router';
 })
 export class SectionSimulateComponent implements OnInit {
 
+  srcImg: string;
   // tslint:disable-next-line:max-line-length
   constructor(private messageService: MessageService,  private router: Router, private serviceQuiz: QuizService, private sanitizer: DomSanitizer, private quizService: QuizEtudiantService,  private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
   value = 0;
@@ -48,42 +58,25 @@ public quiz(){
   set selectedQuiz(value: Quiz) {
     this.quizService.selectedQuiz = value;
   }
-  public finish() {
-    if (this.selectedcours.id) {
-      this.selectedcours.etatCours = 'Finish';
-      this.service.updateCours().subscribe(data => {
-        this.selectedcours = data;
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Cours Finish',
-          life: 3000
-        });
-      });
-    }
-  }
+
   // tslint:disable-next-line:adjacent-overload-signatures
   set image(value: string) {
     this.service.image = value;
   }
-  URLVideo() {
-    this.service.video = '';
-    // tslint:disable-next-line:prefer-for-of
-    for (let m = 0; m < 24 ; m++)
-    {
-      this.service.video += this.selectedsection.urlVideo[m];
-    }
-    this.service.video += 'embed/';
-    for (let m = 32; m < 43 ; m++)
-    {
-      this.service.video += this.selectedsection.urlVideo[m];
-    }
-    console.log( this.service.video);
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
-  }
   ngOnInit(): void {
-    console.log(this.selectedsection.id );
+    // this.service.image = '';
+    //  for (let j = 0; j < 76 ; j++)
+    //  {
+    /*this.service.image = this.selectedsection.urlImage;
+    //  }
+    //  this.service.image += 'preview';
+    console.log('ana image ' + this.service.image + this.selectedsection.urlImage);
+    this.srcImg = this.service.image;
+   // this.photoURL();
     console.log(this.selectedsection.urlVideo );
+   // this.srcImg = this.photoURL();
+   // this.srcImg = this.service.image;
+    console.log(this.srcImg);*/
     this.quizService.section.id = this.selectedsection.id;
     this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
   }
@@ -118,16 +111,33 @@ public quiz(){
       this.NextSection();
     }
   }
+  URLVideo() {
+    this.service.video = '';
+    // tslint:disable-next-line:prefer-for-of
+   // for (let m = 0; m < 24 ; m++)
+    // {
+    this.service.video = this.selectedsection.urlVideo;
+   // }
+ //   for (let m = 32; m < 43 ; m++)
+ //   {
+  //  }
+    console.log( this.service.video);
+    // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
+    return this.service.video;
+  }
   photoURL() {
     this.service.image = '';
-    for (let j = 0; j < 66 ; j++)
-    {
-      this.service.image += this.selectedsection.urlImage[j];
-    }
-    this.service.image += 'preview';
-    console.log(this.selectedsection.id );
+  //  for (let j = 0; j < 76 ; j++)
+  //  {
+    this.service.image = this.selectedsection.urlImage;
+  //  }
+  //  this.service.image += 'preview';
+    console.log(this.service.image);
+    this.srcImg = this.service.image;
+    return this.srcImg;
     // const blob = UrlFetch(this.image,{headers})
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
+  //  return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
+   // return this.service.image;
   }
   Contenu() {
     this.service.contenu = '';

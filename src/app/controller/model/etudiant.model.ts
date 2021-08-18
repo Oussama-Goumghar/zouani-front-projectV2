@@ -14,6 +14,7 @@ export class Etudiant {
     public login: string;
     public ville: string;
     public address: string;
+    public gmail: string;
     public password: string;
     public parcours = new Parcours();
     public quizEtudiant = new Array<QuizEtudiant>();

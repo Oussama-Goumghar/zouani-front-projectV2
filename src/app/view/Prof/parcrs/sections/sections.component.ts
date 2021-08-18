@@ -1,8 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Section} from '../../../../controller/model/section.model';
 import {DomSanitizer} from '@angular/platform-browser';
+import {ChooseViewComponent} from '../choose-view/choose-view.component';
+
+@Pipe({ name: 'safe' })
+export class SafePipe2 implements PipeTransform {
+  constructor(private sanitizer: DomSanitizer) { }
+  transform(url) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+  }
+}
 
 
 @Component({
@@ -12,12 +21,13 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class SectionsComponent implements OnInit {
 
-
+  srcImg = '';
   cols: any[];
   // tslint:disable-next-line:max-line-length
   constructor(private messageService: MessageService, public sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
   ngOnInit(): void {
     this.initCol();
+    // this.srcImg = this.photoURL();
   }
   private initCol() {
     this.cols = [
@@ -57,8 +67,8 @@ export class SectionsComponent implements OnInit {
     return this.service.selectedsection;
   }
   photoURL() {
-
-    return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image2);
+   return this.service.image2;
+   // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image2);
   }
 
 }

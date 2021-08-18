@@ -125,6 +125,7 @@ export class ScheduleAdminComponent implements OnInit {
 
   set clickedEvent(value: any) {
     this.service.clickedEvent = value;
+    console.log(value)
   }
 
   get etudiant(): Etudiant {
@@ -197,6 +198,7 @@ export class ScheduleAdminComponent implements OnInit {
       eventClick:  (e) => {
         // this.editEvent(e.event);
         this.eventDialog = true;
+
 
         this.clickedEvent = e.event;
 

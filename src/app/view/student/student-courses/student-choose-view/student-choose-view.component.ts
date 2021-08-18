@@ -87,17 +87,17 @@ export class StudentChooseViewComponent implements OnInit {
     this.service.afficheOneSection().subscribe(
         data => {
           this.selectedsection = data;
-          for (let j = 0; j < 66 ; j++)
-          {
-            this.service.image += this.service.selectedsection.urlImage[j];
-          }
-          this.service.image += 'preview';
+      //    for (let j = 0; j < 66 ; j++)
+      //    {
+          this.service.image = this.service.selectedsection.urlImage;
+      //    }
+         // this.service.image += 'preview';
           this.quizService.findQuizBySectionId(this.selectedsection).subscribe(
               data => {
                 this.selectedQuiz = data;
-                //document.getElementById('dict1').style.visibility = 'hidden';
-                //document.getElementById('quiz').style.visibility = 'visible';
-                  console.log('teeeeeeeeest');
+                // document.getElementById('dict1').style.visibility = 'hidden';
+                // document.getElementById('quiz').style.visibility = 'visible';
+                console.log('teeeeeeeeest');
                 this.quizService.findQuizEtudiant(this.loginService.etudiant, this.selectedQuiz).subscribe(
                     data => {
                       this.quizEtudiantList = data;
@@ -105,14 +105,14 @@ export class StudentChooseViewComponent implements OnInit {
                       this.passerQuiz = 'View Quiz';
                       console.log('lqitha');
                       this.quizView = true;
-                    },error =>
+                    }, error =>
                     {
                       this.passerQuiz = 'Passer Quiz';
-                        console.log('malqithach');
+                      console.log('malqithach');
                       this.quizView = false;
                     }
                 );
-              },error => document.getElementById('quiz').style.visibility = 'hidden'
+              }, error => document.getElementById('quiz').style.visibility = 'hidden'
           );
         });
   }

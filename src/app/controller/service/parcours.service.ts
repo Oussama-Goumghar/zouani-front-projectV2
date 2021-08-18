@@ -9,6 +9,7 @@ import {SuperCategorieSection} from '../model/super-categorie-section.model';
 import {Centre} from '../model/centre.model';
 import {Observable} from 'rxjs';
 import {Vocabulary} from '../model/vocabulary.model';
+import {EtudiantCours} from "../model/etudiant-cours.model";
 
 
 
@@ -17,6 +18,8 @@ import {Vocabulary} from '../model/vocabulary.model';
 })
 export class ParcoursService {
   private _selectedparcours: Parcours;
+  private _selectedEtudiantCours: EtudiantCours;
+  private _itemsEtudiantCours: Array<EtudiantCours>;
   private _selecteddparcours: Parcours;
   private _itemsparcours: Array<Parcours>;
   private _itemsvocab: Array<Vocabulary>;
@@ -60,8 +63,39 @@ export class ParcoursService {
   private _image2 = '';
   private _image3 = '';
   private _video = '';
+  private _img = '';
   constructor(private http: HttpClient ) {  }
 
+
+  get selectedEtudiantCours(): EtudiantCours {
+    if( this._selectedEtudiantCours == null){
+      this._selectedEtudiantCours = new EtudiantCours();
+    }
+    return this._selectedEtudiantCours;
+  }
+
+  set selectedEtudiantCours(value: EtudiantCours) {
+    this._selectedEtudiantCours = value;
+  }
+
+  get itemsEtudiantCours(): Array<EtudiantCours> {
+    if ( this._itemsEtudiantCours == null){
+      this._itemsEtudiantCours = new Array<EtudiantCours>();
+    }
+    return this._itemsEtudiantCours;
+  }
+
+  set itemsEtudiantCours(value: Array<EtudiantCours>) {
+    this._itemsEtudiantCours = value;
+  }
+
+  get img(): string {
+    return this._img;
+  }
+
+  set img(value: string) {
+    this._img = value;
+  }
 
   get itemsvocab(): Array<Vocabulary> {
     if (this._itemsvocab == null) {
@@ -487,7 +521,16 @@ export class ParcoursService {
     if (this.selecteddparcours.id == null){
       return this.http.post<number>('http://localhost:8036/learn/parcours/', this.selecteddparcours); }
   }
-
+  public saveSection(): Observable<number> {
+    if (this.selectedsection.id == null){
+      return this.http.post<number>('http://localhost:8036/learn/section/', this.selectedsection); }
+  }
+  public saveEtudiantCours(): Observable<number> {
+      return this.http.post<number>('http://localhost:8036/learn/etudiantCours/', this.selectedEtudiantCours);
+  }
+  public findAllEtudiantCours(): Observable<Array<EtudiantCours>> {
+    return this.http.get<Array<EtudiantCours>>('http://localhost:8036/learn/etudiantCours/');
+  }
   public init(): Observable<Array<Parcours>> {
     return this.http.get< Array<Parcours> >('http://localhost:8036/learn/parcours/');
 
@@ -499,9 +542,12 @@ export class ParcoursService {
   public findAllCentre(): Observable<Array<Centre>> {
     return this.http.get< Array<Centre> >('http://localhost:8036/learn/centre/');
   }
-
   public findAllCours(): Observable<Array<Cours>> {
     return this.http.get< Array<Cours> >('http://localhost:8036/learn/cours/');
+  }
+  public findEtudiantCours(): Observable<EtudiantCours> {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get< EtudiantCours >('http://localhost:8036/learn/etudiantCours/id/' + this.selectedEtudiantCours.cours.id + '/ids/' + this.selectedEtudiantCours.etudiant.id);
   }
   public findAllSection(): Observable<Array<Section>> {
     return this.http.get< Array<Section> >('http://localhost:8036/learn/section/');
