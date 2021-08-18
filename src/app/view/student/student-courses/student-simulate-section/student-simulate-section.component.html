@@ -1,8 +1,8 @@
-<div class=" card">
-    <div class="p-grid">
-        <div class="p-col">
+<div class=" card" style="background-color: transparent">
+    <div class="p-grid" >
+        <div class="p-col" >
 
-            <div class="product-grid-item ">
+            <div class="product-grid-item " style="background-color: white">
                 <div class="product-grid-item-content" >
                     <div class="product-name" style="margin-bottom: 15px"><h1>-{{this.selectedsection.libelle}}-</h1>
                     </div>
@@ -79,18 +79,36 @@
                 </ng-template>
             </p-timeline>
         </div>-->
-        <div class="p-col-2 product-grid-item" style="width:  300px">
+        <div class="p-col-2 product-grid-item"  >
             <div class="product-grid-item-content" >
-            <div style="width: 250px;margin-top: 20px">
-                 <span class="p-input-icon-left" style="margin-top: 3px; margin-bottom: 5px">
+            <div style="margin-top: 20px">
+
                      <h5><u style="color: #64b58d; margin-left: 5px">{{this.selectedDict.word}}</u>  {{this.selectedDict.definition}}</h5>
-                     <input  [(ngModel)]="word" pInputText placeholder="Search" style="width: 180px;" type="text"/>
+                    <div class="p-inputgroup">
+            <input type="text" [(ngModel)]="word" pInputText placeholder="search" (click)="findByWord()">
+            <button type="button" pButton pRipple icon="pi pi-plus"  (click)="openCreateDict()" ></button>
+        </div>
+                    <!-- <input  [(ngModel)]="word" pInputText placeholder="Search" style="width: 180px;" type="text"/>
                      <button pButton pRipple type="button" icon="pi pi-search"  (click)="findByWord()" style="margin-left: 2px;" ></button>
 
                      <p-button (click)="openCreateDict()" icon="pi pi-plus" style="margin-left: 2px;" ></p-button>
-                </span>
+              -->
         </div>
-            <h5 style="margin-top: 20px; margin-bottom: 10px"><u style="color: #0a80bb">Categorie</u></h5>
+               <div class="card" style="margin-top: 15px">
+               <p-tabMenu [model]="menu" [activeItem]="menu[0]" ></p-tabMenu>
+                   <p-timeline align="alternate"  [value]="itemssection2" *ngIf="menu[0]">
+
+                       <ng-template let-section pTemplate="content" style="margin-top: 20px">
+                           <tr>
+
+                               <td (click)="Section(section.categorieSection.libelle)"
+                                   [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? 'green' :'black' "
+                                   style="cursor: pointer; text-align: center"><u>{{section.categorieSection.libelle}}</u></td>
+                           </tr>
+                       </ng-template>
+                   </p-timeline>
+               </div>
+                <!--  <div class="card" style="margin-top: 10px"> <h5 style="margin-top: 20px; margin-bottom: 10px"><u style="color: #0a80bb">Categorie</u></h5>
             <p-timeline align="alternate"  [value]="itemssection2">
 
                 <ng-template let-section pTemplate="content" style="margin-top: 20px">
@@ -102,13 +120,13 @@
                     </tr>
                 </ng-template>
             </p-timeline>
+                 </div>-->
+         </div>
+ </div>
+     </div>
 
-        </div>
-</div>
-    </div>
 
-
-    <!--    <div class="card-footer "  style="position: relative;">-->
+     <!--    <div class="card-footer "  style="position: relative;">-->
     <!--        <button pButton pRipple type="button" id="previous" icon="pi pi-caret-left" style="margin-left: 15px; width: 120px" label="Previous"  class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder != 1)? 'visible':'hidden'"  (click)="PreviousSection()" ></button>-->
     <!--        <button pButton pRipple type="button" style="margin-left: 360px; width: 120px" id="quiz" *ngIf="this.selectedsection.categorieSection.libelle != 'Vocabulary'  " [style.visibility]="(this.selectedQuiz.section.id == this.selectedsection.id )? 'visible':'hidden'"  label="{{this.passerQuiz}}"  class="p-button-rounded" [routerLink]="quizView? ['/pages/quiz-view']: ['/pages/quiz-etudiant']"></button>-->
     <!--        <button pButton pRipple type="button" icon="pi pi-caret-right" label="Next" id="next" style=" width: 120px;  position: absolute;right: 25%;" class="p-button-rounded" [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'visible':'hidden'"  (click)="NextSection()" ></button>-->
