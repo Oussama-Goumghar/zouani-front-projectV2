@@ -383,11 +383,6 @@ export class QuizPreviewComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    /*this.service.findEtudiant().subscribe(
-        data => {
-          this.etudiant = data;
-        }
-    );*/
 
     console.log(this.refQuiz);
     this.numQuestion = 1;

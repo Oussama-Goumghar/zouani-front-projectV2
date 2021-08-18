@@ -607,7 +607,7 @@ public findQuiz(): Observable<Array<Quiz>>{
         return this.http.get<Array<Quiz>>(this._url + this._urlQuiz + '/');
 }
 
-/////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
     public findQuizSection(section: number): Observable<Quiz>
     {
         return this.http.get<Quiz>('http://localhost:8036/learn/quiz/section/id/' + section);

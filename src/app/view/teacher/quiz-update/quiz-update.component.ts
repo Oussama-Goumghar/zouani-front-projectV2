@@ -492,26 +492,11 @@ export class QuizUpdateComponent implements OnInit {
                 this.answer.lib = this.reponses[i].lib;
                 this.service.findQuestionById(this.numeroQuestion).subscribe(
                     data => {
-                        //this.currentQuestion = data;
-                        //this.answer = this.reponses[i];
                         this.answer.question = data;
-                        //console.log(this.question.id);
                         this.service.saveAnswer(this.answer).subscribe();
 
                     }
-                );/*console.log(this.reponses[0].numero);
-                console.log(this.reponses[0].etatReponse);
-                console.log(this.reponses[0].lib);*/
-                /*this.answer = this.reponses[i];
-                this.answer.question = this.question;
-                this.answer.id = 3000;
-                console.log(this.answer.question.id);
-                this.service.saveAnswer(this.answer).subscribe();*/
-                //this.currentQuestion = this.question;
-                //this.reponses[i].question.id = 2229;
-                //this.answer = this.reponses[i];
-                //this.service.saveAnswer(this.answer).subscribe();
-                //console.log(this.question);
+                );
             }
         }
         this.insertToTree();
