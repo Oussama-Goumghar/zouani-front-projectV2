@@ -140,7 +140,7 @@ export class StudentSimulateSectionComponent implements OnInit {
 
                     document.getElementById('categoriess').style.visibility = 'visible';
 
-                    document.getElementById('categoriess').style.width = '250px';
+                    document.getElementById('categoriess').style.width = '210px';
                     document.getElementById('categoriess').style.height = '300px';
                 }},
             {label: 'Word', icon: 'pi pi-fw pi-search', command: (event) => {
