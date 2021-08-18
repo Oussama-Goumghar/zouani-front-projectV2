@@ -17,9 +17,15 @@ export class SectionCreateComponent implements OnInit {
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService ) { }
 
   ngOnInit(): void {
+    this.selectedsection.cours.libelle = this.selectedcours.libelle;
   }
 
-
+  get selectedcours(): Cours {
+    return this.service.selectedcours;
+  }
+  set selectedcours(value: Cours) {
+    this.service.selectedcours = value;
+  }
   get selectedsection(): Section {
     return this.service.selectedsection;
   }
@@ -45,7 +51,7 @@ export class SectionCreateComponent implements OnInit {
     this.service.submittedSection = value;
   }
   findAllCours() {
-    this.service.findAllCours().subscribe(data => {
+    this.service.afficheCours().subscribe(data => {
       this.itemscours = data;
     });
   }

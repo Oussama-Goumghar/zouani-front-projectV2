@@ -129,8 +129,31 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
         });
         this.menu = [
-            {label: 'Categorie', icon: 'pi pi-fw pi-home'},
-            {label: 'Word', icon: 'pi pi-fw pi-search'}
+            {label: 'Categorie', icon: 'pi pi-fw pi-home', command: (event) => {
+                    this.service.affichelistSection().subscribe(
+                        data => {
+                            this.itemssection2 = data;
+                            // tslint:disable-next-line:no-shadowed-variable
+                        });
+                    document.getElementById('word').style.visibility = 'hidden';
+                    document.getElementById('word').style.height = '0px';
+
+                    document.getElementById('categoriess').style.visibility = 'visible';
+
+                    document.getElementById('categoriess').style.width = '250px';
+                    document.getElementById('categoriess').style.height = '300px';
+                }},
+            {label: 'Word', icon: 'pi pi-fw pi-search', command: (event) => {
+                    this.dictionnaryService.FindAllWord().subscribe(
+                        data => {
+                            this.itemsDict = data;
+                        });
+                    document.getElementById('categoriess').style.visibility = 'hidden';
+                    document.getElementById('categoriess').style.height = '0px';
+                    document.getElementById('word').style.visibility = 'visible';
+                    document.getElementById('word').style.width = '200px';
+                    document.getElementById('word').style.height = '300px';
+                }},
         ];
     }
     public findCoursEtudiant(cours: Cours) {
@@ -225,20 +248,15 @@ export class StudentSimulateSectionComponent implements OnInit {
     }
 public categorie(){
 
-    this.service.affichelistSection().subscribe(
+    this.dictionnaryService.FindAllWord().subscribe(
         data => {
-            this.itemssection2 = data;
-            this.nodes = [];
-            // tslint:disable-next-line:prefer-for-of
-            for (let i = 0 ; i < this.itemssection2.length ; i++)
-            {
-                this.nodes.push(
-                    {
-                        label: this.itemssection2[i].categorieSection.libelle
-                    }
-                );
-            }
+            this.itemsDict = data;
         });
+    document.getElementById('categoriess').style.visibility = 'hidden';
+    document.getElementById('categoriess').style.width = '0px';
+
+    document.getElementById('word').style.width = '300px';
+
 }
     PreviousSection() {
         this.service.affichelistSection().subscribe(
