@@ -16,7 +16,6 @@ import {Dictionary} from '../../../../controller/model/dictionary.model';
 import {Router} from '@angular/router';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
 import {EtudiantCours} from '../../../../controller/model/etudiant-cours.model';
-
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }
