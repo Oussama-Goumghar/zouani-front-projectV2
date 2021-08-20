@@ -17,6 +17,6 @@ export class Section {
   public indicationProf: string;
   public cours = new  Cours() ;
   public categorieSection = new  CategorieSection() ;
-  public sectionItems!:SectionItemModel[]
+  public sectionItems!:SectionItemModel[];
 }
 

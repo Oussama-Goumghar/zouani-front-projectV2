@@ -37,7 +37,7 @@
             <td>
               <p-tableCheckbox [value]="section"></p-tableCheckbox>
             </td>
-            <td [style.color]="(section.url+section.content) == 2? 'green' :(section.url+section.content) == 1? 'orange': 'red'">{{section.libelle}} (c:{{section.content}}; L:{{section.url}})</td>
+            <td [style.color]="(section.url+section.content) == 2? 'green' :(section.url+section.content) == 1? 'orange': 'red'">{{section.numeroOrder}}-{{section.libelle}} (c:{{section.content}}; L:{{section.url}})</td>
             <td>{{section.categorieSection.libelle}}</td>
 
             <td>
