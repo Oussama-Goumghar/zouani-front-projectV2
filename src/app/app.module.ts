@@ -519,6 +519,10 @@ import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
         ScheduleStudentComponent,
         QuizUpdateComponent,
         SectionCreateComponent,
+        SafePipe,
+        SafePipe1,
+        SafePipe2,
+        SectionCreateComponent,
         QuizTakeComponent
     ],
     providers: [
