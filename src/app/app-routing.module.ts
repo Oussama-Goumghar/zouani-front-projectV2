@@ -93,6 +93,17 @@ import {ScheduleStudentComponent} from './view/student/schedule-student/schedule
 import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.component';
 import {TakeQuizComponent} from './view/etudiant/take-quiz/take-quiz.component';
 import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
+import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
+
+
+
+
+
+
+
+
+
+
 
 @NgModule({
     imports: [
@@ -185,7 +196,10 @@ import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
                     {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'pages/timeline', component: AppTimelineDemoComponent},
                     {path: 'pages/empty', component: EmptyDemoComponent},
-                    {path: 'documentation', component: DocumentationComponent}
+                    {path: 'documentation', component: DocumentationComponent},
+                    {path: 'pages/create-section-items', component: SectionItemComponent},
+
+
                 ]
             },
             {path: 'error', component: AppErrorComponent},

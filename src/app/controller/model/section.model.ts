@@ -1,5 +1,6 @@
 import { Cours } from './cours.model';
 import {CategorieSection} from './categorie-section.model';
+import {SectionItemModel} from './section-item.model';
 export class Section {
   public  id: number ;
   public  url: number ;
@@ -16,5 +17,6 @@ export class Section {
   public indicationProf: string;
   public cours = new  Cours() ;
   public categorieSection = new  CategorieSection() ;
+  public sectionItems!:SectionItemModel[]
 }
 

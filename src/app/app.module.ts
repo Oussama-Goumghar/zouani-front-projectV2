@@ -255,6 +255,7 @@ import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-voc
 import { ScheduleAdminComponent } from './view/admin/schedule-admin/schedule-admin.component';
 import { ScheduleStudentComponent } from './view/student/schedule-student/schedule-student.component';
 import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.component';
+import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
 import {SectionCreateComponent} from './view/admin/learn/section-create/section-create.component';
 import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 
@@ -523,7 +524,8 @@ import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
         SafePipe1,
         SafePipe2,
         SectionCreateComponent,
-        QuizTakeComponent
+        QuizTakeComponent,
+        SectionItemComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

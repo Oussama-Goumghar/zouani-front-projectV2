@@ -1,5 +1,4 @@
-
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizService} from '../../../../controller/service/quiz.service';
 import {ConfirmationService, MessageService, TreeNode} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
@@ -206,8 +205,6 @@ export class QuizCreateComponent implements OnInit {
         {
             this.reponses.push(this.selected.questions[key].reponses[i]);
         }
-
-
         this.reponseNumero = this.selected.questions[key].reponses.length + 1;
         this.reponse.numero = this.reponseNumero;
         this.isUpdate = 'true';
