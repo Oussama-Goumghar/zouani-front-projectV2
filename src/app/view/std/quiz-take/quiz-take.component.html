@@ -1,0 +1,21 @@
+<div class="p-grid" id="header">
+    <div class="p-col-6">Choose the correct alternative</div>
+    <div class="p-col-6">{{this.selected.numero}} out of {{this.items.length}}</div>
+</div>
+<div class="p-grid" id="body">
+    <div class="p-col-6" id="question">
+        <h3 style="margin-top: 100px; text-align: center">{{this.question}}</h3>
+    </div>
+    <div class="p-col-6" id="answers" >
+        <div style="margin: 50px 50px">
+            <div  *ngFor="let r of reponses" id="answers-radio">
+                <input type="radio"  value="{{r.id}}" [(ngModel)]="selectedValue" name="groupname" (click)="selectionChanged($event,r)">
+                <label>{{r.lib}}</label><br>
+            </div>
+        </div>
+    </div>
+    <div style="margin-left: 50%; margin-top: 50px">
+        <button pButton pRipple type="button" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
+    </div>
+</div>
+
