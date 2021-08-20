@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {AdminService} from '../../../controller/service/admin.service';
 import {Admin} from '../../../controller/model/admin.model';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -12,7 +13,7 @@ import {Admin} from '../../../controller/model/admin.model';
 export class InscriptionAdminComponent implements OnInit {
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: AdminService) { }
+              private service: AdminService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -23,8 +24,13 @@ export class InscriptionAdminComponent implements OnInit {
         data => {
       this.selected = new Admin();
       console.log('meryem');
-          // tslint:disable-next-line:no-unused-expression
-      this.selected == null;
+      this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Inscription added',
+            life: 3000
+          });
+      this.router.navigate(['/']);
     });
   }
   get submitted(): boolean {
