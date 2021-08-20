@@ -103,6 +103,7 @@ export class LoginEtudiantComponent implements OnInit {
             {label: 'FAQ ', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/faq-student']},
             {label: 'News ', icon: 'pi pi-fw pi-clock', routerLink: ['/pages/news-student']},
             {label: 'Schedule', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/scheduleStudent']},
+            {label: 'Quiz', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/quiz-take']},
             {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
             ];
           this.router.navigate(['/pages/etudiantparcours']);

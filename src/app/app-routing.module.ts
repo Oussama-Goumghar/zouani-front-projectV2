@@ -92,6 +92,7 @@ import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin
 import {ScheduleStudentComponent} from './view/student/schedule-student/schedule-student.component';
 import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.component';
 import {TakeQuizComponent} from './view/etudiant/take-quiz/take-quiz.component';
+import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 
 @NgModule({
     imports: [
@@ -143,6 +144,7 @@ import {TakeQuizComponent} from './view/etudiant/take-quiz/take-quiz.component';
                     {path: 'pages/quiz-create', component: QuizCreateComponent},
                     {path: 'pages/quiz-update', component: QuizUpdateComponent},
                     {path: 'pages/take-quiz', component: TakeQuizComponent},
+                    {path: 'pages/quiz-take', component: QuizTakeComponent},
                     {path: 'pages/classroom-liste', component: ClassroomEtudiantComponent},
                     {path: 'pages/quiz-liste', component: QuizEtudiantListComponent},
                     {path: 'pages/quiz-view', component: QuizEtudiantViewComponent},
