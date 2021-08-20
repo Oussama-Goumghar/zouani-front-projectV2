@@ -89,8 +89,10 @@ import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-voc
 import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabulary/quiz-create-vocabulary.component';
 import {QuizCreateAdminComponent} from './view/admin/quiz/quiz-create/quiz-create.component';
 import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin.component';
-import {ScheduleStudentComponent} from "./view/student/schedule-student/schedule-student.component";
+import {ScheduleStudentComponent} from './view/student/schedule-student/schedule-student.component';
 import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.component';
+import {TakeQuizComponent} from './view/etudiant/take-quiz/take-quiz.component';
+import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
 
 
@@ -151,6 +153,9 @@ import {SectionItemComponent} from './view/admin/learn/section-item/section-item
                     {path: 'pages/login-etudiant', component: LoginEtudiantComponent},
                     {path: 'pages/quiz-etudiant', component: QuizEtudiantComponent},
                     {path: 'pages/quiz-create', component: QuizCreateComponent},
+                    {path: 'pages/quiz-update', component: QuizUpdateComponent},
+                    {path: 'pages/take-quiz', component: TakeQuizComponent},
+                    {path: 'pages/quiz-take', component: QuizTakeComponent},
                     {path: 'pages/classroom-liste', component: ClassroomEtudiantComponent},
                     {path: 'pages/quiz-liste', component: QuizEtudiantListComponent},
                     {path: 'pages/quiz-view', component: QuizEtudiantViewComponent},

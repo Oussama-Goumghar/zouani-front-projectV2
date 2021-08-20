@@ -3,7 +3,7 @@ import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {Section} from '../../../../controller/model/section.model';
 import {Cours} from '../../../../controller/model/cours.model';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmationService, MenuItem, MessageService, TreeNode} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {HttpClient} from '@angular/common/http';
 import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
@@ -15,7 +15,7 @@ import {DictionaryService} from '../../../../controller/service/dictionary.servi
 import {Dictionary} from '../../../../controller/model/dictionary.model';
 import {Router} from '@angular/router';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
-
+import {EtudiantCours} from '../../../../controller/model/etudiant-cours.model';
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }
@@ -31,7 +31,8 @@ export class SafePipe implements PipeTransform {
     styleUrls: ['./student-simulate-section.component.scss']
 })
 export class StudentSimulateSectionComponent implements OnInit {
-
+    nodes: TreeNode[];
+    menu: MenuItem[];
     srcImg: string;
 
     // tslint:disable-next-line:max-line-lengthg max-line-length
@@ -87,7 +88,31 @@ export class StudentSimulateSectionComponent implements OnInit {
     get selectedDict(): Dictionary {
         return this.dictionnaryService.selectedDict;
     }
+    get selectedEtudiantCours(): EtudiantCours {
+        return this.service.selectedEtudiantCours;
+    }
 
+    set selectedEtudiantCours(value: EtudiantCours) {
+        this.service.selectedEtudiantCours = value;
+    }
+    public finish() {
+        this.selectedEtudiantCours.etudiant.id = this.loginService.etudiant.id;
+        console.log(this.selectedEtudiantCours.etudiant.id);
+        this.selectedEtudiantCours.cours.id = this.selectedcours.id;
+        console.log(this.selectedEtudiantCours.cours.id);
+        this.service.saveEtudiantCours().subscribe(data => {
+                // @ts-ignore
+                this.itemsEtudiantCours.push({...data});
+            });
+        this.router.navigate(['/pages/etudiantcours']);
+    }
+    get itemsEtudiantCours(): Array<EtudiantCours> {
+        return this.service.itemsEtudiantCours;
+    }
+
+    set itemsEtudiantCours(value: Array<EtudiantCours>) {
+        this.service.itemsEtudiantCours = value;
+    }
     set selectedDict(value: Dictionary) {
         this.dictionnaryService.selectedDict = value;
     }
@@ -98,11 +123,43 @@ export class StudentSimulateSectionComponent implements OnInit {
     }
     ngOnInit(): void {
         // this.photoURL();
-
         this.quizService.section.id = this.selectedsection.id;
         this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
         this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
         });
+        this.menu = [
+            {label: 'Categorie', icon: 'pi pi-fw pi-home', command: (event) => {
+                    this.service.affichelistSection().subscribe(
+                        data => {
+                            this.itemssection2 = data;
+                            // tslint:disable-next-line:no-shadowed-variable
+                        });
+                    document.getElementById('word').style.visibility = 'hidden';
+                    document.getElementById('word').style.height = '0px';
+
+                    document.getElementById('categoriess').style.visibility = 'visible';
+
+                    document.getElementById('categoriess').style.width = '100%';
+                    document.getElementById('categoriess').style.height = '300px';
+                }},
+            {label: 'Word', icon: 'pi pi-fw pi-search', command: (event) => {
+                    this.dictionnaryService.FindAllWord().subscribe(
+                        data => {
+                            this.itemsDict = data;
+                        });
+                    document.getElementById('categoriess').style.visibility = 'hidden';
+                    document.getElementById('categoriess').style.height = '0px';
+                    document.getElementById('word').style.visibility = 'visible';
+                    document.getElementById('word').style.width = '100%';
+                    document.getElementById('word').style.height = '300px';
+                }},
+        ];
+    }
+    public findCoursEtudiant(cours: Cours) {
+        this.selectedEtudiantCours.cours.id = cours.id;
+        this.service.findEtudiantCours().subscribe(
+           data => this.selectedEtudiantCours = data
+       );
     }
     get submittedDict(): boolean {
         return this.dictionnaryService.submittedDict;
@@ -188,7 +245,18 @@ export class StudentSimulateSectionComponent implements OnInit {
     set quizView(value: boolean) {
         this.quizService.quizView = value;
     }
+public categorie(){
 
+    this.dictionnaryService.FindAllWord().subscribe(
+        data => {
+            this.itemsDict = data;
+        });
+    document.getElementById('categoriess').style.visibility = 'hidden';
+    document.getElementById('categoriess').style.width = '0px';
+
+    document.getElementById('word').style.width = '300px';
+
+}
     PreviousSection() {
         this.service.affichelistSection().subscribe(
             data => {

@@ -26,8 +26,25 @@ export class QuizUpdateComponent implements OnInit {
   deleteNumber: number;
   isUpdate= 'false';
   ref: string;
+  oldAnswers: Array<Reponse>;
+  reponseExiste = 'false';
+  answerExiste = 'false';
+  private _answer : Reponse;
 
-  get questionNumero(): number {
+
+    get answer(): Reponse {
+        if(this._answer == null)
+        {
+            this._answer = new Reponse();
+        }
+        return this._answer;
+    }
+
+    set answer(value: Reponse) {
+        this._answer = value;
+    }
+
+    get questionNumero(): number {
     return this.service.questionNumero;
   }
 
@@ -128,117 +145,124 @@ export class QuizUpdateComponent implements OnInit {
         }
     );
     // this.service.findSections().subscribe(data => this.service.sections = data);
-
-    this.service.findQuizSection(640).subscribe(
-        data => {
-          this.selected = data;
-          this.ref = this.selected.ref;
-          this.service.findQuestionByQuiz(this.selected).subscribe(
-              dataquestion => {
-                this.selected.questions = dataquestion;
-                console.log(this.selected.questions);
-                for (let i = 0 ; i < this.selected.questions.length ; i++)
-                {
-                  console.log(this.selected.questions[i]);
-                  this.service.findAnswersByQuestion(this.selected.questions[i]).subscribe(
-                      dataanswers => {
-                        this.selected.questions[i].reponses = dataanswers;
-                        this.nodes = [];
-                        for(let i = 0 ; i < this.selected.questions.length ; i++)
-                        {
-                          if(this.selected.questions[i].reponses.length == 1)
-                          {
-                            this.nodes.push(
-                                {
-                                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                                  children: [
-                                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                                    //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
-                                    //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                                    //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                                  ]
-                                },
-                            );
-                          }
-                          else if(this.selected.questions[i].reponses.length == 2)
-                          {
-                            this.nodes.push(
-                                {
-                                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                                  children: [
-                                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                                    //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                                    //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                                  ]
-                                },
-                            );
-                          }
-                          else if(this.selected.questions[i].reponses.length == 3)
-                          {
-                            this.nodes.push(
-                                {
-                                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                                  children: [
-                                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                                    //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                                  ]
-                                },
-                            );
-                          }
-                          else if(this.selected.questions[i].reponses.length == 4)
-                          {
-                            this.nodes.push(
-                                {
-                                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                                  children: [
-                                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'}
-                                  ]
-                                },
-                            );
-                          }
-                          else if(this.selected.questions[i].reponses.length == 5)
-                          {
-                            this.nodes.push(
-                                {
-                                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                                  children: [
-                                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'},
-                                    {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',  type: 'url'}
-                                  ]
-                                },
-                            );
-                          }
-                        }
-                      }
-                  );
-                }
-              }
-          );
-        }
-    );
-
+    this.insertToTree();
     /*
 
 
     */
     this.initCol();
     this.question = new Question();
-    this.question.numero = this.questionNumero;
-    this.reponse.numero = this.reponseNumero;
+      this.service.findQuizSection(this.selectedsection.id).subscribe(
+          data => {
+              this.selected = data;
+              this.service.findQuestionByQuiz(this.selected).subscribe(
+                  dataquestion => {
+                      this.selected.questions = dataquestion;
+                      this.question.numero = dataquestion.length + 1;
+                  }
+              );
+          }
+      );
+    this.question.numero = this.selected.questions.length + 1;
+    this.reponse.numero = 1;
     this.reponse.etatReponse = 'true';
     this.question.pointReponseJuste = 1;
     this.question.pointReponsefausse = 0;
   }
 
+  insertToTree()
+  {
+      this.service.findQuizSection(this.selectedsection.id).subscribe(
+          data => {
+              this.selected = data;
+              this.ref = this.selected.ref;
+              this.service.findQuestionByQuiz(this.selected).subscribe(
+                  dataquestion => {
+                      this.selected.questions = dataquestion;
+                      this.questionNumero = dataquestion.length + 1;
+                      for (let i = 0 ; i < this.selected.questions.length ; i++)
+                      {
+                          this.service.findAnswersByQuestion(this.selected.questions[i]).subscribe(
+                              dataanswers => {
+                                  this.selected.questions[i].reponses = dataanswers;
+                                  this.nodes = [];
+                                  for(let i = 0 ; i < this.selected.questions.length ; i++)
+                                  {
+                                      if(this.selected.questions[i].reponses.length == 1)
+                                      {
+                                          this.nodes.push(
+                                              {
+                                                  key: this.selected.questions[i].id.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                                                  children: [
+                                                      {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                                                  ]
+                                              },
+                                          );
+                                      }
+                                      else if(this.selected.questions[i].reponses.length == 2)
+                                      {
+                                          this.nodes.push(
+                                              {
+                                                  key: this.selected.questions[i].id.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                                                  children: [
+                                                      {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                                                  ]
+                                              },
+                                          );
+                                      }
+                                      else if(this.selected.questions[i].reponses.length == 3)
+                                      {
+                                          this.nodes.push(
+                                              {
+                                                  key: this.selected.questions[i].id.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                                                  children: [
+                                                      {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                                                  ]
+                                              },
+                                          );
+                                      }
+                                      else if(this.selected.questions[i].reponses.length == 4)
+                                      {
+                                          this.nodes.push(
+                                              {
+                                                  key: this.selected.questions[i].id.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                                                  children: [
+                                                      {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'}
+                                                  ]
+                                              },
+                                          );
+                                      }
+                                      else if(this.selected.questions[i].reponses.length == 5)
+                                      {
+                                          this.nodes.push(
+                                              {
+                                                  key: this.selected.questions[i].id.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                                                  children: [
+                                                      {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'},
+                                                      {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',  type: 'url'}
+                                                  ]
+                                              },
+                                          );
+                                      }
+                                  }
+                              }
+                          );
+                      }
+                  }
+              );
+          }
+      );
+
+  }
   defaultchecked() {
     return this.service.defaultchecked();
   }
@@ -267,7 +291,7 @@ export class QuizUpdateComponent implements OnInit {
     myClone.libelle = question.libelle;
     myClone.numero = question.numero;
     myClone.id = question.id;
-    myClone.quiz = question.quiz;
+    myClone.quiz = this.selected;
     myClone.ref = question.ref;
     myClone.pointReponsefausse = question.pointReponsefausse;
     myClone.pointReponseJuste = question.pointReponseJuste;
@@ -278,24 +302,31 @@ export class QuizUpdateComponent implements OnInit {
 
   update(key: string)
   {
+      this.reponse.numero = this.reponseNumero;
     this.numeroQuestion = key;
-    this.question.libelle = this.selected.questions[key].libelle;
-    this.question.numero = this.selected.questions[key].numero;
-    this.question.typeDeQuestion = this.selected.questions[key].typeDeQuestion;
-    this.question.pointReponseJuste = this.selected.questions[key].pointReponseJuste;
-    this.question.pointReponsefausse = this.selected.questions[key].pointReponsefausse;
-    for(var i = 0 ; i < this.selected.questions[key].reponses.length ; i++)
-    {
-      this.reponses.push(this.selected.questions[key].reponses[i]);
-    }
-    this.reponseNumero = this.selected.questions[key].reponses.length + 1;
-    this.reponse.numero = this.reponseNumero;
+      this.service.findQuestionById(key).subscribe(
+          data => {
+              this.question = data;
+              this.reponses.length = 0;
+              this.service.findAnswersByQuestionId(key).subscribe(
+                  dataAnswers => {
+                      this.oldAnswers = dataAnswers;
+                      for(var i = 0 ; i < dataAnswers.length ; i++)
+                      {
+                          this.reponses.push(dataAnswers[i]);
+                      }
+                      this.reponseNumero = dataAnswers.length + 1;
+                  }
+              );
+          }
+      );
+
     this.isUpdate = 'true';
   }
 
   deleteQuestion(key: string)
   {
-    this.deleteNumber = Number(key);
+    /*this.deleteNumber = Number(key);
     this.selected.questions.splice(this.deleteNumber,1);
     for(let i = this.deleteNumber ; i < this.selected.questions.length ; i++)
     {
@@ -311,9 +342,6 @@ export class QuizUpdateComponent implements OnInit {
               key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
               children: [
                 {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
-                //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
               ]
             },
         );
@@ -326,8 +354,6 @@ export class QuizUpdateComponent implements OnInit {
               children: [
                 {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
                 {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
               ]
             },
         );
@@ -341,7 +367,6 @@ export class QuizUpdateComponent implements OnInit {
                 {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
                 {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
                 {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
               ]
             },
         );
@@ -375,7 +400,18 @@ export class QuizUpdateComponent implements OnInit {
             },
         );
       }
-    }
+    }*/
+      this.service.deleteQuestion(key).subscribe(
+          data => {
+              this.messageService.add({
+                  severity: 'success',
+                  summary: 'Successful',
+                  detail: 'Question deleted',
+                  life: 3000
+              });
+              this.insertToTree();
+          }
+      );
     this.questionNumero = this.selected.questions.length + 1;
     this.reponseNumero = 1;
     this.question.numero = this.questionNumero;
@@ -387,94 +423,27 @@ export class QuizUpdateComponent implements OnInit {
 
     if(this.isUpdate == 'false')
     {
-      this.selected.questions.push(this.clone(this.question));
-      this.question2 = this.question;
+        console.log(this.selected);
+        this.question.quiz = this.selected;
+        this.service.saveQuetion().subscribe(
+            data => {
+                this.insertToTree();
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Question Created',
+                    life: 3000
+                });
+            }
+        );
+      //this.selected.questions.push(this.clone(this.question));
 
-      console.log(this.selected.questions);
+      //console.log(this.selected.questions);
       this.question = new Question();
       this.questionNumero = this.questionNumero + 1;
       this.reponseNumero = 1;
       this.question.numero = this.questionNumero;
       this.reponse.numero = this.reponseNumero;
-      this.nodes = [];
-      for(let i = 0 ; i < this.selected.questions.length ; i++)
-      {
-        if(this.selected.questions[i].reponses.length == 1)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 2)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 3)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 4)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 5)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',  type: 'url'}
-                ]
-              },
-          );
-        }
-      }
-
-
-
-
       this.reponse.etatReponse = 'true';
       this.question.pointReponseJuste = 1;
       this.question.pointReponsefausse = 0;
@@ -482,86 +451,56 @@ export class QuizUpdateComponent implements OnInit {
 
     else
     {
-      this.selected.questions[this.numeroQuestion].libelle = this.question.libelle;
-      this.selected.questions[this.numeroQuestion].numero = this.question.numero;
-      this.selected.questions[this.numeroQuestion].typeDeQuestion = this.question.typeDeQuestion;
-      this.selected.questions[this.numeroQuestion].reponses = this.reponses;
-      this.question = new Question();
-      this.nodes = [];
-      for(let i = 0 ; i < this.selected.questions.length ; i++)
+      this.service.updateQuestion().subscribe(
+          data => {
+              this.insertToTree();
+              this.messageService.add({
+                  severity: 'success',
+                  summary: 'Successful',
+                  detail: 'Question Created',
+                  life: 3000
+              });
+          }
+      );
+      for(let i = 0 ; i < this.oldAnswers.length ; i++)
       {
-        if(this.selected.questions[i].reponses.length == 1)
-        {
-          this.nodes.push(
+          this.reponseExiste = 'false';
+          for(let j = 0 ; j < this.reponses.length ; j++)
+          {
+              if(this.oldAnswers[i] == this.reponses[j])
               {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 2)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 3)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                  //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 4)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'}
-                ]
-              },
-          );
-        }
-        else if(this.selected.questions[i].reponses.length == 5)
-        {
-          this.nodes.push(
-              {
-                key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                children: [
-                  {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'},
-                  {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',  type: 'url'}
-                ]
-              },
-          );
-        }
+                  this.reponseExiste = 'true';
+              }
+          }
+          if(this.reponseExiste == 'false') {
+              this.service.deleteAnswer(this.oldAnswers[i].id).subscribe();
+          }
       }
+        for(let i = 0 ; i < this.reponses.length ; i++)
+        {
+            this.answerExiste = 'false';
+            for(let j = 0 ; j < this.oldAnswers.length ; j++)
+            {
+                if(this.oldAnswers[j] == this.reponses[i])
+                {
+                    this.answerExiste = 'true';
+                }
+            }
+            if(this.answerExiste == 'false') {
+                this.answer.numero = this.reponses[i].numero;
+                this.answer.etatReponse = this.reponses[i].etatReponse;
+                this.answer.lib = this.reponses[i].lib;
+                this.service.findQuestionById(this.numeroQuestion).subscribe(
+                    data => {
+                        this.answer.question = data;
+                        this.service.saveAnswer(this.answer).subscribe();
+
+                    }
+                );
+            }
+        }
+        this.insertToTree();
+      this.question = new Question();
       this.questionNumero = this.selected.questions.length + 1;
       this.reponseNumero = 1;
       this.question.numero = this.questionNumero;
@@ -587,7 +526,13 @@ export class QuizUpdateComponent implements OnInit {
     {
         this.service.deleteQuiz(this.ref).subscribe(
             data=>{
-                console.log('delete hada');
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Quiz Created',
+                    life: 3000
+                });
+                this.router.navigate(['/pages/parcours']);
             }
         );
     }
@@ -625,6 +570,21 @@ export class QuizUpdateComponent implements OnInit {
         this.deleteQuiz();
         //this.delay(10000).then(any => {this.saveQuiz()});
   }
+
+  public updateQuiz(){
+        this.service.updateQuiz().subscribe(
+            data => {
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Quiz detail updated',
+                    life: 3000
+                });
+            }
+        );
+  }
+
+
 
   public edit() {
     if (this.question.id) {

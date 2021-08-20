@@ -7,6 +7,7 @@ import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
 import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
 import {Quiz} from '../../../../controller/model/quiz.model';
+import {Cours} from "../../../../controller/model/cours.model";
 import {SectionItemService} from '../../../../controller/service/section-item.service';
 
 
@@ -18,44 +19,44 @@ import {SectionItemService} from '../../../../controller/service/section-item.se
 })
 export class SectionListComponent implements OnInit {
 
-    cols: any[];
-
-    // tslint:disable-next-line:max-line-length no-shadowed-variable
-    constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService, private router: Router, private VocabularyService: VocabularyService, private sectionItemService: SectionItemService) {
-    }
-
-    ngOnInit(): void {
-        this.initCol();
-        this.quizService.section.id = this.selectedsection.id;
-        this.quizService.findQuizSection().subscribe(data => this.selectedQuiz = data);
-        this.quizService.findAllQuiz().subscribe(
-            data => {
-                this.quizItems = data;
-            }
-        );
-    }
-
-    public findAllQuiz() {
-        this.quizService.findAllQuiz().subscribe(
-            data => {
-                this.quizItems = data;
-            }
-        );
-    }
-
-    public findQuiz(section: Section) {
-        this.quizService.findQuizBySectionId(section).subscribe(
-            data => {
-                this.selectedQuiz = data;
-            }, error => {
-                // tslint:disable-next-line:no-unused-expression
-                this.selectedQuiz == null;
-            });
-    }
-
-    get selectedQuiz(): Quiz {
-        return this.quizService.selectedQuiz;
-    }
+  cols: any[];
+  // tslint:disable-next-line:max-line-length no-shadowed-variable
+  constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService) { }
+  ngOnInit(): void {
+    this.initCol();
+    this.quizService.section.id = this.selectedsection.id;
+    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
+    this.quizService.findAllQuiz().subscribe(
+        data => {
+          this.quizItems = data;
+        }
+    );
+  }
+  public openCreateSection() {
+    this.submittedSection = false;
+    this.createDialogSection = true;
+    this.selectedsection = new Section();
+  }
+  public findAllQuiz(){
+    this.quizService.findAllQuiz().subscribe(
+        data => {
+          this.quizItems = data;
+        }
+    );
+  }
+  public findQuiz(section: Section){
+    this.quizService.findQuizBySectionId(section).subscribe(
+        data => {
+          this.selectedQuiz = data;
+        }, error =>
+        {
+          // tslint:disable-next-line:no-unused-expression
+          this.selectedQuiz == null;
+        });
+  }
+  get selectedQuiz(): Quiz {
+    return this.quizService.selectedQuiz;
+  }
 
     set quizItems(value: Array<Quiz>) {
         this.quizService.quizItems = value;

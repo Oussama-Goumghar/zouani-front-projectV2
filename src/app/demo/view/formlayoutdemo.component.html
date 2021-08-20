@@ -117,7 +117,7 @@
 
 
 		<div class="card p-col-11" style="background-color: gainsboro;  margin-left: 30px; margin-top: 20px">
-			<h1 style="margin-left: 520px; margin-bottom: 30px; color: black"><b>Registration Student</b></h1>
+			<h1 style="text-align: center; margin-bottom: 30px; color: black"><b>Registration Student</b></h1>
 			<div class="p-fluid p-formgrid p-grid">
 				<div class="p-field p-col-12 p-md-6">
 					<label for="prenom" style="color: black;">Firstname</label>
@@ -150,6 +150,10 @@
 					<label for="city" style="color: black;">City</label>
 					<input id="city" type="text" pInputText [(ngModel)]="selected.ville">
 				</div>
+				<div class="p-field p-col-12 p-md-6">
+					<label for="email" style="color: black;">Email</label>
+					<input id="email" type="text" pInputText [(ngModel)]="selected.gmail">
+				</div>
 				<div class="p-field p-col-12 p-md-3" >
 					<label for="parcours" style="color: black;">Parcours</label>
 					<select type="text" class="btn btn-block btn-outline-light form-control" id="parcours"  name="Parcours"  style="width: 300px; height: 30px ; border-color: darkgray;margin-left: 5px" (click)="findAllParcours()"  [(ngModel)]="selected.parcours.id" >
@@ -160,9 +164,10 @@
 
 				</div>
 
+			</div>
 
-			<div class="card-footer" style="margin-left: 1200px;width: 200px">
-				<p-button label="Submit" icon="pi pi-check" iconPos="right" (click)="save()" [routerLink]="submitted? ['']: ['/inscriptionEtudiant']" ></p-button>
-			</div></div>
+				<p-button label="Submit" icon="pi pi-check" iconPos="right" style="float: right;" (click)="save()"  ></p-button>
+
+
 		</div>
 </div>

@@ -1,6 +1,6 @@
 <div class="p-grid" style="  margin-left: 30px; margin-top: 20px">
 <div class="card p-col-11" style="background-color: gainsboro; margin-left: 30px; margin-top: 20px">
-    <h1  style="margin-left: 530px; margin-bottom: 30px; color: black">Registration Admin</h1>
+    <h1  style="text-align: center; margin-bottom: 30px; color: black">Registration Admin</h1>
     <div class="p-fluid p-formgrid p-grid">
         <div class="p-field p-col-12 p-md-6">
             <label for="firstname6" style="color: black;">Firstname</label>
@@ -33,10 +33,10 @@
             <small class="p-invalid" *ngIf="submitted && !selected.password">Password is required.</small>
 
         </div>
-        <div class="card-footer" style="margin-left: 1200px;width: 200px">
-            <p-button label="Submit" icon="pi pi-check" iconPos="right" (click)="save()" [routerLink]="submitted? ['']: ['/inscriptionAdmin']"></p-button>
-        </div>
-
     </div>
+            <p-button label="Submit" icon="pi pi-check" iconPos="right" style="float: right" (click)="save()" [routerLink]="submitted? ['']: ['/inscriptionAdmin']"></p-button>
+
+
+
 </div>
 </div>

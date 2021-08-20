@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {InscriptionService} from '../../controller/service/inscription.service';
 import {Inscription} from '../../controller/model/inscription.model';
@@ -6,18 +6,22 @@ import {Etudiant} from '../../controller/model/etudiant.model';
 import {Parcours} from '../../controller/model/parcours.model';
 import {Centre} from '../../controller/model/centre.model';
 import {Cours} from '../../controller/model/cours.model';
+import {Router} from '@angular/router';
 
 @Component({
     templateUrl: './formlayoutdemo.component.html'
 })
-export class FormLayoutDemoComponent {
+export class FormLayoutDemoComponent implements OnInit{
 
     constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-                private service: InscriptionService ) { }
+                private service: InscriptionService, private router: Router ) { }
+    ngOnInit(): void {
+        this.selected = new Inscription();
+    }
+
     get createDialog(): boolean {
         return this.service.createDialog;
     }
-
     set createDialog(value: boolean) {
         this.service.createDialog = value;
     }
@@ -58,17 +62,16 @@ export class FormLayoutDemoComponent {
     public save(){
         this.submitted = true;
         this.service.save().subscribe(data => {
-            this.selected = new Inscription();
             this.selectes.push({...data});
-            // tslint:disable-next-line:no-unused-expression
-            this.selected == null;
             this.messageService.add({
                     severity: 'success',
                     summary: 'Successful',
-                    detail: 'Cours Update',
+                    detail: 'Inscription added',
                     life: 3000
                 });
             });
+        this.router.navigate(['/']);
+        this.selected = new Inscription();
     }
     // tslint:disable-next-line:adjacent-overload-signatures
     get etudiant(): Etudiant {

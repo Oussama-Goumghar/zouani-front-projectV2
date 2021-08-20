@@ -10,6 +10,7 @@ export class Inscription {
   public ref: string;
   public nom: string;
   public prenom: string;
+  public gmail: string;
   public age: number;
   public login: string;
   public ville: string;

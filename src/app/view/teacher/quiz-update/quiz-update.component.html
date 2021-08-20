@@ -8,7 +8,7 @@
                 </div>
 
                 <div class="p-toolbar-group-right">
-                    <button pButton pRipple type="button"  label="Save" icon="pi pi-check" (click)="save()"></button>
+                    <button pButton pRipple type="button"  label="Delete this quiz" icon="pi pi-check" (click)="deleteQuiz()"></button>
                 </div>
             </p-toolbar>
         </div>
@@ -22,6 +22,10 @@
                     <div class="p-fluid p-formgrid p-grid">
 
                         <div class="p-field p-col-12 p-md-3">
+                            <label class="labelFormat">Quiz's name</label><br/>
+                            <input id="float-input" type="text" [(ngModel)]="selected.lib" pInputText>
+                        </div>
+                        <div class="p-field p-col-12 p-md-3">
                             <label class="labelFormat">debut date</label><br/>
                             <p-calendar inputId="debut"    [(ngModel)]="selected.dateDebut" dateFormat="yy-mm-dd"></p-calendar>
                         </div>
@@ -33,6 +37,10 @@
                             <label class="labelFormat" >success threshold</label><br/>
                             <p-inputNumber    class="refQuiz"  [(ngModel)]="selected.seuilReussite"></p-inputNumber>
                         </div>
+                        <div class="p-toolbar-group-right" style="margin-left: 40%">
+                            <button pButton pRipple type="button"  label="Update detail quiz" icon="pi pi-check" (click)="updateQuiz()"></button>
+                        </div>
+
                     </div>
                 </p-card>
             </ng-template>
@@ -130,3 +138,4 @@
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>
+<!-- -->

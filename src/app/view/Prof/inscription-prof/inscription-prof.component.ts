@@ -3,6 +3,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {ProfService} from '../../../controller/service/prof.service';
 import {Prof} from '../../../controller/model/prof.model';
 import {CategorieProf} from '../../../controller/model/categorie-prof.model';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -13,7 +14,7 @@ import {CategorieProf} from '../../../controller/model/categorie-prof.model';
 export class InscriptionProfComponent implements OnInit {
 
   constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: ProfService) { }
+              private service: ProfService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -31,6 +32,13 @@ export class InscriptionProfComponent implements OnInit {
         data => {
           this.selectedProf = new Prof();
           console.log('meryem');
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Inscription added',
+            life: 3000
+          });
+          this.router.navigate(['/']);
     });
   }
   get selectedProf(): Prof {

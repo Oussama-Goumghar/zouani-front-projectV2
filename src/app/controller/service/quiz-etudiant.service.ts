@@ -429,9 +429,14 @@ export class QuizEtudiantService {
     return this.http.get<Array<Reponse>>(this.url + 'reponse/question/id/' + question);
   }
 
-  public findCorrectAnswers(question: number): Observable<Array<Reponse>>
+  public findCorrectAnswers(questionId: number): Observable<Array<Reponse>>
   {
-    return this.http.get<Array<Reponse>>(this.url + 'reponse/criteria/id/' + question);
+    return this.http.get<Array<Reponse>>(this.url + 'reponse/criteria/id/' + questionId);
+  }
+
+  public findQuizBySection(id: number): Observable<Quiz>
+  {
+    return this.http.get<Quiz>(this.url + 'quiz/section/id/' + id);
   }
 ///////////////////
   public findAllQuizEtudiant(): Observable<Array<QuizEtudiant>>

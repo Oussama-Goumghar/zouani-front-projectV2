@@ -256,6 +256,15 @@ import { ScheduleAdminComponent } from './view/admin/schedule-admin/schedule-adm
 import { ScheduleStudentComponent } from './view/student/schedule-student/schedule-student.component';
 import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.component';
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
+import {SectionCreateComponent} from './view/admin/learn/section-create/section-create.component';
+import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
+
+
+
+
+
+
+
 
 
 @NgModule({
@@ -510,6 +519,12 @@ import {SectionItemComponent} from './view/admin/learn/section-item/section-item
         ScheduleAdminComponent,
         ScheduleStudentComponent,
         QuizUpdateComponent,
+        SectionCreateComponent,
+        SafePipe,
+        SafePipe1,
+        SafePipe2,
+        SectionCreateComponent,
+        QuizTakeComponent,
         SectionItemComponent
     ],
     providers: [

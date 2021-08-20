@@ -129,3 +129,16 @@
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>
+
+<p-dialog [(visible)]="viewDialogType" [style]="{width: '800px'}"  [modal]="true" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="box">
+            <h3>Types "Correct the mistakes" and "Input" can only have one answer, it must be correct</h3>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>
+<!-- -->
