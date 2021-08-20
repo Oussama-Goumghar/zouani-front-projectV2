@@ -7,7 +7,7 @@ import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
 import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
 import {Quiz} from '../../../../controller/model/quiz.model';
-import {Cours} from "../../../../controller/model/cours.model";
+import {Cours} from '../../../../controller/model/cours.model';
 import {SectionItemService} from '../../../../controller/service/section-item.service';
 
 
@@ -21,7 +21,7 @@ export class SectionListComponent implements OnInit {
 
   cols: any[];
   // tslint:disable-next-line:max-line-length no-shadowed-variable
-  constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService) { }
+  constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService, private sectionItemService: SectionItemService) { }
   ngOnInit(): void {
     this.initCol();
     this.quizService.section.id = this.selectedsection.id;
