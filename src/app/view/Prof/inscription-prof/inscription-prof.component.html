@@ -27,13 +27,13 @@
         <textarea id="address" type="text" rows="4" pInputTextarea [(ngModel)]="selectedProf.addresse" ></textarea>
     </div>
         <div class="p-field p-col-12 p-md-6">
-            <label for="username" style="color: black;">UserName</label>
-            <input id="username" type="text" pInputText [(ngModel)]="selectedProf.login" >
+            <label for="users" style="color: black;">UserName</label>
+            <input id="users" type="text" pInputText [(ngModel)]="selectedProf.login" >
             <small class="p-invalid" *ngIf="submitted && !selectedProf.login">UserName is required.</small>
         </div>
         <div class="p-field p-col-12 p-md-6">
-            <label for="Passwrd" style="color: black;">Password</label>
-            <input id="Passwrd" type="password" pInputText [(ngModel)]="selectedProf.password">
+            <label for="Pass" style="color: black;">Password</label>
+            <input id="Pass" type="password" pInputText [(ngModel)]="selectedProf.password">
             <small class="p-invalid" *ngIf="submitted && !selectedProf.password">Password is required.</small>
         </div>
     </div>

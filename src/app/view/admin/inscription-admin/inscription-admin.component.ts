@@ -16,6 +16,10 @@ export class InscriptionAdminComponent implements OnInit {
               private service: AdminService, private router: Router) { }
 
   ngOnInit(): void {
+    this.selected = new Admin();
+    // tslint:disable-next-line:no-unused-expression
+    this.selected.login = '';
+    this.selected.password = '';
   }
 
   public save() {
