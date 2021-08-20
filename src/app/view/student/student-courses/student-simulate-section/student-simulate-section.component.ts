@@ -16,7 +16,6 @@ import {Dictionary} from '../../../../controller/model/dictionary.model';
 import {Router} from '@angular/router';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
 import {EtudiantCours} from '../../../../controller/model/etudiant-cours.model';
-
 @Pipe({ name: 'safe' })
 export class SafePipe implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) { }
@@ -140,7 +139,7 @@ export class StudentSimulateSectionComponent implements OnInit {
 
                     document.getElementById('categoriess').style.visibility = 'visible';
 
-                    document.getElementById('categoriess').style.width = '210px';
+                    document.getElementById('categoriess').style.width = '100%';
                     document.getElementById('categoriess').style.height = '300px';
                 }},
             {label: 'Word', icon: 'pi pi-fw pi-search', command: (event) => {
@@ -151,7 +150,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('categoriess').style.visibility = 'hidden';
                     document.getElementById('categoriess').style.height = '0px';
                     document.getElementById('word').style.visibility = 'visible';
-                    document.getElementById('word').style.width = '200px';
+                    document.getElementById('word').style.width = '100%';
                     document.getElementById('word').style.height = '300px';
                 }},
         ];

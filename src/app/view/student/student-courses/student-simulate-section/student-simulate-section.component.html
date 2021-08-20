@@ -60,11 +60,11 @@
                         pButton
                         pRipple style="margin-left: 360px; width: 120px"
                         type="button"></button>
-                <button (click)="finish()"
+               <!-- <button (click)="finish()"
                         [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'hidden':'visible'"
                         class="p-button-rounded" icon="pi " label="Finish" pButton pRipple
                         style="position: absolute;margin: 0;left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);top: 50%;  width: 120px"
-                        type="button"></button>
+                        type="button"></button>-->
             </div>
 
 
@@ -96,7 +96,7 @@
               -->
         </div>
                <div class="card" style="margin-top: 15px">
-               <p-tabMenu [model]="menu" [activeItem]="menu[0]"  ></p-tabMenu>
+               <p-tabMenu [model]="menu" [activeItem]="menu[0]" style="width: 100%;" ></p-tabMenu>
 
 
                    <div  id="categoriess" style="width: 210px;margin-top: 15px" >

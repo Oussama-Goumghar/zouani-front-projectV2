@@ -190,7 +190,7 @@ import {LoginEtudiantComponent} from './view/etudiant/login-etudiant/login-etudi
 import {LoginProfComponent} from './view/teacher/login-prof/login-prof.component';
 import {LoginAdminComponent} from './view/admin/login-admin/login-admin.component';
 import { QuizEtudiantComponent } from './view/etudiant/quiz-etudiant/quiz-etudiant.component';
-import {SectionSimulateComponent} from './view/Prof/parcrs/section-simulate/section-simulate.component';
+import {SafePipe1, SectionSimulateComponent} from './view/Prof/parcrs/section-simulate/section-simulate.component';
 import {ChooseViewComponent} from './view/Prof/parcrs/choose-view/choose-view.component';
 import {InscriptionAdminComponent} from './view/admin/inscription-admin/inscription-admin.component';
 import {ParcoursCreateComponent} from './view/admin/learn/parcours-create/parcours-create.component';
@@ -255,7 +255,7 @@ import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-voc
 import { ScheduleAdminComponent } from './view/admin/schedule-admin/schedule-admin.component';
 import { ScheduleStudentComponent } from './view/student/schedule-student/schedule-student.component';
 import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.component';
-import { QuizTakeComponent } from './view/std/quiz-take/quiz-take.component';
+import {SectionCreateComponent} from './view/admin/learn/section-create/section-create.component';
 
 
 
@@ -355,6 +355,9 @@ import { QuizTakeComponent } from './view/std/quiz-take/quiz-take.component';
     ],
     declarations: [
         AppComponent,
+        SafePipe,
+        SafePipe1,
+        SafePipe2,
         AppMainComponent,
         AppMenuComponent,
         AppMenuitemComponent,
@@ -514,7 +517,7 @@ import { QuizTakeComponent } from './view/std/quiz-take/quiz-take.component';
         ScheduleAdminComponent,
         ScheduleStudentComponent,
         QuizUpdateComponent,
-        QuizTakeComponent,
+        SectionCreateComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
