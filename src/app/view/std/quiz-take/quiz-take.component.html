@@ -2,9 +2,9 @@
     <div class="p-col-6">Choose the correct alternative</div>
     <div class="p-col-6">{{this.selected.numero}} out of {{this.items.length}}</div>
 </div>
-<div class="p-grid" id="body">
+<div class="p-grid" id="bodyRadio">
     <div class="p-col-6" id="question">
-        <h3 style="margin-top: 100px; text-align: center">{{this.question}}</h3>
+        <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.question1}} <span id="myAnswer">{{this.answer}} </span> {{this.question2}}</h3>
     </div>
     <div class="p-col-6" id="answers" >
         <div style="margin: 50px 50px">
@@ -14,8 +14,20 @@
             </div>
         </div>
     </div>
+
+    <div style="background-color: white; width: 100%" id="mistake">
+        <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.selected.libelle}} </h3>
+        <span class="p-float-label" style="margin-left: 10%; margin-bottom: 100px">
+            <textarea id="float-input" rows="1" cols="100" [(ngModel)]="this.correctMistakeAnswer" (keyup.)="correctMistake()" pInputTextarea></textarea>
+            <label for="float-input">Your answer</label>
+        </span>
+    </div>
     <div style="margin-left: 50%; margin-top: 50px">
         <button pButton pRipple type="button" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
     </div>
+
 </div>
 
+<div id="result" style="visibility: hidden">
+    <h3 style="margin: 100px">Your note is = {{this.noteQuiz}}</h3>
+</div>

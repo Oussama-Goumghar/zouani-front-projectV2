@@ -3,10 +3,17 @@
   width: 60%;
   margin-left: 20%;
 }
-#body{
+#bodyRadio{
   width: 60%;
   margin-left: 20%;
   margin-top: 10px;
+}
+#result{
+  width: 60%;
+  margin-left: 20%;
+  margin-top: 10px;
+  background-color: white;
+  visibility: hidden;
 }
 #question{
   background: white;

@@ -28,10 +28,13 @@ export class QuizTakeComponent implements OnInit {
   private _noteCheckbox: number;
   private _numeroCheckBox: number;
   private _numeroQuestion : number;
-  question = '';
+  question1 = '';
+  question2 = '';
   debutBlink= 0;
   finBlink= 0;
   answer = '_____';
+  isSelected: boolean;
+  correctMistakeAnswer: string;
 
   get numeroQuestion(): number {
     return this._numeroQuestion;
@@ -231,59 +234,168 @@ export class QuizTakeComponent implements OnInit {
 
   ngOnInit(): void {
     this.numQuestion = 0;
+    this.noteQuiz = 0;
     this.etudiant = this.login.etudiant;
-    this.service.findAllQuestions('quiz1').subscribe(
+    this.service.findAllQuestions(this.selectedQuiz.ref).subscribe(
         data => {
           this.items = data;
         }
     );
+
+    /*this.service.findQuizBySection(640).subscribe(
+        data => {
+          this.quizEtudiant.quiz = data;
+          this.quizEtudiant.resultat = null;
+          this.quizEtudiant.note = 0;
+          this.quizEtudiant.dateDebut = null;
+          this.quizEtudiant.dateFin = null;
+          this.quizEtudiant.etudiant = this.login.etudiant;
+          this.service.insertQuizEtudiant().subscribe();
+          this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
+        }
+    );*/
+    this.quizEtudiant.quiz = this.selectedQuiz;
+    this.quizEtudiant.resultat = null;
+    this.quizEtudiant.note = 0;
+    this.quizEtudiant.dateDebut = null;
+    this.quizEtudiant.dateFin = null;
+    this.quizEtudiant.etudiant = this.login.etudiant;
+    this.service.insertQuizEtudiant().subscribe();
+    this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
     this.start();
   }
 
   //////////////////Start/////////
   public start()
   {
+    if(this.numQuestion > 0)
+    {
+      if(this.selected.typeDeQuestion.ref == 't4')
+      {
+        if(this.correctMistakeAnswer == this.correctAnswers[0].lib)
+        {
+          this.noteQuiz = this.noteQuiz + this.selected.pointReponseJuste;
+          this.noteQst = this.selected.pointReponseJuste;
+        }
+        else {
+          this.noteQuiz = this.noteQuiz + this.selected.pointReponsefausse;
+          this.noteQst = this.selected.pointReponsefausse;
+        }
+      }
+      /*this.service.findQuizBySection(640).subscribe(
+          data => {
+            this.service.findQuizEtudiant(this.login.etudiant, data).subscribe(
+                dataQuizEtudiant =>{
+                  this.reponseEtudiant.note = this.noteQst;
+                  this.reponseEtudiant.quizEtudiant = dataQuizEtudiant;
+                  this.service.insertReponseEtudiant(this.reponseEtudiant).subscribe();
+                }
+            );
+          }
+      );*/
+
+      this.service.findQuizEtudiant(this.login.etudiant, this.selectedQuiz).subscribe(
+          dataQuizEtudiant =>{
+            this.reponseEtudiant.note = this.noteQst;
+            this.reponseEtudiant.quizEtudiant = dataQuizEtudiant;
+            this.service.insertReponseEtudiant(this.reponseEtudiant).subscribe();
+          }
+      );
+    }
     this.numQuestion = this.numQuestion + 1;
-    this.question = '';
-    this.answer = '_____';
+    this.service.findAllQuestions(this.selectedQuiz.ref).subscribe(
+        data => {
+          this.items = data;
+          if(this.numQuestion > this.items.length)
+          {
+            document.getElementById('result').style.visibility= 'visible';
+            document.getElementById('bodyRadio').style.visibility= 'hidden';
+            document.getElementById('bodyRadio').style.height= '0px';
+          }
+        }
+    );
+    if(this.numQuestion > this.items.length && this.numQuestion > 1)
+    {
+      document.getElementById('result').style.visibility= 'visible';
+      document.getElementById('question').style.visibility= 'hidden';
+      document.getElementById('question').style.height= '0px';
+      document.getElementById('answers').style.visibility= 'hidden';
+      document.getElementById('answers').style.height= '0px';
+      document.getElementById('mistake').style.visibility= 'hidden';
+      document.getElementById('mistake').style.height= '0px';
+      this.quizEtudiant.note = this.noteQuiz;
+      if(this.noteQuiz >= this.selectedQuiz.seuilReussite)
+      {
+        this.quizEtudiant.resultat = 'validé';
+      }
+      else {
+        this.quizEtudiant.resultat = 'non validé';
+      }
+      this.quizEtudiant.note = this.noteQuiz;
+      //this.service.updateQuizEtudiant().subscribe();
+    }
     this.button = 'Don\'t know';
-    this.service.findQuestion('quiz1', this.numQuestion).subscribe(
+    this.service.findQuestion(this.selectedQuiz.ref, this.numQuestion).subscribe(
         data => {
           this.selected = data;
           this.service.findReponses(this.selected.id).subscribe(
               dataAnswers => {
                 this.reponses = dataAnswers;
-                console.log(this.reponses);
               }
           );
-          for(let i = 0 ; i < this.selected.libelle.length ; i++)
-          {
-            if(this.selected.libelle[i] == '.' && this.selected.libelle[i+1] == '.' && this.selected.libelle[i+2] == '.')
-            {
-              this.debutBlink = i;
-              console.log('ha lbdya fi : ' + this.debutBlink);
-              for (let j = i + 2 ; i < this.selected.libelle.length ; j++)
-              {
-                if(this.selected.libelle[j] != '.')
-                {
-
-                  this.finBlink = j;
-                  console.log('ha la5ar fi : ' + this.finBlink);
-                  break;
-                }
+          this.service.findCorrectAnswers(this.selected.id).subscribe(
+              data => {
+                this.correctAnswers = data;
               }
-              console.log('ha la5aaaaaaaar fi : ' + this.finBlink);
-              break;
+          );
+          if(this.selected.typeDeQuestion.ref == 't1')
+          {
+            this.question1 = '';
+            this.question2 = '';
+            this.answer = '_____';
+            document.getElementById('myAnswer').style.color = 'black';
+            document.getElementById('mistake').style.visibility = 'hidden';
+            document.getElementById('mistake').style.height = '0px';
+            document.getElementById('question').style.visibility = 'visible';
+            document.getElementById('question').style.height = 'auto';
+            document.getElementById('answers').style.visibility = 'visible';
+            document.getElementById('answers').style.height = 'auto';
+            this.isSelected = false;
+            for(let i = 0 ; i < this.selected.libelle.length ; i++)
+            {
+              if(this.selected.libelle[i] == '.' && this.selected.libelle[i+1] == '.' && this.selected.libelle[i+2] == '.')
+              {
+                this.debutBlink = i;
+                for (let j = i + 2 ; i < this.selected.libelle.length ; j++)
+                {
+                  if(this.selected.libelle[j] != '.')
+                  {
+                    this.finBlink = j;
+                    break;
+                  }
+                }
+                break;
+              }
+            }
+            for(let i = 0 ; i < this.debutBlink ; i++)
+            {
+              this.question1 = this.question1 + this.selected.libelle[i];
+
+            }
+            for(let i = this.finBlink ; i < this.selected.libelle.length ; i++)
+            {
+              this.question2 = this.question2 + this.selected.libelle[i];
             }
           }
-          for(let i = 0 ; i < this.debutBlink ; i++)
+          else if(this.selected.typeDeQuestion.ref == 't4')
           {
-            this.question = this.question + this.selected.libelle[i];
-          }
-          this.question = this.question + this.answer;
-          for(let i = this.finBlink ; i < this.selected.libelle.length ; i++)
-          {
-            this.question = this.question + this.selected.libelle[i];
+            this.correctMistakeAnswer = null;
+            document.getElementById('mistake').style.visibility = 'visible';
+            document.getElementById('mistake').style.height = 'auto';
+            document.getElementById('question').style.visibility = 'hidden';
+            document.getElementById('question').style.height = '0px';
+            document.getElementById('answers').style.visibility = 'hidden';
+            document.getElementById('answers').style.height = '0px';
           }
         }
     );
@@ -291,106 +403,72 @@ export class QuizTakeComponent implements OnInit {
 
   public selectionChanged(event: any,reponse: Reponse): void
   {
-    this.question = '';
-    this.answer = reponse.lib;
-    this.button = 'Next';
-    this.service.findQuestion('quiz1', this.numQuestion).subscribe(
-        data => {
-          this.selected = data;
-          for(let i = 0 ; i < this.selected.libelle.length ; i++)
-          {
-            if(this.selected.libelle[i] == '.' && this.selected.libelle[i+1] == '.' && this.selected.libelle[i+2] == '.')
+    if(this.selected.typeDeQuestion.ref == 't1')
+    {
+      this.question1 = '';
+      this.question2 = '';
+      this.answer = reponse.lib;
+      this.button = 'Next';
+      this.service.findQuestion(this.selectedQuiz.ref, this.numQuestion).subscribe(
+          data => {
+            this.selected = data;
+            for(let i = 0 ; i < this.selected.libelle.length ; i++)
             {
-              this.debutBlink = i;
-              console.log('ha lbdya fi : ' + this.debutBlink);
-              for (let j = i + 2 ; i < this.selected.libelle.length ; j++)
+              if(this.selected.libelle[i] == '.' && this.selected.libelle[i+1] == '.' && this.selected.libelle[i+2] == '.')
               {
-                if(this.selected.libelle[j] != '.')
+                this.debutBlink = i;
+                for (let j = i + 2 ; i < this.selected.libelle.length ; j++)
                 {
-
-                  this.finBlink = j;
-                  console.log('ha la5ar fi : ' + this.finBlink);
-                  break;
+                  if(this.selected.libelle[j] != '.')
+                  {
+                    this.finBlink = j;
+                    break;
+                  }
                 }
+                break;
               }
-              console.log('ha la5aaaaaaaar fi : ' + this.finBlink);
-              break;
             }
-          }
-          for(let i = 0 ; i < this.debutBlink ; i++)
-          {
-            this.question = this.question + this.selected.libelle[i];
-          }
-          this.question = this.question + this.answer;
-          for(let i = this.finBlink ; i < this.selected.libelle.length ; i++)
-          {
-            this.question = this.question + this.selected.libelle[i];
-          }
-        }
-    );
-    /*this.service.findQuestion('quiz1', this.numQuestion).subscribe(
-        data => {
-          this.selected = data;
-          for(let i = 0 ; i < this.selected.libelle.length ; i++)
-          {
-            if(this.selected.libelle[i] == '.')
+            for(let i = 0 ; i < this.debutBlink ; i++)
             {
-              this
+              this.question1 = this.question1 + this.selected.libelle[i];
             }
-            else {
-
+            for(let i = this.finBlink ; i < this.selected.libelle.length ; i++)
+            {
+              this.question2 = this.question2 + this.selected.libelle[i];
             }
           }
-        }
-    );*/
-    /*if(this.selected.typeDeQuestion.ref == 't1')
-    {
-      this.selectedValue = reponse.id;
-      for(let i=0 ; i < this.reponses.length ; i++)
+      );
+      if(this.correctAnswers[0].id == reponse.id)
       {
-        if(reponse.id == this.reponses[i].id)
-        {
-          document.getElementById('div-' + this.reponses[i].id).style.backgroundColor = '#598e8f';
-          document.getElementById('div-' + this.reponses[i].id).style.width = '320px';
-          document.getElementById('div-' + this.reponses[i].id).style.height = '43px';
-        }
-        else {
-          document.getElementById('div-' + this.reponses[i].id).style.backgroundColor = '#90eef0';
-          document.getElementById('div-' + this.reponses[i].id).style.width = '300px';
-          document.getElementById('div-' + this.reponses[i].id).style.height = '40px';
+        document.getElementById('myAnswer').style.color = '#1af045';
+        if (!this.isSelected) {
+          this.noteQst = this.selected.pointReponseJuste;
+          this.noteQuiz = this.noteQuiz + this.selected.pointReponseJuste;
+          this.reponseEtudiant.reponse = reponse;
+          this.isSelected = true;
         }
       }
-      console.log('hada ljawab dyal radio : ' + this.selectedValue);
+      else {
+        document.getElementById('myAnswer').style.color = 'red';
+        if (!this.isSelected) {
+          this.noteQst = this.selected.pointReponsefausse;
+          this.noteQuiz = this.noteQuiz + this.selected.pointReponsefausse;
+          this.isSelected = true;
+        }
+      }
     }
-    else if (this.selected.typeDeQuestion.ref == 't2')
+
+  }
+
+  correctMistake()
+  {
+    if(this.correctMistakeAnswer.length > 0)
     {
-      if(event.target.checked)
-      {
-        if(this.selectedValueCheckbox.length > 0)
-        {
-          console.log(this.selectedValueCheckbox[0]);
-          this.service.findMyReponseEtudiant(this.quizEtudiant, this.selectedValueCheckbox[0]).subscribe(
-              data => {
-                console.log('lqiiitha');
-                this.selectedValueCheckbox = null;
-              },error => console.log('makainch')
-          );
-        }
-        this.selectedValueCheckbox.push(reponse);
-        console.log(this.selectedValueCheckbox);
-        document.getElementById('div-' + reponse.id).style.backgroundColor = '#598e8f';
-        document.getElementById('div-' + reponse.id).style.width = '320px';
-        document.getElementById('div-' + reponse.id).style.height = '43px';
-      }
-      else
-      {
-        this.selectedValueCheckbox = this.selectedValueCheckbox.filter(m=>m!=reponse);
-        console.log(this.selectedValueCheckbox);
-        document.getElementById('div-' + reponse.id).style.backgroundColor = '#90eef0';
-        document.getElementById('div-' + reponse.id).style.width = '300px';
-        document.getElementById('div-' + reponse.id).style.height = '40px';
-      }
-    }*/
+      this.button = 'Next';
+    }
+    else {
+      this.button = 'Don\'t know';
+    }
   }
 
 }

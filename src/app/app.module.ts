@@ -256,6 +256,7 @@ import { ScheduleAdminComponent } from './view/admin/schedule-admin/schedule-adm
 import { ScheduleStudentComponent } from './view/student/schedule-student/schedule-student.component';
 import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.component';
 import {SectionCreateComponent} from './view/admin/learn/section-create/section-create.component';
+import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 
 
 
@@ -517,7 +518,8 @@ import {SectionCreateComponent} from './view/admin/learn/section-create/section-
         ScheduleAdminComponent,
         ScheduleStudentComponent,
         QuizUpdateComponent,
-        SectionCreateComponent
+        SectionCreateComponent,
+        QuizTakeComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
