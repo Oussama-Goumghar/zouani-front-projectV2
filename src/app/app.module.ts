@@ -190,7 +190,7 @@ import {LoginEtudiantComponent} from './view/etudiant/login-etudiant/login-etudi
 import {LoginProfComponent} from './view/teacher/login-prof/login-prof.component';
 import {LoginAdminComponent} from './view/admin/login-admin/login-admin.component';
 import { QuizEtudiantComponent } from './view/etudiant/quiz-etudiant/quiz-etudiant.component';
-import {SectionSimulateComponent} from './view/Prof/parcrs/section-simulate/section-simulate.component';
+import {SafePipe1, SectionSimulateComponent} from './view/Prof/parcrs/section-simulate/section-simulate.component';
 import {ChooseViewComponent} from './view/Prof/parcrs/choose-view/choose-view.component';
 import {InscriptionAdminComponent} from './view/admin/inscription-admin/inscription-admin.component';
 import {ParcoursCreateComponent} from './view/admin/learn/parcours-create/parcours-create.component';
@@ -514,7 +514,10 @@ import {SectionCreateComponent} from './view/admin/learn/section-create/section-
         ScheduleAdminComponent,
         ScheduleStudentComponent,
         QuizUpdateComponent,
-        SectionCreateComponent
+        SectionCreateComponent,
+        SafePipe,
+        SafePipe1,
+        SafePipe2,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
