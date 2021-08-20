@@ -89,19 +89,9 @@ import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-voc
 import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabulary/quiz-create-vocabulary.component';
 import {QuizCreateAdminComponent} from './view/admin/quiz/quiz-create/quiz-create.component';
 import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin.component';
-import {ScheduleStudentComponent} from "./view/student/schedule-student/schedule-student.component";
+import {ScheduleStudentComponent} from './view/student/schedule-student/schedule-student.component';
 import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.component';
 import {TakeQuizComponent} from './view/etudiant/take-quiz/take-quiz.component';
-
-
-
-
-
-
-
-
-
-
 
 @NgModule({
     imports: [

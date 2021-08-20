@@ -517,7 +517,10 @@ import {SectionCreateComponent} from './view/admin/learn/section-create/section-
         ScheduleAdminComponent,
         ScheduleStudentComponent,
         QuizUpdateComponent,
-        SectionCreateComponent
+        SectionCreateComponent,
+        SafePipe,
+        SafePipe1,
+        SafePipe2,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
