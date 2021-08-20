@@ -1,5 +1,4 @@
-
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizService} from '../../../../controller/service/quiz.service';
 import {ConfirmationService, MessageService, TreeNode} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';

@@ -8,4 +8,9 @@ export class SectionItemModel {
     public explanation:string
     public example:string
     public section:Section
+
+
+    constructor(imageUrl: string) {
+        this.imageUrl = imageUrl;
+    }
 }

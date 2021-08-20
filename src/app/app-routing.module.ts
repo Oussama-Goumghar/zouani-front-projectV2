@@ -91,6 +91,7 @@ import {QuizCreateAdminComponent} from './view/admin/quiz/quiz-create/quiz-creat
 import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin.component';
 import {ScheduleStudentComponent} from "./view/student/schedule-student/schedule-student.component";
 import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.component';
+import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
 
 
 
@@ -190,7 +191,10 @@ import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.compon
                     {path: 'pages/calendar', component: AppCalendarComponent},
                     {path: 'pages/timeline', component: AppTimelineDemoComponent},
                     {path: 'pages/empty', component: EmptyDemoComponent},
-                    {path: 'documentation', component: DocumentationComponent}
+                    {path: 'documentation', component: DocumentationComponent},
+                    {path: 'pages/create-section-items', component: SectionItemComponent},
+
+
                 ]
             },
             {path: 'error', component: AppErrorComponent},
