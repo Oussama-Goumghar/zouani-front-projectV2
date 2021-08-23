@@ -84,9 +84,10 @@ public quiz(){
     this.dictionnaryService.createDialogDict = value;
   }
   public openCreateDict() {
+    this.selectedDict = new Dictionary();
+    this.selectedDict.word = window.getSelection().toString();
     this.submittedDict = false;
     this.createDialogDict = true;
-    this.selectedDict = new Dictionary();
   }
   public findByWord(){
     this.dictionnaryService.FindByWord(this.word).subscribe(
@@ -122,7 +123,7 @@ public quiz(){
     this.quizService.section.id = this.selectedsection.id;
     this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.menu = [
-      {label: 'Categorie', icon: 'pi pi-fw pi-home', command: (event) => {
+      { icon: 'pi pi-fw pi-home', command: (event) => {
           this.service.affichelistSection().subscribe(
               data => {
                 this.itemssection2 = data;
@@ -134,7 +135,8 @@ public quiz(){
           document.getElementById('categoriess').style.visibility = 'visible';
 
           document.getElementById('categoriess').style.width = '100%';
-          document.getElementById('categoriess').style.height = '300px';
+          document.getElementById('categoriess').style.height = '100%';
+          document.getElementById('categ').style.height = '100%';
         }},
     ];
   }

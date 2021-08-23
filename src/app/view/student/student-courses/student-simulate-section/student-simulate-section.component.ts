@@ -34,7 +34,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     nodes: TreeNode[];
     menu: MenuItem[];
     srcImg: string;
-
+    filteredCountries: any[];
     // tslint:disable-next-line:max-line-lengthg max-line-length
     constructor(private messageService: MessageService, private router: Router, private dictionnaryService: DictionaryService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient, private quizService: QuizEtudiantService, private loginService: LoginService, private  vocab: VocabularyService) { }
     value = 0;
@@ -121,14 +121,33 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.createDialogDict = true;
         this.selectedDict = new Dictionary();
     }
+    filterCountry(event) {
+        const filtered: any[] = [];
+        const query = event.query;
+
+        // tslint:disable-next-line:prefer-for-of
+        for(let i = 0; i < this.itemsDict.length; i++) {
+            const dict = this.itemsDict[i];
+            // tslint:disable-next-line:triple-equals
+            if (dict.word.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+                filtered.push(dict);
+            }
+        }
+
+        this.filteredCountries = filtered;
+    }
     ngOnInit(): void {
+        this.dictionnaryService.FindAllWord().subscribe(
+            data => {
+                this.itemsDict = data;
+            });
         // this.photoURL();
         this.quizService.section.id = this.selectedsection.id;
         this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
         this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
         });
         this.menu = [
-            {label: 'Categorie', icon: 'pi pi-fw pi-home', command: (event) => {
+            { icon: 'pi pi-fw pi-home', style: {width: '50%'}, command: (event) => {
                     this.service.affichelistSection().subscribe(
                         data => {
                             this.itemssection2 = data;
@@ -140,9 +159,10 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('categoriess').style.visibility = 'visible';
 
                     document.getElementById('categoriess').style.width = '100%';
-                    document.getElementById('categoriess').style.height = '300px';
+                    document.getElementById('categoriess').style.height = '100%';
+                    document.getElementById('categ').style.height = '100%';
                 }},
-            {label: 'Word', icon: 'pi pi-fw pi-search', command: (event) => {
+            { icon: 'pi pi-fw pi-search', style: {width: '50%'}, command: (event) => {
                     this.dictionnaryService.FindAllWord().subscribe(
                         data => {
                             this.itemsDict = data;
@@ -151,7 +171,8 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('categoriess').style.height = '0px';
                     document.getElementById('word').style.visibility = 'visible';
                     document.getElementById('word').style.width = '100%';
-                    document.getElementById('word').style.height = '300px';
+                    document.getElementById('word').style.height = '100%';
+                    document.getElementById('wrd').style.height = '100%';
                 }},
         ];
     }
