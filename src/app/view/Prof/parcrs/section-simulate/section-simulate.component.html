@@ -61,12 +61,10 @@
             <div class="product-grid-item-content" >
                 <div style="margin-top: 20px">
 
-                    <h5><u style="color: #8b8b90; margin-left: 5px">{{this.selectedDict.word}}</u>  {{this.selectedDict.definition}}</h5>
-                    <div class="p-inputgroup">
-                        <input type="text" [(ngModel)]="word" pInputText placeholder="search" >
-                        <button type="button" pButton pRipple icon="pi pi-search"  (click)="findByWord()" ></button>
-                        <button type="button" pButton pRipple icon="pi pi-plus" style="background-color: #8b8b90" (click)="openCreateDict()" ></button>
-                    </div>
+
+
+                        <button type="button" pButton pRipple icon="pi pi-plus" style="background-color: #8b8b90; width: 100%" (click)="openCreateDict()" ></button>
+
                     <!-- <input  [(ngModel)]="word" pInputText placeholder="Search" style="width: 180px;" type="text"/>
                      <button pButton pRipple type="button" icon="pi pi-search"  (click)="findByWord()" style="margin-left: 2px;" ></button>
 
