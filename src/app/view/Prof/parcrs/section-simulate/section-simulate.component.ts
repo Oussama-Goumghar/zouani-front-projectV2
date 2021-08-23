@@ -1,6 +1,6 @@
 import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {Section} from '../../../../controller/model/section.model';
-import {ConfirmationService, MessageService} from 'primeng/api';
+import {ConfirmationService, MenuItem, MessageService, TreeNode} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Cours} from '../../../../controller/model/cours.model';
 import {DomSanitizer} from '@angular/platform-browser';
@@ -12,6 +12,8 @@ import {Quiz} from '../../../../controller/model/quiz.model';
 import {QuizService} from '../../../../controller/service/quiz.service';
 import {Router} from '@angular/router';
 import {ChooseViewComponent} from '../choose-view/choose-view.component';
+import {Dictionary} from '../../../../controller/model/dictionary.model';
+import {DictionaryService} from '../../../../controller/service/dictionary.service';
 
 @Pipe({ name: 'safe' })
 export class SafePipe1 implements PipeTransform {
@@ -27,11 +29,13 @@ export class SafePipe1 implements PipeTransform {
   styleUrls: ['./section-simulate.component.scss']
 })
 export class SectionSimulateComponent implements OnInit {
-
+  nodes: TreeNode[];
+  menu: MenuItem[];
   srcImg: string;
   // tslint:disable-next-line:max-line-length
-  constructor(private messageService: MessageService,  private router: Router, private serviceQuiz: QuizService, private sanitizer: DomSanitizer, private quizService: QuizEtudiantService,  private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
+  constructor(private messageService: MessageService, private dictionnaryService: DictionaryService,  private router: Router, private serviceQuiz: QuizService, private sanitizer: DomSanitizer, private quizService: QuizEtudiantService,  private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
   value = 0;
+  word: string;
   public Section(libelle: string){
     this.service.afficheSection(libelle).subscribe(
         data => {
@@ -55,6 +59,44 @@ public quiz(){
   console.log(this.serviceQuiz.refQuiz);
   this.router.navigate(['/view/quiz-preview']);
 }
+  get itemsDict(): Array<Dictionary> {
+    return this.dictionnaryService.itemsDict;
+  }
+
+  set itemsDict(value: Array<Dictionary>) {
+    this.dictionnaryService.itemsDict = value;
+  }
+
+  set selectedDict(value: Dictionary) {
+    this.dictionnaryService.selectedDict = value;
+  }
+  get submittedDict(): boolean {
+    return this.dictionnaryService.submittedDict;
+  }
+  set submittedDict(value: boolean) {
+    this.dictionnaryService.submittedDict = value;
+  }
+  get createDialogDict(): boolean {
+    return this.dictionnaryService.createDialogDict;
+  }
+
+  set createDialogDict(value: boolean) {
+    this.dictionnaryService.createDialogDict = value;
+  }
+  public openCreateDict() {
+    this.submittedDict = false;
+    this.createDialogDict = true;
+    this.selectedDict = new Dictionary();
+  }
+  public findByWord(){
+    this.dictionnaryService.FindByWord(this.word).subscribe(
+        data => {
+          this.selectedDict = data;
+          document.getElementById('dictionary').style.visibility = 'visible';
+        }, error => console.log('erreeeeeeeeeeeeeeeeur') );
+    document.getElementById('dictionary').style.visibility = 'visible';
+  }
+  // tslint:disable-next-line:adjacent-overload-signatures
   set selectedQuiz(value: Quiz) {
     this.quizService.selectedQuiz = value;
   }
@@ -79,6 +121,22 @@ public quiz(){
     console.log(this.srcImg);*/
     this.quizService.section.id = this.selectedsection.id;
     this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
+    this.menu = [
+      {label: 'Categorie', icon: 'pi pi-fw pi-home', command: (event) => {
+          this.service.affichelistSection().subscribe(
+              data => {
+                this.itemssection2 = data;
+                // tslint:disable-next-line:no-shadowed-variable
+              });
+          document.getElementById('word').style.visibility = 'hidden';
+          document.getElementById('word').style.height = '0px';
+
+          document.getElementById('categoriess').style.visibility = 'visible';
+
+          document.getElementById('categoriess').style.width = '100%';
+          document.getElementById('categoriess').style.height = '300px';
+        }},
+    ];
   }
   get progress(): number {
     return this.service.progress;
@@ -187,6 +245,10 @@ public quiz(){
   }
   get itemssection2(): Array<Section> {
     return this.service.itemssection2;
+  }
+  // tslint:disable-next-line:adjacent-overload-signatures
+  get selectedDict(): Dictionary {
+    return this.dictionnaryService.selectedDict;
   }
   get selectessection(): Array<Section> {
     return this.service.selectessection;

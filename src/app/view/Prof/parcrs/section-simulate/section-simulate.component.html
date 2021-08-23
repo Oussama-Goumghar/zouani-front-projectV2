@@ -28,9 +28,6 @@
                     <div *ngIf=" this.selectedsection.contenu != null" ><h3
                             style="box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); background-color: white;white-space: pre-wrap" >{{this.selectedsection.contenu}}</h3>
                     </div>
-                    <div *ngIf=" this.selectedsection.indicationProf != null" class="product-description">
-                        <h6>{{this.selectedsection.indicationProf}}</h6></div>
-                </div>
             </div>
 
             <div style="position: relative;margin-top: 50px">
@@ -58,27 +55,43 @@
 
         </div>
 
-        <div class=" p-col-2" style="width:   300px;height: 200px">
+        <div class="p-col-2 product-grid-item"  >
+            <div class="product-grid-item-content" >
+                <div style="margin-top: 20px">
 
-            <p-table [rows]="10" [value]="itemssection2">
-                <ng-template pTemplate="header">
-                    <tr>
+                    <h5><u style="color: #8b8b90; margin-left: 5px">{{this.selectedDict.word}}</u>  {{this.selectedDict.definition}}</h5>
+                    <div class="p-inputgroup">
+                        <input type="text" [(ngModel)]="word" pInputText placeholder="search" >
+                        <button type="button" pButton pRipple icon="pi pi-search"  (click)="findByWord()" ></button>
+                        <button type="button" pButton pRipple icon="pi pi-plus" style="background-color: #8b8b90" (click)="openCreateDict()" ></button>
+                    </div>
+                    <!-- <input  [(ngModel)]="word" pInputText placeholder="Search" style="width: 180px;" type="text"/>
+                     <button pButton pRipple type="button" icon="pi pi-search"  (click)="findByWord()" style="margin-left: 2px;" ></button>
 
-                        <th pSortableColumn="libelle" style="text-align: center">Categorie
-                            <p-sortIcon field="libelle"></p-sortIcon>
-                        </th>
-                    </tr>
-                </ng-template>
-                <ng-template let-section pTemplate="body">
-                    <tr>
-                        <td (click)="Section(section.categorieSection.libelle)"
-                            [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? 'green' :'orange' "
-                            style="text-align: center"
-                            style="cursor: pointer; text-align: center"><u>{{section.categorieSection.libelle}}</u></td>
-                    </tr>
-                </ng-template>
-            </p-table>
+                     <p-button (click)="openCreateDict()" icon="pi pi-plus" style="margin-left: 2px;" ></p-button>
+              -->
+                </div>
+                <div class="card" style="margin-top: 15px">
+                    <p-tabMenu [model]="menu" [activeItem]="menu[0]" style="width: 100%;" ></p-tabMenu>
+
+
+                    <div  id="categoriess" style="width: 210px;margin-top: 15px" >
+                        <p-timeline align="alternate" [value]="itemssection2"  style="margin-top: 20px; margin-right: 30px;">
+
+                            <ng-template let-section  pTemplate="content" >
+                                <tr>
+
+                                    <td (click)="Section(section.categorieSection.libelle)"
+                                        [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? '#8b8b90' :'#1BA7AF' "
+                                        style="cursor: pointer; font-weight: 600"><u>{{section.categorieSection.libelle}}</u></td>
+                                </tr>
+                            </ng-template>
+                        </p-timeline></div>
+
+                </div>
+
+            </div>
         </div>
     </div>
-
+    <app-dictionary-create></app-dictionary-create>
 </div>
