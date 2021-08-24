@@ -121,6 +121,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     set itemsEtudiantCours(value: Array<EtudiantCours>) {
         this.service.itemsEtudiantCours = value;
     }
+    // tslint:disable-next-line:adjacent-overload-signatures
     set selectedDict(value: Dictionary) {
         this.dictionnaryService.selectedDict = value;
     }
@@ -155,7 +156,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
         });
         this.menu = [
-            { icon: 'pi pi-fw pi-home', style: {width: '50%'}, command: (event) => {
+            { icon: 'pi pi-list', command: (event) => {
                     this.service.affichelistSection().subscribe(
                         data => {
                             this.itemssection2 = data;
@@ -170,7 +171,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('categoriess').style.height = '100%';
                     document.getElementById('categ').style.height = '100%';
                 }},
-            { icon: 'pi pi-fw pi-search', style: {width: '50%'}, command: (event) => {
+            { icon: 'pi pi-book', style: {width: '50%'}, command: (event) => {
                     this.dictionnaryService.FindAllWord().subscribe(
                         data => {
                             this.itemsDict = data;
@@ -317,18 +318,6 @@ export class StudentSimulateSectionComponent implements OnInit {
     set quizView(value: boolean) {
         this.quizService.quizView = value;
     }
-public categorie(){
-
-    this.dictionnaryService.FindAllWord().subscribe(
-        data => {
-            this.itemsDict = data;
-        });
-    document.getElementById('categoriess').style.visibility = 'hidden';
-    document.getElementById('categoriess').style.width = '0px';
-
-    document.getElementById('word').style.width = '300px';
-
-}
     PreviousSection() {
         this.service.affichelistSection().subscribe(
             data => {
