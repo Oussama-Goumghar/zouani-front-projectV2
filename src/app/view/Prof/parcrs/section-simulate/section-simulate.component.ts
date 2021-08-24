@@ -31,6 +31,7 @@ export class SafePipe1 implements PipeTransform {
 export class SectionSimulateComponent implements OnInit {
   nodes: TreeNode[];
   menu: MenuItem[];
+  textSeleted: string;
   srcImg: string;
   // tslint:disable-next-line:max-line-length
   constructor(private messageService: MessageService, private dictionnaryService: DictionaryService,  private router: Router, private serviceQuiz: QuizService, private sanitizer: DomSanitizer, private quizService: QuizEtudiantService,  private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
@@ -83,9 +84,28 @@ public quiz(){
   set createDialogDict(value: boolean) {
     this.dictionnaryService.createDialogDict = value;
   }
+  get selected(): Dictionary {
+    return this.dictionnaryService.selected;
+  }
+  set selected(value: Dictionary) {
+    this.dictionnaryService.selected = value;
+  }
+  public dict(){
+    const selection = window.getSelection();
+    this.textSeleted = selection.toString();
+    this.dictionnaryService.FindAllWord().subscribe(
+        data => {
+          this.itemsDict = data;
+        });
+    for (let i = 0 ; i < this.itemsDict.length ; i++){
+    if (this.textSeleted.length != 0){
+      this.selected.word = this.textSeleted;
+      this.submittedDict = false;
+      this.createDialogDict = true;
+    }}
+  }
   public openCreateDict() {
     this.selectedDict = new Dictionary();
-    this.selectedDict.word = window.getSelection().toString();
     this.submittedDict = false;
     this.createDialogDict = true;
   }
@@ -120,6 +140,8 @@ public quiz(){
    // this.srcImg = this.photoURL();
    // this.srcImg = this.service.image;
     console.log(this.srcImg);*/
+    // tslint:disable-next-line:only-arrow-functions
+    this.selectedDict.word = window.getSelection().toString();
     this.quizService.section.id = this.selectedsection.id;
     this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.menu = [

@@ -15,9 +15,27 @@ export class DictionaryService {
   private _editDialog: boolean;
   private _submitted: boolean;
   private _submittedDict: boolean;
+  private _submittedDictEdit: boolean;
   private _createDialogDict: boolean;
+  private _editDialogDict: boolean;
   private _selectes: Array<Dictionary>;
   constructor(private http: HttpClient, public serviceUser: LoginService) { }
+
+  get submittedDictEdit(): boolean {
+    return this._submittedDictEdit;
+  }
+
+  set submittedDictEdit(value: boolean) {
+    this._submittedDictEdit = value;
+  }
+
+  get editDialogDict(): boolean {
+    return this._editDialogDict;
+  }
+
+  set editDialogDict(value: boolean) {
+    this._editDialogDict = value;
+  }
 
   public findAll(): Observable<Array<Dictionary>> {
     return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/' + this.selected);
@@ -107,6 +125,9 @@ export class DictionaryService {
 
   public save(): Observable<number> {
     return this.http.post<number>('http://localhost:8036/learn/dictionary/', this.selected);
+  }
+  public editDict(): Observable<number> {
+    return this.http.put<number>('http://localhost:8036/learn/dictionary/', this.selected);
   }
 
   get selectes(): Array<Dictionary> {

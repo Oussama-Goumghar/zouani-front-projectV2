@@ -64,20 +64,33 @@ export class DictionaryCreateComponent implements OnInit {
   set submitted(value: boolean) {
     this.dictionnaryService.submitted = value;
   }
+  get itemsDict(): Array<Dictionary> {
+    return this.dictionnaryService.itemsDict;
+  }
+
+  set itemsDict(value: Array<Dictionary>) {
+    this.dictionnaryService.itemsDict = value;
+  }
   public save() {
     this.selected.etudiant = this.serviceUser.etudiant;
     this.dictionnaryService.save().subscribe(data => {
-
-      this.dictionnaryService.findAll().subscribe( data => this.items = data);
+      this.dictionnaryService.FindAllWord().subscribe(
+          data => {
+            this.itemsDict = data;
+          });
 
       // @ts-ignore
-      this.items.push({...data});
+      this.itemsDict.push({...data});
       console.log(this.selected);
       console.log('meryem');
       this.selected.etudiant.id = this.serviceUser.etudiant.id;
-
-      this.dictionnaryService.findAll().subscribe( data => this.items = data);
       this.selected = new Dictionary();
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Successful',
+        detail: 'Sections Deleted',
+        life: 3000
+      });
     }, error => {
       this.messageService.add({
         severity: 'warn',
@@ -87,7 +100,6 @@ export class DictionaryCreateComponent implements OnInit {
       });
     });
     this.selected = new Dictionary();
-    this.editDialog = false;
     this.createDialogDict = false;
   }
 

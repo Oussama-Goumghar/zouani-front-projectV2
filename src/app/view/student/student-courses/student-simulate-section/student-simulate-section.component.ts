@@ -34,12 +34,19 @@ export class StudentSimulateSectionComponent implements OnInit {
     nodes: TreeNode[];
     menu: MenuItem[];
     srcImg: string;
+    textSeleted: string;
     filteredCountries: any[];
     // tslint:disable-next-line:max-line-lengthg max-line-length
     constructor(private messageService: MessageService, private router: Router, private dictionnaryService: DictionaryService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient, private quizService: QuizEtudiantService, private loginService: LoginService, private  vocab: VocabularyService) { }
     value = 0;
     word: string;
-
+    wordDict: string;
+    get selected(): Dictionary {
+        return this.dictionnaryService.selected;
+    }
+    set selected(value: Dictionary) {
+        this.dictionnaryService.selected = value;
+    }
     get itemsDict(): Array<Dictionary> {
         return this.dictionnaryService.itemsDict;
     }
@@ -54,6 +61,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     set image(value: string) {
         this.service.image = value;
     }
+
     public findByWord(){
         this.dictionnaryService.FindByWord(this.word).subscribe(
             data=>{
@@ -181,6 +189,42 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.service.findEtudiantCours().subscribe(
            data => this.selectedEtudiantCours = data
        );
+    }
+    get submittedDictEdit(): boolean {
+        return this.dictionnaryService.submittedDictEdit;
+    }
+
+    set submittedDictEdit(value: boolean) {
+        this.dictionnaryService.submittedDictEdit = value;
+    }
+
+    get editDialogDict(): boolean {
+        return this.dictionnaryService.editDialogDict;
+    }
+
+    set editDialogDict(value: boolean) {
+        this.dictionnaryService.editDialogDict = value;
+    }
+    public dict(){
+        const selection = window.getSelection();
+        this.textSeleted = selection.toString();
+        this.selected = new Dictionary();
+        this.dictionnaryService.FindByWord(this.textSeleted).subscribe(
+            data=>{
+                this.selected = data;
+            // tslint:disable-next-line:triple-equals no-unused-expression
+                if (this.textSeleted.length != 0  && this.selected.word == null){
+               this.selected.word = this.textSeleted;
+               console.log(this.selected.word);
+               this.submittedDict = false;
+               this.createDialogDict = true;
+            } else if (this.textSeleted.length != 0  && this.selected.word != null){
+             this.selected.word = this.textSeleted;
+             this.submittedDictEdit = false;
+             this.editDialogDict = true;
+             console.log(this.selected.word);
+         }
+    });
     }
     get submittedDict(): boolean {
         return this.dictionnaryService.submittedDict;
