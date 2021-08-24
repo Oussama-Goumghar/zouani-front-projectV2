@@ -205,6 +205,13 @@ export class StudentSimulateSectionComponent implements OnInit {
     set editDialogDict(value: boolean) {
         this.dictionnaryService.editDialogDict = value;
     }
+    public dictEdit(dict: Dictionary){
+        this.selected = dict;
+        if(this.selected.word != null){
+            this.submittedDictEdit = false;
+            this.editDialogDict = true;
+        }
+    }
     public dict(){
         const selection = window.getSelection();
         this.textSeleted = selection.toString();

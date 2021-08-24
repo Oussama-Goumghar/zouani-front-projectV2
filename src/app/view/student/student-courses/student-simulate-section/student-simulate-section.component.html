@@ -118,7 +118,7 @@
                        <ng-template let-dict  pTemplate="body" >
                            <tr>
 
-                               <td style="font-weight: 800; text-align: center; color: #1BA7AF;"><b>{{dict.word}}</b></td>
+                               <td style="font-weight: 800; text-align: center; color: #1BA7AF;cursor: pointer" (click)="dictEdit(dict)"><b>{{dict.word}}</b></td>
                            </tr>
                        </ng-template>
 
