@@ -258,6 +258,9 @@ import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.comp
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
 import {SectionCreateComponent} from './view/admin/learn/section-create/section-create.component';
 import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
+import { SectionItemListComponent } from './view/admin/learn/section-item/section-item-list/section-item-list.component';
+import { SectionItemPreviewComponent } from './view/admin/learn/section-item-preview/section-item-preview.component';
+import { ImageItemComponent } from './view/admin/learn/section-item-preview/image-item/image-item.component';
 
 
 
@@ -525,7 +528,10 @@ import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
         SafePipe2,
         SectionCreateComponent,
         QuizTakeComponent,
-        SectionItemComponent
+        SectionItemComponent,
+        SectionItemListComponent,
+        SectionItemPreviewComponent,
+        ImageItemComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -94,6 +94,7 @@ import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.compon
 import {TakeQuizComponent} from './view/etudiant/take-quiz/take-quiz.component';
 import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
+import {SectionItemPreviewComponent} from './view/admin/learn/section-item-preview/section-item-preview.component';
 
 
 
@@ -198,6 +199,8 @@ import {SectionItemComponent} from './view/admin/learn/section-item/section-item
                     {path: 'pages/empty', component: EmptyDemoComponent},
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'pages/create-section-items', component: SectionItemComponent},
+                    {path: 'pages/preview-section-items', component: SectionItemPreviewComponent},
+
 
 
                 ]

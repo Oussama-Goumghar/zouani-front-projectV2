@@ -1,0 +1,19 @@
+<h1>Vocabulary Test</h1>
+<p-card class="p-d-block p-mx-auto" [style]="{width:'80%',margin:'0 auto',marginTop:'30px',textAlign:'center'}">
+    <div style="position: relative;width: 100%">
+        <button
+                class="p-button-rounded" icon="pi pi-caret-left" id="previous"
+                label="Previous" pButton pRipple
+                style="left:15px; width: 120px; position: absolute;"
+                type="button"></button>
+        <button
+                class="p-button-rounded" icon="pi pi-caret-right" id="next" label="Next"
+                pButton pRipple
+                style=" width: 120px;  position: absolute;right: 15px;"
+                type="button"></button>
+        <h2>Guess the picture</h2>
+
+    </div>
+    <app-image-item [current]="currentItem"></app-image-item>
+</p-card>
+

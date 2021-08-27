@@ -67,6 +67,7 @@
                             </div>
                             <div class="p-field  p-col-10 ">
                                 <label >Answer</label>
+                                <textarea type="text" rows="2"  pInputTextarea [(ngModel)]="reponse.lib"></textarea>
                             </div>
                             <div class="p-field  p-col-2" >
                                 <p-button label="Add Answer" icon="pi pi-plus" iconPos="right" (click)="addReponse()" styleClass="p-button-sm"></p-button>
@@ -141,4 +142,3 @@
         <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
     </ng-template>
 </p-dialog>
-<!-- -->

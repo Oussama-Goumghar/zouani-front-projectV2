@@ -7,12 +7,12 @@
                     </div>
                     <!-- <iframe *ngIf=" this.selectedsection.libelle != 'Watch the video' && this.selectedsection.urlImage != null"
                                [src]='photoURL() | safe' loading="lazy" width="400" height="200" ></iframe> -->
-                    <div style="width: 80%;margin: 0 auto">
+                    <div style="width: 80%;margin: 0 auto;position: relative">
                         <img *ngIf=" this.selectedsection.urlImage && !this.selectedsection.urlVideo" style="width: 100%"
                              src="{{photoURL()}}">
                         <iframe *ngIf="this.selectedsection.urlVideo && !this.selectedsection.urlImage"
                                 [src]='URLVideo() | safe'
-                                allowfullscreen  loading="lazy" style="width: 100%;height: 60%;"></iframe>
+                                  loading="lazy" style="width: 100%;position: absolute"></iframe>
                         <div *ngIf="this.selectedsection.urlVideo && this.selectedsection.urlImage" style="width: 100%;">
                             <img  src="{{photoURL()}}" style="width: 100%">
                             <div style="width: 100%">
