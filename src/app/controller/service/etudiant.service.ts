@@ -110,6 +110,10 @@ export class EtudiantService {
     return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/prof/id/' + this.selectedProf.id );
   }
 
+  public findetudiantProf1(id: number): Observable<Array<Etudiant>> {
+    return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/prof/id/' + id );
+  }
+
   get selecteetudiant(): Array<Etudiant> {
     if (this._selecteetudiant == null){
       this._selecteetudiant = new  Array<Etudiant>();

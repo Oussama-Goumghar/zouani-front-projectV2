@@ -12,8 +12,8 @@ import {SessionCours} from '../../../../controller/model/session-cours.model';
 })
 export class PaiementListComponent implements OnInit {
 
-  displayModal: boolean=false;
-  val:number;
+  displayModal = false;
+  val: number;
   profs: Prof[];
   prof: Prof;
   duree = 0;
@@ -31,7 +31,7 @@ export class PaiementListComponent implements OnInit {
     this.displayModal = true;
     console.log(this.selectedItems);
     this.duree = 0;
-    for(let i = 0 ; i < this.selectedItems.length ; i++)
+    for (let i = 0 ; i < this.selectedItems.length ; i++)
     {
       this.duree = this.duree + this.selectedItems[i].duree;
     }
@@ -42,11 +42,13 @@ export class PaiementListComponent implements OnInit {
     this.profs = [];
     this.service.findAll().subscribe(
         data => {
-          for(let i = 0 ; i < data.length ; i++)
-          {
-            this.profs.push({
-              nom: data[i].nom, id: data[i].id, categorieProf: data[i].categorieProf, classRoomList: data[i].classRoomList, prenom: data[i].prenom, addresse: data[i].addresse, email: data[i].email, image: data[i].image, login: data[i].login, numero: data[i].numero, password: data[i].password, recommendList: data[i].recommendList, ref : data[i].ref})
-            this.sessionService.findAll().subscribe(
+          for (let i = 0 ; i < data.length ; i++)
+          {this.profs.push({nom: data[i].nom, id: data[i].id, categorieProf: data[i].categorieProf,
+            classRoomList: data[i].classRoomList, prenom: data[i].prenom, addresse: data[i].addresse,
+            email: data[i].email, image: data[i].image, login: data[i].login, numero: data[i].numero,
+            password: data[i].password, recommendList: data[i].recommendList,
+            ref : data[i].ref , chatMessageDto: null, students: null});
+           this.sessionService.findAll().subscribe(
                 data => {
                   this.items = data;
                 }
@@ -121,11 +123,15 @@ export class PaiementListComponent implements OnInit {
     this.service.findAll().subscribe(
         data => {
           this.prof = data[0];
-          for(let i = 0 ; i < data.length ; i++)
+          for (let i = 0 ; i < data.length ; i++)
           {
             this.profs.push({
-              nom: data[i].nom, id: data[i].id, categorieProf: data[i].categorieProf, classRoomList: data[i].classRoomList, prenom: data[i].prenom, addresse: data[i].addresse, email: data[i].email, image: data[i].image, login: data[i].login, numero: data[i].numero, password: data[i].password, recommendList: data[i].recommendList, ref : data[i].ref})
-                this.sessionService.findAll().subscribe(
+              nom: data[i].nom, id: data[i].id, categorieProf: data[i].categorieProf,
+              classRoomList: data[i].classRoomList, prenom: data[i].prenom, addresse: data[i].addresse,
+              email: data[i].email, image: data[i].image, login: data[i].login, numero: data[i].numero,
+              password: data[i].password, recommendList: data[i].recommendList, ref : data[i].ref,
+              chatMessageDto: null, students: null});
+            this.sessionService.findAll().subscribe(
                     data => {
                       this.items = data;
                     }

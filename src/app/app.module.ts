@@ -258,6 +258,8 @@ import { QuizUpdateComponent } from './view/teacher/quiz-update/quiz-update.comp
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
 import {SectionCreateComponent} from './view/admin/learn/section-create/section-create.component';
 import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
+import {ChatComponent} from './view/Prof/chat/chat.component';
+import {Chat1Component} from './view/student/chat1/chat1-component.component';
 import { DictionaryEditComponent } from './view/etudiant/dictionary-edit/dictionary-edit.component';
 
 
@@ -358,9 +360,6 @@ import { DictionaryEditComponent } from './view/etudiant/dictionary-edit/diction
     ],
     declarations: [
         AppComponent,
-        SafePipe,
-        SafePipe1,
-        SafePipe2,
         AppMainComponent,
         AppMenuComponent,
         AppMenuitemComponent,
@@ -524,6 +523,8 @@ import { DictionaryEditComponent } from './view/etudiant/dictionary-edit/diction
         SafePipe,
         SafePipe1,
         SafePipe2,
+        ChatComponent,
+        Chat1Component,
         SectionCreateComponent,
         QuizTakeComponent,
         SectionItemComponent,

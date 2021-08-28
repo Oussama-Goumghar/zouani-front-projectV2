@@ -140,8 +140,6 @@ public quiz(){
    // this.srcImg = this.photoURL();
    // this.srcImg = this.service.image;
     console.log(this.srcImg);*/
-    // tslint:disable-next-line:only-arrow-functions
-    this.selectedDict.word = window.getSelection().toString();
     this.quizService.section.id = this.selectedsection.id;
     this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.menu = [
@@ -159,7 +157,13 @@ public quiz(){
           document.getElementById('categoriess').style.width = '100%';
           document.getElementById('categoriess').style.height = '100%';
           document.getElementById('categ').style.height = '100%';
+          document.getElementById('chat').style.visibility = 'hidden';
         }},
+      {label: 'Chat', icon: 'pi pi-fw pi-comments', command: (event) => {
+          document.getElementById('categoriess').style.visibility = 'hidden';
+          document.getElementById('categoriess').style.height = '0px';
+          document.getElementById('chat').style.visibility = 'visible';
+        }}
     ];
   }
   get progress(): number {

@@ -121,7 +121,6 @@ export class StudentSimulateSectionComponent implements OnInit {
     set itemsEtudiantCours(value: Array<EtudiantCours>) {
         this.service.itemsEtudiantCours = value;
     }
-    // tslint:disable-next-line:adjacent-overload-signatures
     set selectedDict(value: Dictionary) {
         this.dictionnaryService.selectedDict = value;
     }
@@ -170,6 +169,13 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('categoriess').style.width = '100%';
                     document.getElementById('categoriess').style.height = '100%';
                     document.getElementById('categ').style.height = '100%';
+                    document.getElementById('chat').style.visibility = 'hidden';
+                }},            {label: 'Chat', icon: 'pi pi-fw pi-comments', command: (event) => {
+                    document.getElementById('categoriess').style.visibility = 'hidden';
+                    document.getElementById('categoriess').style.height = '0px';
+                    document.getElementById('word').style.visibility = 'hidden';
+                    document.getElementById('word').style.height = '0px';
+                    document.getElementById('chat').style.visibility = 'visible';
                 }},
             { icon: 'pi pi-book', style: {width: '50%'}, command: (event) => {
                     this.dictionnaryService.FindAllWord().subscribe(
@@ -182,6 +188,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('word').style.width = '100%';
                     document.getElementById('word').style.height = '100%';
                     document.getElementById('wrd').style.height = '100%';
+                    document.getElementById('chat').style.visibility = 'hidden';
                 }},
         ];
     }
