@@ -45,6 +45,7 @@ export class ChooseViewComponent implements OnInit {
     this.service.afficheOneSection().subscribe(
         data => {
           this.selectedsection = data;
+          this.quizService.findQuizBySection(this.selectedsection.id).subscribe( data => {this.selectedQuiz = data;});
       //    for (let j = 0; j < 76 ; j++)
         //  {
         //  this.service.image = this.service.selectedsection.urlImage;

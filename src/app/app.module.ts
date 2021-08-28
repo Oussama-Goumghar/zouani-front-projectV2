@@ -261,6 +261,7 @@ import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 import {ChatComponent} from './view/Prof/chat/chat.component';
 import {Chat1Component} from './view/student/chat1/chat1-component.component';
 import { DictionaryEditComponent } from './view/etudiant/dictionary-edit/dictionary-edit.component';
+import { ViewQuizEtudiantComponent } from './view/admin/view-quiz-etudiant/view-quiz-etudiant.component';
 
 
 
@@ -528,7 +529,8 @@ import { DictionaryEditComponent } from './view/etudiant/dictionary-edit/diction
         SectionCreateComponent,
         QuizTakeComponent,
         SectionItemComponent,
-        DictionaryEditComponent
+        DictionaryEditComponent,
+        ViewQuizEtudiantComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -94,6 +94,7 @@ import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.compon
 import {TakeQuizComponent} from './view/etudiant/take-quiz/take-quiz.component';
 import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
+import {ViewQuizEtudiantComponent} from './view/admin/view-quiz-etudiant/view-quiz-etudiant.component';
 
 
 
@@ -161,6 +162,7 @@ import {SectionItemComponent} from './view/admin/learn/section-item/section-item
                     {path: 'pages/quiz-view', component: QuizEtudiantViewComponent},
                     {path: 'pages/quiz-create-vocabulary', component: QuizCreateVocabularyComponent},
                     {path: 'pages/quiz-create-admin', component: QuizCreateAdminComponent},
+                    {path: 'pages/view-quiz-etudiant', component: ViewQuizEtudiantComponent},
                     {path: 'view/quiz-vocabulary', component: QuizVocabularyComponent},
                     {path: 'pages/paiement', component: PaiementComponent},
                     {path: 'view/quiz-preview', component: QuizPreviewComponent},

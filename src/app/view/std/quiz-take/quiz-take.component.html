@@ -1,33 +1,36 @@
 <div class="p-grid" id="header">
-    <div class="p-col-6">Choose the correct alternative</div>
+    <div class="p-col-6">{{this.selected.typeDeQuestion.lib}}</div>
     <div class="p-col-6">{{this.selected.numero}} out of {{this.items.length}}</div>
 </div>
 <div class="p-grid" id="bodyRadio">
     <div class="p-col-6" id="question">
-        <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.question1}} <span id="myAnswer">{{this.answer}} </span> {{this.question2}}</h3>
+        <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.question1}} <span id="myAnswer">{{this.answer}} </span> <span id="tooltiptext"> {{this.answerCorrect}} </span> {{this.question2}}</h3>
     </div>
     <div class="p-col-6" id="answers" >
         <div style="margin: 50px 50px">
             <div  *ngFor="let r of reponses" id="answers-radio">
-                <input type="radio"  value="{{r.id}}" [(ngModel)]="selectedValue" name="groupname" (click)="selectionChanged($event,r)">
+                <input class="option-input radio" type="radio" value="{{r.id}}" [(ngModel)]="selectedValue" [attr.disabled]="disable? true: null" name="groupname" (click)="selectionChanged($event,r)">
                 <label>{{r.lib}}</label><br>
             </div>
         </div>
     </div>
 
     <div style="background-color: white; width: 100%" id="mistake">
-        <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.selected.libelle}} </h3>
-        <span class="p-float-label" style="margin-left: 10%; margin-bottom: 100px">
-            <textarea id="float-input" rows="1" cols="100" [(ngModel)]="this.correctMistakeAnswer" (keyup.)="correctMistake()" pInputTextarea></textarea>
-            <label for="float-input">Your answer</label>
+        <!--<h3 style="margin-top: 100px;margin-bottom: 20px; text-align: center">{{this.selected.libelle}} </h3>-->
+        <span class="p-float-label" style="margin-left: 10%; margin-bottom: 20px">
+            <textarea id="float-input-correct-mistake" [disabled]="disable? true: null" rows="1" [(ngModel)]="this.selected.libelle" (keyup)="correctMistake()" pInputTextarea></textarea>
+            <h3 style="color: red; font-family: 'Goudy Old Style'; text-decoration: line-through">{{this.myAnswerCorrectMistake}}</h3>
+            <h3 style="color: #1af045; font-family: 'Goudy Old Style';">{{this.trueAnswerCorrectMistake}}</h3>
+            <button pButton pRipple type="button" style="width: 200px; margin-left: 30%; margin-top: 50px" label="Check" (click)="checkCorrectMistake()" class="p-button-outlined p-button-success"></button>
         </span>
     </div>
-    <div style="margin-left: 50%; margin-top: 50px">
-        <button pButton pRipple type="button" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
+    <div style="margin-left: 40%; margin-top: 50px">
+        <button pButton pRipple type="button" style="width: 200px;" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
     </div>
 
 </div>
 
 <div id="result" style="visibility: hidden">
-    <h3 style="margin: 100px">Your note is = {{this.noteQuiz}}</h3>
+    <img src="{{this.image}}" style="width: 60%; height: 40%; margin-left: 20%" alt="">
+    <h3 style="margin-top: 100px; margin-left: 40%">Your note is = {{this.noteQuiz}}</h3>
 </div>

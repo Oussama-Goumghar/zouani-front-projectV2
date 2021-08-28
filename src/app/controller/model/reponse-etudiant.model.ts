@@ -7,4 +7,5 @@ export class ReponseEtudiant {
   public ref: string;
   public quizEtudiant = new QuizEtudiant();
   public note: number;
+  public answer: string;
 }
