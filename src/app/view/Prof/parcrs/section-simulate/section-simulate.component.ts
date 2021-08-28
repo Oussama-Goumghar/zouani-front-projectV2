@@ -154,8 +154,8 @@ public quiz(){
                 this.itemssection2 = data;
                 // tslint:disable-next-line:no-shadowed-variable
               });
-          document.getElementById('word').style.visibility = 'hidden';
-          document.getElementById('word').style.height = '0px';
+        //  document.getElementById('word').style.visibility = 'hidden';
+        //  document.getElementById('word').style.height = '0px';
 
           document.getElementById('categoriess').style.visibility = 'visible';
 
@@ -164,9 +164,11 @@ public quiz(){
           document.getElementById('categ').style.height = '100%';
           document.getElementById('chat').style.visibility = 'hidden';
         }},
-      {label: 'Chat', icon: 'pi pi-fw pi-comments', command: (event) => {
+      {icon: 'pi pi-fw pi-comments', command: (event) => {
           document.getElementById('categoriess').style.visibility = 'hidden';
           document.getElementById('categoriess').style.height = '0px';
+       //   document.getElementById('word').style.visibility = 'hidden';
+       //   document.getElementById('word').style.height = '0px';
           document.getElementById('chat').style.visibility = 'visible';
         }}
     ];
