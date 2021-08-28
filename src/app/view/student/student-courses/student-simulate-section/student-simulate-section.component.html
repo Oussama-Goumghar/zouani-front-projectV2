@@ -13,12 +13,12 @@
                              src="{{photoURL()}}">
                         <iframe *ngIf="this.selectedsection.urlVideo && !this.selectedsection.urlImage"
                                 [src]='URLVideo() | safe'
-                                allowfullscreen  loading="lazy" style="width: 100%;height: 60%;"></iframe>
-                        <div *ngIf="this.selectedsection.urlVideo && this.selectedsection.urlImage" style="width: 200%;">
-                            <img  src="{{photoURL()}}" style="width: 200%">
+                                allowfullscreen  loading="lazy" style="width: 600px;height: 300px;" ></iframe>
+                        <div *ngIf="this.selectedsection.urlVideo && this.selectedsection.urlImage" style="width: 100%;">
+                            <img  src="{{photoURL()}}" style="width: 100%">
                             <div style="width: 200%">
                                 <iframe [src]='URLVideo() | safe' allowfullscreen
-                                        loading="lazy" style="height: 2000px"></iframe>
+                                        loading="lazy" style="width: 600px;height: 300px;"></iframe>
                             </div>
 
                         </div>
@@ -79,7 +79,7 @@
                 </ng-template>
             </p-timeline>
         </div>-->
-        <div class="p-col-2 product-grid-item"  >
+        <div class="p-col-3 product-grid-item"  >
             <div class="product-grid-item-content" >
             <div style="margin-top: 20px">
 
@@ -88,7 +88,7 @@
             <input type="text" [(ngModel)]="word" pInputText placeholder="search" >
                         <button type="button" pButton pRipple icon="pi pi-search"  (click)="findByWord()" ></button>
                         <button type="button" pButton pRipple icon="pi pi-plus" style="background-color: #8b8b90" (click)="openCreateDict()" ></button>
-        </div>
+                    </div>
                     <!-- <input  [(ngModel)]="word" pInputText placeholder="Search" style="width: 180px;" type="text"/>
                      <button pButton pRipple type="button" icon="pi pi-search"  (click)="findByWord()" style="margin-left: 2px;" ></button>
 
@@ -110,7 +110,8 @@
                                    style="cursor: pointer; font-weight: 600"><u>{{section.categorieSection.libelle}}</u></td>
                            </tr>
                        </ng-template>
-                   </p-timeline></div>
+                   </p-timeline>
+                   </div>
                    <div  id="word" style="margin-top: 5px; width: 0px; height: 0px" [style.visibility]="'hidden'">
 
                    <p-table   [value]="itemsDict" [rows]="5" [paginator]="true" [rowHover]="true" dataKey="id" style="margin-top: 20px; width: 0px">
@@ -122,21 +123,29 @@
                            </tr>
                        </ng-template>
 
-                   </p-table></div>
+                   </p-table>
+                   </div>
+                   <app-chat1 id="chat" [style.visibility]="'hidden'"></app-chat1>
+
                </div>
-                <!--  <div class="card" style="margin-top: 10px"> <h5 style="margin-top: 20px; margin-bottom: 10px"><u style="color: #0a80bb">Categorie</u></h5>
-            <p-timeline align="alternate"  [value]="itemssection2">
+                <!-- <div class="card" style="margin-top: 15px">
+                     <p-tabMenu [model]="menuchat"  [activeItem]="menuchat[0]" style="width: 100%;" ></p-tabMenu>
+                     <app-chat1></app-chat1>
 
-                <ng-template let-section pTemplate="content" style="margin-top: 20px">
-                    <tr>
+                 </div>
+                   <div class="card" style="margin-top: 10px"> <h5 style="margin-top: 20px; margin-bottom: 10px"><u style="color: #0a80bb">Categorie</u></h5>
+             <p-timeline align="alternate"  [value]="itemssection2">
 
-                        <td (click)="Section(section.categorieSection.libelle)"
-                            [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? 'green' :'black' "
-                            style="cursor: pointer; text-align: center"><u>{{section.categorieSection.libelle}}</u></td>
-                    </tr>
-                </ng-template>
-            </p-timeline>
-                 </div>-->
+                 <ng-template let-section pTemplate="content" style="margin-top: 20px">
+                     <tr>
+
+                         <td (click)="Section(section.categorieSection.libelle)"
+                             [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? 'green' :'black' "
+                             style="cursor: pointer; text-align: center"><u>{{section.categorieSection.libelle}}</u></td>
+                     </tr>
+                 </ng-template>
+             </p-timeline>
+                  </div>-->
          </div>
  </div>
      </div>

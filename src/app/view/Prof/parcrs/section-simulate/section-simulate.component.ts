@@ -31,6 +31,7 @@ export class SafePipe1 implements PipeTransform {
 export class SectionSimulateComponent implements OnInit {
   nodes: TreeNode[];
   menu: MenuItem[];
+  menuchat: MenuItem[];
   srcImg: string;
   // tslint:disable-next-line:max-line-length
   constructor(private messageService: MessageService, private dictionnaryService: DictionaryService,  private router: Router, private serviceQuiz: QuizService, private sanitizer: DomSanitizer, private quizService: QuizEtudiantService,  private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient) { }
@@ -121,6 +122,7 @@ public quiz(){
     console.log(this.srcImg);*/
     this.quizService.section.id = this.selectedsection.id;
     this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
+    this.menuchat = [{label: 'Chat', icon: 'pi pi-fw pi-comments'}];
     this.menu = [
       {label: 'Categorie', icon: 'pi pi-fw pi-home', command: (event) => {
           this.service.affichelistSection().subscribe(
@@ -128,14 +130,17 @@ public quiz(){
                 this.itemssection2 = data;
                 // tslint:disable-next-line:no-shadowed-variable
               });
-          document.getElementById('word').style.visibility = 'hidden';
-          document.getElementById('word').style.height = '0px';
-
           document.getElementById('categoriess').style.visibility = 'visible';
 
           document.getElementById('categoriess').style.width = '100%';
           document.getElementById('categoriess').style.height = '300px';
+          document.getElementById('chat').style.visibility = 'hidden';
         }},
+      {label: 'Chat', icon: 'pi pi-fw pi-comments', command: (event) => {
+          document.getElementById('categoriess').style.visibility = 'hidden';
+          document.getElementById('categoriess').style.height = '0px';
+          document.getElementById('chat').style.visibility = 'visible';
+        }}
     ];
   }
   get progress(): number {

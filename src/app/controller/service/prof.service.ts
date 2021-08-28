@@ -19,6 +19,13 @@ export class ProfService {
     return this.http.post<number>('http://localhost:8036/learn/prof/', this.selectedProf);
   }
 
+  public savechatmsgs(prof: Prof): Observable<number>{
+    return this.http.post<number>('http://localhost:8036/learn/prof/', prof);
+  }
+
+  public findbyid(num: number): Observable<Prof>{
+    return this.http.get<Prof>('http://localhost:8036/learn/prof/id/' + num);
+  }
   get selectedProf(): Prof {
     if (this._selectedProf == null){
       this._selectedProf = new Prof();

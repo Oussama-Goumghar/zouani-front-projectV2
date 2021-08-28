@@ -3,7 +3,8 @@ import {QuizEtudiant} from './quiz-etudiant.model';
 import {EtatInscription} from './etat-inscription.model';
 import {Prof} from './prof.model';
 import {Centre} from './centre.model';
-import {EtatEtudiantSchedule} from "./etat-etudiant-schedule.model";
+import {EtatEtudiantSchedule} from './etat-etudiant-schedule.model';
+import {ChatMessageDto} from './chatMessageDto';
 
 export class Etudiant {
     public id: number;
@@ -21,4 +22,5 @@ export class Etudiant {
     public etatEtudiantSchedule = new EtatEtudiantSchedule();
     public prof = new Prof();
     public image: string;
+    public chatMessageDto = new Array<ChatMessageDto>();
 }

@@ -34,6 +34,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     nodes: TreeNode[];
     menu: MenuItem[];
     srcImg: string;
+    menuchat: MenuItem[];
 
     // tslint:disable-next-line:max-line-lengthg max-line-length
     constructor(private messageService: MessageService, private router: Router, private dictionnaryService: DictionaryService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient, private quizService: QuizEtudiantService, private loginService: LoginService, private  vocab: VocabularyService) { }
@@ -127,6 +128,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
         this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
         });
+        this.menuchat = [{label: 'Chat', icon: 'pi pi-fw pi-comments'}];
         this.menu = [
             {label: 'Categorie', icon: 'pi pi-fw pi-home', command: (event) => {
                     this.service.affichelistSection().subscribe(
@@ -141,6 +143,13 @@ export class StudentSimulateSectionComponent implements OnInit {
 
                     document.getElementById('categoriess').style.width = '100%';
                     document.getElementById('categoriess').style.height = '300px';
+                    document.getElementById('chat').style.visibility = 'hidden';
+                }},            {label: 'Chat', icon: 'pi pi-fw pi-comments', command: (event) => {
+                    document.getElementById('categoriess').style.visibility = 'hidden';
+                    document.getElementById('categoriess').style.height = '0px';
+                    document.getElementById('word').style.visibility = 'hidden';
+                    document.getElementById('word').style.height = '0px';
+                    document.getElementById('chat').style.visibility = 'visible';
                 }},
             {label: 'Word', icon: 'pi pi-fw pi-search', command: (event) => {
                     this.dictionnaryService.FindAllWord().subscribe(
@@ -152,7 +161,8 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('word').style.visibility = 'visible';
                     document.getElementById('word').style.width = '100%';
                     document.getElementById('word').style.height = '300px';
-                }},
+                    document.getElementById('chat').style.visibility = 'hidden';
+                }}
         ];
     }
     public findCoursEtudiant(cours: Cours) {
