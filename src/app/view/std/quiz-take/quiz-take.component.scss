@@ -42,3 +42,45 @@
   cursor: pointer;
   //opacity: 0;
 }
+#float-input-correct-mistake{
+  height: 100%;
+  width: 80%;
+  border: none;
+  border-bottom: 2px solid cyan;
+  font-size: 30px;
+  font-family: "Goudy Old Style";
+  color: #0a80bb;
+  margin-top: 100px;
+  margin-bottom: 50px;
+}
+
+
+
+#tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #1af045;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  //bottom: 80%;
+  //left: 50%;
+  margin-top: -40px;
+  margin-left: -120px;
+}
+
+#tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #1af045 transparent transparent transparent;
+}

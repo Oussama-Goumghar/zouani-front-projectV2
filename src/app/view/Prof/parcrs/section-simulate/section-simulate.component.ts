@@ -36,6 +36,10 @@ export class SectionSimulateComponent implements OnInit {
     this.service.afficheSection(libelle).subscribe(
         data => {
           this.selectedsection = data;
+          this.quizService.findQuizBySection(this.selectedsection.id).subscribe(
+              data => {
+                this.selectedQuiz = data;
+              });
         }, error => console.log('erreeeeeeeeeeeeeeeeur') );
   }
   get image(): string {
@@ -77,8 +81,9 @@ public quiz(){
    // this.srcImg = this.photoURL();
    // this.srcImg = this.service.image;
     console.log(this.srcImg);*/
-    this.quizService.section.id = this.selectedsection.id;
-    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
+    //this.quizService.section.id = this.selectedsection.id;
+    //this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
+    //console.log(this.selectedQuiz.ref);
   }
   get progress(): number {
     return this.service.progress;
@@ -95,8 +100,8 @@ public quiz(){
     this.service.progress = value;
   }
   PreviousSection() {
-    this.quizService.section.id = this.selectedsection.id;
-    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
+    //this.quizService.section.id = this.selectedsection.id;
+    //this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.service.affichelistSection().subscribe(
         data => {
           this.itemssection2 = data;
@@ -105,7 +110,13 @@ public quiz(){
     this.selectedsection.numeroOrder = this.selectedsection.numeroOrder - 1;
     // tslint:disable-next-line:triple-equals
     if (this.selectedsection.numeroOrder != 0){
-      this.service.afficheOneSection2().subscribe( data => { this.selectedsection = data; });
+      this.service.afficheOneSection2().subscribe( data => {
+        this.selectedsection = data;
+        this.quizService.findQuizBySection(this.selectedsection.id).subscribe(
+            data => {
+              this.selectedQuiz = data;
+            });
+      });
     }else{
       this.selectedsection.numeroOrder = this.itemssection2.length + 1;
       this.NextSection();
@@ -160,8 +171,8 @@ public quiz(){
     return this.service.contenu;
   }
   NextSection() {
-    this.quizService.section.id = this.selectedsection.id;
-    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
+    //this.quizService.section.id = this.selectedsection.id;
+    //this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
     this.service.affichelistSection().subscribe(
         data => {
           this.itemssection2 = data;
@@ -170,7 +181,14 @@ public quiz(){
     this.selectedsection.numeroOrder = this.selectedsection.numeroOrder + 1;
     // tslint:disable-next-line:triple-equals
     if (this.selectedsection.numeroOrder <= this.itemssection2.length ){
-      this.service.afficheOneSection2().subscribe( data => { this.selectedsection = data; });
+      this.service.afficheOneSection2().subscribe(
+          data => {
+            this.selectedsection = data;
+            this.quizService.findQuizBySection(this.selectedsection.id).subscribe(
+                data => {
+                  this.selectedQuiz = data;
+                });
+          });
     }else{
       this.selectedsection.numeroOrder = 0;
       this.PreviousSection();
