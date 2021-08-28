@@ -2,12 +2,23 @@
 <p-card class="p-d-block p-mx-auto" [style]="{width:'80%',margin:'0 auto',marginTop:'30px',textAlign:'center'}">
     <div style="position: relative;width: 100%">
         <button
+                *ngIf="showPrevious"
+                (click)="previousItem()"
                 class="p-button-rounded" icon="pi pi-caret-left" id="previous"
                 label="Previous" pButton pRipple
                 style="left:15px; width: 120px; position: absolute;"
                 type="button"></button>
         <button
+                *ngIf="showNext"
+                (click)="nextItem()"
                 class="p-button-rounded" icon="pi pi-caret-right" id="next" label="Next"
+                pButton pRipple
+                style=" width: 120px;  position: absolute;right: 15px;"
+                type="button"></button>
+        <button
+                *ngIf="showfinish"
+                (click)="finish()"
+                class="p-button-rounded" icon="pi pi-caret-right" id="finish" label="Finish"
                 pButton pRipple
                 style=" width: 120px;  position: absolute;right: 15px;"
                 type="button"></button>

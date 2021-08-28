@@ -1,41 +1,30 @@
 <p-card>
-    <div class="bg-image" id="imageDiv"  [style.background-image]="'url(' + current.imageUrl + ')'">
+    <div class="bg-image" id="imageDiv"   [style.background-image]="'url(' + current.imageUrl + ')'">
 <!--
         <img src="https://drive.google.com/uc?export=view&id=1k_v1w04p_9JkbPZdPwjTGRY-00IktME4" style="object-fit: cover;">
 -->
     </div>
     <div class="p-inputgroup" style="width: 40%;margin:0 auto" id="divStudentResponse">
-        <input type="text" pInputText placeholder="Keyword" id="inputStudentResponse">
+        <input type="text" pInputText placeholder="Enter your answer" id="inputStudentResponse" [(ngModel)]="cureentResponse">
         <button (click)="checkResponse()" pButton pRipple type="button" icon="pi pi-check"
                 class="p-button-success p-mr-3" id="buttonStudentResponse"></button>
     </div>
     <div id="diveMessage" style="width: 40%;margin:0 auto;">
         <p-messages></p-messages>
     </div>
-    <div id="diveShow" style="width: 80%;margin:0 auto;visibility: hidden">
+    <div id="diveShow" style="width: 80%;margin:0 auto;" *ngIf="selected">
         <p-accordion>
-            <p-accordionTab header="More Detail">
-
+            <p-accordionTab header="More Detail" [selected]="false" id="moreDetail">
                 <div class="p-text-left">
                     <h5>Response</h5>
-                    <p>ssidscdscdcds/n
-                        dcdscdsdsccds/n
-                        ddscdscdsdcdcds</p>
+                    <p>{{current.response}}</p>
                     <h5>Translation</h5>
-                    <p>ssidscdscdcds/n
-                        dcdscdsdsccds/n
-                        ddscdscdsdcdcds</p>
+                    <p>{{current.translation}}</p>
                     <h5>Explanation</h5>
-                    <p>ssidscdscdcds/n
-                        dcdscdsdsccds/n
-                        ddscdscdsdcdcds</p>
+                    <p>{{current.explanation}}</p>
                     <h5>Example</h5>
-                    <p>ssidscdscdcds/n
-                        dcdscdsdsccds/n
-                        ddscdscdsdcdcds</p>
-
+                    <p>{{current.example}}s</p>
                 </div>
-
             </p-accordionTab>
         </p-accordion>
     </div>

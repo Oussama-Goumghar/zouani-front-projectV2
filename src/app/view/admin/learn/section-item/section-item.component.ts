@@ -5,9 +5,6 @@ import {SectionItemService} from '../../../../controller/service/section-item.se
 import {MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
 
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
-
 @Component({
     selector: 'app-section-item',
     templateUrl: './section-item.component.html',
@@ -118,6 +115,7 @@ export class SectionItemComponent implements OnInit {
 
     addFormule() {
         console.log("hannaaa=> "+this.sectionSelected.sectionItems)
+        this.sctionItem.response.toLowerCase()
         if (this.sectionSelected.sectionItems.includes(this.sctionItem)) {
             console.log('9DIIIIIIIIIIIIIM');
             let index = this.sectionSelected.sectionItems.indexOf(this.sctionItem);
