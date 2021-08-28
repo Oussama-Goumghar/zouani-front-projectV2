@@ -35,7 +35,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     menu: MenuItem[];
     srcImg: string;
     textSeleted: string;
-    filteredCountries: any[];
+    filteredDict: any[];
     // tslint:disable-next-line:max-line-lengthg max-line-length
     constructor(private messageService: MessageService, private router: Router, private dictionnaryService: DictionaryService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient, private quizService: QuizEtudiantService, private loginService: LoginService, private  vocab: VocabularyService) { }
     value = 0;
@@ -129,7 +129,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.createDialogDict = true;
         this.selectedDict = new Dictionary();
     }
-    filterCountry(event) {
+    filterDict(event) {
         const filtered: any[] = [];
         const query = event.query;
 
@@ -142,7 +142,7 @@ export class StudentSimulateSectionComponent implements OnInit {
             }
         }
 
-        this.filteredCountries = filtered;
+        this.filteredDict = filtered;
     }
     ngOnInit(): void {
         this.dictionnaryService.FindAllWord().subscribe(

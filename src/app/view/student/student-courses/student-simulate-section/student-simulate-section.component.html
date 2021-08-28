@@ -84,8 +84,8 @@
             <div style="margin-top: 20px">
 
                      <h5><u style="color: #8b8b90; margin-left: 5px">{{this.selectedDict.word}}</u>  {{this.selectedDict.definition}}</h5>
-                    <div class="p-inputgroup">
-                        <p-autoComplete [(ngModel)]="word" [suggestions]="filteredCountries" (completeMethod)="filterCountry($event)" field="word" [minLength]="1"></p-autoComplete>
+                    <div class="p-inputgroup" >
+                        <p-autoComplete [(ngModel)]="word" [suggestions]="filteredDict" (completeMethod)="filterDict($event)" field="word" [minLength]="1"></p-autoComplete>
                         <button type="button" pButton pRipple icon="pi pi-search"  (click)="findByWord()" ></button>
                         <button type="button" pButton pRipple icon="pi pi-plus" style="background-color: #8b8b90" (click)="openCreateDict()" ></button>
                     </div>
