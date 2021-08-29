@@ -34,6 +34,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     nodes: TreeNode[];
     menu: MenuItem[];
     srcImg: string;
+    translate: string;
     textSeleted: string;
     filteredDict: any[];
     // tslint:disable-next-line:max-line-lengthg max-line-length
@@ -230,7 +231,14 @@ export class StudentSimulateSectionComponent implements OnInit {
             // tslint:disable-next-line:triple-equals no-unused-expression
                 if (this.textSeleted.length != 0  && this.selected.word == null){
                this.selected.word = this.textSeleted;
+               this.dictionnaryService.Translate(this.textSeleted).subscribe(
+                   data => {
+                       this.translate = data;
+                   });
+               this.selected.definition = this.translate;
+               console.log(this.translate);
                console.log(this.selected.word);
+               console.log(this.selected.definition);
                this.submittedDict = false;
                this.createDialogDict = true;
             } else if (this.textSeleted.length != 0  && this.selected.word != null){

@@ -160,6 +160,7 @@ public quiz(){
           document.getElementById('categoriess').style.visibility = 'visible';
 
           document.getElementById('categoriess').style.width = '100%';
+          document.getElementById('categ').style.width = '100%';
           document.getElementById('categoriess').style.height = '100%';
           document.getElementById('categ').style.height = '100%';
           document.getElementById('chat').style.visibility = 'hidden';
@@ -167,6 +168,7 @@ public quiz(){
       {icon: 'pi pi-fw pi-comments', command: (event) => {
           document.getElementById('categoriess').style.visibility = 'hidden';
           document.getElementById('categoriess').style.height = '0px';
+          document.getElementById('categ').style.height = '0px';
        //   document.getElementById('word').style.visibility = 'hidden';
        //   document.getElementById('word').style.height = '0px';
           document.getElementById('chat').style.visibility = 'visible';
