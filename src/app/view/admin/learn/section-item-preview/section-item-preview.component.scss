@@ -1,0 +1,39 @@
+.product-item {
+  .product-item-content {
+    margin: .3rem;
+    text-align: center;
+    overflow: auto;
+
+  }
+
+  .product-image {
+    width: 100%;
+  }
+}
+
+ul {
+  display: block;
+  margin-left: -10px;
+}
+
+ul li {
+  display: block;
+  position: relative;
+  font-size: x-large;
+}
+
+ul li:not(:last-child) {
+  margin-bottom: 16px;
+}
+
+ul li:before {
+  content: "";
+  position: absolute;
+  top: 1.2em;
+  left: -30px;
+  margin-top: -.9em;
+  background: #f69ec4;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+}

@@ -73,7 +73,16 @@ export class SectionItemComponent implements OnInit {
     }
 
     openPreview() {
-        this.router.navigate(['/pages/preview-section-items']);
+        if (this.sectionItemList.length === 0) {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Wait',
+                detail: 'You don\'t have any data to preview',
+                life: 3000
+            });
+        } else {
+            this.router.navigate(['/pages/preview-section-items']);
+        }
     }
     save() {
         this.sectionItemService.createSectionItems().subscribe(data => {
