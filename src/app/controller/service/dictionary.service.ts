@@ -91,9 +91,10 @@ export class DictionaryService {
     // tslint:disable-next-line:max-line-length
     return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/etudiant/id/' + this.serviceUser.etudiant.id);
   }
-  public Translate(word: string): Observable<string> {
+  public Translate(word: string): Observable<any> {
     // tslint:disable-next-line:max-line-length
-    return this.http.get<string>('http://localhost:8036/learn/TranslateEnAr/text/' + word);
+    // @ts-ignore
+    return this.http.get<string>('http://localhost:8036/learn/TranslateEnAr/text/' + word, { responseType: 'text'});
   }
   // tslint:disable-next-line:adjacent-overload-signatures
   set submitted(value: boolean) {
