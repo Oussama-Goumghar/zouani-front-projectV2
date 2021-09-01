@@ -262,6 +262,9 @@ import {ChatComponent} from './view/Prof/chat/chat.component';
 import {Chat1Component} from './view/student/chat1/chat1-component.component';
 import { DictionaryEditComponent } from './view/etudiant/dictionary-edit/dictionary-edit.component';
 import { ViewQuizEtudiantComponent } from './view/admin/view-quiz-etudiant/view-quiz-etudiant.component';
+import { SectionItemListComponent } from './view/admin/learn/section-item/section-item-list/section-item-list.component';
+import { SectionItemPreviewComponent } from './view/admin/learn/section-item-preview/section-item-preview.component';
+import { ImageItemComponent } from './view/admin/learn/section-item-preview/image-item/image-item.component';
 
 
 
@@ -528,6 +531,9 @@ import { ViewQuizEtudiantComponent } from './view/admin/view-quiz-etudiant/view-
         Chat1Component,
         SectionCreateComponent,
         QuizTakeComponent,
+        SectionItemListComponent,
+        SectionItemPreviewComponent,
+        ImageItemComponent,
         SectionItemComponent,
         DictionaryEditComponent,
         ViewQuizEtudiantComponent

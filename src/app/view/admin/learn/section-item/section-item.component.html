@@ -60,25 +60,20 @@
                                                 icon="pi pi-check" iconPos="right"  (click)="addFormule()"></button>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                         <div class="p-col" style="width: 20%">
                             <p-tree [value]="sectionSelected.sectionItems" [style]="{position: 'relative'}" >
                                 <ng-template let-node pTemplate="default" style="border: black 1px">
                                     <b>{{node.response}}</b>
-
                                     <button style="position: absolute;right: 35px"  pButton pRipple type="button" icon="pi pi-undo"
                                             class="p-button-rounded p-button-text" (click)="update(node)"></button>
                                     <button style="position: absolute;right: 2px" pButton pRipple type="button" icon="pi pi-times"
                                             class="p-button-rounded p-button-danger p-button-text" (click)="delete(node)"></button>
-
                                 </ng-template>
                             </p-tree>
                         </div>
                     </div>
-
                 </p-card>
         -->
 

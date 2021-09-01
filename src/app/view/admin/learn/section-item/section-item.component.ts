@@ -4,10 +4,6 @@ import {Section} from '../../../../controller/model/section.model';
 import {SectionItemService} from '../../../../controller/service/section-item.service';
 import {MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
-import {Product} from './product';
-import {ProductService2} from './productservice';
-import {Observable} from 'rxjs';
-import {tap} from 'rxjs/operators';
 
 @Component({
     selector: 'app-section-item',
@@ -21,12 +17,11 @@ export class SectionItemComponent implements OnInit {
     imageUrl: String;
     idsList:Array<number>=[]
 
-    products: Product[];
 
     responsiveOptions;
 
 
-    constructor(private sectionItemService: SectionItemService, private messageService: MessageService,private router: Router,private productService:ProductService2) {
+    constructor(private sectionItemService: SectionItemService, private messageService: MessageService,private router: Router) {
         this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -50,16 +45,7 @@ export class SectionItemComponent implements OnInit {
     ngOnInit(): void {
 
         this.sctionItem = new SectionItemModel('assets/image5.png');
-        this.sectionItemService.getSectionItems().subscribe(data => {
-                this.sectionItemService.sectionSelected.sectionItems=data
-            this.sectionItemList=data
-                console.log(data)
-            this.itemsLoaded=Promise.resolve(true)
-
-        });
-        this.productService.getProductsSmall().then(products => {
-            this.products = products;
-        });
+        this.sectionItemList=this.sectionItemService.sectionSelected.sectionItems
         console.log(this.sctionItem.imageUrl);
     }
 
@@ -71,11 +57,26 @@ export class SectionItemComponent implements OnInit {
         this.sectionItemService.sectionSelected = value;
     }
 
-
-    openPreview() {
-
+    get sectionItem(): SectionItemModel {
+        return this.sectionItemService.sectionItem;
     }
 
+    set sectionItem(value: SectionItemModel) {
+        this.sectionItemService.sectionItem = value;
+    }
+
+    openPreview() {
+        if (this.sectionItemList.length === 0) {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Wait',
+                detail: 'You don\'t have any data to preview',
+                life: 3000
+            });
+        } else {
+            this.router.navigate(['/pages/preview-section-items']);
+        }
+    }
     save() {
         this.sectionItemService.createSectionItems().subscribe(data => {
             if (data == 1) {
@@ -116,18 +117,19 @@ export class SectionItemComponent implements OnInit {
 
     addFormule() {
         console.log("hannaaa=> "+this.sectionSelected.sectionItems)
-         if (this.sectionSelected.sectionItems.includes(this.sctionItem)) {
-             console.log('9DIIIIIIIIIIIIIM');
-             let index = this.sectionSelected.sectionItems.indexOf(this.sctionItem);
-             this.sectionSelected.sectionItems[index] = this.sctionItem;
-         } else {
-             this.sectionSelected.sectionItems.splice(0,0,this.sctionItem)
-             console.log("JDIIIIIIIIIIID===>"+this.sectionSelected.sectionItems.length)
-         }
-         this.sctionItem = new SectionItemModel('assets/image5.png');
+        this.sctionItem.response.toLowerCase()
+        if (this.sectionSelected.sectionItems.includes(this.sctionItem)) {
+            console.log('9DIIIIIIIIIIIIIM');
+            let index = this.sectionSelected.sectionItems.indexOf(this.sctionItem);
+            this.sectionSelected.sectionItems[index] = this.sctionItem;
+        } else {
+            this.sectionSelected.sectionItems.splice(0,0,this.sctionItem)
+            console.log("JDIIIIIIIIIIID===>"+this.sectionSelected.sectionItems.length)
+        }
+        this.sctionItem = new SectionItemModel('assets/image5.png');
 
-         this.imageUrl = null;
-         this.sectionItemList=this.sectionSelected.sectionItems
+        this.imageUrl = null;
+        this.sectionItemList=this.sectionSelected.sectionItems
     }
 
     imagePreview() {
