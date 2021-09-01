@@ -7,6 +7,16 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 import {Quiz} from '../../../controller/model/quiz.model';
 import {Question} from '../../../controller/model/question.model';
 import {QuizEtudiant} from '../../../controller/model/quiz-etudiant.model';
+import {VocabularyService} from '../../../controller/service/vocabulary.service';
+import {ConfirmationService, MenuItem, MessageService, TreeNode} from 'primeng/api';
+import {Router} from '@angular/router';
+import {DictionaryService} from '../../../controller/service/dictionary.service';
+import {DomSanitizer} from '@angular/platform-browser';
+import {ParcoursService} from '../../../controller/service/parcours.service';
+import {HttpClient} from '@angular/common/http';
+import {Dictionary} from '../../../controller/model/dictionary.model';
+import {EtudiantCours} from '../../../controller/model/etudiant-cours.model';
+import {Section} from '../../../controller/model/section.model';
 
 @Component({
   selector: 'app-quiz-take',
@@ -15,7 +25,7 @@ import {QuizEtudiant} from '../../../controller/model/quiz-etudiant.model';
 })
 export class QuizTakeComponent implements OnInit {
 
-  constructor(private service: QuizEtudiantService, private login: LoginService) {
+  constructor(private service: QuizEtudiantService, private login: LoginService, private messageService: MessageService, private router: Router, private dictionnaryService: DictionaryService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private parcoursservice: ParcoursService, private http: HttpClient, private  vocab: VocabularyService) {
   }
 
   private selectedValue: number;
@@ -53,6 +63,10 @@ export class QuizTakeComponent implements OnInit {
   isChecked: boolean;
   translate: string;
   question= '';
+  wordDictionnary: string;
+  filteredDict: any[];
+  nodes: TreeNode[];
+  menu: MenuItem[];
 
   get answerCorrectOrFalse(): Array<boolean> {
     if(this._answerCorrectOrFalse == null)
@@ -315,6 +329,107 @@ export class QuizTakeComponent implements OnInit {
     this.service.selectedQuiz = value;
   }
 
+  get selectedDict(): Dictionary {
+    return this.dictionnaryService.selectedDict;
+  }
+
+  set selectedDict(value: Dictionary) {
+    this.dictionnaryService.selectedDict = value;
+  }
+
+  get itemsDict(): Array<Dictionary> {
+    return this.dictionnaryService.itemsDict;
+  }
+
+  set itemsDict(value: Array<Dictionary>) {
+    this.dictionnaryService.itemsDict = value;
+  }
+
+  get submittedDict(): boolean {
+    return this.dictionnaryService.submittedDict;
+  }
+  set submittedDict(value: boolean) {
+    this.dictionnaryService.submittedDict = value;
+  }
+
+  get createDialogDict(): boolean {
+    return this.dictionnaryService.createDialogDict;
+  }
+
+  set createDialogDict(value: boolean) {
+    this.dictionnaryService.createDialogDict = value;
+  }
+
+  set itemssection2(value: Array<Section>) {
+    this.parcoursservice.itemssection2 = value;
+  }
+  get itemssection2(): Array<Section> {
+    return this.parcoursservice.itemssection2;
+  }
+
+  get selectedsection(): Section {
+    return this.parcoursservice.selectedsection;
+  }
+  get section(): Section {
+    return this.service.section;
+  }
+
+  set section(value: Section) {
+    this.service.section = value;
+  }
+  // tslint:disable-next-line:adjacent-overload-signatures
+  set selectedsection(value: Section) {
+    this.parcoursservice.selectedsection = value;
+  }
+
+  get quizEtudiantList(): QuizEtudiant {
+    return this.service.quizEtudiantList;
+  }
+
+  set quizEtudiantList(value: QuizEtudiant) {
+    this.service.quizEtudiantList = value;
+  }
+
+  get passerQuiz(): string {
+    return this.service.passerQuiz;
+  }
+
+  set passerQuiz(value: string) {
+    this.service.passerQuiz = value;
+  }
+
+  get quizView(): boolean {
+    return this.service.quizView;
+  }
+
+  set quizView(value: boolean) {
+    this.service.quizView = value;
+  }
+
+  get selectedDictionnary(): Dictionary {
+    return this.dictionnaryService.selected;
+  }
+
+  set selectedDictionnary(value: Dictionary) {
+    this.dictionnaryService.selected = value;
+  }
+
+  get submittedDictEdit(): boolean {
+    return this.dictionnaryService.submittedDictEdit;
+  }
+
+  set submittedDictEdit(value: boolean) {
+    this.dictionnaryService.submittedDictEdit = value;
+  }
+
+  get editDialogDict(): boolean {
+    return this.dictionnaryService.editDialogDict;
+  }
+
+  set editDialogDict(value: boolean) {
+    this.dictionnaryService.editDialogDict = value;
+  }
+
   ngOnInit(): void {
     this.quizEtudiant = new QuizEtudiant();
     this.numQuestion = 0;
@@ -334,6 +449,47 @@ export class QuizTakeComponent implements OnInit {
     this.service.insertQuizEtudiant().subscribe();
     this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
     this.start();
+    this.dictionnaryService.FindAllWord().subscribe(
+        data => {
+          this.itemsDict = data;
+        });
+    this.menu = [
+      { icon: 'pi pi-list', command: (event) => {
+          this.parcoursservice.affichelistSection().subscribe(
+              data => {
+                this.itemssection2 = data;
+                // tslint:disable-next-line:no-shadowed-variable
+              });
+          document.getElementById('word').style.visibility = 'hidden';
+          document.getElementById('word').style.height = '0px';
+
+          document.getElementById('categoriess').style.visibility = 'visible';
+
+          document.getElementById('categoriess').style.width = '100%';
+          document.getElementById('categoriess').style.height = '100%';
+          document.getElementById('categ').style.height = '100%';
+          document.getElementById('chat').style.visibility = 'hidden';
+        }}, {icon: 'pi pi-fw pi-comments', command: (event) => {
+          document.getElementById('categoriess').style.visibility = 'hidden';
+          document.getElementById('categoriess').style.height = '0px';
+          document.getElementById('word').style.visibility = 'hidden';
+          document.getElementById('word').style.height = '0px';
+          document.getElementById('chat').style.visibility = 'visible';
+        }},
+      { icon: 'pi pi-book', style: {width: '50%'}, command: (event) => {
+          this.dictionnaryService.FindAllWord().subscribe(
+              data => {
+                this.itemsDict = data;
+              });
+          document.getElementById('categoriess').style.visibility = 'hidden';
+          document.getElementById('categoriess').style.height = '0px';
+          document.getElementById('word').style.visibility = 'visible';
+          document.getElementById('word').style.width = '100%';
+          document.getElementById('word').style.height = '100%';
+          document.getElementById('wrd').style.height = '100%';
+          document.getElementById('chat').style.visibility = 'hidden';
+        }},
+    ];
   }
 
   //////////////////Start/////////
@@ -378,9 +534,26 @@ export class QuizTakeComponent implements OnInit {
         }
     );
     if (this.numQuestion > this.items.length && this.numQuestion > 1) {
-      for(let i = 0 ; i < this.myanswers.length ; i++)
-      {
-        this.answerCorrectOrFalse.push(true);
+      this.myanswers = new Array<string>();
+      this.correctanswers = new Array<string>();
+      this.questionanswers = new Array<string>();
+      for (let i = 0; i < this.myanswers.length; i++) {
+        if (this.myanswers[i] == this.correctanswers[i] && this.myanswers[i] == this.questionanswers[i]) {
+          this.answerCorrectOrFalse.push(true);
+          document.getElementById('span-output-' + i).style.color = '#0a80bb';
+          document.getElementById('span-output-' + i).style.textDecoration = 'none';
+          document.getElementById('span-correct-' + i).style.visibility = 'hidden';
+        } else if (this.myanswers[i] == this.correctanswers[i] && this.myanswers[i] != this.questionanswers[i]) {
+          this.answerCorrectOrFalse.push(true);
+          document.getElementById('span-output-' + i).style.color = '#1af045';
+          document.getElementById('span-output-' + i).style.textDecoration = 'none';
+          document.getElementById('span-correct-' + i).style.visibility = 'hidden';
+        } else {
+          this.answerCorrectOrFalse.push(false);
+          document.getElementById('span-output-' + i).style.color = 'red';
+          document.getElementById('span-output-' + i).style.textDecoration = 'line-through';
+          document.getElementById('span-correct-' + i).style.visibility = 'visible';
+        }
       }
       console.log(this.answerCorrectOrFalse);
       document.getElementById('result').style.visibility = 'visible';
@@ -394,11 +567,7 @@ export class QuizTakeComponent implements OnInit {
       document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
       document.getElementById('div-output').style.visibility = 'hidden';
       document.getElementById('output-correct-mistake').style.visibility = 'hidden';
-      this.answerCorrectOrFalse = new Array<boolean>();
-      for(let i = 0 ; i < this.myanswers.length ; i++)
-      {
-        this.answerCorrectOrFalse.push(true);
-      }
+
       this.isChecked = false;
       this.service.findQuizEtudiant(this.etudiant, this.selectedQuiz).subscribe(
           data => {
@@ -567,8 +736,13 @@ export class QuizTakeComponent implements OnInit {
 
   ///////////////// correct mistake /////////
   checkCorrectMistake() {
-    //document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
-    //document.getElementById('output-correct-mistake').style.visibility = 'visible';
+    this.check();
+    this.check();
+  }
+
+
+
+  check() {
     this.j = -1;
     this.word = '';
     this.myanswers = new Array<string>();
@@ -682,11 +856,77 @@ export class QuizTakeComponent implements OnInit {
     document.getElementById('div-output').style.marginTop = '-100px';
   }
 
+
+
   correctMistake() {
     if (this.correctMistakeAnswer == this.selected.libelle) {
       this.button = 'Don\'t know';
     } else if (this.correctMistakeAnswer != this.selected.libelle && this.selected.libelle.length > 0) {
       this.button = 'Next';
+    }
+  }
+
+  public findByWord(){
+    this.dictionnaryService.FindByWord(this.wordDictionnary).subscribe(
+        data=>{
+          this.selectedDict = data;
+          //document.getElementById('dictionary').style.visibility = 'visible';
+        },error => console.log('erreeeeeeeeeeeeeeeeur') );
+    //document.getElementById('dictionary').style.visibility = 'visible';
+  }
+
+  filterDict(event) {
+    const filtered: any[] = [];
+    const query = event.query;
+
+    // tslint:disable-next-line:prefer-for-of
+    for(let i = 0; i < this.itemsDict.length; i++) {
+      const dict = this.itemsDict[i];
+      // tslint:disable-next-line:triple-equals
+      if (dict.word.toLowerCase().indexOf(query.toLowerCase()) == 0) {
+        filtered.push(dict);
+      }
+    }
+
+    this.filteredDict = filtered;
+  }
+
+  public openCreateDict() {
+    this.submittedDict = false;
+    this.createDialogDict = true;
+    this.selectedDict = new Dictionary();
+  }
+
+  public Section(libelle: string){
+    this.parcoursservice.afficheSection(libelle).subscribe(
+        data=> {
+          this.selectedsection = data;
+          this.service.findQuizBySectionId(this.selectedsection).subscribe(
+              data => {
+                this.selectedQuiz = data;
+                this.service.findQuizEtudiant(this.login.etudiant, this.selectedQuiz).subscribe(
+                    data => {
+                      this.quizEtudiantList = data;
+                      console.log(this.quizEtudiantList);
+                      this.passerQuiz = 'View Quiz';
+                      this.quizView = true;
+                    },error =>
+                    {
+                      this.passerQuiz = 'Passer Quiz';
+                      this.quizView = false;
+                    }
+                );
+              },
+          );
+        },error => console.log('erreeeeeeeeeeeeeeeeur') );
+    this.router.navigate(['/pages/etudiantsimulatesections']);
+  }
+
+  public dictEdit(dict: Dictionary){
+    this.selectedDictionnary = dict;
+    if(this.selectedDictionnary.word != null){
+      this.submittedDictEdit = false;
+      this.editDialogDict = true;
     }
   }
 
