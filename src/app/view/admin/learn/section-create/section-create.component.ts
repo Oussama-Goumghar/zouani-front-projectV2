@@ -26,6 +26,12 @@ export class SectionCreateComponent implements OnInit {
   set selectedcours(value: Cours) {
     this.service.selectedcours = value;
   }
+  public soundSection(word: string){
+    const text = encodeURIComponent(word);
+    const url = 'http://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=' + text + '&tl=En-gb';
+    const audio = new Audio(url);
+    audio.play();
+  }
   get selectedsection(): Section {
     return this.service.selectedsection;
   }

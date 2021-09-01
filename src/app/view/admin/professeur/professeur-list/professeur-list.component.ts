@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProfessorService} from '../../../../controller/service/professor.service';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {Prof} from '../../../../controller/model/prof.model';
+import {SessionCours} from "../../../../controller/model/session-cours.model";
 
 
 @Component({
@@ -34,7 +35,7 @@ export class ProfesseurListComponent implements OnInit {
         this.service.afficheSession(sessionProf1.id).subscribe(
             data => {
                 // @ts-ignore
-                this.items = data;
+                this.itemsSession = data;
             });
         this.viewDialogProf = true;
     }
@@ -133,7 +134,13 @@ export class ProfesseurListComponent implements OnInit {
   set items(value: Array<Prof>) {
     this.service.items = value;
   }
+    get itemsSession(): Array<SessionCours> {
+        return this.service.itemsSession;
+    }
 
+    set itemsSession(value: Array<SessionCours>) {
+        this.service.itemsSession = value;
+    }
   get submitted(): boolean {
     return this.service.submitted;
   }

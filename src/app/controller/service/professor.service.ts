@@ -13,6 +13,7 @@ import {SessionCours} from '../model/session-cours.model';
 export class ProfessorService {
     private url = environment.baseUrl + 'prof/';
     private _items: Array<Prof>;
+    private _itemsSession: Array<SessionCours>;
     private _selected: Prof;
     private _selectes: Array<Prof>;
 
@@ -27,6 +28,14 @@ export class ProfessorService {
     private _paiement: Paiement;
     public afficheSession(id: number): Observable<Array<SessionCours>> {
         return   this.http.get<Array<SessionCours>>('http://localhost:8036/learn/session/prof/id/' + id );
+    }
+
+    get itemsSession(): Array<SessionCours> {
+        return this._itemsSession;
+    }
+
+    set itemsSession(value: Array<SessionCours>) {
+        this._itemsSession = value;
     }
 
     get paiement(): Paiement {

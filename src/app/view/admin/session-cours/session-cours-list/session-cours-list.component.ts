@@ -20,18 +20,23 @@ export class SessionCoursListComponent implements OnInit {
 
     ngOnInit(): void {
         this.initCol();
-        this.service.findAll().subscribe(data => this.items = data);
     }
     public hideViewDialog() {
         this.viewDialogProf = false;
     }
     public findByCriteria() {
-        return this.service.findByCriteria().subscribe( data => this.items = data);
+        return this.service.findByCriteria().subscribe( data => this.itemsSession = data);
     }
     get viewDialogProf(): boolean {
         return this.serviceprof.viewDialogProf;
     }
+    get itemsSession(): Array<SessionCours> {
+        return this.serviceprof.itemsSession;
+    }
 
+    set itemsSession(value: Array<SessionCours>) {
+        this.serviceprof.itemsSession = value;
+    }
     set viewDialogProf(value: boolean) {
         this.serviceprof.viewDialogProf = value;
     }
@@ -43,7 +48,7 @@ export class SessionCoursListComponent implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.service.deleteByReference().subscribe(data => {
-                    this.items = this.items.filter(val => val.id !== this.selected.id);
+                    this.itemsSession = this.itemsSession.filter(val => val.id !== this.selected.id);
                     this.selected = new SessionCours();
                     this.messageService.add({
                         severity: 'success',
@@ -109,15 +114,6 @@ export class SessionCoursListComponent implements OnInit {
     set selected(value: SessionCours) {
         this.service.selected = value;
     }
-
-    get items(): Array<SessionCours> {
-        return this.service.items;
-    }
-
-    set items(value: Array<SessionCours>) {
-        this.service.items = value;
-    }
-
     get submitted(): boolean {
         return this.service.submitted;
     }
