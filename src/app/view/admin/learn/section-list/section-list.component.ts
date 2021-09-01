@@ -232,6 +232,12 @@ export class SectionListComponent implements OnInit {
     createVocab(section: Section) {
         this.sectionItemService.sectionSelected = section;
 
-        this.router.navigate(['/pages/create-section-items']);
+        this.sectionItemService.getSectionItems().subscribe(data => {
+            this.sectionItemService.sectionSelected.sectionItems=data
+            console.log(data)
+            this.router.navigate(['/pages/create-section-items']);
+        });
+
+
     }
 }

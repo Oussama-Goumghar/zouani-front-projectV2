@@ -45,14 +45,7 @@ export class SectionItemComponent implements OnInit {
     ngOnInit(): void {
 
         this.sctionItem = new SectionItemModel('assets/image5.png');
-        this.sectionItemService.getSectionItems().subscribe(data => {
-            this.sectionItemService.sectionSelected.sectionItems=data
-            this.sectionItemList=data
-            console.log(data)
-            this.itemsLoaded=Promise.resolve(true)
-
-        });
-
+        this.sectionItemList=this.sectionItemService.sectionSelected.sectionItems
         console.log(this.sctionItem.imageUrl);
     }
 

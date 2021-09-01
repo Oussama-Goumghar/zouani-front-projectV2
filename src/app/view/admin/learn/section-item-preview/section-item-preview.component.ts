@@ -18,6 +18,10 @@ export class SectionItemPreviewComponent implements OnInit {
     showPrevious: boolean;
     showNext: boolean;
     showfinish: boolean;
+    showStart: boolean;
+    showEnd: boolean;
+    showItems: boolean;
+
 
     constructor(private messageService: MessageService, private sectionItemService: SectionItemService,private router: Router) {
     }
@@ -27,26 +31,26 @@ export class SectionItemPreviewComponent implements OnInit {
         this.currentItem = this.listItems[0];
         this.showNext=true
         this.showPrevious=false
+        this.showStart = true;
+        this.showItems = false;
+        this.showEnd = false;
     }
 
 
     previousItem() {
         const index = this.listItems.indexOf(this.currentItem);
-        if (index-1 === 0) {
-
-            this.showPrevious = false;
-
-        }
         if (index>0) {
             if (index - 1 >= 0) {
                 this.showNext=true
+                this.currentItem = this.listItems[index - 1];
+                this.child.reloadComponent()
+                this.showPrevious = true;
+                this.showfinish=false
             }
-            this.currentItem = this.listItems[index - 1];
-            this.child.reloadComponent()
-            this.showPrevious = true;
+            if (index-1 === 0) {
+                this.showPrevious = false;
+            }
         }
-
-
     }
 
     nextItem() {
@@ -65,6 +69,18 @@ export class SectionItemPreviewComponent implements OnInit {
             this.showNext = false;
             this.showfinish=true
         }
+    }
+
+    startItem() {
+        this.showItems=true
+        this.showStart=false
+        this.showEnd=false
+    }
+
+      endShow() {
+        this.showItems=false
+        this.showStart=false
+        this.showEnd=true
     }
 
     finish() {
