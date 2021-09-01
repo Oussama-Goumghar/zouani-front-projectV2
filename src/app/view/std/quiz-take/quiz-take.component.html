@@ -2,6 +2,9 @@
     <div class="p-col-6">{{this.selected.typeDeQuestion.lib}}</div>
     <div class="p-col-6">{{this.selected.numero}} out of {{this.items.length}}</div>
 </div>
+<div >
+    <i class="pi pi-volume-up" style="font-size: 1.5rem; cursor: pointer" (click)="sound(this.selected.libelle)"></i>
+</div>
 <div class="p-grid" id="bodyRadio">
     <div class="p-col-6" id="question">
         <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.question1}} <span id="myAnswer">{{this.answer}} </span> <span id="tooltiptext"> {{this.answerCorrect}} </span> {{this.question2}}</h3>
@@ -18,9 +21,11 @@
     <div style="background-color: white; width: 100%" id="mistake">
         <!--<h3 style="margin-top: 100px;margin-bottom: 20px; text-align: center">{{this.selected.libelle}} </h3>-->
         <span class="p-float-label" style="margin-left: 10%; margin-bottom: 20px">
-            <textarea id="float-input-correct-mistake" [disabled]="disable? true: null" rows="1" [(ngModel)]="this.selected.libelle" (keyup)="correctMistake()" pInputTextarea></textarea>
-            <h3 style="color: red; font-family: 'Goudy Old Style'; text-decoration: line-through">{{this.myAnswerCorrectMistake}}</h3>
-            <h3 style="color: #1af045; font-family: 'Goudy Old Style';">{{this.trueAnswerCorrectMistake}}</h3>
+            <textarea id="float-input-correct-mistake" [disabled]="disable? true: null" [(ngModel)]="this.selected.libelle" (keyup)="correctMistake()" pInputTextarea></textarea>
+            <div id="div-output">
+                <output *ngFor="let i of numberofword" id="output-correct-mistake"> <span id="span-output-{{i}}" [style.visibility]="isChecked? 'visible' : 'hidden'"> {{this.myanswers[i]}} </span> <span id="span-correct-{{i}}" class="span-correct" [style.visibility]="answerCorrectOrFalse[i]? 'hidden' : 'visible'"> {{this.correctanswers[i]}} </span> </output>
+            </div>
+            <h3 id="translate-correct-mistake"> Arabic : {{this.translate}}</h3>
             <button pButton pRipple type="button" style="width: 200px; margin-left: 30%; margin-top: 50px" label="Check" (click)="checkCorrectMistake()" class="p-button-outlined p-button-success"></button>
         </span>
     </div>

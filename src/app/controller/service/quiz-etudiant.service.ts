@@ -50,7 +50,16 @@ export class QuizEtudiantService {
   private _numQuestion= 1;
   private _passerQuiz: string;
   private _quizView: boolean;
+  private _result: any;
 
+
+  get result(): any {
+    return this._result;
+  }
+
+  set result(value: any) {
+    this._result = value;
+  }
 
   get quizItems(): Array<Quiz> {
     if (this._quizItems == null){
@@ -545,6 +554,11 @@ export class QuizEtudiantService {
   public findAllQuiz(): Observable<Array<Quiz>>
   {
     return this.http.get<Array<Quiz>>(this.url + 'quiz/');
+  }
+
+  public translate(word: string): Observable<any> {
+    // @ts-ignore
+    return this.http.get<string>('http://localhost:8036/learn/TranslateEnAr/text/' + word , {responseType: 'text'});
   }
   constructor(private http: HttpClient) { }
 }
