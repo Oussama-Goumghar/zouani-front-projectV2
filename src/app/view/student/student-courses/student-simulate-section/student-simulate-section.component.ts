@@ -34,6 +34,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     nodes: TreeNode[];
     menu: MenuItem[];
     srcImg: string;
+    translate: any;
     textSeleted: string;
     filteredDict: any[];
     // tslint:disable-next-line:max-line-lengthg max-line-length
@@ -224,20 +225,27 @@ export class StudentSimulateSectionComponent implements OnInit {
         const selection = window.getSelection();
         this.textSeleted = selection.toString();
         this.selected = new Dictionary();
+
         this.dictionnaryService.FindByWord(this.textSeleted).subscribe(
             data=>{
                 this.selected = data;
             // tslint:disable-next-line:triple-equals no-unused-expression
                 if (this.textSeleted.length != 0  && this.selected.word == null){
-               this.selected.word = this.textSeleted;
-               console.log(this.selected.word);
-               this.submittedDict = false;
-               this.createDialogDict = true;
+                    this.dictionnaryService.Translate(this.textSeleted).subscribe(
+                        data => {
+                            this.selected.definition = data;
+                        });
+                    this.selected.word = this.textSeleted;
+                    console.log(this.translate);
+                    console.log(this.selected.word);
+                    console.log(this.selected.definition);
+                    this.submittedDict = false;
+                    this.createDialogDict = true;
             } else if (this.textSeleted.length != 0  && this.selected.word != null){
-             this.selected.word = this.textSeleted;
-             this.submittedDictEdit = false;
-             this.editDialogDict = true;
-             console.log(this.selected.word);
+                    this.selected.word = this.textSeleted;
+                    this.submittedDictEdit = false;
+                    this.editDialogDict = true;
+                    console.log(this.selected.word);
          }
     });
     }
