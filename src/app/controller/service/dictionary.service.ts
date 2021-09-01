@@ -1,148 +1,167 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Dictionary} from '../model/dictionary.model';
 import {Observable} from 'rxjs';
 import {LoginService} from './login.service';
 import {HttpClient} from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DictionaryService {
-  private _selected: Dictionary;
-  private _selectedDict: Dictionary;
-  private _items: Array<Dictionary>;
-  private _itemsDict: Array<Dictionary>;
-  private _editDialog: boolean;
-  private _submitted: boolean;
-  private _submittedDict: boolean;
-  private _submittedDictEdit: boolean;
-  private _createDialogDict: boolean;
-  private _editDialogDict: boolean;
-  private _selectes: Array<Dictionary>;
-  constructor(private http: HttpClient, public serviceUser: LoginService) { }
-
-  get submittedDictEdit(): boolean {
-    return this._submittedDictEdit;
-  }
-
-  set submittedDictEdit(value: boolean) {
-    this._submittedDictEdit = value;
-  }
-
-  get editDialogDict(): boolean {
-    return this._editDialogDict;
-  }
-
-  set editDialogDict(value: boolean) {
-    this._editDialogDict = value;
-  }
-
-  public findAll(): Observable<Array<Dictionary>> {
-    return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/' + this.selected);
-  }
-
-  get submittedDict(): boolean {
-    return this._submittedDict;
-  }
-
-  set submittedDict(value: boolean) {
-    this._submittedDict = value;
-  }
-
-  get createDialogDict(): boolean {
-    return this._createDialogDict;
-  }
-
-  set createDialogDict(value: boolean) {
-    this._createDialogDict = value;
-  }
-
-  get itemsDict(): Array<Dictionary> {
-    if (this._itemsDict == null){
-      this._itemsDict = new Array<Dictionary>();
+    constructor(private http: HttpClient, public serviceUser: LoginService) {
     }
-    return this._itemsDict;
-  }
 
-  set itemsDict(value: Array<Dictionary>) {
-    this._itemsDict = value;
-  }
+    private _selected: Dictionary;
 
-  get selectedDict(): Dictionary {
-    if ( this._selectedDict == null){
-      this._selectedDict = new Dictionary();
+    get selected(): Dictionary {
+        if (this._selected == null) {
+            this._selected = new Dictionary();
+        }
+        return this._selected;
     }
-    return this._selectedDict;
-  }
-  set selectedDict(value: Dictionary) {
-    this._selectedDict = value;
-  }
 
-  get submitted(): boolean {
-    return this._submitted;
-  }
-  public FindByWord(word: string): Observable<Dictionary> {
-    console.log(this.serviceUser.etudiant.id);
-    console.log(word);
-    // tslint:disable-next-line:max-line-length
-    return this.http.get<Dictionary >('http://localhost:8036/learn/dictionary/word/' + word + '/Etudiant/id/' + this.serviceUser.etudiant.id);
-  }
-  public deleteWord(word: string): Observable<number> {
-    return this.http.delete<number>('http://localhost:8036/learn/dictionary/words/' + word + '/Etudiant/id/' + this.serviceUser.etudiant.id);
-  }
-  public FindAllWord(): Observable<Array<Dictionary>> {
-    // tslint:disable-next-line:max-line-length
-    return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/etudiant/id/' + this.serviceUser.etudiant.id);
-  }
-  public Translate(word: string): Observable<any> {
-    // tslint:disable-next-line:max-line-length
-    // @ts-ignore
-    return this.http.get<string>('http://localhost:8036/learn/TranslateEnAr/text/' + word, { responseType: 'text'});
-  }
-  // tslint:disable-next-line:adjacent-overload-signatures
-  set submitted(value: boolean) {
-    this._submitted = value;
-  }
-
-  get editDialog(): boolean {
-    return this._editDialog;
-  }
-
-  set editDialog(value: boolean) {
-    this._editDialog = value;
-  }
-  get items(): Array<Dictionary> {
-    return this._items;
-  }
-
-  set items(value: Array<Dictionary>) {
-    this._items = value;
-  }
-
-
-  get selected(): Dictionary {
-    if (this._selected == null){
-      this._selected = new Dictionary ();
+    set selected(value: Dictionary) {
+        this._selected = value;
     }
-    return this._selected;
-  }
 
-  set selected(value: Dictionary) {
-    this._selected = value;
-  }
+    private _selectedDict: Dictionary;
 
-  public save(): Observable<number> {
-    return this.http.post<number>('http://localhost:8036/learn/dictionary/', this.selected);
-  }
-  public editDict(): Observable<number> {
-    return this.http.put<number>('http://localhost:8036/learn/dictionary/', this.selected);
-  }
+    get selectedDict(): Dictionary {
+        if (this._selectedDict == null) {
+            this._selectedDict = new Dictionary();
+        }
+        return this._selectedDict;
+    }
 
-  get selectes(): Array<Dictionary> {
-    return this._selectes;
-  }
+    set selectedDict(value: Dictionary) {
+        this._selectedDict = value;
+    }
 
-  set selectes(value: Array<Dictionary>) {
-    this._selectes = value;
-  }
+    private _items: Array<Dictionary>;
+
+    get items(): Array<Dictionary> {
+        return this._items;
+    }
+
+    set items(value: Array<Dictionary>) {
+        this._items = value;
+    }
+
+    private _itemsDict: Array<Dictionary>;
+
+    get itemsDict(): Array<Dictionary> {
+        if (this._itemsDict == null) {
+            this._itemsDict = new Array<Dictionary>();
+        }
+        return this._itemsDict;
+    }
+
+    set itemsDict(value: Array<Dictionary>) {
+        this._itemsDict = value;
+    }
+
+    private _editDialog: boolean;
+
+    get editDialog(): boolean {
+        return this._editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this._editDialog = value;
+    }
+
+    private _submitted: boolean;
+
+    get submitted(): boolean {
+        return this._submitted;
+    }
+
+    // tslint:disable-next-line:adjacent-overload-signatures
+    set submitted(value: boolean) {
+        this._submitted = value;
+    }
+
+    private _submittedDict: boolean;
+
+    get submittedDict(): boolean {
+        return this._submittedDict;
+    }
+
+    set submittedDict(value: boolean) {
+        this._submittedDict = value;
+    }
+
+    private _submittedDictEdit: boolean;
+
+    get submittedDictEdit(): boolean {
+        return this._submittedDictEdit;
+    }
+
+    set submittedDictEdit(value: boolean) {
+        this._submittedDictEdit = value;
+    }
+
+    private _createDialogDict: boolean;
+
+    get createDialogDict(): boolean {
+        return this._createDialogDict;
+    }
+
+    set createDialogDict(value: boolean) {
+        this._createDialogDict = value;
+    }
+
+    private _editDialogDict: boolean;
+
+    get editDialogDict(): boolean {
+        return this._editDialogDict;
+    }
+
+    set editDialogDict(value: boolean) {
+        this._editDialogDict = value;
+    }
+
+    private _selectes: Array<Dictionary>;
+
+    get selectes(): Array<Dictionary> {
+        return this._selectes;
+    }
+
+    set selectes(value: Array<Dictionary>) {
+        this._selectes = value;
+    }
+
+    public findAll(): Observable<Array<Dictionary>> {
+        return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/' + this.selected);
+    }
+
+    public FindByWord(word: string): Observable<Dictionary> {
+        console.log(this.serviceUser.etudiant.id);
+        console.log(word);
+        // tslint:disable-next-line:max-line-length
+        return this.http.get<Dictionary>('http://localhost:8036/learn/dictionary/word/' + word + '/Etudiant/id/' + this.serviceUser.etudiant.id);
+    }
+
+    public deleteWord(word: string): Observable<number> {
+        return this.http.delete<number>('http://localhost:8036/learn/dictionary/words/' + word + '/Etudiant/id/' + this.serviceUser.etudiant.id);
+    }
+
+    public FindAllWord(): Observable<Array<Dictionary>> {
+        // tslint:disable-next-line:max-line-length
+        return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/etudiant/id/' + this.serviceUser.etudiant.id);
+    }
+
+    public Translate(word: string): Observable<any> {
+        // tslint:disable-next-line:max-line-length
+        // @ts-ignore
+        return this.http.get<string>('http://localhost:8036/learn/TranslateEnAr/text/' + word, {responseType: 'text'});
+    }
+
+    public save(): Observable<number> {
+        return this.http.post<number>('http://localhost:8036/learn/dictionary/', this.selected);
+    }
+
+    public editDict(): Observable<number> {
+        return this.http.put<number>('http://localhost:8036/learn/dictionary/', this.selected);
+    }
 }

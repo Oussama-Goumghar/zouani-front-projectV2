@@ -1,22 +1,27 @@
-<div class="p-grid"  style="position:initial ">
+<div class="p-grid" style="position:initial ">
     <div class="p-col">
         <p-toast></p-toast>
         <div class="card " style="margin-left: 3%; background-color: gainsboro">
             <p-toolbar styleClass="p-mb-4">
                 <ng-template pTemplate="left">
-                    <button pButton pRipple label="  New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" style="width: 90px" (click)="openCreateCours()" ></button>
-                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteMultiple()" [disabled]="!itemscours || !itemscours.length"></button>
+                    <button (click)="openCreateCours()" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="  New" pButton
+                            pRipple style="width: 90px"></button>
+                    <button (click)="deleteMultiple()" [disabled]="!itemscours || !itemscours.length" class="p-button-danger p-mb-2" icon="pi pi-trash" label="Delete"
+                            pButton pRipple></button>
                 </ng-template>
 
                 <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2" (click)="dt.exportCSV()"></button>
+                    <p-fileUpload [maxFileSize]="1000000" accept="image/*" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"
+                                  label="Import" mode="basic"></p-fileUpload>
+                    <button (click)="dt.exportCSV()" class="p-button-info p-mb-2" icon="pi pi-upload" label="Export" pButton
+                            pRipple></button>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="itemscours" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['libelle','nombreLinkFinalise','nombreSectionFinalise']"
-                     [(selection)]="selectescours" [rowHover]="true" dataKey="id">
-                   <ng-template pTemplate="caption">
+            <p-table #dt [(selection)]="selectescours" [columns]="cols" [globalFilterFields]="['libelle','nombreLinkFinalise','nombreSectionFinalise']" [paginator]="true"
+                     [rowHover]="true"
+                     [rows]="4" [value]="itemscours" dataKey="id">
+                <ng-template pTemplate="caption">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
                         <h5 class="p-m-0">Manage Course</h5>
                     </div>
@@ -26,25 +31,36 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="numeroOrder">Number <p-sortIcon field="numeroOrder"></p-sortIcon></th>
-                        <th pSortableColumn="libelle">Title <p-sortIcon field="libelle"></p-sortIcon></th>
-                        <th >Actions </th>
+                        <th pSortableColumn="numeroOrder">Number
+                            <p-sortIcon field="numeroOrder"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="libelle">Title
+                            <p-sortIcon field="libelle"></p-sortIcon>
+                        </th>
+                        <th>Actions</th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-cours>
+                <ng-template let-cours pTemplate="body">
                     <tr>
-                        <td >
+                        <td>
                             <p-tableCheckbox [value]="cours"></p-tableCheckbox>
                         </td>
                         <td> {{cours.numeroOrder}}</td>
-                        <td [style.color]="(cours.nombreLinkFinalise+cours.nombreSectionFinalise) == 10? 'green' :(cours.nombreLinkFinalise+cours.nombreSectionFinalise) < 5? 'red':'orange' ">{{cours.libelle}} (c:
+                        <td [style.color]="(cours.nombreLinkFinalise+cours.nombreSectionFinalise) == 10? 'green' :(cours.nombreLinkFinalise+cours.nombreSectionFinalise) < 5? 'red':'orange' ">{{cours.libelle}}
+                            (c:
                             {{ cours.nombreSectionFinalise}},
-                            L:{{ cours.nombreLinkFinalise}})</td>
+                            L:{{ cours.nombreLinkFinalise}})
+                        </td>
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editCours(cours)" ></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="FindSection(cours)" ></button>
-                            <button pButton pRipple icon="pi pi-plus-circle" class="p-button-rounded p-button-icon p-mr-2" (click)="AjoutSection(cours)" ></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(cours)"></button>
+                            <button (click)="editCours(cours)" class="p-button-rounded p-button-success p-mr-2" icon="pi pi-pencil" pButton
+                                    pRipple></button>
+                            <button (click)="FindSection(cours)" class="p-button-rounded p-button-info p-mr-2" icon="pi pi-list" pButton
+                                    pRipple></button>
+                            <button (click)="AjoutSection(cours)" class="p-button-rounded p-button-icon p-mr-2" icon="pi pi-plus-circle"
+                                    pButton
+                                    pRipple></button>
+                            <button (click)="delete(cours)" class="p-button-rounded p-button-danger" icon="pi pi-trash" pButton
+                                    pRipple></button>
                         </td>
                     </tr>
                 </ng-template>

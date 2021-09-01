@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Cours} from '../../../controller/model/cours.model';
 import {RecommendTeacher} from '../../../controller/model/recommend-teacher.model';
 import {Prof} from '../../../controller/model/prof.model';
@@ -12,156 +12,177 @@ import {EtudiantService} from '../../../controller/service/etudiant.service';
 import {LoginService} from '../../../controller/service/login.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-  lastUpdate = new Date();
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              // tslint:disable-next-line:max-line-length
-              private service: ParcoursService,
-              private servicerecommend: RecommendTeacherService, private seviceClass: ClassRoomService ,
-              private serviceetudiant: EtudiantService, public serviceUser: LoginService
-  ) { }
+    lastUpdate = new Date();
 
-  ngOnInit(): void {
-    this.findSalary();
-    this.findEtudiant();
-  }
-  public  findEtudiant(){
-    this.serviceetudiant.findetudiantProf().subscribe(data => this.items = data);
-  }
-  get selectedProf(): Prof {
-    return this.serviceetudiant.selectedProf;
-  }
+    constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
+                // tslint:disable-next-line:max-line-length
+                private service: ParcoursService,
+                private servicerecommend: RecommendTeacherService, private seviceClass: ClassRoomService,
+                private serviceetudiant: EtudiantService, public serviceUser: LoginService
+    ) {
+    }
 
-  set selectedProf(value: Prof) {
-    this.serviceetudiant.selectedProf = value;
-  }
-  get Selectedprof(): Prof {
-    return this.servicerecommend.prof;
-  }
+    get selectedProf(): Prof {
+        return this.serviceetudiant.selectedProf;
+    }
 
-  set Selectedprof(value: Prof) {
-    this.servicerecommend.prof = value;
-  }
-  get prof(): Prof {
-    return this.serviceUser.prof;
-  }
+    set selectedProf(value: Prof) {
+        this.serviceetudiant.selectedProf = value;
+    }
 
-  set prof(value: Prof) {
-    this.serviceUser.prof = value;
-  }
-  get items(): Array<Etudiant> {
-    return this.serviceetudiant.items;
-  }
+    get Selectedprof(): Prof {
+        return this.servicerecommend.prof;
+    }
 
-  set items(value: Array<Etudiant>) {
-    this.serviceetudiant.items = value;
-  }
+    set Selectedprof(value: Prof) {
+        this.servicerecommend.prof = value;
+    }
 
-  get selectessalaryVo(): Array<SalaryVo> {
-    return this.seviceClass.selectessalaryVo;
-  }
+    get prof(): Prof {
+        return this.serviceUser.prof;
+    }
 
-  set selectessalaryVo(value: Array<SalaryVo>) {
-    this.seviceClass.selectessalaryVo = value;
-  }
-  public findSalary(){
-    this.selectedsalaryVo.prof.id = this.serviceUser.prof.id;
-    this.seviceClass.findSalary().subscribe(data =>
-    {
-      this.selectedsalaryVo = data;
-    });
-    this.Selectedprof.id = this.serviceUser.prof.id;
-    this.serviceetudiant.findetudiantProf().subscribe(data => this.items = data);
-  }
-  get selectedsalaryVo(): SalaryVo {
-    return this.seviceClass.selectedsalaryVo;
-  }
+    set prof(value: Prof) {
+        this.serviceUser.prof = value;
+    }
 
-  set selectedsalaryVo(value: SalaryVo) {
-    this.seviceClass.selectedsalaryVo = value;
-  }
-  get itemsprof(): Array<Prof> {
-    return this.servicerecommend.itemsprof;
-  }
+    get items(): Array<Etudiant> {
+        return this.serviceetudiant.items;
+    }
 
-  set itemsprof(value: Array<Prof>) {
-    this.servicerecommend.itemsprof = value;
-  }
-  public FindAllProf(){
-    console.log(this.selected);
-    this.servicerecommend.findAllProf().subscribe(data => this.itemsprof = data);
-  }
-  public save() {
-    this.servicerecommend.save().subscribe(data => {
-      console.log(this.selected);
-      console.log('meryem');
-    });
-  }
-  get selected(): RecommendTeacher {
-    return this.servicerecommend.selected;
-  }
+    set items(value: Array<Etudiant>) {
+        this.serviceetudiant.items = value;
+    }
 
-  set selected(value: RecommendTeacher) {
-    this.servicerecommend.selected = value;
-  }
-  public openCreateCours() {
-    this.selectedcours = new Cours();
-    this.submittedCours = false;
-    this.createDialogCours = true;
-  }
-  public openCreateEtud() {
-    this.submittedetudiant = new Etudiant();
-    this.submitted = false;
-    this.createDialogEtud = true;
-  }
-  get createDialogEtud(): boolean {
-    return this.serviceetudiant.createDialog;
-  }
+    get selectessalaryVo(): Array<SalaryVo> {
+        return this.seviceClass.selectessalaryVo;
+    }
 
-  set createDialogEtud(value: boolean) {
-    this.serviceetudiant.createDialog = value;
-  }
-  get submitted(): boolean {
-    return this.serviceetudiant.submitted;
-  }
+    set selectessalaryVo(value: Array<SalaryVo>) {
+        this.seviceClass.selectessalaryVo = value;
+    }
 
-  set submitted(value: boolean) {
-    this.serviceetudiant.submitted = value;
-  }
+    get selectedsalaryVo(): SalaryVo {
+        return this.seviceClass.selectedsalaryVo;
+    }
 
-  get submittedetudiant(): Etudiant {
-    return this.serviceetudiant.submittedetudiant;
-  }
+    set selectedsalaryVo(value: SalaryVo) {
+        this.seviceClass.selectedsalaryVo = value;
+    }
 
-  set submittedetudiant(value: Etudiant) {
-    this.serviceetudiant.submittedetudiant = value;
-  }
-  set submittedCours(value: boolean) {
-    this.service.submittedCours = value;
-  }
-  get selectedcours(): Cours{
-    return this.service.selectedcours;
-  }
-  set selectedcours(value: Cours) {
-    this.service.selectedcours = value;
-  }
-  get createDialogCours(): boolean {
-    return this.service.createDialogCours;
-  }
+    get itemsprof(): Array<Prof> {
+        return this.servicerecommend.itemsprof;
+    }
 
-  set createDialogCours(value: boolean) {
-    this.service.createDialogCours = value;
-  }
-  get itemsetudiant(): Array<Etudiant> {
-    return this.servicerecommend.itemsetudiant;
-  }
+    set itemsprof(value: Array<Prof>) {
+        this.servicerecommend.itemsprof = value;
+    }
 
-  set itemsetudiant(value: Array<Etudiant>) {
-    this.servicerecommend.itemsetudiant = value;
-  }
+    get selected(): RecommendTeacher {
+        return this.servicerecommend.selected;
+    }
+
+    set selected(value: RecommendTeacher) {
+        this.servicerecommend.selected = value;
+    }
+
+    get createDialogEtud(): boolean {
+        return this.serviceetudiant.createDialog;
+    }
+
+    set createDialogEtud(value: boolean) {
+        this.serviceetudiant.createDialog = value;
+    }
+
+    get submitted(): boolean {
+        return this.serviceetudiant.submitted;
+    }
+
+    set submitted(value: boolean) {
+        this.serviceetudiant.submitted = value;
+    }
+
+    get submittedetudiant(): Etudiant {
+        return this.serviceetudiant.submittedetudiant;
+    }
+
+    set submittedetudiant(value: Etudiant) {
+        this.serviceetudiant.submittedetudiant = value;
+    }
+
+    set submittedCours(value: boolean) {
+        this.service.submittedCours = value;
+    }
+
+    get selectedcours(): Cours {
+        return this.service.selectedcours;
+    }
+
+    set selectedcours(value: Cours) {
+        this.service.selectedcours = value;
+    }
+
+    get createDialogCours(): boolean {
+        return this.service.createDialogCours;
+    }
+
+    set createDialogCours(value: boolean) {
+        this.service.createDialogCours = value;
+    }
+
+    get itemsetudiant(): Array<Etudiant> {
+        return this.servicerecommend.itemsetudiant;
+    }
+
+    set itemsetudiant(value: Array<Etudiant>) {
+        this.servicerecommend.itemsetudiant = value;
+    }
+
+    ngOnInit(): void {
+        this.findSalary();
+        this.findEtudiant();
+    }
+
+    public findEtudiant() {
+        this.serviceetudiant.findetudiantProf().subscribe(data => this.items = data);
+    }
+
+    public findSalary() {
+        this.selectedsalaryVo.prof.id = this.serviceUser.prof.id;
+        this.seviceClass.findSalary().subscribe(data => {
+            this.selectedsalaryVo = data;
+        });
+        this.Selectedprof.id = this.serviceUser.prof.id;
+        this.serviceetudiant.findetudiantProf().subscribe(data => this.items = data);
+    }
+
+    public FindAllProf() {
+        console.log(this.selected);
+        this.servicerecommend.findAllProf().subscribe(data => this.itemsprof = data);
+    }
+
+    public save() {
+        this.servicerecommend.save().subscribe(data => {
+            console.log(this.selected);
+            console.log('meryem');
+        });
+    }
+
+    public openCreateCours() {
+        this.selectedcours = new Cours();
+        this.submittedCours = false;
+        this.createDialogCours = true;
+    }
+
+    public openCreateEtud() {
+        this.submittedetudiant = new Etudiant();
+        this.submitted = false;
+        this.createDialogEtud = true;
+    }
 }

@@ -2,12 +2,13 @@
     <p-dataView [value]="quizsClassroom">
         <ng-template let-quizs pTemplate="listItem">
             <div class="p-grid">
-                <div class="p-col-4" >
+                <div class="p-col-4">
                     <div class="box">
                         <h4>{{quizs.quiz.lib}}</h4>
                         <h4>{{quizs.quiz.dateDebut}}</h4>
                         <h4>{{quizs.quiz.dateFin}}</h4>
-                        <button pButton pRipple class="p-button-rounded p-button-success p-mr-2" (click)="view(quizs)"></button>
+                        <button (click)="view(quizs)" class="p-button-rounded p-button-success p-mr-2" pButton
+                                pRipple></button>
                     </div>
                 </div>
             </div>
@@ -16,4 +17,5 @@
     <app-quiz-student-view></app-quiz-student-view>
 </div>
 
-<button pButton pRipple class="p-button-rounded p-button-success p-mr-2" icon="pi pi-caret-left" label="Back to classrooms" [routerLink]="['/pages/classroom-liste']"></button>
+<button [routerLink]="['/pages/classroom-liste']" class="p-button-rounded p-button-success p-mr-2" icon="pi pi-caret-left" label="Back to classrooms"
+        pButton pRipple></button>

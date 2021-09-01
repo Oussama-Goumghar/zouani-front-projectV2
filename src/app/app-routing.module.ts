@@ -69,7 +69,6 @@ import {QuizEtudiantListComponent} from './view/std/quiz-etudiant-list/quiz-etud
 import {QuizEtudiantViewComponent} from './view/std/quiz-etudiant-view/quiz-etudiant-view.component';
 import {SessionCoursComponent} from './view/admin/session-cours/session-cours.component';
 import {SyntheseSessionComponent} from './view/admin/synthese-session/synthese-session.component';
-import {ProfesseurComponent} from './view/admin/professeur/professeur.component';
 import {ProfesseurListComponent} from './view/admin/professeur/professeur-list/professeur-list.component';
 import {EtudiantSectionsComponent} from './view/student/student-courses/etudiant-sections/etudiant-sections.component';
 import {EtudiantParcoursComponent} from './view/student/student-courses/etudiant-parcours/etudiant-parcours.component';
@@ -96,15 +95,6 @@ import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
 import {ViewQuizEtudiantComponent} from './view/admin/view-quiz-etudiant/view-quiz-etudiant.component';
 import {SectionItemPreviewComponent} from './view/admin/learn/section-item-preview/section-item-preview.component';
-
-
-
-
-
-
-
-
-
 
 
 @NgModule({
@@ -202,7 +192,6 @@ import {SectionItemPreviewComponent} from './view/admin/learn/section-item-previ
                     {path: 'documentation', component: DocumentationComponent},
                     {path: 'pages/create-section-items', component: SectionItemComponent},
                     {path: 'pages/preview-section-items', component: SectionItemPreviewComponent},
-
 
 
                 ]

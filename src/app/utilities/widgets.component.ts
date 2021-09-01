@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import { SelectItem } from 'primeng/api';
+import {SelectItem} from 'primeng/api';
 
 @Component({
     templateUrl: './widgets.component.html'
@@ -7,9 +7,9 @@ import { SelectItem } from 'primeng/api';
 export class WidgetsComponent implements OnInit {
 
     cities: SelectItem[];
-    
+
     selectedCity: any;
-    
+
     ngOnInit() {
         this.cities = [];
         this.cities.push({label: 'Select City', value: null});

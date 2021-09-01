@@ -14,47 +14,37 @@ import {LoginService} from './login.service';
 })
 export class ScheduleService {
 
-    private _selected: CalendrierProf;
-    private _items: Array<CalendrierProf>;
-    private _selectedVo: CalendrierVo;
-    private _itemsVo: Array<CalendrierVo>;
-    private _etatEtudiantSchedule: Array<EtatEtudiantSchedule>;
-    private _etudiant: Etudiant;
-    private _displayBasic: boolean;
-    private _events: any[];
-    private _options: any;
-    private _header: any;
-    private _eventDialog: boolean;
-    private _changedEvent: any;
-    private _clickedEvent = null;
-    private _createDialog: boolean;
-    private _submitted: boolean;
-private _students: Array<Etudiant>;
-private _student: Etudiant;
-private _professors: Array<Prof>;
-
-
-    get student(): Etudiant {
-        return this._student;
-    }
-
-    set student(value: Etudiant) {
-        this._student = value;
-    }
-
-    get professors(): Array<Prof> {
-        if( this._professors == null){
-            this._professors = new Array<Prof>();
-        }
-        return this._professors;
-    }
-
-    set professors(value: Array<Prof>) {
-        this._professors = value;
-    }
-
     constructor(private http: HttpClient, private user: LoginService) {
     }
+
+    private _selected: CalendrierProf;
+
+    get selected(): CalendrierProf {
+        if (this._selected == null) {
+            this._selected = new CalendrierProf();
+        }
+        return this._selected;
+    }
+
+    set selected(value: CalendrierProf) {
+        this._selected = value;
+    }
+
+    private _items: Array<CalendrierProf>;
+
+    get items(): Array<CalendrierProf> {
+        if (this._items == null) {
+            this._items = new Array<CalendrierProf>();
+        }
+        return this._items;
+    }
+
+    set items(value: Array<CalendrierProf>) {
+        this._items = value;
+    }
+
+    private _selectedVo: CalendrierVo;
+
     get selectedVo(): CalendrierVo {
         return this._selectedVo;
     }
@@ -63,8 +53,10 @@ private _professors: Array<Prof>;
         this._selectedVo = value;
     }
 
+    private _itemsVo: Array<CalendrierVo>;
+
     get itemsVo(): Array<CalendrierVo> {
-        if (this._itemsVo == null){
+        if (this._itemsVo == null) {
             this._itemsVo = new Array<CalendrierVo>();
         }
         return this._itemsVo;
@@ -73,18 +65,11 @@ private _professors: Array<Prof>;
     set itemsVo(value: Array<CalendrierVo>) {
         this._itemsVo = value;
     }
-    get students(): Array<Etudiant> {
-        if (this._students == null){
-            this._students = new Array<Etudiant>();
-        }
-        return this._students;
-    }
 
-    set students(value: Array<Etudiant>) {
-        this._students = value;
-    }
-get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
-        if (this._etatEtudiantSchedule == null){
+    private _etatEtudiantSchedule: Array<EtatEtudiantSchedule>;
+
+    get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
+        if (this._etatEtudiantSchedule == null) {
             this._etatEtudiantSchedule = new Array<EtatEtudiantSchedule>();
         }
         return this._etatEtudiantSchedule;
@@ -94,9 +79,10 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         this._etatEtudiantSchedule = value;
     }
 
+    private _etudiant: Etudiant;
 
     get etudiant(): Etudiant {
-        if (this._etudiant == null){
+        if (this._etudiant == null) {
             this._etudiant = new Etudiant();
         }
         return this._etudiant;
@@ -105,6 +91,9 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
     set etudiant(value: Etudiant) {
         this._etudiant = value;
     }
+
+    private _displayBasic: boolean;
+
     get displayBasic(): boolean {
         return this._displayBasic;
     }
@@ -112,6 +101,8 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
     set displayBasic(value: boolean) {
         this._displayBasic = value;
     }
+
+    private _events: any[];
 
     get events(): any[] {
         return this._events;
@@ -121,6 +112,8 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         this._events = value;
     }
 
+    private _options: any;
+
     get options(): any {
         return this._options;
     }
@@ -128,21 +121,8 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
     set options(value: any) {
         this._options = value;
     }
-    get createDialog(): boolean {
-        return this._createDialog;
-    }
 
-    set createDialog(value: boolean) {
-        this._createDialog = value;
-    }
-
-    get submitted(): boolean {
-        return this._submitted;
-    }
-
-    set submitted(value: boolean) {
-        this._submitted = value;
-    }
+    private _header: any;
 
     get header(): any {
         return this._header;
@@ -152,6 +132,8 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         this._header = value;
     }
 
+    private _eventDialog: boolean;
+
     get eventDialog(): boolean {
         return this._eventDialog;
     }
@@ -159,6 +141,8 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
     set eventDialog(value: boolean) {
         this._eventDialog = value;
     }
+
+    private _changedEvent: any;
 
     get changedEvent(): any {
         return this._changedEvent;
@@ -168,6 +152,8 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         this._changedEvent = value;
     }
 
+    private _clickedEvent = null;
+
     get clickedEvent(): any {
         return this._clickedEvent;
     }
@@ -175,39 +161,77 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
     set clickedEvent(value: any) {
         this._clickedEvent = value;
     }
-    get selected(): CalendrierProf {
-        if (this._selected == null){
-            this._selected =  new CalendrierProf();
+
+    private _createDialog: boolean;
+
+    get createDialog(): boolean {
+        return this._createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this._createDialog = value;
+    }
+
+    private _submitted: boolean;
+
+    get submitted(): boolean {
+        return this._submitted;
+    }
+
+    set submitted(value: boolean) {
+        this._submitted = value;
+    }
+
+    private _students: Array<Etudiant>;
+
+    get students(): Array<Etudiant> {
+        if (this._students == null) {
+            this._students = new Array<Etudiant>();
         }
-        return this._selected;
+        return this._students;
     }
 
-    set selected(value: CalendrierProf) {
-        this._selected = value;
+    set students(value: Array<Etudiant>) {
+        this._students = value;
     }
 
-    get items(): Array<CalendrierProf> {
-        if (this._items == null){
-            this._items = new Array<CalendrierProf>();
+    private _student: Etudiant;
+
+    get student(): Etudiant {
+        return this._student;
+    }
+
+    set student(value: Etudiant) {
+        this._student = value;
+    }
+
+    private _professors: Array<Prof>;
+
+    get professors(): Array<Prof> {
+        if (this._professors == null) {
+            this._professors = new Array<Prof>();
         }
-        return this._items;
+        return this._professors;
     }
 
-    set items(value: Array<CalendrierProf>) {
-        this._items = value;
+    set professors(value: Array<Prof>) {
+        this._professors = value;
     }
+
     public findAll() {
         return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/').subscribe(data => {
             this.itemsVo = data;
             console.log(this.itemsVo);
         });
     }
+
     public findByStudent() {
         return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/etudiant/id/' + this.selected.etudiant.id).subscribe(data => {
             this.itemsVo = data;
             console.log(this.itemsVo);
         });
     }
+
     public findByProf() {
         return this.http.get<Array<CalendrierVo>>('http://localhost:8036/learn/calendrierProf/vo/id/' + this.selected.prof.id).subscribe(data => {
             this.itemsVo = data;
@@ -215,30 +239,33 @@ get etatEtudiantSchedule(): Array<EtatEtudiantSchedule> {
         });
     }
 
-public remove(){
+    public remove() {
 
         this.clickedEvent.remove();
-}
-public delete(): Observable<number>{
-       return  this.http.delete<number>('http://localhost:8036/learn/calendrierProf/id' + this.selected.id);
-}
+    }
+
+    public delete(): Observable<number> {
+        return this.http.delete<number>('http://localhost:8036/learn/calendrierProf/id' + this.selected.id);
+    }
+
     save() {
         this.eventDialog = false;
         this.selected.etudiant.nom = this.changedEvent.title;
         this.selected.startTime = this.changedEvent.startTime;
         this.selected.endTime = this.changedEvent.endTime;
         this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected).subscribe(
-          data => {
-              this.items.push({...data});
-          }, error => {
-              console.log('erreuuur');
-        }
-      );
+            data => {
+                this.items.push({...data});
+            }, error => {
+                console.log('erreuuur');
+            }
+        );
         this.findByProf();
     }
-public edit(): Observable<CalendrierProf>{
+
+    public edit(): Observable<CalendrierProf> {
         return this.http.put<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
-}
+    }
 
 
     reset() {
@@ -247,22 +274,26 @@ public edit(): Observable<CalendrierProf>{
         this.changedEvent.end = this.clickedEvent.end;
         this.changedEvent.titleProf = this.clickedEvent.titleProf;
     }
-    public  addStudent(): Observable<CalendrierProf>{
+
+    public addStudent(): Observable<CalendrierProf> {
         return this.http.post<CalendrierProf>('http://localhost:8036/learn/calendrierProf/', this.selected);
     }
-public getStudents(): Observable<Array<Etudiant>>{
+
+    public getStudents(): Observable<Array<Etudiant>> {
         return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/prof/id/' + this.selected.prof.id);
-}
-    public getAllStudents(): Observable<Array<Etudiant>>{
+    }
+
+    public getAllStudents(): Observable<Array<Etudiant>> {
         return this.http.get<Array<Etudiant>>('http://localhost:8036/learn/etudiant/');
     }
-public getProf(): Observable<Array<Prof>>{
-        return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof/');
-}
 
-public findEtat(): Observable<Array<EtatEtudiantSchedule>>{
+    public getProf(): Observable<Array<Prof>> {
+        return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof/');
+    }
+
+    public findEtat(): Observable<Array<EtatEtudiantSchedule>> {
         return this.http.get<Array<EtatEtudiantSchedule>>('http://localhost:8036/learn/etatEtudiantSchedule/');
-}
+    }
 
 
     public findIndexById(id: number): number {

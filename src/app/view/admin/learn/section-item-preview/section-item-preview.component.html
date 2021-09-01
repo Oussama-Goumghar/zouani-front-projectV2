@@ -1,23 +1,23 @@
-<p-card *ngIf="showItems" class="p-d-block p-mx-auto"
-        [style]="{width:'60%',margin:'0 auto',marginTop:'30px',textAlign:'center'}">
+<p-card *ngIf="showItems" [style]="{width:'60%',margin:'0 auto',marginTop:'30px',textAlign:'center'}"
+        class="p-d-block p-mx-auto">
     <div style="position: relative;width: 100%">
         <button
-                *ngIf="showPrevious"
                 (click)="previousItem()"
+                *ngIf="showPrevious"
                 class="p-button-rounded" icon="pi pi-caret-left" id="previous"
                 label="Previous" pButton pRipple
                 style="left:15px; width: 120px; position: absolute;"
                 type="button"></button>
         <button
-                *ngIf="showNext"
                 (click)="nextItem()"
+                *ngIf="showNext"
                 class="p-button-rounded" icon="pi pi-caret-right" id="next" label="Next"
                 pButton pRipple
                 style=" width: 120px;  position: absolute;right: 15px;"
                 type="button"></button>
         <button
-                *ngIf="showfinish"
                 (click)="endShow()"
+                *ngIf="showfinish"
                 class="p-button-rounded p-button-danger" icon="pi pi-power-off" id="finish" label="Finish"
                 pButton pRipple
                 style=" width: 120px;  position: absolute;right: 15px;"
@@ -27,14 +27,14 @@
     </div>
     <app-image-item [current]="currentItem"></app-image-item>
 </p-card>
-<p-card *ngIf="showStart" class="p-d-block p-mx-auto"
-        [style]="{width:'60%',margin:'0 auto',marginTop:'30px',textAlign:'center'}">
+<p-card *ngIf="showStart" [style]="{width:'60%',margin:'0 auto',marginTop:'30px',textAlign:'center'}"
+        class="p-d-block p-mx-auto">
     <div class="p-grid " style="width: 100%">
         <div class="p-col-6" style="text-align: center">
             <div style="margin-top: 50px;width: 100%"><h1
                     style="font-family: Comic Sans MS, Comic Sans, cursive;font-size: 40px">Train Your Brain</h1></div>
             <div style="text-align: center;margin-bottom: 70px">
-                <div style="margin-top: 60px;margin-left: 20px" class="p-mb-3 p-text-left">
+                <div class="p-mb-3 p-text-left" style="margin-top: 60px;margin-left: 20px">
                     <ul class="list">
                         <li>Enclosed above, beneath, before, behind</li>
                         <li>In green uncertainty, from which a shark</li>
@@ -45,39 +45,40 @@
                     </ul>
                 </div>
             </div>
-            <p-button (click)="startItem()" label="Let's GO !!" icon="pi pi-check" styleClass="p-button-lg"></p-button>
+            <p-button (click)="startItem()" icon="pi pi-check" label="Let's GO !!" styleClass="p-button-lg"></p-button>
         </div>
         <div class="p-col-6 bg-image">
             <div class="product-item">
                 <div class="product-item-content">
-                    <img src="assets/start-preview.png" class="product-image"/>
+                    <img class="product-image" src="assets/start-preview.png"/>
                 </div>
             </div>
         </div>
     </div>
 </p-card>
 
-<p-card *ngIf="showEnd" class="p-d-block p-mx-auto"
-        [style]="{width:'60%',margin:'0 auto',marginTop:'30px',textAlign:'center'}">
+<p-card *ngIf="showEnd" [style]="{width:'60%',margin:'0 auto',marginTop:'30px',textAlign:'center'}"
+        class="p-d-block p-mx-auto">
     <div class="p-grid " style="width: 100%">
         <div class="p-col-6 " style="text-align: center;position: relative">
             <div class="outer">
-              <div class="middle">
-                  <div  class="inner">
-                      <h1 style="font-family: Comic Sans MS, Comic Sans, cursive;font-size: 40px;margin-bottom: 60px">
-                          Train Your Mind To See The Good
-                          In Every Situation
-                      </h1>
-                      <p-button (click)="finish()" label="Bay Bay" icon="pi pi-sign-out" styleClass="p-button-lg"></p-button>
-                  </div>
-              </div>
+                <div class="middle">
+                    <div class="inner">
+                        <h1 style="font-family: Comic Sans MS, Comic Sans, cursive;font-size: 40px;margin-bottom: 60px">
+                            Train Your Mind To See The Good
+                            In Every Situation
+                        </h1>
+                        <p-button (click)="finish()" icon="pi pi-sign-out" label="Bay Bay"
+                                  styleClass="p-button-lg"></p-button>
+                    </div>
+                </div>
             </div>
 
         </div>
         <div class="p-col-6 bg-image">
             <div class="product-item">
                 <div class="product-item-content">
-                    <img src="assets/Done.png" class="product-image"/>
+                    <img class="product-image" src="assets/Done.png"/>
                 </div>
             </div>
         </div>

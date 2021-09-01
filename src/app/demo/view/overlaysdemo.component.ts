@@ -29,7 +29,8 @@ export class OverlaysDemoComponent implements OnInit {
     visibleSidebar5;
 
     constructor(private productService: ProductService, private confirmationService: ConfirmationService,
-                private messageService: MessageService) {}
+                private messageService: MessageService) {
+    }
 
     ngOnInit() {
         this.productService.getProductsSmall().then(products => this.products = products);

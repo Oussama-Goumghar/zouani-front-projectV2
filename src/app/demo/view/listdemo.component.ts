@@ -23,9 +23,10 @@ export class ListDemoComponent implements OnInit {
 
     orderCities: any[];
 
-    sortKey: any
-    
-    constructor(private productService: ProductService) {}
+    sortKey: any;
+
+    constructor(private productService: ProductService) {
+    }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);

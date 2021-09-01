@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Prof} from '../model/prof.model';
 import {Admin} from '../model/admin.model';
 import {Etudiant} from '../model/etudiant.model';
@@ -6,67 +6,68 @@ import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class LoginService {
 
 
-  private url = 'http://localhost:8036/learn/';
-  private _prof: Prof;
-  private _admin: Admin;
-  private _etudiant: Etudiant;
-  private _model: any[];
+    private url = 'http://localhost:8036/learn/';
 
-
-  get model(): any[] {
-    return this._model;
-  }
-
-  set model(value: any[]) {
-    this._model = value;
-  }
-
-  get prof(): Prof {
-    if (this._prof == null){
-      this._prof = new Prof();
+    constructor(private http: HttpClient) {
     }
-    return this._prof;
-  }
 
-  set prof(value: Prof) {
-    this._prof = value;
-  }
+    private _prof: Prof;
 
-  get admin(): Admin {
-    return this._admin;
-  }
+    get prof(): Prof {
+        if (this._prof == null) {
+            this._prof = new Prof();
+        }
+        return this._prof;
+    }
 
-  set admin(value: Admin) {
-    this._admin = value;
-  }
+    set prof(value: Prof) {
+        this._prof = value;
+    }
 
-  get etudiant(): Etudiant {
-    return this._etudiant;
-  }
+    private _admin: Admin;
 
-  set etudiant(value: Etudiant) {
-    this._etudiant = value;
-  }
+    get admin(): Admin {
+        return this._admin;
+    }
 
-  public findProf(username: string, password: string): Observable<Prof>
-  {
-    return this.http.get<Prof>('http://localhost:8036/learn/prof/login/' + username + '/password/' + password);
-  }
+    set admin(value: Admin) {
+        this._admin = value;
+    }
 
-  public findEtudiant(username: string, password: string): Observable<Etudiant>
-  {
-    return this.http.get<Etudiant>('http://localhost:8036/learn/etudiant/login/' + username + '/password/' + password);
-  }
+    private _etudiant: Etudiant;
 
-  public findAdmin(username: string, password: string): Observable<Admin>
-  {
-    return this.http.get<Admin>('http://localhost:8036/learn/admin/login/' + username + '/password/' + password);
-  }
+    get etudiant(): Etudiant {
+        return this._etudiant;
+    }
 
-  constructor(private http: HttpClient) { }
+    set etudiant(value: Etudiant) {
+        this._etudiant = value;
+    }
+
+    private _model: any[];
+
+    get model(): any[] {
+        return this._model;
+    }
+
+    set model(value: any[]) {
+        this._model = value;
+    }
+
+    public findProf(username: string, password: string): Observable<Prof> {
+        return this.http.get<Prof>('http://localhost:8036/learn/prof/login/' + username + '/password/' + password);
+    }
+
+    public findEtudiant(username: string, password: string): Observable<Etudiant> {
+        return this.http.get<Etudiant>('http://localhost:8036/learn/etudiant/login/' + username + '/password/' + password);
+    }
+
+    public findAdmin(username: string, password: string): Observable<Admin> {
+        return this.http.get<Admin>('http://localhost:8036/learn/admin/login/' + username + '/password/' + password);
+    }
 }

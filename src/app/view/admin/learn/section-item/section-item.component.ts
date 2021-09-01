@@ -13,15 +13,15 @@ import {Router} from '@angular/router';
 export class SectionItemComponent implements OnInit {
 
     sctionItem: SectionItemModel;
-    sectionItemList:SectionItemModel[]
+    sectionItemList: SectionItemModel[];
     imageUrl: String;
-    idsList:Array<number>=[]
+    idsList: Array<number> = [];
 
 
     responsiveOptions;
+    itemsLoaded: Promise<boolean>;
 
-
-    constructor(private sectionItemService: SectionItemService, private messageService: MessageService,private router: Router) {
+    constructor(private sectionItemService: SectionItemService, private messageService: MessageService, private router: Router) {
         this.responsiveOptions = [
             {
                 breakpoint: '1024px',
@@ -40,14 +40,6 @@ export class SectionItemComponent implements OnInit {
             }
         ];
     }
-    itemsLoaded: Promise<boolean>;
-
-    ngOnInit(): void {
-
-        this.sctionItem = new SectionItemModel('assets/image5.png');
-        this.sectionItemList=this.sectionItemService.sectionSelected.sectionItems
-        console.log(this.sctionItem.imageUrl);
-    }
 
     get sectionSelected(): Section {
         return this.sectionItemService.sectionSelected;
@@ -65,6 +57,13 @@ export class SectionItemComponent implements OnInit {
         this.sectionItemService.sectionItem = value;
     }
 
+    ngOnInit(): void {
+
+        this.sctionItem = new SectionItemModel('assets/image5.png');
+        this.sectionItemList = this.sectionItemService.sectionSelected.sectionItems;
+        console.log(this.sctionItem.imageUrl);
+    }
+
     openPreview() {
         if (this.sectionItemList.length === 0) {
             this.messageService.add({
@@ -77,6 +76,7 @@ export class SectionItemComponent implements OnInit {
             this.router.navigate(['/pages/preview-section-items']);
         }
     }
+
     save() {
         this.sectionItemService.createSectionItems().subscribe(data => {
             if (data == 1) {
@@ -116,20 +116,20 @@ export class SectionItemComponent implements OnInit {
     }
 
     addFormule() {
-        console.log("hannaaa=> "+this.sectionSelected.sectionItems)
-        this.sctionItem.response.toLowerCase()
+        console.log('hannaaa=> ' + this.sectionSelected.sectionItems);
+        this.sctionItem.response.toLowerCase();
         if (this.sectionSelected.sectionItems.includes(this.sctionItem)) {
             console.log('9DIIIIIIIIIIIIIM');
             let index = this.sectionSelected.sectionItems.indexOf(this.sctionItem);
             this.sectionSelected.sectionItems[index] = this.sctionItem;
         } else {
-            this.sectionSelected.sectionItems.splice(0,0,this.sctionItem)
-            console.log("JDIIIIIIIIIIID===>"+this.sectionSelected.sectionItems.length)
+            this.sectionSelected.sectionItems.splice(0, 0, this.sctionItem);
+            console.log('JDIIIIIIIIIIID===>' + this.sectionSelected.sectionItems.length);
         }
         this.sctionItem = new SectionItemModel('assets/image5.png');
 
         this.imageUrl = null;
-        this.sectionItemList=this.sectionSelected.sectionItems
+        this.sectionItemList = this.sectionSelected.sectionItems;
     }
 
     imagePreview() {
@@ -151,10 +151,10 @@ export class SectionItemComponent implements OnInit {
     delete(node: any) {
         this.idsList.push(node.id);
         console.log(node);
-        const index=this.sectionSelected.sectionItems.indexOf(node)
+        const index = this.sectionSelected.sectionItems.indexOf(node);
         console.log(index);
-        this.sectionSelected.sectionItems.splice(index,1)
+        this.sectionSelected.sectionItems.splice(index, 1);
         console.log(this.sectionSelected.sectionItems.length);
-        console.log(this.idsList)
+        console.log(this.idsList);
     }
 }

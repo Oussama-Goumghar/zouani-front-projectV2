@@ -82,10 +82,12 @@
 
   }
 }
+
 tr.timeline {
   list-style-type: none;
   position: relative;
 }
+
 tr.timeline:before {
   content: '            ';
   background: #d4d9df;
@@ -96,11 +98,13 @@ tr.timeline:before {
   height: 100%;
   z-index: 200;
 }
+
 tr.timeline > li {
   margin: 25px 35px;
   padding-left: 25px;
 
 }
+
 tr.timeline > li:before {
   content: '            ';
   background: white;

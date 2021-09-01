@@ -1,5 +1,5 @@
-import { Component, ElementRef, AfterViewInit, Input, NgModule, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {AfterViewInit, Component, ElementRef, Input, NgModule, ViewChild} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
 @Component({
     selector: 'app-code',
@@ -15,7 +15,8 @@ export class AppCodeComponent implements AfterViewInit {
 
     @ViewChild('code') codeViewChild: ElementRef;
 
-    constructor(public el: ElementRef) { }
+    constructor(public el: ElementRef) {
+    }
 
     ngAfterViewInit() {
         if (window['Prism']) {
@@ -29,4 +30,5 @@ export class AppCodeComponent implements AfterViewInit {
     exports: [AppCodeComponent],
     declarations: [AppCodeComponent]
 })
-export class AppCodeModule { }
+export class AppCodeModule {
+}

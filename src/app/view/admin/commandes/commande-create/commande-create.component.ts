@@ -9,34 +9,10 @@ import {MessageService} from 'primeng/api';
     styleUrls: ['./commande-create.component.scss']
 })
 export class CommandeCreateComponent implements OnInit {
-/* meryam*/
+    /* meryam*/
     constructor(private messageService: MessageService, private service: CommandeService) {
     }
 
-    ngOnInit(): void {
-    }
-
-    public hideCreateDialog() {
-        this.createDialog = false;
-        this.submitted = false;
-    }
-
-    public save() {
-        this.submitted = true;
-        if (this.selected.reference.trim()) {
-            this.service.save().subscribe(data => {
-                this.items.push({...data});
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Successful',
-                    detail: 'Commande Created',
-                    life: 3000
-                });
-            });
-            this.createDialog = false;
-            this.selected = new Commande();
-        }
-    }
     get selected(): Commande {
         return this.service.selected;
     }
@@ -67,6 +43,31 @@ export class CommandeCreateComponent implements OnInit {
 
     set items(value: Array<Commande>) {
         this.service.items = value;
+    }
+
+    ngOnInit(): void {
+    }
+
+    public hideCreateDialog() {
+        this.createDialog = false;
+        this.submitted = false;
+    }
+
+    public save() {
+        this.submitted = true;
+        if (this.selected.reference.trim()) {
+            this.service.save().subscribe(data => {
+                this.items.push({...data});
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Commande Created',
+                    life: 3000
+                });
+            });
+            this.createDialog = false;
+            this.selected = new Commande();
+        }
     }
 
 }

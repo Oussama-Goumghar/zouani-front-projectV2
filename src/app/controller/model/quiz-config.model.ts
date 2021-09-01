@@ -1,5 +1,3 @@
-
-
 export class QuizConfig {
     public id: number;
     public shuffleQuestions: boolean;

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PrimeNGConfig } from 'primeng/api';
-import { MenuService } from './app.menu.service';
+import {Component} from '@angular/core';
+import {PrimeNGConfig} from 'primeng/api';
+import {MenuService} from './app.menu.service';
 import {AppComponent} from './app.component';
 
 @Component({
@@ -49,7 +49,8 @@ export class AppMainComponent {
 
     inlineUserMenuActive = false;
 
-    constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig, public app: AppComponent) { }
+    constructor(private menuService: MenuService, private primengConfig: PrimeNGConfig, public app: AppComponent) {
+    }
 
     onLayoutClick() {
         if (!this.userMenuClick) {
@@ -134,6 +135,7 @@ export class AppMainComponent {
 
         event.preventDefault();
     }
+
     onTopbarNotificationMenuButtonClick2(event) {
         this.notificationMenuClick2 = true;
         this.topbarNotificationMenuActive2 = !this.topbarNotificationMenuActive2;
@@ -142,6 +144,7 @@ export class AppMainComponent {
 
         event.preventDefault();
     }
+
     onTopbarNotificationMenuButtonClick(event) {
         this.notificationMenuClick = true;
         this.topbarNotificationMenuActive = !this.topbarNotificationMenuActive;
@@ -211,10 +214,12 @@ export class AppMainComponent {
         this.overlayMenuActive = false;
         this.staticMenuMobileActive = false;
     }
+
     hideOverlayMenu2() {
         this.overlayMenuActive2 = false;
         this.staticMenuMobileActive2 = false;
     }
+
     blockBodyScroll(): void {
         if (document.body.classList) {
             document.body.classList.add('blocked-scroll');

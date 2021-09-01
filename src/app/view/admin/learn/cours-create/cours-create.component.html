@@ -1,31 +1,36 @@
-<p-dialog [(visible)]="createDialogCours" [style]="{width: '550px'}" header="Course Create" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialogCours" [modal]="true" [style]="{width: '550px'}" header="Course Create"
+          styleClass="p-fluid">
     <ng-template pTemplate="p-field">
         <div class="p-field">
-            <label for="centre" > Parcours </label>
-            <select pInputText class="btn btn-block btn-outline-light form-control" id="centre" style="background-color: lavender" name="Parcours" (click)="findAllParcours()" [(ngModel)]="selectedcours.parcours.id" >
-                <option  selected="selected" *ngFor="let c of itemsparcours"  [ngValue]="c.id"> {{c.libelle}}</option>
+            <label for="centre"> Parcours </label>
+            <select (click)="findAllParcours()" [(ngModel)]="selectedcours.parcours.id" class="btn btn-block btn-outline-light form-control"
+                    id="centre" name="Parcours" pInputText
+                    style="background-color: lavender">
+                <option *ngFor="let c of itemsparcours" [ngValue]="c.id" selected="selected"> {{c.libelle}}</option>
             </select>
-            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.parcours.libelle">parcours is required.</small>
+            <small *ngIf="submittedCours && !selectedcours.parcours.libelle" class="p-invalid">parcours is
+                required.</small>
         </div>
         <div class="p-field">
             <label for="libelle">Title</label>
-            <input type="text" pInputText id="libelle" [(ngModel)]="selectedcours.libelle" required autofocus />
-            <small class="p-invalid" *ngIf="submittedCours && !selectedcours.libelle">ref is required.</small>
+            <input [(ngModel)]="selectedcours.libelle" autofocus id="libelle" pInputText required type="text"/>
+            <small *ngIf="submittedCours && !selectedcours.libelle" class="p-invalid">ref is required.</small>
         </div>
         <div class="p-field">
             <label for="description">Description</label>
-            <input type="text" pInputText id="description" [(ngModel)]="selectedcours.description" required autofocus />
+            <input [(ngModel)]="selectedcours.description" autofocus id="description" pInputText required type="text"/>
         </div>
         <div class="p-field">
             <label for="numeroOrder">Number </label>
-            <input type="text" pInputText id="numeroOrder" [(ngModel)]="selectedcours.numeroOrder" required autofocus />
+            <input [(ngModel)]="selectedcours.numeroOrder" autofocus id="numeroOrder" pInputText required type="text"/>
         </div>
     </ng-template>
 
 
     <ng-template pTemplate="footer" style="background-color: lavender;">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="saveCours()"></button>
+        <button (click)="hideCreateDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
+        <button (click)="saveCours()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
     </ng-template>
 </p-dialog>
 

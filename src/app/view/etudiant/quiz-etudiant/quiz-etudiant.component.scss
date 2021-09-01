@@ -1,44 +1,52 @@
-div{
+div {
   text-align: center;
   width: 1000px;
 }
-#card{
+
+#card {
   height: 600px;
   width: 1050px;
   text-align: center;
   margin-left: 50px;
   background-color: white;
 }
-.card-body{
+
+.card-body {
   height: 450px;
   width: 775px;
 }
-.card-header{
+
+.card-header {
   background-color: black;
   height: 80px;
   color: cyan;
 }
-#quizGrammar{
+
+#quizGrammar {
   margin-left: 450px;
   margin-right: 80px;
   font-size: 45px;
   font-family: Algerian;
   color: cyan;
 }
-.start{
+
+.start {
   visibility: visible;
   font-size: 30px;
 }
-.question{
+
+.question {
   visibility: hidden;
 }
-.question > output{
+
+.question > output {
   font-family: Palatino Linotype;
   font-size: 20px;
   margin-top: 100px;
   margin-bottom: 100px;
 }
-.question_answer{
+
+.question_answer {
   position: relative;
   margin-bottom: 10px;
   display: block;
@@ -53,7 +61,7 @@ div{
   margin-top: 40px;
 }
 
-.question_answer > input{
+.question_answer > input {
   position: absolute;
   left: 0;
   top: 0;
@@ -64,7 +72,7 @@ div{
   opacity: 0;
 }
 
-#finish > output{
+#finish > output {
   margin-top: 50px;
   font-size: 30px;
   font-family: Garamond;
@@ -75,7 +83,7 @@ div{
   margin-top: 50px;
 }
 
-#btn-next{
+#btn-next {
   visibility: hidden;
 }
 

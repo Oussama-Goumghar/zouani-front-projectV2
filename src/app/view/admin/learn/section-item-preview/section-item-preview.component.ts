@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./section-item-preview.component.scss']
 })
 export class SectionItemPreviewComponent implements OnInit {
-    @ViewChild(ImageItemComponent) child:ImageItemComponent;
+    @ViewChild(ImageItemComponent) child: ImageItemComponent;
 
     listItems: SectionItemModel[];
     currentItem: SectionItemModel;
@@ -23,14 +23,14 @@ export class SectionItemPreviewComponent implements OnInit {
     showItems: boolean;
 
 
-    constructor(private messageService: MessageService, private sectionItemService: SectionItemService,private router: Router) {
+    constructor(private messageService: MessageService, private sectionItemService: SectionItemService, private router: Router) {
     }
 
     ngOnInit(): void {
         this.listItems = this.sectionItemService.sectionSelected.sectionItems;
         this.currentItem = this.listItems[0];
-        this.showNext=true
-        this.showPrevious=false
+        this.showNext = true;
+        this.showPrevious = false;
         this.showStart = true;
         this.showItems = false;
         this.showEnd = false;
@@ -39,15 +39,15 @@ export class SectionItemPreviewComponent implements OnInit {
 
     previousItem() {
         const index = this.listItems.indexOf(this.currentItem);
-        if (index>0) {
+        if (index > 0) {
             if (index - 1 >= 0) {
-                this.showNext=true
+                this.showNext = true;
                 this.currentItem = this.listItems[index - 1];
-                this.child.reloadComponent()
+                this.child.reloadComponent();
                 this.showPrevious = true;
-                this.showfinish=false
+                this.showfinish = false;
             }
-            if (index-1 === 0) {
+            if (index - 1 === 0) {
                 this.showPrevious = false;
             }
         }
@@ -55,32 +55,32 @@ export class SectionItemPreviewComponent implements OnInit {
 
     nextItem() {
         const index = this.listItems.indexOf(this.currentItem);
-        if (index+1 === 1) {
-            this.showPrevious=true
+        if (index + 1 === 1) {
+            this.showPrevious = true;
         }
         if (index >= 0 && index < this.listItems.length - 1) {
-            this.child.reloadComponent()
+            this.child.reloadComponent();
             this.currentItem = this.listItems[index + 1];
             this.showNext = true;
-            console.log("Hada howa index"+index+1);
+            console.log('Hada howa index' + index + 1);
 
         }
-        if (index+1 >= this.listItems.length - 1) {
+        if (index + 1 >= this.listItems.length - 1) {
             this.showNext = false;
-            this.showfinish=true
+            this.showfinish = true;
         }
     }
 
     startItem() {
-        this.showItems=true
-        this.showStart=false
-        this.showEnd=false
+        this.showItems = true;
+        this.showStart = false;
+        this.showEnd = false;
     }
 
-      endShow() {
-        this.showItems=false
-        this.showStart=false
-        this.showEnd=true
+    endShow() {
+        this.showItems = false;
+        this.showStart = false;
+        this.showEnd = true;
     }
 
     finish() {

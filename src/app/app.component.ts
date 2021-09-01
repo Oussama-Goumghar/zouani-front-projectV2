@@ -5,7 +5,7 @@ import {PrimeNGConfig} from 'primeng/api';
     selector: 'app-root',
     templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
     layoutMode = 'slim';
 
@@ -23,7 +23,8 @@ export class AppComponent implements OnInit{
 
     ripple = true;
 
-    constructor(private primengConfig: PrimeNGConfig) { }
+    constructor(private primengConfig: PrimeNGConfig) {
+    }
 
     ngOnInit() {
         this.primengConfig.ripple = true;

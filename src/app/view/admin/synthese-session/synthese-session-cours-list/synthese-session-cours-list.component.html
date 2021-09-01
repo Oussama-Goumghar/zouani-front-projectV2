@@ -6,27 +6,28 @@
         <div class="card" style="background-color: gainsboro">
             <p-toolbar styleClass="p-mb-4"><!--style="display: none"-->
                 <ng-template pTemplate="left">
-                    <button pButton pRipple label="New" icon="pi pi-plus" style="width: 90px" class="p-button-success p-mr-2 p-mb-2"
-                            (click)="openCreate()"></button>
-                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2"
-                            (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length"></button>
+                    <button (click)="openCreate()" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="New" pButton
+                            pRipple
+                            style="width: 90px"></button>
+                    <button (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length" class="p-button-danger p-mb-2" icon="pi pi-trash" label="Delete"
+                            pButton pRipple></button>
                 </ng-template>
 
                 <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import"
-                                  chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2"
-                            (click)="dt.exportCSV()"></button>
+                    <p-fileUpload [maxFileSize]="1000000" accept="image/*" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"
+                                  label="Import" mode="basic"></p-fileUpload>
+                    <button (click)="dt.exportCSV()" class="p-button-info p-mb-2" icon="pi pi-upload" label="Export" pButton
+                            pRipple></button>
                 </ng-template>
             </p-toolbar>
             <h1 class="p-m-0">Students</h1>
 
-            <p-table #dt [value]="items" [columns]="cols" [rows]="10" [paginator]="true"
-                     [globalFilterFields]="['reference','username','lastName']"
-                     [(selection)]="selectes" [rowHover]="true" dataKey="id"
-                     styleClass="p-datatable-customers p-datatable-striped"
+            <p-table #dt [(selection)]="selectes" [columns]="cols" [globalFilterFields]="['reference','username','lastName']" [paginator]="true"
+                     [rowHover]="true"
+                     [rows]="10" [showCurrentPageReport]="true" [value]="items"
                      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-                     [showCurrentPageReport]="true">
+                     dataKey="id"
+                     styleClass="p-datatable-customers p-datatable-striped">
                 <ng-template pTemplate="caption" style="display: none">
                     <div class="p-d-flex p-flex-column p-flex-md-column  table-header">
                         <!--  <h5 class="p-m-0">STUDENT</h5><br/>-->
@@ -37,14 +38,14 @@
                                 <a (click)="setEtat(start)" href=""> Start(8) </a>
                                 <a (click)="setEtat(soon)" href=""> Soon(0) </a>
                                 <a href=""> On break(0) </a>-->
-                                <button pButton type="button" label="Active({{this.j}})" class="p-button-text  "
-                                        (click)="setetat(1)" ></button>
-                                <button pButton type="button" label="Start({{m}})" class="p-button-text"
-                                        (click)="setetat(4)"></button>
-                                <button pButton type="button" label="Soon({{k}})" class="p-button-text"
-                                        (click)="setetat(2)"></button>
-                                <button pButton type="button" label="On break({{c}})" class="p-button-text"
-                                        (click)="setetat(3)"></button>
+                                <button (click)="setetat(1)" class="p-button-text  " label="Active({{this.j}})" pButton
+                                        type="button"></button>
+                                <button (click)="setetat(4)" class="p-button-text" label="Start({{m}})" pButton
+                                        type="button"></button>
+                                <button (click)="setetat(2)" class="p-button-text" label="Soon({{k}})" pButton
+                                        type="button"></button>
+                                <button (click)="setetat(3)" class="p-button-text" label="On break({{c}})" pButton
+                                        type="button"></button>
 
                             </div>
                         </div>
@@ -52,7 +53,7 @@
                     </div>
                 </ng-template>
                 <ng-template pTemplate="header">
-                    <tr >
+                    <tr>
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
@@ -74,9 +75,9 @@
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-synthese> <!--*ngIf="etatEtudiant.id==33"-->
+                <ng-template let-synthese pTemplate="body"> <!--*ngIf="etatEtudiant.id==33"-->
 
-                    <tr *ngIf="synthese.etatNumber==etat" ><!--*ngIf="etatEtudiant.etatNumber==etat"-->
+                    <tr *ngIf="synthese.etatNumber==etat"><!--*ngIf="etatEtudiant.etatNumber==etat"-->
                         <td>
                             <p-tableCheckbox [value]="synthese"></p-tableCheckbox>
                         </td>
@@ -91,10 +92,12 @@
                         <td><P class="bold">{{synthese.lastClass}}</P>
                             <a href="lesson_card">Lessons card</a> <br>
                             <!--   <img class="icon" src="img/horloge.png" alt="">-->
-                            <a style="margin-top: 10px;" href="http://localhost:4200/#/pages/synthese" (click)="op.toggle($event)" >History </a>
+                            <a (click)="op.toggle($event)" href="http://localhost:4200/#/pages/synthese"
+                               style="margin-top: 10px;">History </a>
                         </td>
                         <td><p class="bold "> {{synthese.nbrClass}}</p>
-                            <a class="button_class" href="http://localhost:4200/#/pages/synthese"    (click)="incrementer(synthese)">ADD CLASS</a>
+                            <a (click)="incrementer(synthese)" class="button_class"
+                               href="http://localhost:4200/#/pages/synthese">ADD CLASS</a>
                         </td>
                         <td><p>Pre-intermediate for Teens</p>
                             <p class="bold"> Lesson 35</p>
@@ -102,12 +105,12 @@
                         </td>
 
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
-                                    (click)="edit(synthese)"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2"
-                                    (click)="view(synthese)"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                                    (click)="delete(synthese)"></button>
+                            <button (click)="edit(synthese)" class="p-button-rounded p-button-success p-mr-2" icon="pi pi-pencil" pButton
+                                    pRipple></button>
+                            <button (click)="view(synthese)" class="p-button-rounded p-button-info p-mr-2" icon="pi pi-list" pButton
+                                    pRipple></button>
+                            <button (click)="delete(synthese)" class="p-button-rounded p-button-danger" icon="pi pi-trash" pButton
+                                    pRipple></button>
                         </td>
                     </tr>
                 </ng-template>
@@ -129,16 +132,20 @@
         <ng-template pTemplate>
             <p-card>
                 <ng-template pTemplate="header ">
-                    History        </ng-template><br/>
-                <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
+                    History
+                </ng-template>
+                <br/>
+                <p-dropdown [(ngModel)]="selectedCity" [options]="cities" optionLabel="name"></p-dropdown>
                 <ng-template pTemplate="footer">
                     Footer content here
                 </ng-template>
             </p-card>
-            <p-card >
+            <p-card>
                 <ng-template pTemplate="header ">
-                    History        </ng-template><br/>
-                <p-dropdown [options]="cities" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
+                    History
+                </ng-template>
+                <br/>
+                <p-dropdown [(ngModel)]="selectedCity" [options]="cities" optionLabel="name"></p-dropdown>
                 <ng-template pTemplate="footer">
                     Footer content here
                 </ng-template>
@@ -146,5 +153,5 @@
         </ng-template>
     </p-overlayPanel>
 
-    <button type="text" pButton label="Basic" (click)="op.toggle($event)"></button>
+    <button (click)="op.toggle($event)" label="Basic" pButton type="text"></button>
 </div>

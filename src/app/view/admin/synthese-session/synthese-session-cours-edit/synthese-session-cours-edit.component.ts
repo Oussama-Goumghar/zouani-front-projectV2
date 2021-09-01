@@ -14,33 +14,6 @@ export class SyntheseSessionCoursEditComponent implements OnInit {
     constructor(private messageService: MessageService, private service: SyntheseSessionCoursService) {
     }
 
-    ngOnInit(): void {
-    }
-
-    public edit() {
-        this.submitted = true;
-        if (this.selected.reference.trim()) {
-            if (this.selected.id) {
-                this.items[this.service.findIndexById(this.selected.id)] = this.selected;
-                this.service.edit().subscribe(data => {
-                    this.selected = data;
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Successful',
-                        detail: 'Synthes-Sesseion-Cours Updated',
-                        life: 3000
-                    });
-                });
-            }
-            this.editDialog = false;
-            this.selected = new SyntheseSessionCours();
-        }
-    }
-
-    public hideEditDialog() {
-        this.editDialog = false;
-    }
-
     get selected(): SyntheseSessionCours {
         return this.service.selected;
     }
@@ -71,5 +44,32 @@ export class SyntheseSessionCoursEditComponent implements OnInit {
 
     set items(value: Array<SyntheseSessionCours>) {
         this.service.items = value;
+    }
+
+    ngOnInit(): void {
+    }
+
+    public edit() {
+        this.submitted = true;
+        if (this.selected.reference.trim()) {
+            if (this.selected.id) {
+                this.items[this.service.findIndexById(this.selected.id)] = this.selected;
+                this.service.edit().subscribe(data => {
+                    this.selected = data;
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Successful',
+                        detail: 'Synthes-Sesseion-Cours Updated',
+                        life: 3000
+                    });
+                });
+            }
+            this.editDialog = false;
+            this.selected = new SyntheseSessionCours();
+        }
+    }
+
+    public hideEditDialog() {
+        this.editDialog = false;
     }
 }

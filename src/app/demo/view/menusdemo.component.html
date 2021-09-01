@@ -5,7 +5,7 @@
             <p-menubar [model]="tieredItems">
                 <ng-template pTemplate="end">
                     <span class="p-input-icon-right">
-                        <input type="text" pInputText placeholder="Search">
+                        <input pInputText placeholder="Search" type="text">
                         <i class="pi pi-search"></i>
                     </span>
                 </ng-template>
@@ -16,21 +16,21 @@
     <div class="p-col-12">
         <div class="card">
             <h5>Breadcrumb</h5>
-            <p-breadcrumb [model]="breadcrumbItems" [home]="{icon: 'pi pi-home'}"></p-breadcrumb>
+            <p-breadcrumb [home]="{icon: 'pi pi-home'}" [model]="breadcrumbItems"></p-breadcrumb>
         </div>
     </div>
 
     <div class="p-col-12 p-md-6">
         <div class="card">
             <h5>Steps</h5>
-            <p-steps [model]="stepsItems" [activeIndex]="1"></p-steps>
+            <p-steps [activeIndex]="1" [model]="stepsItems"></p-steps>
         </div>
     </div>
 
     <div class="p-col-12 p-md-6">
         <div class="card">
             <h5>TabMenu</h5>
-            <p-tabMenu [model]="tabMenuItems" [activeItem]="tabMenuItems[0]"></p-tabMenu>
+            <p-tabMenu [activeItem]="tabMenuItems[0]" [model]="tabMenuItems"></p-tabMenu>
         </div>
     </div>
 
@@ -42,8 +42,9 @@
 
         <div class="card">
             <h5>MenuButton</h5>
-            <p-menu #menu [popup]="true" [model]="menuItems" [style]="{'width':'250px'}"></p-menu>
-            <button type="button" pButton icon="pi pi-chevron-down" label="Options" (click)="menu.toggle($event)" style="width:auto"></button>
+            <p-menu #menu [model]="menuItems" [popup]="true" [style]="{'width':'250px'}"></p-menu>
+            <button (click)="menu.toggle($event)" icon="pi pi-chevron-down" label="Options" pButton style="width:auto"
+                    type="button"></button>
         </div>
     </div>
 
@@ -64,7 +65,7 @@
 
         <div class="card">
             <h5>SlideMenu</h5>
-            <p-slideMenu [model]="slideItems" [viewportHeight]="250" [menuWidth]="175"></p-slideMenu>
+            <p-slideMenu [menuWidth]="175" [model]="slideItems" [viewportHeight]="250"></p-slideMenu>
         </div>
     </div>
 
@@ -74,7 +75,7 @@
             <p-megaMenu [model]="megaMenuItems"></p-megaMenu>
 
             <h5>MegaMenu - Vertical</h5>
-            <p-megaMenu [model]="megaMenuItems" orientation="vertical" [style]="{'width':'200px'}"></p-megaMenu>
+            <p-megaMenu [model]="megaMenuItems" [style]="{'width':'200px'}" orientation="vertical"></p-megaMenu>
         </div>
     </div>
 

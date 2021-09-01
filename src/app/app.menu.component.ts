@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { trigger, state, style, transition, animate } from '@angular/animations';
-import { AppComponent } from './app.component';
-import { AppMainComponent } from './app.main.component';
+import {Component, OnInit} from '@angular/core';
+import {animate, state, style, transition, trigger} from '@angular/animations';
+import {AppComponent} from './app.component';
+import {AppMainComponent} from './app.main.component';
 import {LoginService} from './controller/service/login.service';
 import {Prof} from './controller/model/prof.model';
 import {Admin} from './controller/model/admin.model';
@@ -33,9 +33,10 @@ import {Etudiant} from './controller/model/etudiant.model';
 })
 export class AppMenuComponent implements OnInit {
 
-   // model: any[];
+    // model: any[];
 
-    constructor(public app: AppComponent, public appMain: AppMainComponent, private service: LoginService) { }
+    constructor(public app: AppComponent, public appMain: AppMainComponent, private service: LoginService) {
+    }
 
     get model(): any[] {
         return this.service.model;

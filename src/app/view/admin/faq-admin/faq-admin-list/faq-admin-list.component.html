@@ -1,13 +1,15 @@
 <div>
-    <p-dropdown id="destinataire" pInputText [options]="utilisateurs" [(ngModel)]="utilisateur" (click)="findTypes()" optionLabel="label"></p-dropdown>
+    <p-dropdown (click)="findTypes()" [(ngModel)]="utilisateur" [options]="utilisateurs" id="destinataire" optionLabel="label"
+                pInputText></p-dropdown>
 </div>
-<p-tabMenu [model]="menu" [activeItem]="menu[0]" (click)="init()"></p-tabMenu>
+<p-tabMenu (click)="init()" [activeItem]="menu[0]" [model]="menu"></p-tabMenu>
 <p-tree [value]="nodes">
-    <ng-template let-node pTemplate="default" >
+    <ng-template let-node pTemplate="default">
         <b class="libelle">{{node.label}}</b>
     </ng-template>
-    <ng-template let-node pTemplate="string" >
+    <ng-template let-node pTemplate="string">
         <b class="description" style="color: blue">{{node.label}}</b>
     </ng-template>
 </p-tree>
-<button pButton pRipple class="p-button-rounded p-button-success p-mr-2" style="background-color: #0C8990" label="Create new FAQ" [routerLink]="['/pages/faq-create']"></button>
+<button [routerLink]="['/pages/faq-create']" class="p-button-rounded p-button-success p-mr-2" label="Create new FAQ" pButton
+        pRipple style="background-color: #0C8990"></button>

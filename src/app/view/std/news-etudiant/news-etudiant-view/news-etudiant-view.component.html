@@ -1,4 +1,4 @@
-<p-dialog [(visible)]="viewDialogNews" [style]="{width: '800px'}"  [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialogNews" [modal]="true" [style]="{width: '800px'}" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="box">
             <h2>{{this.selected.libelle}}</h2>
@@ -9,6 +9,7 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
     </ng-template>
 </p-dialog>

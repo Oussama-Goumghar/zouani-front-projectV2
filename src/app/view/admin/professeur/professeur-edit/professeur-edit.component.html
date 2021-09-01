@@ -1,46 +1,47 @@
-<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Professor Edit" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="editDialog" [modal]="true" [style]="{width: '450px'}" header="Professor Edit"
+          styleClass="p-fluid">
     <ng-template pTemplate="content">
 
         <div class="p-field">
             <label for="firstName">First Name</label>
-            <input type="text" pInputText id="firstName" [(ngModel)]="selected.prenom" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.prenom">First Name is required.</small>
+            <input [(ngModel)]="selected.prenom" autofocus id="firstName" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.prenom" class="p-invalid">First Name is required.</small>
         </div>
 
         <div class="p-field">
             <label for="firstName">Last Name</label>
-            <input type="text" pInputText id="lastName" [(ngModel)]="selected.nom" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.nom">Last Name is required.</small>
+            <input [(ngModel)]="selected.nom" autofocus id="lastName" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.nom" class="p-invalid">Last Name is required.</small>
         </div>
         <div class="p-field">
             <label for="login">Username</label>
-            <input type="text" pInputText id="login" [(ngModel)]="selected.login" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.login">UserName is required.</small>
+            <input [(ngModel)]="selected.login" autofocus id="login" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.login" class="p-invalid">UserName is required.</small>
         </div>
         <div class="p-field">
             <label for="pass">Password</label>
-            <input type="text" pInputText id="pass" [(ngModel)]="selected.password" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.login">Password is required.</small>
+            <input [(ngModel)]="selected.password" autofocus id="pass" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.login" class="p-invalid">Password is required.</small>
         </div>
         <div class="p-field">
             <label for="phoneNumber">Phone Number</label>
-            <input type="text" pInputText id="phoneNumber" [(ngModel)]="selected.numero" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.numero">Phone Number is required.</small>
+            <input [(ngModel)]="selected.numero" autofocus id="phoneNumber" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.numero" class="p-invalid">Phone Number is required.</small>
         </div>
 
         <div class="p-field">
             <label for="email">Email</label>
-            <input type="text" pInputText id="email" [(ngModel)]="selected.email" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.email">email is required.</small>
+            <input [(ngModel)]="selected.email" autofocus id="email" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.email" class="p-invalid">email is required.</small>
         </div>
-
 
 
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
-        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
+        <button (click)="hideEditDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
+        <button (click)="edit()" class="p-button-text" icon="pi pi-check" label="Edit" pButton pRipple></button>
     </ng-template>
 </p-dialog>
 

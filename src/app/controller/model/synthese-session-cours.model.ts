@@ -1,5 +1,5 @@
 export class SyntheseSessionCours {
- public id: number;
+    public id: number;
     public reference: string;
     public username: string;
     public firstName: string;
@@ -11,5 +11,5 @@ export class SyntheseSessionCours {
     public lastClass: string;
     public etat: string;
     public etatNumber: number;
-    public nbrClass:number=0;
+    public nbrClass: number = 0;
 }

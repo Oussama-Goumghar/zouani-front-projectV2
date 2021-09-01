@@ -2,12 +2,13 @@
     <p-dataView [value]="etudiantsClassroom">
         <ng-template let-classes pTemplate="listItem">
             <div class="p-grid">
-                <div class="p-col-4" >
+                <div class="p-col-4">
                     <div class="box">
                         <h4>{{classes.classRoom.libelle}}</h4>
                         <h4>{{classes.classRoom.description}}</h4>
                         <h4>{{classes.classRoom.responsable.prenom}} {{classes.classRoom.responsable.nom}}</h4>
-                        <button pButton pRipple class="p-button-rounded p-button-success p-mr-2" (click)="view(classes)" [routerLink]="['/pages/quiz-liste']"></button>
+                        <button (click)="view(classes)" [routerLink]="['/pages/quiz-liste']" class="p-button-rounded p-button-success p-mr-2" pButton
+                                pRipple></button>
                     </div>
                 </div>
             </div>

@@ -5,10 +5,10 @@ export class Vocabulary {
     public numero: number;
     public libelle: string;
     public section = new Section();
-    public  word: string;
+    public word: string;
     public result: string;
     public explication: string;
-    public  exemple: string;
-    public image: string ;
+    public exemple: string;
+    public image: string;
     public ref: string;
 }

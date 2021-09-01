@@ -19,56 +19,27 @@ import {SectionItemService} from '../../../../controller/service/section-item.se
 })
 export class SectionListComponent implements OnInit {
 
-  cols: any[];
-  // tslint:disable-next-line:max-line-length no-shadowed-variable
-  constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService , private router: Router, private VocabularyService: VocabularyService, private sectionItemService: SectionItemService) { }
-  ngOnInit(): void {
-    this.initCol();
-    this.quizService.section.id = this.selectedsection.id;
-    this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
-    this.quizService.findAllQuiz().subscribe(
-        data => {
-          this.quizItems = data;
-        }
-    );
-  }
-  public openCreateSection() {
-    this.submittedSection = false;
-    this.createDialogSection = true;
-    this.selectedsection = new Section();
-  }
-  public findAllQuiz(){
-    this.quizService.findAllQuiz().subscribe(
-        data => {
-          this.quizItems = data;
-        }
-    );
-  }
-  public findQuiz(section: Section){
-    this.quizService.findQuizBySectionId(section).subscribe(
-        data => {
-          this.selectedQuiz = data;
-        }, error =>
-        {
-          // tslint:disable-next-line:no-unused-expression
-          this.selectedQuiz == null;
-        });
-  }
-  get selectedQuiz(): Quiz {
-    return this.quizService.selectedQuiz;
-  }
+    cols: any[];
 
-    set quizItems(value: Array<Quiz>) {
-        this.quizService.quizItems = value;
+    // tslint:disable-next-line:max-line-length no-shadowed-variable
+    constructor(private serviceQuiz: QuizService, private quizService: QuizEtudiantService, private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService, private router: Router, private VocabularyService: VocabularyService, private sectionItemService: SectionItemService) {
+    }
+
+    get selectedQuiz(): Quiz {
+        return this.quizService.selectedQuiz;
+    }
+
+    // tslint:disable-next-line:adjacent-overload-signatures
+    set selectedQuiz(value: Quiz) {
+        this.quizService.selectedQuiz = value;
     }
 
     get quizItems(): Array<Quiz> {
         return this.quizService.quizItems;
     }
 
-    // tslint:disable-next-line:adjacent-overload-signatures
-    set selectedQuiz(value: Quiz) {
-        this.quizService.selectedQuiz = value;
+    set quizItems(value: Array<Quiz>) {
+        this.quizService.quizItems = value;
     }
 
     get idSection(): number {
@@ -79,36 +50,12 @@ export class SectionListComponent implements OnInit {
         this.VocabularyService.idSection = value;
     }
 
-    private initCol() {
-        this.cols = [
-            {field: 'id', header: 'Id'},
-            {field: 'libelle', header: 'Libelle'},
-            {field: 'code', header: 'Code'},
-            {field: 'questions', header: 'Questions'},
-            {field: 'urlVideo', header: 'UrlVideo'},
-            {field: 'urlImage3', header: 'UrlImage3'},
-            {field: 'urlImage2', header: 'UrlImage2'},
-            {field: 'urlImage', header: 'UrlImage'},
-            {field: 'contenu', header: 'Contenu'},
-            {field: 'content', header: 'Content'},
-            {field: 'indicationProf', header: 'IndicationProf'},
-            {field: 'cours', header: 'Cours'},
-            {field: 'categorieSection', header: 'CategorieSection'},
-            {field: 'url', header: 'Url'},
-            {field: 'superCategorieSection', header: 'SuperCategorieSection'}
-        ];
-    }
-
-    set selectedsection(value: Section) {
-        this.service.selectedsection = value;
+    get itemssection(): Array<Section> {
+        return this.service.itemssection;
     }
 
     set itemssection(value: Array<Section>) {
         this.service.itemssection = value;
-    }
-
-    get itemssection(): Array<Section> {
-        return this.service.itemssection;
     }
 
     get selectessection(): Array<Section> {
@@ -117,16 +64,6 @@ export class SectionListComponent implements OnInit {
 
     set selectessection(value: Array<Section>) {
         this.service.selectessection = value;
-    }
-
-    public editSection(sections: Section) {
-        this.selectedsection = {...sections};
-        this.editDialogSection = true;
-    }
-
-    public view(sections: Section) {
-        this.selectedsection = {...sections};
-        this.viewDialogSection = true;
     }
 
     get createDialogSection(): boolean {
@@ -166,6 +103,55 @@ export class SectionListComponent implements OnInit {
         return this.service.selectedsection;
     }
 
+    set selectedsection(value: Section) {
+        this.service.selectedsection = value;
+    }
+
+    ngOnInit(): void {
+        this.initCol();
+        this.quizService.section.id = this.selectedsection.id;
+        this.quizService.findQuizSection().subscribe(data => this.selectedQuiz = data);
+        this.quizService.findAllQuiz().subscribe(
+            data => {
+                this.quizItems = data;
+            }
+        );
+    }
+
+    public openCreateSection() {
+        this.submittedSection = false;
+        this.createDialogSection = true;
+        this.selectedsection = new Section();
+    }
+
+    public findAllQuiz() {
+        this.quizService.findAllQuiz().subscribe(
+            data => {
+                this.quizItems = data;
+            }
+        );
+    }
+
+    public findQuiz(section: Section) {
+        this.quizService.findQuizBySectionId(section).subscribe(
+            data => {
+                this.selectedQuiz = data;
+            }, error => {
+                // tslint:disable-next-line:no-unused-expression
+                this.selectedQuiz == null;
+            });
+    }
+
+    public editSection(sections: Section) {
+        this.selectedsection = {...sections};
+        this.editDialogSection = true;
+    }
+
+    public view(sections: Section) {
+        this.selectedsection = {...sections};
+        this.viewDialogSection = true;
+    }
+
     public delete(sections: Section) {
         this.selectedsection = sections;
         this.confirmationService.confirm({
@@ -186,7 +172,6 @@ export class SectionListComponent implements OnInit {
             }
         });
     }
-
 
     public deleteMultiple() {
         this.confirmationService.confirm({
@@ -233,11 +218,31 @@ export class SectionListComponent implements OnInit {
         this.sectionItemService.sectionSelected = section;
 
         this.sectionItemService.getSectionItems().subscribe(data => {
-            this.sectionItemService.sectionSelected.sectionItems=data
-            console.log(data)
+            this.sectionItemService.sectionSelected.sectionItems = data;
+            console.log(data);
             this.router.navigate(['/pages/create-section-items']);
         });
 
 
+    }
+
+    private initCol() {
+        this.cols = [
+            {field: 'id', header: 'Id'},
+            {field: 'libelle', header: 'Libelle'},
+            {field: 'code', header: 'Code'},
+            {field: 'questions', header: 'Questions'},
+            {field: 'urlVideo', header: 'UrlVideo'},
+            {field: 'urlImage3', header: 'UrlImage3'},
+            {field: 'urlImage2', header: 'UrlImage2'},
+            {field: 'urlImage', header: 'UrlImage'},
+            {field: 'contenu', header: 'Contenu'},
+            {field: 'content', header: 'Content'},
+            {field: 'indicationProf', header: 'IndicationProf'},
+            {field: 'cours', header: 'Cours'},
+            {field: 'categorieSection', header: 'CategorieSection'},
+            {field: 'url', header: 'Url'},
+            {field: 'superCategorieSection', header: 'SuperCategorieSection'}
+        ];
     }
 }

@@ -11,20 +11,93 @@ export class SyntheseSessionCoursService {
 
 
     private url = environment.baseUrl + 'etat/';
-    private _items: Array<SyntheseSessionCours>;
-    private _selected: SyntheseSessionCours;
-    private _selectes: Array<SyntheseSessionCours>;
 
-    private _createDialog: boolean;
-    private _editDialog: boolean;
-    private _viewDialog: boolean;
-    private _submitted: boolean;
+    // }
+    constructor(private http: HttpClient) {
+    }
+
+    private _items: Array<SyntheseSessionCours>;
+
+    get items(): Array<SyntheseSessionCours> {
+        if (this._items == null) {
+            this._items = new Array<SyntheseSessionCours>();
+        }
+        return this._items;
+    }
+
+    set items(value: Array<SyntheseSessionCours>) {
+        this._items = value;
+    }
+
+    private _selected: SyntheseSessionCours;
+
+    get selected(): SyntheseSessionCours {
+        if (this._selected == null) {
+            this._selected = new SyntheseSessionCours();
+        }
+        return this._selected;
+    }
+
+    set selected(value: SyntheseSessionCours) {
+        this._selected = value;
+    }
 
 
     // constructor(private messageService: MessageService,
     //             private confirmationService: ConfirmationService, private http: HttpClient) {
-    // }
-    constructor(private http: HttpClient) {
+
+    private _selectes: Array<SyntheseSessionCours>;
+
+    get selectes(): Array<SyntheseSessionCours> {
+        if (this._selectes == null) {
+            this._selectes = new Array<SyntheseSessionCours>();
+        }
+        return this._selectes;
+    }
+
+    set selectes(value: Array<SyntheseSessionCours>) {
+        this._selectes = value;
+    }
+
+    private _createDialog: boolean;
+
+    get createDialog(): boolean {
+
+        return this._createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this._createDialog = value;
+    }
+
+    private _editDialog: boolean;
+
+    get editDialog(): boolean {
+        return this._editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this._editDialog = value;
+    }
+
+    private _viewDialog: boolean;
+
+    get viewDialog(): boolean {
+        return this._viewDialog;
+    }
+
+    set viewDialog(value: boolean) {
+        this._viewDialog = value;
+    }
+
+    private _submitted: boolean;
+
+    get submitted(): boolean {
+        return this._submitted;
+    }
+
+    set submitted(value: boolean) {
+        this._submitted = value;
     }
 
     public findAll(): Observable<Array<SyntheseSessionCours>> {
@@ -57,10 +130,10 @@ export class SyntheseSessionCoursService {
         }
         return index;
     }
-public lent():number{
-        return this.items.length;
-}
 
+    public lent(): number {
+        return this.items.length;
+    }
 
     public deleteIndexById(id: number) {
         this.items.splice(this.findIndexById(id), 1);
@@ -70,75 +143,6 @@ public lent():number{
         for (const item of this.selectes) {
             this.deleteIndexById(item.id);
         }
-    }
-
-    get items(): Array<SyntheseSessionCours> {
-        if (this._items == null) {
-            this._items = new Array<SyntheseSessionCours>();
-        }
-        return this._items;
-    }
-
-    set items(value: Array<SyntheseSessionCours>) {
-        this._items = value;
-    }
-
-    get selected(): SyntheseSessionCours {
-        if (this._selected == null) {
-            this._selected = new SyntheseSessionCours();
-        }
-        return this._selected;
-    }
-
-    set selected(value: SyntheseSessionCours) {
-        this._selected = value;
-    }
-
-    get selectes(): Array<SyntheseSessionCours> {
-        if (this._selectes == null) {
-            this._selectes = new Array<SyntheseSessionCours>();
-        }
-        return this._selectes;
-    }
-
-
-
-    set selectes(value: Array<SyntheseSessionCours>) {
-        this._selectes = value;
-    }
-
-
-    get createDialog(): boolean {
-
-        return this._createDialog;
-    }
-
-    set createDialog(value: boolean) {
-        this._createDialog = value;
-    }
-
-    get editDialog(): boolean {
-        return this._editDialog;
-    }
-
-    set editDialog(value: boolean) {
-        this._editDialog = value;
-    }
-
-    get submitted(): boolean {
-        return this._submitted;
-    }
-
-    set submitted(value: boolean) {
-        this._submitted = value;
-    }
-
-    get viewDialog(): boolean {
-        return this._viewDialog;
-    }
-
-    set viewDialog(value: boolean) {
-        this._viewDialog = value;
     }
 
 

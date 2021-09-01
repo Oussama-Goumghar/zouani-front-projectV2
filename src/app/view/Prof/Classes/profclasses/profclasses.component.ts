@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-profclasses',
-  templateUrl: './profclasses.component.html',
-  styleUrls: ['./profclasses.component.scss']
+    selector: 'app-profclasses',
+    templateUrl: './profclasses.component.html',
+    styleUrls: ['./profclasses.component.scss']
 })
 export class ProfclassesComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

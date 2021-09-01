@@ -12,23 +12,25 @@ import {SessionCours} from '../model/session-cours.model';
 })
 export class ProfessorService {
     private url = environment.baseUrl + 'prof/';
-    private _items: Array<Prof>;
-    private _itemsSession: Array<SessionCours>;
-    private _selected: Prof;
-    private _selectes: Array<Prof>;
 
-    private _createDialog: boolean;
-    private _editDialog: boolean;
-    private _viewDialog: boolean;
-    private _submitted: boolean;
-    private _itemsPaiement: Array<Paiement>;
-    private _selectedPaiement: Paiement;
-    private _viewDialogProf: boolean;
-
-    private _paiement: Paiement;
-    public afficheSession(id: number): Observable<Array<SessionCours>> {
-        return   this.http.get<Array<SessionCours>>('http://localhost:8036/learn/session/prof/id/' + id );
+    // }
+    constructor(private http: HttpClient) {
     }
+
+    private _items: Array<Prof>;
+
+    get items(): Array<Prof> {
+        if (this._items == null) {
+            this._items = new Array<Prof>();
+        }
+        return this._items;
+    }
+
+    set items(value: Array<Prof>) {
+        this._items = value;
+    }
+
+    private _itemsSession: Array<SessionCours>;
 
     get itemsSession(): Array<SessionCours> {
         return this._itemsSession;
@@ -38,47 +40,80 @@ export class ProfessorService {
         this._itemsSession = value;
     }
 
-    get paiement(): Paiement {
-        if (this._paiement == null)
-        {
-            this._paiement = new Paiement();
+    private _selected: Prof;
+
+    get selected(): Prof {
+        if (this._selected == null) {
+            this._selected = new Prof();
         }
-        return this._paiement;
+        return this._selected;
     }
 
-    get viewDialogProf(): boolean {
-        return this._viewDialogProf;
+    set selected(value: Prof) {
+        this._selected = value;
     }
 
-    set viewDialogProf(value: boolean) {
-        this._viewDialogProf = value;
-    }
+    private _selectes: Array<Prof>;
 
-    // tslint:disable-next-line:adjacent-overload-signatures
-    set paiement(value: Paiement) {
-        this._paiement = value;
-    }
-
-    /*paiement*/
-    public paiementProf(): Observable<Array<Paiement>> {
-        return this.http.get<Array<Paiement>>('http://localhost:8036/learn//prof/paiement');
-    }
-
-
-
-
-    get selectedPaiement(): Paiement {
-        if (this._selectedPaiement == null){
-            this._selectedPaiement = new Paiement();
+    get selectes(): Array<Prof> {
+        if (this._selectes == null) {
+            this._selectes = new Array<Prof>();
         }
-        return this._selectedPaiement;
+        return this._selectes;
     }
 
-    set selectedPaiement(value: Paiement) {
-        this._selectedPaiement = value;
+    set selectes(value: Array<Prof>) {
+        this._selectes = value;
     }
+
+    private _createDialog: boolean;
+
+    get createDialog(): boolean {
+        return this._createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this._createDialog = value;
+    }
+
+    private _editDialog: boolean;
+
+    get editDialog(): boolean {
+        return this._editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this._editDialog = value;
+    }
+
+    private _viewDialog: boolean;
+
+    get viewDialog(): boolean {
+        return this._viewDialog;
+    }
+
+    set viewDialog(value: boolean) {
+        this._viewDialog = value;
+    }
+
+    private _submitted: boolean;
+
+    get submitted(): boolean {
+        return this._submitted;
+    }
+
+
+    // constructor(private messageService: MessageService,
+    //             private confirmationService: ConfirmationService, private http: HttpClient) {
+
+    set submitted(value: boolean) {
+        this._submitted = value;
+    }
+
+    private _itemsPaiement: Array<Paiement>;
+
     get itemsPaiement(): Array<Paiement> {
-        if (this._itemsPaiement == null){
+        if (this._itemsPaiement == null) {
             this._itemsPaiement = new Array<Paiement>();
         }
         return this._itemsPaiement;
@@ -88,24 +123,64 @@ export class ProfessorService {
         this._itemsPaiement = value;
     }
 
+    private _selectedPaiement: Paiement;
 
-
-
-    // constructor(private messageService: MessageService,
-    //             private confirmationService: ConfirmationService, private http: HttpClient) {
-    // }
-    constructor(private http: HttpClient) {
+    get selectedPaiement(): Paiement {
+        if (this._selectedPaiement == null) {
+            this._selectedPaiement = new Paiement();
+        }
+        return this._selectedPaiement;
     }
-    findByCriteria(): Observable<Array<Prof>>{
+
+    set selectedPaiement(value: Paiement) {
+        this._selectedPaiement = value;
+    }
+
+    private _viewDialogProf: boolean;
+
+    get viewDialogProf(): boolean {
+        return this._viewDialogProf;
+    }
+
+    set viewDialogProf(value: boolean) {
+        this._viewDialogProf = value;
+    }
+
+    private _paiement: Paiement;
+
+    get paiement(): Paiement {
+        if (this._paiement == null) {
+            this._paiement = new Paiement();
+        }
+        return this._paiement;
+    }
+
+    // tslint:disable-next-line:adjacent-overload-signatures
+    set paiement(value: Paiement) {
+        this._paiement = value;
+    }
+
+    public afficheSession(id: number): Observable<Array<SessionCours>> {
+        return this.http.get<Array<SessionCours>>('http://localhost:8036/learn/session/prof/id/' + id);
+    }
+
+    /*paiement*/
+    public paiementProf(): Observable<Array<Paiement>> {
+        return this.http.get<Array<Paiement>>('http://localhost:8036/learn//prof/paiement');
+    }
+
+    findByCriteria(): Observable<Array<Prof>> {
         return this.http.post<Array<Prof>>('http://localhost:8036/learn/prof/search', this.selected);
     }
 
     public findAll(): Observable<Array<Prof>> {
         return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof/');
     }
+
     public Search(): Observable<Array<Prof>> {
         return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof/nom/' + this.selected.nom);
     }
+
     public save(): Observable<Prof> {
         return this.http.post<Prof>('http://localhost:8036/learn/prof/', this.selected);
     }
@@ -127,8 +202,9 @@ export class ProfessorService {
     }
 
     public findSessionNonPayer(id: number): Observable<Array<SessionCours>> {
-    return this.http.get<Array<SessionCours>>('http://localhost:8036/learn/prof/sessionNonPayer/prof/id/' + id);
-}
+        return this.http.get<Array<SessionCours>>('http://localhost:8036/learn/prof/sessionNonPayer/prof/id/' + id);
+    }
+
     public findIndexById(id: number): number {
         let index = -1;
         for (let i = 0; i < this.items.length; i++) {
@@ -148,71 +224,5 @@ export class ProfessorService {
         for (const item of this.selectes) {
             this.deleteIndexById(item.id);
         }
-    }
-
-    get items(): Array<Prof> {
-        if (this._items == null){
-            this._items = new Array<Prof>();
-        }
-        return this._items;
-    }
-
-    set items(value: Array<Prof>) {
-        this._items = value;
-    }
-
-    get selected(): Prof {
-        if (this._selected == null){
-            this._selected = new Prof();
-        }
-        return this._selected;
-    }
-
-    set selected(value: Prof) {
-        this._selected = value;
-    }
-
-    get selectes(): Array<Prof> {
-        if (this._selectes == null){
-            this._selectes = new Array<Prof>();
-        }
-        return this._selectes;
-    }
-
-    set selectes(value: Array<Prof>) {
-        this._selectes = value;
-    }
-
-
-    get createDialog(): boolean {
-        return this._createDialog;
-    }
-
-    set createDialog(value: boolean) {
-        this._createDialog = value;
-    }
-
-    get editDialog(): boolean {
-        return this._editDialog;
-    }
-
-    set editDialog(value: boolean) {
-        this._editDialog = value;
-    }
-
-    get submitted(): boolean {
-        return this._submitted;
-    }
-
-    set submitted(value: boolean) {
-        this._submitted = value;
-    }
-
-    get viewDialog(): boolean {
-        return this._viewDialog;
-    }
-
-    set viewDialog(value: boolean) {
-        this._viewDialog = value;
     }
 }

@@ -5,7 +5,7 @@ import {PrimeIcons} from 'primeng/api';
     templateUrl: './app.timelinedemo.component.html',
     styleUrls: ['./app.timelinedemo.scss']
 })
-export class AppTimelineDemoComponent implements OnInit{
+export class AppTimelineDemoComponent implements OnInit {
 
     customEvents: any[];
 

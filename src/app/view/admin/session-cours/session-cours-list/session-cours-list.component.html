@@ -1,5 +1,5 @@
-
-<p-dialog [(visible)]="viewDialogProf" [style]="{width: '1200px'}" header="Session Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialogProf" [modal]="true" [style]="{width: '1200px'}" header="Session Details"
+          styleClass="p-fluid">
     <div class="p-grid ">
         <div class="p-col">
             <p-toast></p-toast>
@@ -8,43 +8,58 @@
 
 
                     <ng-template pTemplate="right">
-                        <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
-                        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2" (click)="dt.exportCSV()"></button>
+                        <p-fileUpload [maxFileSize]="1000000" accept="image/*" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"
+                                      label="Import" mode="basic"></p-fileUpload>
+                        <button (click)="dt.exportCSV()" class="p-button-info p-mb-2" icon="pi pi-upload" label="Export" pButton
+                                pRipple></button>
                     </ng-template>
                 </p-toolbar>
 
-                <p-table #dt [value]="itemsSession" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','professor','student','start at','finish at','duration']"
-                         [(selection)]="selectes" [rowHover]="true" dataKey="id"
-                         styleClass="p-datatable-customers"
-                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                <p-table #dt [(selection)]="selectes" [columns]="cols" [globalFilterFields]="['reference','professor','student','start at','finish at','duration']" [paginator]="true"
+                         [rowHover]="true"
+                         [rows]="4" [showCurrentPageReport]="true" [value]="itemsSession"
+                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                         dataKey="id"
+                         styleClass="p-datatable-customers">
                     <ng-template pTemplate="caption">
                         <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                            <div class="p-col"> <h5 class="p-m-0">Manage Sessions</h5><br>
-                                <span >
+                            <div class="p-col"><h5 class="p-m-0">Manage Sessions</h5><br>
+                                <span>
                         <!--<input pInputText type="text"  placeholder="Search by teacher LastName" [(ngModel)]="selected.prof.nom  " style="margin-right: 10px;width: 200px"/>
                         <input pInputText type="text"  placeholder="Search by student LastName" [(ngModel)]="selected.etudiant.nom  " style="margin-right: 10px;width: 200px"/>-->
 
 
-             <i class="pi pi-search"  (click)="findByCriteria()"></i>
+             <i (click)="findByCriteria()" class="pi pi-search"></i>
 
                     </span>
-                            </div></div>
+                            </div>
+                        </div>
                     </ng-template>
                     <ng-template pTemplate="header">
                         <tr>
                             <th style="width: 3rem">
                                 <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                             </th>
-                            <th pSortableColumn="professor">Teacher LastName <p-sortIcon field="professor"></p-sortIcon></th>
-                            <th pSortableColumn="student">Student LastName  <p-sortIcon field="student"></p-sortIcon></th>
-                            <th pSortableColumn="start at">Start at <p-sortIcon field="dateDebut"></p-sortIcon></th>
-                            <th pSortableColumn="student">finish at <p-sortIcon field="dateFin"></p-sortIcon></th>
-                            <th pSortableColumn="duration">Duration <p-sortIcon field="duration"></p-sortIcon></th>
+                            <th pSortableColumn="professor">Teacher LastName
+                                <p-sortIcon field="professor"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="student">Student LastName
+                                <p-sortIcon field="student"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="start at">Start at
+                                <p-sortIcon field="dateDebut"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="student">finish at
+                                <p-sortIcon field="dateFin"></p-sortIcon>
+                            </th>
+                            <th pSortableColumn="duration">Duration
+                                <p-sortIcon field="duration"></p-sortIcon>
+                            </th>
 
                             <th></th>
                         </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-sessionCours>
+                    <ng-template let-sessionCours pTemplate="body">
                         <tr>
                             <td>
                                 <p-tableCheckbox [value]="sessionCours"></p-tableCheckbox>
@@ -56,11 +71,14 @@
                             <td>{{sessionCours.duree}}</td>
 
 
-
                             <td>
-                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(sessionCours)"></button>
-                                <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(sessionCours)"></button>
-                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(sessionCours)"></button>
+                                <button (click)="edit(sessionCours)" class="p-button-rounded p-button-success p-mr-2" icon="pi pi-pencil"
+                                        pButton
+                                        pRipple></button>
+                                <button (click)="view(sessionCours)" class="p-button-rounded p-button-info p-mr-2" icon="pi pi-list" pButton
+                                        pRipple></button>
+                                <button (click)="delete(sessionCours)" class="p-button-rounded p-button-danger" icon="pi pi-trash" pButton
+                                        pRipple></button>
                             </td>
                         </tr>
                     </ng-template>
@@ -80,9 +98,9 @@
     </div>
 
 
-
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
     </ng-template>
 </p-dialog>
 

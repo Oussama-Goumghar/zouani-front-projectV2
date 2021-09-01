@@ -1,10 +1,11 @@
-.container{
+.container {
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
-.titre{
-  color:#252529;
+
+.titre {
+  color: #252529;
   text-align: center;
   margin: auto;
   font-family: "Chaparral Pro", serif;
@@ -12,7 +13,8 @@
   font-size: 70px;
   border: none;
 }
-#buttonSave{
+
+#buttonSave {
   display: flex;
   justify-content: center;
   flex-direction: row;

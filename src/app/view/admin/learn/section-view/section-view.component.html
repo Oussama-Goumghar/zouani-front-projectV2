@@ -1,42 +1,46 @@
-<p-dialog [(visible)]="viewDialogSection" [style]="{width: '800px'}" header="Section View" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialogSection" [modal]="true" [style]="{width: '800px'}" header="Section View"
+          styleClass="p-fluid">
     <ng-template pTemplate="content" style="background-color: lavender;">
         <div class="p-field">
             <label for="libelle">Title</label>
-            <input type="text" pInputText id="libelle" [(ngModel)]="selectedsection.libelle" disabled />
+            <input [(ngModel)]="selectedsection.libelle" disabled id="libelle" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="contenu">Content</label>
-            <textarea type="text" pInputText id="contenu" [(ngModel)]="selectedsection.contenu" disabled ></textarea>
+            <textarea [(ngModel)]="selectedsection.contenu" disabled id="contenu" pInputText type="text"></textarea>
         </div>
         <div class="p-field">
             <label for="questions"> Questions</label>
-            <textarea type="text" pInputText id="questions" [(ngModel)]="selectedsection.questions" disabled ></textarea>
+            <textarea [(ngModel)]="selectedsection.questions" disabled id="questions" pInputText type="text"></textarea>
         </div>
         <div class="p-field">
             <label for="indicationProf">Indication of Teacher's</label>
-            <textarea type="text" pInputText id="indicationProf" [(ngModel)]="selectedsection.indicationProf" disabled ></textarea>
+            <textarea [(ngModel)]="selectedsection.indicationProf" disabled id="indicationProf" pInputText
+                      type="text"></textarea>
         </div>
         <div class="p-field">
             <label for="urlImage">url Image </label>
-            <textarea type="text" pInputText id="urlImage" [(ngModel)]="selectedsection.urlImage" disabled ></textarea>
+            <textarea [(ngModel)]="selectedsection.urlImage" disabled id="urlImage" pInputText type="text"></textarea>
         </div>
         <div class="p-field">
             <label for="urlVideo">url Video </label>
-            <textarea type="text" pInputText id="urlVideo" [(ngModel)]="selectedsection.urlVideo" disabled ></textarea>
+            <textarea [(ngModel)]="selectedsection.urlVideo" disabled id="urlVideo" pInputText type="text"></textarea>
         </div>
         <div class="p-field">
             <label for="cours">Course</label>
-            <input type="text" pInputText id="cours" [(ngModel)]="selectedsection.cours.libelle" disabled />
+            <input [(ngModel)]="selectedsection.cours.libelle" disabled id="cours" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="categorieSection">CategorieSections</label>
-            <input type="text" pInputText id="categorieSection" [(ngModel)]="selectedsection.categorieSection.libelle" disabled />
+            <input [(ngModel)]="selectedsection.categorieSection.libelle" disabled id="categorieSection" pInputText
+                   type="text"/>
         </div>
 
 
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
     </ng-template>
 </p-dialog>

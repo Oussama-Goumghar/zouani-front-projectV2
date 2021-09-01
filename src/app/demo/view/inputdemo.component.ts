@@ -51,7 +51,7 @@ import {SelectItem} from 'primeng/api';
 	}
     `]
 })
-export class InputDemoComponent implements OnInit{
+export class InputDemoComponent implements OnInit {
     countries: any[];
 
     filteredCountries: any[];
@@ -86,7 +86,8 @@ export class InputDemoComponent implements OnInit{
 
     valueKnob = 20;
 
-    constructor(private countryService: CountryService) {}
+    constructor(private countryService: CountryService) {
+    }
 
     ngOnInit() {
         this.countryService.getCountries().then(countries => {

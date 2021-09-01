@@ -18,74 +18,6 @@ export class CommandeListComponent implements OnInit {
                 private service: CommandeService) {
     }
 
-    ngOnInit(): void {
-        this.initCol();
-        this.service.findAll().subscribe(data => this.items = data);
-    }
-
-    public delete(selected: Commande) {
-        this.selected = selected;
-        this.confirmationService.confirm({
-            message: 'Are you sure you want to delete ' + selected.reference + '?',
-            header: 'Confirm',
-            icon: 'pi pi-exclamation-triangle',
-            accept: () => {
-                this.service.deleteByReference().subscribe(data => {
-                    this.items = this.items.filter(val => val.id !== this.selected.id);
-                    this.selected = new Commande();
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Successful',
-                        detail: 'Commande Deleted',
-                        life: 3000
-                    });
-                });
-            }
-        });
-    }
-    public deleteMultiple() {
-        this.confirmationService.confirm({
-            message: 'Are you sure you want to delete the selected commandes?',
-            header: 'Confirm',
-            icon: 'pi pi-exclamation-triangle',
-            accept: () => {
-                this.service.deleteMultipleByReference().subscribe(data => {
-                    this.service.deleteMultipleIndexById();
-                    this.selectes = null;
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Successful',
-                        detail: 'Commandes Deleted',
-                        life: 3000
-                    });
-                });
-            }
-        });
-    }
-    public openCreate() {
-        this.selected = new Commande();
-        this.submitted = false;
-        this.createDialog = true;
-    }
-
-    public edit(commande: Commande) {
-        this.selected = {...commande};
-        this.editDialog = true;
-    }
-    public view(commande: Commande) {
-        this.selected = {...commande};
-        this.viewDialog = true;
-    }
-
-    private initCol() {
-        this.cols = [
-            {field: 'id', header: 'Id'},
-            {field: 'reference', header: 'Reference'},
-            {field: 'total', header: 'Total'},
-            {field: 'totalPaye', header: 'Total Paye'}
-        ];
-    }
-
     get selected(): Commande {
         return this.service.selected;
     }
@@ -140,6 +72,77 @@ export class CommandeListComponent implements OnInit {
 
     set selectes(value: Array<Commande>) {
         this.service.selectes = value;
+    }
+
+    ngOnInit(): void {
+        this.initCol();
+        this.service.findAll().subscribe(data => this.items = data);
+    }
+
+    public delete(selected: Commande) {
+        this.selected = selected;
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete ' + selected.reference + '?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.deleteByReference().subscribe(data => {
+                    this.items = this.items.filter(val => val.id !== this.selected.id);
+                    this.selected = new Commande();
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Successful',
+                        detail: 'Commande Deleted',
+                        life: 3000
+                    });
+                });
+            }
+        });
+    }
+
+    public deleteMultiple() {
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete the selected commandes?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.deleteMultipleByReference().subscribe(data => {
+                    this.service.deleteMultipleIndexById();
+                    this.selectes = null;
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Successful',
+                        detail: 'Commandes Deleted',
+                        life: 3000
+                    });
+                });
+            }
+        });
+    }
+
+    public openCreate() {
+        this.selected = new Commande();
+        this.submitted = false;
+        this.createDialog = true;
+    }
+
+    public edit(commande: Commande) {
+        this.selected = {...commande};
+        this.editDialog = true;
+    }
+
+    public view(commande: Commande) {
+        this.selected = {...commande};
+        this.viewDialog = true;
+    }
+
+    private initCol() {
+        this.cols = [
+            {field: 'id', header: 'Id'},
+            {field: 'reference', header: 'Reference'},
+            {field: 'total', header: 'Total'},
+            {field: 'totalPaye', header: 'Total Paye'}
+        ];
     }
 
 }

@@ -8,10 +8,10 @@ export class CalendrierProf {
     public startTime: string;
     public endTime: string;
     public startRecur: Date = new Date();
-    public endRecur: Date =  new Date();
+    public endRecur: Date = new Date();
     public daysOfWeek = [];
     public etudiant = new Etudiant();
     public prof = new Prof();
-   // public prof = new Prof();
+    // public prof = new Prof();
 
 }

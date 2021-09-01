@@ -9,7 +9,8 @@ export class FileDemoComponent {
 
     uploadedFiles: any[] = [];
 
-    constructor(private messageService: MessageService) {}
+    constructor(private messageService: MessageService) {
+    }
 
     onUpload(event) {
         for (const file of event.files) {

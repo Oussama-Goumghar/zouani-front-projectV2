@@ -1,4 +1,4 @@
-.left_button button{
+.left_button button {
   text-decoration: none;
 
 
@@ -11,7 +11,7 @@
 
 .left_button button:hover {
   border-color: #009879;
-  color: #009879 ;
+  color: #009879;
   border: black solid 2px;
 }
 
@@ -29,6 +29,7 @@
   display: inline-block;
   border-radius: 5px;
 }
+
 .button_class:hover, .button_class:active {
   background-color: #009879;
 }

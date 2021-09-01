@@ -1,26 +1,32 @@
-<p-dialog [(visible)]="editDialog" [style]="{width: '450px'}" header="Edit Registration" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="editDialog" [modal]="true" [style]="{width: '450px'}" header="Edit Registration"
+          styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div>
             <label class="primaryLab">Registration status</label><br>
-            <select pInputText  type="text" class="btn btn-block btn-outline-light form-control" name="fieldName" style="background-color: gainsboro" name="etat" (click)="findAllEtat()" [(ngModel)]="selected.etatInscription.id" >
-                <option  selected="selected" *ngFor="let e of etatinscriptionslist"  [ngValue]="e.id"  > {{e.libelle}}</option>
+            <select (click)="findAllEtat()" [(ngModel)]="selected.etatInscription.id" class="btn btn-block btn-outline-light form-control" name="fieldName"
+                    name="etat" pInputText style="background-color: gainsboro"
+                    type="text">
+                <option *ngFor="let e of etatinscriptionslist" [ngValue]="e.id"
+                        selected="selected"> {{e.libelle}}</option>
             </select>
         </div>
 
         <div class="p-field">
             <label class="primaryLab">Teacher</label>
-            <select pInputText type="text"  class="btn btn-block btn-outline-light form-control " name="fieldName" style="background-color: gainsboro" name="prof" (click)="findAllProf()" [(ngModel)]="selected.prof.id" >
-                <option  selected="selected" *ngFor="let c of profList " [ngValue]="c.id" > {{c.prenom}}</option>
+            <select (click)="findAllProf()" [(ngModel)]="selected.prof.id" class="btn btn-block btn-outline-light form-control " name="fieldName"
+                    name="prof" pInputText style="background-color: gainsboro"
+                    type="text">
+                <option *ngFor="let c of profList " [ngValue]="c.id" selected="selected"> {{c.prenom}}</option>
             </select>
         </div>
-
 
 
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Edit" icon="pi pi-check" class="p-button-text" (click)="edit()"></button>
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button (click)="edit()" class="p-button-text" icon="pi pi-check" label="Edit" pButton pRipple></button>
+        <button (click)="hideEditDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
 
     </ng-template>
 </p-dialog>

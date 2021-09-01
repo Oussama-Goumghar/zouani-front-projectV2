@@ -1,7 +1,8 @@
 <h5 style="width: 500px">Company News</h5><br>
 <p-toolbar styleClass="p-mb-4">
     <ng-template pTemplate="left">
-        <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" style="background-color: #0C8990" (click)="openCreate()"></button>
+        <button (click)="openCreate()" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="New" pButton
+                pRipple style="background-color: #0C8990"></button>
     </ng-template>
 </p-toolbar>
 <!--<div class="card">
@@ -22,10 +23,10 @@
     <app-news-admin-view></app-news-admin-view>
     <app-news-admin-create></app-news-admin-create>
 </div>-->
-<p-table #dt [value]="items"  [rows]="10" [paginator]="true"
-         [(selection)]="selected" [rowHover]="true" dataKey="id"
-         styleClass="p-datatable-customers"
-         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+<p-table #dt [(selection)]="selected" [paginator]="true" [rowHover]="true"
+         [rows]="10" [showCurrentPageReport]="true" [value]="items"
+         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+         dataKey="id" styleClass="p-datatable-customers">
     <ng-template pTemplate="caption">
         <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
             <h5 class="p-m-0">News</h5>
@@ -41,17 +42,31 @@
     </ng-template>
     <ng-template pTemplate="header">
         <tr>
-            <th pSortableColumn="libelle">Titre <p-sortIcon field="student"></p-sortIcon></th>
-            <th pSortableColumn="date">Date  <p-sortIcon field="professor"></p-sortIcon></th>
-            <th pSortableColumn="dateDebut">Start date <p-sortIcon field="dateDebut"></p-sortIcon></th>
-            <th pSortableColumn="dateFin">End date <p-sortIcon field="dateFin"></p-sortIcon></th>
-            <th pSortableColumn="destinataire">For <p-sortIcon field="duration"></p-sortIcon></th>
-            <th pSortableColumn="numeroOrdre">Ordre <p-sortIcon field="duration"></p-sortIcon></th>
-            <th pSortableColumn="description">Description <p-sortIcon field="duration"></p-sortIcon></th>
+            <th pSortableColumn="libelle">Titre
+                <p-sortIcon field="student"></p-sortIcon>
+            </th>
+            <th pSortableColumn="date">Date
+                <p-sortIcon field="professor"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateDebut">Start date
+                <p-sortIcon field="dateDebut"></p-sortIcon>
+            </th>
+            <th pSortableColumn="dateFin">End date
+                <p-sortIcon field="dateFin"></p-sortIcon>
+            </th>
+            <th pSortableColumn="destinataire">For
+                <p-sortIcon field="duration"></p-sortIcon>
+            </th>
+            <th pSortableColumn="numeroOrdre">Ordre
+                <p-sortIcon field="duration"></p-sortIcon>
+            </th>
+            <th pSortableColumn="description">Description
+                <p-sortIcon field="duration"></p-sortIcon>
+            </th>
 
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-news>
+    <ng-template let-news pTemplate="body">
         <tr>
             <td>{{news.libelle}}</td>
             <td>{{news.date}}</td>
@@ -61,11 +76,13 @@
             <td>{{news.numeroOrdre}}</td>
             <td>{{news.description}}</td>
             <td>
-                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(news)"></button>
-                <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(news)"></button>
-                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(news)"></button>
+                <button (click)="edit(news)" class="p-button-rounded p-button-success p-mr-2" icon="pi pi-pencil" pButton
+                        pRipple></button>
+                <button (click)="view(news)" class="p-button-rounded p-button-info p-mr-2" icon="pi pi-list" pButton
+                        pRipple></button>
+                <button (click)="delete(news)" class="p-button-rounded p-button-warning" icon="pi pi-trash" pButton
+                        pRipple></button>
             </td>
-
 
 
         </tr>

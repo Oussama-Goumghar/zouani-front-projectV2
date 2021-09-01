@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {LoginService} from '../../../controller/service/login.service';
 import {Prof} from '../../../controller/model/prof.model';
@@ -7,119 +7,119 @@ import {Etudiant} from '../../../controller/model/etudiant.model';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-login-etudiant',
-  templateUrl: './login-etudiant.component.html',
-  styleUrls: ['./login-etudiant.component.scss']
+    selector: 'app-login-etudiant',
+    templateUrl: './login-etudiant.component.html',
+    styleUrls: ['./login-etudiant.component.scss']
 })
 export class LoginEtudiantComponent implements OnInit {
 
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-              private service: LoginService, private router: Router
-  ) {
+    constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
+                private service: LoginService, private router: Router
+    ) {
 
-  }
-  private _role: string;
-  private _login: string;
-  private _password: string;
-  private _correct: boolean;
+    }
 
-  get model(): any[] {
-    return this.service.model;
-  }
+    private _role: string;
 
-  set model(value: any[]) {
-    this.service.model = value;
-  }
+    get role(): string {
+        return this._role;
+    }
 
-  get correct(): boolean {
-    return this._correct;
-  }
+    set role(value: string) {
+        this._role = value;
+    }
 
-  set correct(value: boolean) {
-    this._correct = value;
-  }
+    private _login: string;
 
+    get login(): string {
+        return this._login;
+    }
 
-  get role(): string {
-    return this._role;
-  }
+    set login(value: string) {
+        this._login = value;
+    }
 
-  set role(value: string) {
-    this._role = value;
-  }
+    private _password: string;
 
-  get login(): string {
-    return this._login;
-  }
+    get password(): string {
+        return this._password;
+    }
 
-  set login(value: string) {
-    this._login = value;
-  }
+    set password(value: string) {
+        this._password = value;
+    }
 
-  get password(): string {
-    return this._password;
-  }
+    private _correct: boolean;
 
-  set password(value: string) {
-    this._password = value;
-  }
+    get correct(): boolean {
+        return this._correct;
+    }
 
-  get prof(): Prof {
-    return this.service.prof;
-  }
+    set correct(value: boolean) {
+        this._correct = value;
+    }
 
-  set prof(value: Prof) {
-    this.service.prof = value;
-  }
+    get model(): any[] {
+        return this.service.model;
+    }
 
-  get admin(): Admin {
-    return this.service.admin;
-  }
+    set model(value: any[]) {
+        this.service.model = value;
+    }
 
-  set admin(value: Admin) {
-    this.service.admin = value;
-  }
+    get prof(): Prof {
+        return this.service.prof;
+    }
 
-  get etudiant(): Etudiant {
-    return this.service.etudiant;
-  }
+    set prof(value: Prof) {
+        this.service.prof = value;
+    }
 
-  set etudiant(value: Etudiant) {
-    this.service.etudiant = value;
-  }
+    get admin(): Admin {
+        return this.service.admin;
+    }
 
-  public findEtudiant()
-  {
+    set admin(value: Admin) {
+        this.service.admin = value;
+    }
 
-    this.service.findEtudiant(this.login, this.password).subscribe(
-        data => {
-          this.etudiant = data;
-          this.admin = null;
-          this.prof = null;
-          console.log(this.etudiant);
-          this.correct = true;
-          this.model = [
-            {label: 'Courses ', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages/etudiantparcours']},
-            {label: 'FAQ ', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/faq-student']},
-            {label: 'News ', icon: 'pi pi-fw pi-clock', routerLink: ['/pages/news-student']},
-            {label: 'Schedule', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/scheduleStudent']},
-            {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
-            ];
-          this.router.navigate(['/pages/etudiantparcours']);
-        },
-            error =>
-        {
-          document.getElementById('log-pass').style.visibility = 'visible';
-          this.correct = false;
-        });
-  }
+    get etudiant(): Etudiant {
+        return this.service.etudiant;
+    }
 
-  public choose()
-  {
-    document.getElementById('log-pass').style.visibility = 'hidden';
-  }
+    set etudiant(value: Etudiant) {
+        this.service.etudiant = value;
+    }
 
-  ngOnInit(): void {
-  }
+    public findEtudiant() {
+
+        this.service.findEtudiant(this.login, this.password).subscribe(
+            data => {
+                this.etudiant = data;
+                this.admin = null;
+                this.prof = null;
+                console.log(this.etudiant);
+                this.correct = true;
+                this.model = [
+                    {label: 'Courses ', icon: 'pi pi-fw pi-briefcase', routerLink: ['/pages/etudiantparcours']},
+                    {label: 'FAQ ', icon: 'pi pi-fw pi-question-circle', routerLink: ['/pages/faq-student']},
+                    {label: 'News ', icon: 'pi pi-fw pi-clock', routerLink: ['/pages/news-student']},
+                    {label: 'Schedule', icon: 'pi pi-fw pi-calendar-times', routerLink: ['/pages/scheduleStudent']},
+                    {label: 'LogOut ', icon: 'pi pi-fw pi-sign-out', routerLink: ['']},
+                ];
+                this.router.navigate(['/pages/etudiantparcours']);
+            },
+            error => {
+                document.getElementById('log-pass').style.visibility = 'visible';
+                this.correct = false;
+            });
+    }
+
+    public choose() {
+        document.getElementById('log-pass').style.visibility = 'hidden';
+    }
+
+    ngOnInit(): void {
+    }
 
 }

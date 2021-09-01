@@ -1,25 +1,26 @@
-<p-dialog [(visible)]="viewDialogCategorie" [style]="{width: '500px'}" header="      Teacher's Level"  [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialogCategorie" [modal]="true" [style]="{width: '500px'}" header="      Teacher's Level"
+          styleClass="p-fluid">
     <div class="p-grid ">
         <div class="p-col">
             <p-toast></p-toast>
             <div class="card">
 
 
-                <p-table #dt [value]="itemscategorieProf" >
+                <p-table #dt [value]="itemscategorieProf">
 
                     <ng-template pTemplate="header">
                         <tr>
-                            <th>Level </th>
-                            <th >Lesson Rate </th>
-                            <th >How to raise?  </th>
-                              </tr>
+                            <th>Level</th>
+                            <th>Lesson Rate</th>
+                            <th>How to raise?</th>
+                        </tr>
                     </ng-template>
-                    <ng-template pTemplate="body" let-categorieProf>
+                    <ng-template let-categorieProf pTemplate="body">
                         <tr>
 
                             <td>{{categorieProf.level}}</td>
                             <td>{{categorieProf.lessonRate}}$</td>
-                            <td style ="color: #0c799f"><u>info &#9207;</u>  </td>
+                            <td style="color: #0c799f"><u>info &#9207;</u></td>
 
 
                         </tr>
@@ -29,7 +30,6 @@
             </div>
         </div>
     </div>
-
 
 
 </p-dialog>

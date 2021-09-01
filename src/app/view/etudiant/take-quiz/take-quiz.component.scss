@@ -1,29 +1,35 @@
-#header{
+#header {
   background: white;
   width: 60%;
   margin-left: 20%;
 }
-#body{
+
+#body {
   width: 60%;
   margin-left: 20%;
   margin-top: 10px;
 }
-#question{
+
+#question {
   background: white;
 }
-#answers{
+
+#answers {
   background: #f5f5f5;
 }
-#answers-radio{
+
+#answers-radio {
   background-color: white;
   margin-top: 10px;
   height: 30px;
   font-size: 20px;
 }
-#answers-radio>label{
+
+#answers-radio > label {
   margin-left: -50px;
 }
-#answers-radio > input{
+
+#answers-radio > input {
   //position: absolute;
   //left: 0;
   //top: 0;

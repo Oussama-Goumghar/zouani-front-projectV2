@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {City} from '../../../../controller/model/city.model';
 
 
 @Component({
-  selector: 'app-synthese-session-history',
-  templateUrl: './synthese-session-history.component.html',
-  styleUrls: ['./synthese-session-history.component.scss']
+    selector: 'app-synthese-session-history',
+    templateUrl: './synthese-session-history.component.html',
+    styleUrls: ['./synthese-session-history.component.scss']
 })
 
 
 export class SyntheseSessionHistoryComponent implements OnInit {
 
- cities: City[];
+    cities: City[];
 
     selectedCity: City;
 
@@ -24,7 +24,8 @@ export class SyntheseSessionHistoryComponent implements OnInit {
             {name: 'Paris', code: 'PRS'}
         ];
     }
-  ngOnInit(): void {
-  }
+
+    ngOnInit(): void {
+    }
 
 }

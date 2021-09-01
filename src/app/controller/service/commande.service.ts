@@ -10,20 +10,83 @@ import {Observable} from 'rxjs';
 export class CommandeService {
 
     private url = environment.baseUrl + 'commande/';
-    private _items: Array<Commande>;
-    private _selected: Commande;
-    private _selectes: Array<Commande>;
 
-    private _createDialog: boolean;
-    private _editDialog: boolean;
-    private _viewDialog: boolean;
-    private _submitted: boolean;
+    // }
+    constructor(private http: HttpClient) {
+    }
+
+    private _items: Array<Commande>;
+
+    get items(): Array<Commande> {
+        return this._items;
+    }
+
+    set items(value: Array<Commande>) {
+        this._items = value;
+    }
+
+    private _selected: Commande;
+
+    get selected(): Commande {
+        return this._selected;
+    }
+
+    set selected(value: Commande) {
+        this._selected = value;
+    }
 
 
     // constructor(private messageService: MessageService,
     //             private confirmationService: ConfirmationService, private http: HttpClient) {
-    // }
-    constructor(private http: HttpClient) {
+
+    private _selectes: Array<Commande>;
+
+    get selectes(): Array<Commande> {
+        return this._selectes;
+    }
+
+    set selectes(value: Array<Commande>) {
+        this._selectes = value;
+    }
+
+    private _createDialog: boolean;
+
+    get createDialog(): boolean {
+        return this._createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this._createDialog = value;
+    }
+
+    private _editDialog: boolean;
+
+    get editDialog(): boolean {
+        return this._editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this._editDialog = value;
+    }
+
+    private _viewDialog: boolean;
+
+    get viewDialog(): boolean {
+        return this._viewDialog;
+    }
+
+    set viewDialog(value: boolean) {
+        this._viewDialog = value;
+    }
+
+    private _submitted: boolean;
+
+    get submitted(): boolean {
+        return this._submitted;
+    }
+
+    set submitted(value: boolean) {
+        this._submitted = value;
     }
 
     public findAll(): Observable<Array<Commande>> {
@@ -43,7 +106,7 @@ export class CommandeService {
     }
 
     public deleteMultipleByReference(): Observable<number> {
-        return this.http.post<number>(this.url + 'delete-multiple-by-reference' , this.selectes);
+        return this.http.post<number>(this.url + 'delete-multiple-by-reference', this.selectes);
     }
 
     public findIndexById(id: number): number {
@@ -62,65 +125,8 @@ export class CommandeService {
     }
 
     public deleteMultipleIndexById() {
-        for (const item of this.selectes){
+        for (const item of this.selectes) {
             this.deleteIndexById(item.id);
         }
-    }
-
-    get items(): Array<Commande> {
-        return this._items;
-    }
-
-    set items(value: Array<Commande>) {
-        this._items = value;
-    }
-
-    get selected(): Commande {
-        return this._selected;
-    }
-
-    set selected(value: Commande) {
-        this._selected = value;
-    }
-
-    get selectes(): Array<Commande> {
-        return this._selectes;
-    }
-
-    set selectes(value: Array<Commande>) {
-        this._selectes = value;
-    }
-
-
-    get createDialog(): boolean {
-        return this._createDialog;
-    }
-
-    set createDialog(value: boolean) {
-        this._createDialog = value;
-    }
-
-    get editDialog(): boolean {
-        return this._editDialog;
-    }
-
-    set editDialog(value: boolean) {
-        this._editDialog = value;
-    }
-
-    get submitted(): boolean {
-        return this._submitted;
-    }
-
-    set submitted(value: boolean) {
-        this._submitted = value;
-    }
-
-    get viewDialog(): boolean {
-        return this._viewDialog;
-    }
-
-    set viewDialog(value: boolean) {
-        this._viewDialog = value;
     }
 }

@@ -1,36 +1,43 @@
-#header{
+#header {
   background: white;
   width: 60%;
   margin-left: 20%;
 }
-#bodyRadio{
+
+#bodyRadio {
   width: 80%;
   margin-left: 10%;
   margin-top: 10px;
 }
-#result{
+
+#result {
   width: 60%;
   margin-left: 20%;
   margin-top: 10px;
   background-color: white;
   visibility: hidden;
 }
-#question{
+
+#question {
   background: white;
 }
-#answers{
+
+#answers {
   background: #ebebeb;
 }
-#answers-radio{
+
+#answers-radio {
   background-color: white;
   margin-top: 10px;
   height: 30px;
   font-size: 20px;
 }
-#answers-radio>label{
+
+#answers-radio > label {
   margin-left: -50px;
 }
-#answers-radio > input{
+
+#answers-radio > input {
   //position: absolute;
   //left: 0;
   //top: 0;
@@ -42,7 +49,8 @@
   cursor: pointer;
   //opacity: 0;
 }
-#float-input-correct-mistake{
+
+#float-input-correct-mistake {
   height: 100%;
   width: 80%;
   border: none;
@@ -54,7 +62,7 @@
   margin-bottom: 50px;
 }
 
-#output-correct-mistake{
+#output-correct-mistake {
   height: 100%;
   width: 80%;
   font-size: 30px;
@@ -105,6 +113,7 @@
   margin-left: -50px;
   font-size: 20px;
 }
+
 .span-correct::after {
   content: "";
   position: absolute;
@@ -115,7 +124,8 @@
   border-style: solid;
   border-color: #1af045 transparent transparent transparent;
 }
-#translate-correct-mistak{
+
+#translate-correct-mistak {
   height: 500px;
   width: 200px;
   font-size: 100px;
@@ -123,6 +133,7 @@
   margin-bottom: 50px;
   visibility: hidden;
 }
+
 :host ::ng-deep {
 
 
@@ -207,10 +218,12 @@
 
   }
 }
+
 tr.timeline {
   list-style-type: none;
   position: relative;
 }
+
 tr.timeline:before {
   content: '            ';
   background: #d4d9df;
@@ -221,11 +234,13 @@ tr.timeline:before {
   height: 100%;
   z-index: 200;
 }
+
 tr.timeline > li {
   margin: 25px 35px;
   padding-left: 25px;
 
 }
+
 tr.timeline > li:before {
   content: '            ';
   background: white;

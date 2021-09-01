@@ -20,7 +20,7 @@ export class SyntheseSessionCoursListComponent implements OnInit {
     public j: number = 0;
     public k = 0;
     public c = 0;
-   public m = 0;
+    public m = 0;
 
     constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
                 private service: SyntheseSessionCoursService) {
@@ -33,9 +33,68 @@ export class SyntheseSessionCoursListComponent implements OnInit {
         ];
     }
 
+    get selected(): SyntheseSessionCours {
+
+        return this.service.selected;
+    }
+
+    set selected(value: SyntheseSessionCours) {
+        this.service.selected = value;
+    }
+
+    get items(): Array<SyntheseSessionCours> {
+        return this.service.items;
+
+    }
+
+    set items(value: Array<SyntheseSessionCours>) {
+        this.service.items = value;
+    }
+
+    get submitted(): boolean {
+        return this.service.submitted;
+    }
+
+    set submitted(value: boolean) {
+        this.service.submitted = value;
+    }
+
+    get createDialog(): boolean {
+        return this.service.createDialog;
+    }
+
+    set createDialog(value: boolean) {
+        this.service.createDialog = value;
+    }
+
+    get editDialog(): boolean {
+        return this.service.editDialog;
+    }
+
+    set editDialog(value: boolean) {
+        this.service.editDialog = value;
+    }
+
+    get viewDialog(): boolean {
+        return this.service.viewDialog;
+    }
+
+    set viewDialog(value: boolean) {
+        this.service.viewDialog = value;
+    }
+
+    get selectes(): Array<SyntheseSessionCours> {
+        return this.service.selectes;
+    }
+
+    set selectes(value: Array<SyntheseSessionCours>) {
+        this.service.selectes = value;
+    }
+
     ngOnInit(): void {
         this.initCol();
-        this.service.findAll().subscribe(data => { this.items = data;
+        this.service.findAll().subscribe(data => {
+            this.items = data;
             for (let i = 0; i < this.items.length; i++) {
                 // tslint:disable-next-line:triple-equals
                 if (this.items[i].etatNumber == 1) {
@@ -46,18 +105,16 @@ export class SyntheseSessionCoursListComponent implements OnInit {
                 } else if (this.items[i].etatNumber == 2) {
                     this.k++;
                     // tslint:disable-next-line:triple-equals
-                }else if (this.items[i].etatNumber == 4){
-                     this.m++;
-                }
-                else {
+                } else if (this.items[i].etatNumber == 4) {
+                    this.m++;
+                } else {
                     this.c++;
                 }
-            }});
+            }
+        });
 
 
     }
-
-
 
     public setetat(nbr: number): number {
         this.etat = nbr;
@@ -121,6 +178,10 @@ export class SyntheseSessionCoursListComponent implements OnInit {
         this.viewDialog = true;
     }
 
+    incrementer(synthese: SyntheseSessionCours) {
+        synthese.nbrClass++;
+    }
+
     private initCol() {
         this.cols = [
             {field: 'id', header: 'STUDENtT'},
@@ -129,68 +190,5 @@ export class SyntheseSessionCoursListComponent implements OnInit {
             {field: '', header: 'BALANCE'},
             {field: '', header: 'ED CLASS'}
         ];
-    }
-
-    get selected(): SyntheseSessionCours {
-
-        return this.service.selected;
-    }
-
-    set selected(value: SyntheseSessionCours) {
-        this.service.selected = value;
-    }
-
-    get items(): Array<SyntheseSessionCours> {
-        return this.service.items;
-
-    }
-
-    set items(value: Array<SyntheseSessionCours>) {
-        this.service.items = value;
-    }
-
-    get submitted(): boolean {
-        return this.service.submitted;
-    }
-
-    set submitted(value: boolean) {
-        this.service.submitted = value;
-    }
-
-    get createDialog(): boolean {
-        return this.service.createDialog;
-    }
-
-    set createDialog(value: boolean) {
-        this.service.createDialog = value;
-    }
-
-    get editDialog(): boolean {
-        return this.service.editDialog;
-    }
-
-    set editDialog(value: boolean) {
-        this.service.editDialog = value;
-    }
-
-    get viewDialog(): boolean {
-        return this.service.viewDialog;
-    }
-
-    set viewDialog(value: boolean) {
-        this.service.viewDialog = value;
-    }
-
-    get selectes(): Array<SyntheseSessionCours> {
-        return this.service.selectes;
-    }
-
-    set selectes(value: Array<SyntheseSessionCours>) {
-        this.service.selectes = value;
-    }
-
-
-    incrementer(synthese: SyntheseSessionCours) {
-        synthese.nbrClass++;
     }
 }

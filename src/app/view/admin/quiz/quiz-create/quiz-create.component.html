@@ -10,7 +10,7 @@
                         <div class="p-col-fixed" style="width:50%">
                             <div class="box">
                                 <span class="p-float-label">
-                                    <input id="quiz-name" type="text" pInputText>
+                                    <input id="quiz-name" pInputText type="text">
                                     <label for="quiz-name">Quiz's name</label>
                                 </span>
                             </div>
@@ -19,7 +19,7 @@
                             <div class="box">
                                 <div>
                                     <label for="note">success threshold : </label>
-                                    <input id="note" type="number" [min]="0" pInputText>
+                                    <input [min]="0" id="note" pInputText type="number">
                                 </div>
                             </div>
                         </div>
@@ -27,11 +27,12 @@
                     <div>
                         <div>
                             <label>Question's number : </label>
-                            <input type="number" [min]="0" pInputText>
+                            <input [min]="0" pInputText type="number">
                         </div>
                         <div>
                             <label>Question's type : </label>
-                            <p-dropdown [options]="typesQuestion" [(ngModel)]="typeQuestion" optionLabel="lib"></p-dropdown>
+                            <p-dropdown [(ngModel)]="typeQuestion" [options]="typesQuestion"
+                                        optionLabel="lib"></p-dropdown>
                         </div>
                     </div>
                 </div>

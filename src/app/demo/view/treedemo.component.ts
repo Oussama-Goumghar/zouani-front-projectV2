@@ -22,7 +22,8 @@ export class TreeDemoComponent implements OnInit {
 
     cols: any[];
 
-    constructor(private nodeService: NodeService) {}
+    constructor(private nodeService: NodeService) {
+    }
 
     ngOnInit() {
         this.nodeService.getFiles().then(files => this.files1 = files);
@@ -35,9 +36,9 @@ export class TreeDemoComponent implements OnInit {
         });
 
         this.cols = [
-            { field: 'name', header: 'Name' },
-            { field: 'size', header: 'Size' },
-            { field: 'type', header: 'Type' }
+            {field: 'name', header: 'Name'},
+            {field: 'size', header: 'Size'},
+            {field: 'type', header: 'Type'}
         ];
     }
 }

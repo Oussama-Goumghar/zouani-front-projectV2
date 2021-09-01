@@ -1,39 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {RecommendTeacherService} from '../../../../controller/service/recommend-teacher.service';
 import {RecommendTeacher} from '../../../../controller/model/recommend-teacher.model';
 
 @Component({
-  selector: 'app-recommend-view',
-  templateUrl: './recommend-view.component.html',
-  styleUrls: ['./recommend-view.component.scss']
+    selector: 'app-recommend-view',
+    templateUrl: './recommend-view.component.html',
+    styleUrls: ['./recommend-view.component.scss']
 })
 export class RecommendViewComponent implements OnInit {
 
-  // tslint:disable-next-line:max-line-length
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: RecommendTeacherService) { }
+    // tslint:disable-next-line:max-line-length
+    constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: RecommendTeacherService) {
+    }
 
-  ngOnInit(): void {
-  }
+    get selected(): RecommendTeacher {
+        return this.service.selected;
+    }
 
-  public hideViewDialog() {
-    this.viewDialog = false;
-  }
+    set selected(value: RecommendTeacher) {
+        this.service.selected = value;
+    }
 
-  get selected(): RecommendTeacher  {
-    return this.service.selected;
-  }
+    get viewDialog(): boolean {
+        return this.service.viewDialog;
+    }
 
-  set selected(value: RecommendTeacher) {
-    this.service.selected = value;
-  }
+    set viewDialog(value: boolean) {
+        this.service.viewDialog = value;
+    }
 
-  get viewDialog(): boolean {
-    return this.service.viewDialog;
-  }
+    ngOnInit(): void {
+    }
 
-  set viewDialog(value: boolean) {
-    this.service.viewDialog = value;
-  }
+    public hideViewDialog() {
+        this.viewDialog = false;
+    }
 
 }

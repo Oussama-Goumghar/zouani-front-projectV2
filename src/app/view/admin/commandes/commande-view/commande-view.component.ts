@@ -1,40 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {CommandeService} from '../../../../controller/service/commande.service';
 import {Commande} from '../../../../controller/model/commande.model';
 
 @Component({
-  selector: 'app-commande-view',
-  templateUrl: './commande-view.component.html',
-  styleUrls: ['./commande-view.component.scss']
+    selector: 'app-commande-view',
+    templateUrl: './commande-view.component.html',
+    styleUrls: ['./commande-view.component.scss']
 })
 export class CommandeViewComponent implements OnInit {
 
 
-  constructor(private messageService: MessageService, private service: CommandeService) {
-  }
+    constructor(private messageService: MessageService, private service: CommandeService) {
+    }
 
-  ngOnInit(): void {
-  }
+    get selected(): Commande {
+        return this.service.selected;
+    }
 
-  public hideViewDialog() {
-    this.viewDialog = false;
-  }
+    set selected(value: Commande) {
+        this.service.selected = value;
+    }
 
-  get selected(): Commande {
-    return this.service.selected;
-  }
+    get viewDialog(): boolean {
+        return this.service.viewDialog;
+    }
 
-  set selected(value: Commande) {
-    this.service.selected = value;
-  }
+    set viewDialog(value: boolean) {
+        this.service.viewDialog = value;
+    }
 
-  get viewDialog(): boolean {
-    return this.service.viewDialog;
-  }
+    ngOnInit(): void {
+    }
 
-  set viewDialog(value: boolean) {
-    this.service.viewDialog = value;
-  }
+    public hideViewDialog() {
+        this.viewDialog = false;
+    }
 
 }
