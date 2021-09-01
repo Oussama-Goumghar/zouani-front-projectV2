@@ -1,29 +1,26 @@
-<div class="p-grid">
-    <div class="p-col-12">
 
-        <p-toast></p-toast>
+<p-dialog [(visible)]="viewDialogProf" [style]="{width: '800px'}" header="Students Details" [modal]="true" styleClass="p-fluid">
+    <div class="p-grid ">
+        <div class="p-col">
+            <p-toast></p-toast>
+            <div class="card" style="background-color: gainsboro">
+                <p-toolbar styleClass="p-mb-4 inline">
 
-        <div class="card" style="background-color: gainsboro">
-            <p-toolbar styleClass="p-mb-4">
-                <ng-template pTemplate="left">
-                    <button pButton pRipple label="New" icon="pi pi-plus" style="width: 90px" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
-                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length"></button>
-                </ng-template>
 
-                <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2" (click)="dt.exportCSV()"></button>
-                </ng-template>
-            </p-toolbar>
+                    <ng-template pTemplate="right">
+                        <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
+                        <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-info p-mb-2" (click)="dt.exportCSV()"></button>
+                    </ng-template>
+                </p-toolbar>
 
-            <p-table #dt [value]="items" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','professor','student','start at','finish at','duration']"
-                     [(selection)]="selectes" [rowHover]="true" dataKey="id"
-                     styleClass="p-datatable-customers"
-                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
-                <ng-template pTemplate="caption">
-                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                        <div class="p-col"> <h5 class="p-m-0">Manage Sessions</h5><br>
-                            <span >
+                <p-table #dt [value]="items" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','professor','student','start at','finish at','duration']"
+                         [(selection)]="selectes" [rowHover]="true" dataKey="id"
+                         styleClass="p-datatable-customers"
+                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+                    <ng-template pTemplate="caption">
+                        <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
+                            <div class="p-col"> <h5 class="p-m-0">Manage Sessions</h5><br>
+                                <span >
                         <!--<input pInputText type="text"  placeholder="Search by teacher LastName" [(ngModel)]="selected.prof.nom  " style="margin-right: 10px;width: 200px"/>
                         <input pInputText type="text"  placeholder="Search by student LastName" [(ngModel)]="selected.etudiant.nom  " style="margin-right: 10px;width: 200px"/>-->
 
@@ -31,52 +28,61 @@
              <i class="pi pi-search"  (click)="findByCriteria()"></i>
 
                     </span>
-                        </div></div>
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th style="width: 3rem">
-                            <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                        </th>
-                        <th pSortableColumn="professor">Teacher LastName <p-sortIcon field="professor"></p-sortIcon></th>
-                        <th pSortableColumn="student">Student LastName  <p-sortIcon field="student"></p-sortIcon></th>
-                        <th pSortableColumn="start at">Start at <p-sortIcon field="dateDebut"></p-sortIcon></th>
-                        <th pSortableColumn="student">finish at <p-sortIcon field="dateFin"></p-sortIcon></th>
-                        <th pSortableColumn="duration">Duration <p-sortIcon field="duration"></p-sortIcon></th>
+                            </div></div>
+                    </ng-template>
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th style="width: 3rem">
+                                <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                            </th>
+                            <th pSortableColumn="professor">Teacher LastName <p-sortIcon field="professor"></p-sortIcon></th>
+                            <th pSortableColumn="student">Student LastName  <p-sortIcon field="student"></p-sortIcon></th>
+                            <th pSortableColumn="start at">Start at <p-sortIcon field="dateDebut"></p-sortIcon></th>
+                            <th pSortableColumn="student">finish at <p-sortIcon field="dateFin"></p-sortIcon></th>
+                            <th pSortableColumn="duration">Duration <p-sortIcon field="duration"></p-sortIcon></th>
 
-                        <th></th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-sessionCours>
-                    <tr>
-                        <td>
-                            <p-tableCheckbox [value]="sessionCours"></p-tableCheckbox>
-                        </td>
-                        <td>{{sessionCours.prof.nom}}</td>
-                        <td>{{sessionCours.etudiant.nom}}</td>
-                        <td>{{sessionCours.dateDebut}}</td>
-                        <td>{{sessionCours.dateFin}}</td>
-                        <td>{{sessionCours.duree}}</td>
+                            <th></th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-sessionCours>
+                        <tr>
+                            <td>
+                                <p-tableCheckbox [value]="sessionCours"></p-tableCheckbox>
+                            </td>
+                            <td>{{sessionCours.prof.nom}}</td>
+                            <td>{{sessionCours.etudiant.nom}}</td>
+                            <td>{{sessionCours.dateDebut}}</td>
+                            <td>{{sessionCours.dateFin}}</td>
+                            <td>{{sessionCours.duree}}</td>
 
 
 
-                        <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(sessionCours)"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(sessionCours)"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(sessionCours)"></button>
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="summary">
-                    <div class="p-d-flex p-ai-center p-jc-between">
-                        In total there are {{items ? items.length : 0 }} items.
-                    </div>
-                </ng-template>
-            </p-table>
+                            <td>
+                                <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(sessionCours)"></button>
+                                <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(sessionCours)"></button>
+                                <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="delete(sessionCours)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="summary">
+                        <div class="p-d-flex p-ai-center p-jc-between">
+                            In total there are {{items ? items.length : 0 }} items.
+                        </div>
+                    </ng-template>
+                </p-table>
+            </div>
+            <app-session-cours-create></app-session-cours-create>
+            <app-session-cours-edit></app-session-cours-edit>
+            <app-session-cours-view></app-session-cours-view>
+            <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
+
         </div>
-        <app-session-cours-create></app-session-cours-create>
-        <app-session-cours-edit></app-session-cours-edit>
-        <app-session-cours-view></app-session-cours-view>
-        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
-</div>
+
+
+
+    <ng-template pTemplate="footer">
+        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+    </ng-template>
+</p-dialog>
+

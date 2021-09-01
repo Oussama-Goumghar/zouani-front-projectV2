@@ -5,6 +5,7 @@ import {Prof} from '../model/prof.model';
 import {CategorieProf} from '../model/categorie-prof.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {SessionCours} from '../model/session-cours.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,7 @@ export class ProfService {
   public save(): Observable<number> {
     return this.http.post<number>('http://localhost:8036/learn/prof/', this.selectedProf);
   }
+
 
   public savechatmsgs(prof: Prof): Observable<number>{
     return this.http.post<number>('http://localhost:8036/learn/prof/', prof);

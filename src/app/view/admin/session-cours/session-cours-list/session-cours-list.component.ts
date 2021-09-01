@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
 import {SessionCoursService} from '../../../../controller/service/session-cours.service';
 import {SessionCours} from '../../../../controller/model/session-cours.model';
+import {ProfessorService} from '../../../../controller/service/professor.service';
 
 @Component({
     selector: 'app-session-cours-list',
@@ -14,15 +15,25 @@ export class SessionCoursListComponent implements OnInit {
     cols: any[];
 
     constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
-                private service: SessionCoursService) {
+                private service: SessionCoursService , private  serviceprof: ProfessorService) {
     }
 
     ngOnInit(): void {
         this.initCol();
         this.service.findAll().subscribe(data => this.items = data);
     }
+    public hideViewDialog() {
+        this.viewDialogProf = false;
+    }
     public findByCriteria() {
         return this.service.findByCriteria().subscribe( data => this.items = data);
+    }
+    get viewDialogProf(): boolean {
+        return this.serviceprof.viewDialogProf;
+    }
+
+    set viewDialogProf(value: boolean) {
+        this.serviceprof.viewDialogProf = value;
     }
     public delete(selected: SessionCours) {
         this.selected = selected;

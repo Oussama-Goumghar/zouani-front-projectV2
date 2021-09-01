@@ -41,6 +41,7 @@ private url = environment.baseUrl + 'session/';
     return this._itemsProf;
   }
 
+  // tslint:disable-next-line:adjacent-overload-signatures
   set itemsProf(value: Array<Prof>) {
     this._itemsProf = value;
   }

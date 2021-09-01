@@ -23,6 +23,29 @@ export class ProfesseurListComponent implements OnInit {
     this.initCol();
     this.service.findAll().subscribe(data => this.items = data);
   }
+    public FindSession(profSession1: Prof) {
+        this.service.afficheSession(profSession1.id).subscribe(
+            data => {
+                // @ts-ignore
+                this.items = data;
+            });
+    }
+    public viewSession(sessionProf1: Prof) {
+        this.service.afficheSession(sessionProf1.id).subscribe(
+            data => {
+                // @ts-ignore
+                this.items = data;
+            });
+        this.viewDialogProf = true;
+    }
+
+    get viewDialogProf(): boolean {
+        return this.service.viewDialogProf;
+    }
+
+    set viewDialogProf(value: boolean) {
+        this.service.viewDialogProf = value;
+    }
 
   public delete(selected: Prof) {
     this.selected = selected;

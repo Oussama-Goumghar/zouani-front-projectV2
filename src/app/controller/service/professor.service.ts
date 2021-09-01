@@ -21,19 +21,31 @@ export class ProfessorService {
     private _viewDialog: boolean;
     private _submitted: boolean;
     private _itemsPaiement: Array<Paiement>;
-    private _selectedPaiement :Paiement;
+    private _selectedPaiement: Paiement;
+    private _viewDialogProf: boolean;
 
     private _paiement: Paiement;
-
+    public afficheSession(id: number): Observable<Array<SessionCours>> {
+        return   this.http.get<Array<SessionCours>>('http://localhost:8036/learn/session/prof/id/' + id );
+    }
 
     get paiement(): Paiement {
-        if(this._paiement == null)
+        if (this._paiement == null)
         {
             this._paiement = new Paiement();
         }
         return this._paiement;
     }
 
+    get viewDialogProf(): boolean {
+        return this._viewDialogProf;
+    }
+
+    set viewDialogProf(value: boolean) {
+        this._viewDialogProf = value;
+    }
+
+    // tslint:disable-next-line:adjacent-overload-signatures
     set paiement(value: Paiement) {
         this._paiement = value;
     }
