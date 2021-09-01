@@ -693,11 +693,18 @@ export class QuizTakeComponent implements OnInit {
               this.question1 = this.question1 + this.selected.libelle[i];
               this.question = this.question + this.selected.libelle[i];
             }
-            this.question + this.correctAnswers[0].lib;
+            this.question = this.question + this.correctAnswers[0].lib;
             for (let i = this.finBlink; i < this.selected.libelle.length; i++) {
               this.question2 = this.question2 + this.selected.libelle[i];
               this.question = this.question + this.selected.libelle[i];
             }
+            console.log(this.question);
+            this.service.translate(this.question).subscribe(
+                data => {
+                  this.translate = data;
+                  console.log(this.translate);
+                }
+            );
           }
       );
       if (this.correctAnswers[0].id == reponse.id) {
@@ -722,8 +729,9 @@ export class QuizTakeComponent implements OnInit {
       this.reponseEtudiant.answer = null;
       this.disable = true;
     }
-    /*this.question = this.question + this.question1 ;
-    this.question = this.question + this.correctAnswers[0].lib ;
+   //this.question = this.question + this.question1 ;
+    console.log(this.question);
+    /* this.question = this.question + this.correctAnswers[0].lib ;
     this.question = this.question + this.question2 ;
     this.service.translate(this.question).subscribe(
         data => {
