@@ -76,18 +76,20 @@
 
 
                     <div  id="categoriess" style="width: 100%;margin-top: 15px" [style.visibility]="'visible'" >
-                        <p-timeline id="categ" align="alternate" [value]="itemssection2"  style="margin-top: 20px; width: 100%;">
+                        <p-table id="categ" align="alternate" [value]="itemssection2"  style="margin-top: 20px; width: 100%;">
 
-                            <ng-template let-section  pTemplate="content" >
-                                <tr>
+                            <ng-template let-section  pTemplate="body" >
+                                <tr class="timeline">
+                                    <li>
                                     <td (click)="Section(section.categorieSection.libelle)"
                                         [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? '#8b8b90' :'#1BA7AF' "
                                         style="cursor: pointer; font-weight: 600"><u>{{section.categorieSection.libelle}}</u>
                                     </td>
+                                    </li>
                                 </tr>
                             </ng-template>
 
-                        </p-timeline>
+                        </p-table>
 
                     </div>
                     <app-chat id="chat" [style.visibility]="'hidden'"></app-chat>
