@@ -87,6 +87,9 @@ export class DictionaryService {
     // tslint:disable-next-line:max-line-length
     return this.http.get<Dictionary >('http://localhost:8036/learn/dictionary/word/' + word + '/Etudiant/id/' + this.serviceUser.etudiant.id);
   }
+  public deleteWord(word: string): Observable<number> {
+    return this.http.delete<number>('http://localhost:8036/learn/dictionary/words/' + word + '/Etudiant/id/' + this.serviceUser.etudiant.id);
+  }
   public FindAllWord(): Observable<Array<Dictionary>> {
     // tslint:disable-next-line:max-line-length
     return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/etudiant/id/' + this.serviceUser.etudiant.id);

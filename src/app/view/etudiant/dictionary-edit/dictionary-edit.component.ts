@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DictionaryService} from '../../../controller/service/dictionary.service';
 import {Dictionary} from '../../../controller/model/dictionary.model';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-dictionary-edit',
@@ -10,7 +10,7 @@ import {MessageService} from 'primeng/api';
 })
 export class DictionaryEditComponent implements OnInit {
 
-  constructor(private dictionnaryService: DictionaryService, private messageService: MessageService) { }
+  constructor(private dictionnaryService: DictionaryService, private messageService: MessageService, private confirmationService: ConfirmationService) { }
   get selected(): Dictionary {
     return this.dictionnaryService.selected;
   }
@@ -70,6 +70,22 @@ export class DictionaryEditComponent implements OnInit {
   public hideEditDialog() {
     this.editDialogDict = false;
     this.submittedDictEdit = false;
+  }
+  public delete(word: string) {
+        this.dictionnaryService.deleteWord(word).subscribe(data => {
+          this.dictionnaryService.FindAllWord().subscribe(
+              data => {
+                this.itemsDict = data;
+              });
+          this.selected = new Dictionary();
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Section Deleted',
+            life: 3000
+          });
+        });
+    this.editDialogDict = false;
   }
   ngOnInit(): void {
   }
