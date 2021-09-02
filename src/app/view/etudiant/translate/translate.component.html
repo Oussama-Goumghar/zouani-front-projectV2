@@ -1,0 +1,48 @@
+
+<p-dialog [(visible)]="TranslateSynonymeDialog" [modal]="true" [style]="{width: '300px', height:'350px' }"
+          styleClass="p-fluid">
+    <p-table #dt  [paginator]="true" [rowHover]="true" [rows]="4" [showCurrentPageReport]="true" [value]="listSynonymes"
+             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+             dataKey="id"
+             styleClass="p-datatable-customers">
+
+        <ng-template  pTemplate="header">
+            <tr>
+
+                <th >{{this.selected.word}}</th>
+
+            </tr>
+        </ng-template>
+        <ng-template let-synon pTemplate="body">
+            <tr>
+
+                <td style="white-space: pre-wrap">{{synon}}</td>
+
+
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="summary">
+            <div class="p-d-flex p-ai-center p-jc-between">
+                In total there are {{listSynonymes ? listSynonymes.length : 0 }} items.
+            </div>
+        </ng-template>
+    </p-table>
+</p-dialog>
+<!--
+<p-dialog [(visible)]="TranslateSynonymeDialog" [modal]="true" [style]="{width: '700px', height:'250px' }" header="Dictionary"
+          styleClass="p-fluid">
+    <ng-template pTemplate="p-field">
+
+        <div class="p-field">
+            <label for="word">Word</label>
+            <input [(ngModel)]="selected.word" id="word" pInputText type="text"></div>
+        <div class="p-field">
+            <label for="definition">defintion</label>
+            <textarea [(ngModel)]="listSynonymes" id="definition" pInputTextarea type="text"></textarea></div>
+    </ng-template>
+
+
+
+</p-dialog>
+-->

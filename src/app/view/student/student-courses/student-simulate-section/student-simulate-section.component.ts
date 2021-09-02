@@ -41,6 +41,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     translate: any;
     textSeleted: string;
     filteredDict: any[];
+    synonym: any[];
     value = 0;
     word: string;
     wordDict: string;
@@ -56,7 +57,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                 private quizService: QuizEtudiantService,
                 private loginService: LoginService,
                 private vocab: VocabularyService,
-                private sectionItemService:SectionItemService) {
+                private sectionItemService: SectionItemService) {
     }
 
     get selected(): Dictionary {
@@ -365,7 +366,20 @@ export class StudentSimulateSectionComponent implements OnInit {
             this.editDialogDict = true;
         }
     }
+    get listSynonymes(): Array<any> {
+        return this.dictionnaryService.listSynonymes;
+    }
 
+    set listSynonymes(value: Array<any>) {
+        this.dictionnaryService.listSynonymes = value;
+    }
+    get Synonymes(): Array<any> {
+        return this.dictionnaryService.Synonymes;
+    }
+
+    set Synonymes(value: Array<any>) {
+        this.dictionnaryService.Synonymes = value;
+    }
     public dict() {
         const selection = window.getSelection();
         this.textSeleted = selection.toString();
@@ -378,14 +392,14 @@ export class StudentSimulateSectionComponent implements OnInit {
                 if (this.textSeleted.length != 0 && this.selected.word == null) {
                     this.dictionnaryService.Translate(this.textSeleted).subscribe(
                         data => {
-                            this.selected.definition = data;
+                            this.listSynonymes = data;
+                            console.log(this.listSynonymes);
                         });
                     this.selected.word = this.textSeleted;
                     console.log(this.translate);
                     console.log(this.selected.word);
-                    console.log(this.selected.definition);
                     this.submittedDict = false;
-                    this.createDialogDict = true;
+                    this.TranslateSynonymeDialog = true;
                 } else if (this.textSeleted.length != 0 && this.selected.word != null) {
                     this.selected.word = this.textSeleted;
                     this.submittedDictEdit = false;
@@ -394,9 +408,15 @@ export class StudentSimulateSectionComponent implements OnInit {
                 }
             });
     }
+    get TranslateSynonymeDialog(): boolean {
+        return this.dictionnaryService.TranslateSynonymeDialog;
+    }
 
+    set TranslateSynonymeDialog(value: boolean) {
+        this.dictionnaryService.TranslateSynonymeDialog = value;
+    }
     Vocab(section: Section) {
-        this.sectionItemService.sectionSelected=section
+        this.sectionItemService.sectionSelected=section;
         this.router.navigate(['/pages/preview-section-items']);
     }
 

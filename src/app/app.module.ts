@@ -265,6 +265,7 @@ import {ViewQuizEtudiantComponent} from './view/admin/view-quiz-etudiant/view-qu
 import {SectionItemListComponent} from './view/admin/learn/section-item/section-item-list/section-item-list.component';
 import {SectionItemPreviewComponent} from './view/admin/learn/section-item-preview/section-item-preview.component';
 import {ImageItemComponent} from './view/admin/learn/section-item-preview/image-item/image-item.component';
+import { TranslateComponent } from './view/etudiant/translate/translate.component';
 
 
 @NgModule({
@@ -529,7 +530,8 @@ import {ImageItemComponent} from './view/admin/learn/section-item-preview/image-
         ImageItemComponent,
         SectionItemComponent,
         DictionaryEditComponent,
-        ViewQuizEtudiantComponent
+        ViewQuizEtudiantComponent,
+        TranslateComponent
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},

@@ -1,3 +1,4 @@
+/* tslint:disable:variable-name */
 import {Injectable} from '@angular/core';
 import {Dictionary} from '../model/dictionary.model';
 import {Observable} from 'rxjs';
@@ -10,8 +11,25 @@ import {HttpClient} from '@angular/common/http';
 export class DictionaryService {
     constructor(private http: HttpClient, public serviceUser: LoginService) {
     }
-
+private _listSynonymes: Array<any>;
+private _Synonymes: Array<any>;
     private _selected: Dictionary;
+
+    get Synonymes(): Array<any> {
+        return this._Synonymes;
+    }
+
+    set Synonymes(value: Array<any>) {
+        this._Synonymes = value;
+    }
+
+    get listSynonymes(): Array<any> {
+        return this._listSynonymes;
+    }
+
+    set listSynonymes(value: Array<any>) {
+        this._listSynonymes = value;
+    }
 
     get selected(): Dictionary {
         if (this._selected == null) {
@@ -61,6 +79,15 @@ export class DictionaryService {
     }
 
     private _editDialog: boolean;
+    private _TranslateSynonymeDialog: boolean;
+
+    get TranslateSynonymeDialog(): boolean {
+        return this._TranslateSynonymeDialog;
+    }
+
+    set TranslateSynonymeDialog(value: boolean) {
+        this._TranslateSynonymeDialog = value;
+    }
 
     get editDialog(): boolean {
         return this._editDialog;
@@ -143,6 +170,7 @@ export class DictionaryService {
     }
 
     public deleteWord(word: string): Observable<number> {
+        // tslint:disable-next-line:max-line-length
         return this.http.delete<number>('http://localhost:8036/learn/dictionary/words/' + word + '/Etudiant/id/' + this.serviceUser.etudiant.id);
     }
 
@@ -151,10 +179,10 @@ export class DictionaryService {
         return this.http.get<Array<Dictionary>>('http://localhost:8036/learn/dictionary/etudiant/id/' + this.serviceUser.etudiant.id);
     }
 
-    public Translate(word: string): Observable<any> {
+    public Translate(word: string): Observable<Array<any>> {
         // tslint:disable-next-line:max-line-length
         // @ts-ignore
-        return this.http.get<string>('http://localhost:8036/learn/TranslateEnAr/text/' + word, {responseType: 'text'});
+        return this.http.get<Array<string>>('http://localhost:8036/learn/TranslateEnAr/text/synonymes/' + word, {responseType: 'text'});
     }
 
     public save(): Observable<number> {
