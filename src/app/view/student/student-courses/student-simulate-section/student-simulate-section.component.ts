@@ -59,7 +59,13 @@ export class StudentSimulateSectionComponent implements OnInit {
                 private vocab: VocabularyService,
                 private sectionItemService: SectionItemService) {
     }
+    get contenuSection(): Array<string> {
+        return this.service.contenuSection;
+    }
 
+    set contenuSection(value: Array<string>) {
+        this.service.contenuSection = value;
+    }
     get selected(): Dictionary {
         return this.dictionnaryService.selected;
     }
@@ -307,6 +313,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.vocab.findAllVocabSection().subscribe(data => {
             this.vocab.nombreVocab = data.length;
         });
+
         this.menu = [
             {
                 icon: 'pi pi-list', command: (event) => {

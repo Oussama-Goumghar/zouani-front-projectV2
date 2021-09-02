@@ -1,4 +1,4 @@
-/* tslint:disable:adjacent-overload-signatures */
+/* tslint:disable:adjacent-overload-signatures variable-name */
 import {Injectable} from '@angular/core';
 import {Parcours} from '../model/parcours.model';
 import {HttpClient} from '@angular/common/http';
@@ -17,6 +17,24 @@ import {EtudiantCours} from '../model/etudiant-cours.model';
 })
 export class ParcoursService {
     private _index: number;
+    private _contenuSection: Array<string>;
+
+
+    get contenuSection(): Array<string> {
+        return this._contenuSection;
+    }
+
+    set contenuSection(value: Array<string>) {
+        this._contenuSection = value;
+    }
+
+    get index(): number {
+        return this._index;
+    }
+
+    set index(value: number) {
+        this._index = value;
+    }
 
     constructor(private http: HttpClient) {
     }
