@@ -469,7 +469,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         // this.service.image = this.selectedsection.urlImage;
         //  }
         //  this.service.image += 'preview';
-        console.log(this.selectedsection.id);
+      //  console.log(this.selectedsection.id);
         // const blob = UrlFetch(this.image,{headers})
         //  return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
         // return this.service.image;
@@ -479,7 +479,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.service.image = this.selectedsection.urlImage;
         //  }
         //  this.service.image += 'preview';
-        console.log(this.service.image);
+      //  console.log(this.service.image);
         this.srcImg = this.service.image;
         return this.srcImg;
 
@@ -496,7 +496,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         //   for (let m = 32; m < 43 ; m++)
         //   {
         //  }
-        console.log(this.service.video);
+     //   console.log(this.service.video);
         // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
         return this.service.video;
 

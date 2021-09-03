@@ -543,6 +543,6 @@ export class QuizEtudiantService {
 
     public translate(word: string): Observable<any> {
         // @ts-ignore
-        return this.http.get<string>('http://localhost:8036/learn/TranslateEnAr/text/' + word, {responseType: 'text'});
+        return this.http.get<string>(this.url+'TranslateEnAr/text/' + word, {responseType: 'text'});
     }
 }

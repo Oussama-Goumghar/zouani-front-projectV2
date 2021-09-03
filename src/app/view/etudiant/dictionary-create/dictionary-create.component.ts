@@ -11,6 +11,7 @@ import {DictionaryService} from '../../../controller/service/dictionary.service'
 })
 export class DictionaryCreateComponent implements OnInit {
 
+    selectedNow:Dictionary
     constructor(private messageService: MessageService,
                 private serviceUser: LoginService,
                 private confirmationService: ConfirmationService, private dictionnaryService: DictionaryService) {
@@ -79,10 +80,12 @@ export class DictionaryCreateComponent implements OnInit {
     }
 
     public save() {
+        this.selected=this.selectedNow
         this.selected.etudiant = this.serviceUser.etudiant;
         this.dictionnaryService.save().subscribe(data => {
             this.dictionnaryService.FindAllWord().subscribe(
                 data => {
+                    console.log("haddiii dataa==> "+data);
                     this.itemsDict = data;
                 });
 
@@ -106,12 +109,15 @@ export class DictionaryCreateComponent implements OnInit {
                 life: 3000
             });
         });
+
+        this.selectedNow=new Dictionary()
         this.selected = new Dictionary();
         this.createDialogDict = false;
     }
 
 
     ngOnInit(): void {
+        this.selectedNow=new Dictionary()
     }
 
 

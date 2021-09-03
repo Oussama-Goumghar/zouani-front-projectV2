@@ -4,7 +4,8 @@
         <div class="card toolbar-demo">
             <p-toolbar>
                 <div class="p-toolbar-group-left">
-                    <button (click)="openPreview()" class="p-button-secondary p-button-rounded p-mr-2 p-mb-2" icon="pi pi-eye" pButton
+                    <button (click)="openPreview()" class="p-button-secondary p-button-rounded p-mr-2 p-mb-2"
+                            icon="pi pi-eye" pButton
                             pRipple></button>
                 </div>
 
@@ -13,76 +14,9 @@
                 </div>
             </p-toolbar>
         </div>
-        <!--
-                <p-card [style]="{width: '90%',margin:'0 auto'}" id="mainCard" styleClass="p-card-shadow" class="container">
-                    <div class="p-grid" style="margin-top: 20px">
-                        <div class="p-col-fixed" style="width: 80%" id="formCard">
-                            <div class="card" styleClass="p-card-shadow">
-                                <div class="p-fluid p-formgrid p-grid">
-                                    <div class="p-field p-col-12 p-md-8" style="margin-top: 80px">
-                                            <span class="p-float-label">
-                                                <input id="image-url" type="text" pInputText [(ngModel)]="imageUrl" (change)="convert()">
-                                                <label for="image-url">Image Url</label>
-                                            </span>
-                                    </div>
-                                    <div class="p-field p-col-12 p-md-4" style="height: 180px">
-                                        <a (click)="imagePreview()">
-                                            <img src="{{sctionItem.imageUrl}}"
-                                                 style="width: 100%;height: 100%">
-                                        </a>
-                                    </div>
-                                    <div class="p-field p-col-6" style="margin-top: 10px;">
-                                        <span class="p-float-label">
-                                            <input id="response-input" type="text" pInputText [(ngModel)]="sctionItem.response">
-                                            <label for="response-input">Response</label>
-                                        </span>
-                                    </div>
-                                    <div class="p-field p-col-6" style="margin-top: 10px;">
-                                        <span class="p-float-label">
-                                            <input id="translation-input" type="text" pInputText [(ngModel)]="sctionItem.translation">
-                                            <label for="translation-input">Translation</label>
-                                        </span>
-                                    </div>
-                                    <div class="p-field p-col-6" style="margin-top: 10px;">
-                                         <span class="p-float-label">
-                                            <textarea id="explanation-input" rows="5" cols="30" pInputTextarea [(ngModel)]="sctionItem.explanation"></textarea>
-                                            <label for="explanation-input">Explanation</label>
-                                        </span>
-                                    </div>
-                                    <div class="p-field p-col-6" style="margin-top: 10px;">
-                                        <span class="p-float-label">
-                                            <textarea id="example-input" rows="5" cols="30" pInputTextarea [(ngModel)]="sctionItem.example"></textarea>
-                                            <label for="example-input">Examples</label>
-                                        </span>
-                                    </div>
-                                    <div style="margin: 0 auto">
-                                        <button pButton  type="button" label="Submit" class="p-button-raised p-button-success"
-                                                icon="pi pi-check" iconPos="right"  (click)="addFormule()"></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="p-col" style="width: 20%">
-                            <p-tree [value]="sectionSelected.sectionItems" [style]="{position: 'relative'}" >
-                                <ng-template let-node pTemplate="default" style="border: black 1px">
-                                    <b>{{node.response}}</b>
-                                    <button style="position: absolute;right: 35px"  pButton pRipple type="button" icon="pi pi-undo"
-                                            class="p-button-rounded p-button-text" (click)="update(node)"></button>
-                                    <button style="position: absolute;right: 2px" pButton pRipple type="button" icon="pi pi-times"
-                                            class="p-button-rounded p-button-danger p-button-text" (click)="delete(node)"></button>
-                                </ng-template>
-                            </p-tree>
-                        </div>
-                    </div>
-                </p-card>
-        -->
-
         <div class="card" style="text-align: center">
-
             <div class="p-grid">
-
                 <div class="p-col-5 p-d-flex p-ai-center p-jc-center">
-
                     <div class="p-fluid" style="width: 100%;text-align: center;margin-left: 20px">
                         <h5>Image Upload</h5>
                         <div class="p-field">
@@ -117,7 +51,8 @@
                             <label for="translation-input">Translation</label>
                         </span>
                         <span class="p-float-label" style="margin-bottom: 30px">
-                            <textarea [(ngModel)]="sctionItem.explanation" cols="30" id="explanation-input" pInputTextarea
+                            <textarea [(ngModel)]="sctionItem.explanation" cols="30" id="explanation-input"
+                                      pInputTextarea
                                       rows="5"></textarea>
                             <label for="explanation-input">Explanation</label>
                         </span>
@@ -127,7 +62,8 @@
                             <label for="example-input">Examples</label>
                         </span>
                         <div style="margin: 0 auto;width: 100%">
-                            <button (click)="addFormule()" class="p-button-raised p-button-success" icon="pi pi-check" iconPos="right"
+                            <button (click)="addFormule()" class="p-button-raised p-button-success" icon="pi pi-check"
+                                    iconPos="right"
                                     label="Submit" pButton style="width: 30%"
                                     type="button"></button>
                         </div>
@@ -135,12 +71,9 @@
 
                 </div>
             </div>
-
         </div>
-
         <div class="card" style="text-align: center">
-            <p-carousel [autoplayInterval]="2000" [circular]="false" [numScroll]="1" [numVisible]="3"
-                        [responsiveOptions]="responsiveOptions" [value]="sectionItemList" class="p-carousel">
+            <p-carousel orientation="vertical" [style]="{'max-width':'400px', 'margin-top':'2em'}" verticalViewPortHeight="352px" [numVisible]="1" [numScroll]="1" [value]="sectionItemList" class="p-carousel">
                 <ng-template pTemplate="header">
                     <h3>List Of Section Items</h3>
                 </ng-template>
@@ -156,7 +89,8 @@
                                     <p-button (click)="update(product)" icon="pi pi-undo"
                                               styleClass="p-button p-button-rounded p-mr-2" type="button"></p-button>
                                     <p-button (click)="delete(product)" icon="pi pi-times"
-                                              styleClass="p-button-danger p-button-rounded p-mr-2" type="button"></p-button>
+                                              styleClass="p-button-danger p-button-rounded p-mr-2"
+                                              type="button"></p-button>
                                 </div>
                             </div>
                         </div>
@@ -164,8 +98,5 @@
                 </ng-template>
             </p-carousel>
         </div>
-
-        <app-quiz-config></app-quiz-config>
-        <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>
