@@ -350,7 +350,6 @@ export class QuizCreateComponent implements OnInit {
     }
 
     public addFormule() {
-
         if (this.isUpdate == 'false') {
             this.selected.questions.push(this.clone(this.question));
             this.question2 = this.question;
@@ -363,121 +362,24 @@ export class QuizCreateComponent implements OnInit {
             this.reponse.numero = this.reponseNumero;
             this.nodes = [];
             for (let i = 0; i < this.selected.questions.length; i++) {
-                if (this.selected.questions[i].reponses.length == 1) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
-                                //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 2) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 3) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 4) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',
-                                    type: 'url'
-                                }
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 5) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',
-                                    type: 'url'
-                                }
-                            ]
-                        },
-                    );
+                const list = [];
+
+                for (let j = 0; j < this.selected.questions[i].reponses.length; j++) {
+                    const item = {
+                        label: this.selected.questions[i].reponses[j].lib + '\t (' + this.selected.questions[i].reponses[j].etatReponse + ' )',
+                        type: 'url'
+                    };
+                    list.push(item);
                 }
+
+                this.nodes.push(
+                    {
+                        key: i.toString(),
+                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: list
+                    },
+                );
             }
-
-
             this.reponse.etatReponse = 'true';
             this.question.pointReponseJuste = 1;
             this.question.pointReponsefausse = 0;
@@ -489,118 +391,23 @@ export class QuizCreateComponent implements OnInit {
             this.question = new Question();
             this.nodes = [];
             for (let i = 0; i < this.selected.questions.length; i++) {
-                if (this.selected.questions[i].reponses.length == 1) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                //{label: this.selected.questions[i].reponses[1].lib,  type: 'url'},
-                                //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 2) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                //{label: this.selected.questions[i].reponses[2].lib,  type: 'url'},
-                                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 3) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                //{label: this.selected.questions[i].reponses[3].lib,  type: 'url'}
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 4) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',
-                                    type: 'url'
-                                }
-                            ]
-                        },
-                    );
-                } else if (this.selected.questions[i].reponses.length == 5) {
-                    this.nodes.push(
-                        {
-                            key: i.toString(),
-                            label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                            children: [
-                                {
-                                    label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',
-                                    type: 'url'
-                                },
-                                {
-                                    label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',
-                                    type: 'url'
-                                }
-                            ]
-                        },
-                    );
+                const list = [];
+
+                for (let j = 0; j < this.selected.questions[i].reponses.length; j++) {
+                    const item = {
+                        label: this.selected.questions[i].reponses[j].lib + '\t (' + this.selected.questions[i].reponses[j].etatReponse + ' )',
+                        type: 'url'
+                    };
+                    list.push(item);
                 }
+
+                this.nodes.push(
+                    {
+                        key: i.toString(),
+                        label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
+                        children: list
+                    },
+                );
             }
             this.questionNumero = this.selected.questions.length + 1;
             this.reponseNumero = 1;
@@ -611,13 +418,8 @@ export class QuizCreateComponent implements OnInit {
             this.reponse.etatReponse = 'true';
             this.isUpdate = 'false';
         }
-
-
     }
 
-    /*set sectionSelected(value: Section) {
-        this.service.sectionSelected = value;
-    }*/
     public save() {
         this.selected.ref = 'quiz-' + this.selectedsection.id;
         this.selected.section.id = this.selectedsection.id;

@@ -186,6 +186,7 @@ private _Synonymes: Array<any>;
     }
 
     public save(): Observable<number> {
+        console.log("this is save method data===>"+this.selected.definition);
         return this.http.post<number>('http://localhost:8036/learn/dictionary/', this.selected);
     }
 

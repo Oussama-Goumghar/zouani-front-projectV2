@@ -542,3 +542,4 @@ import { TranslateComponent } from './view/etudiant/translate/translate.componen
 })
 export class AppModule {
 }
+
