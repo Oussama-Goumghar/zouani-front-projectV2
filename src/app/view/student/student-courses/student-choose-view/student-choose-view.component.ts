@@ -102,13 +102,21 @@ export class StudentChooseViewComponent implements OnInit {
                     data => {
                       this.quizEtudiantList = data;
                       console.log(this.quizEtudiantList);
-                      this.passerQuiz = 'View Quiz';
-                      console.log('lqitha');
-                      this.quizView = true;
-                    }, error =>
+                      this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
+                          dataQuestions => {
+                            if(data.questionCurrent >= dataQuestions.length){
+                              this.passerQuiz = 'View Quiz';
+                              this.quizView = true;
+                            }
+                            else {
+                              this.passerQuiz = 'Continue Quiz';
+                              this.quizView = false;
+                            }
+                          }
+                      );
+                    },error =>
                     {
-                      this.passerQuiz = 'Passer Quiz';
-                      console.log('malqithach');
+                      this.passerQuiz = 'Take Quiz';
                       this.quizView = false;
                     }
                 );

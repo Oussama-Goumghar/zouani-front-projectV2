@@ -47,7 +47,7 @@ export class QuizEtudiantService {
   private _myAnswer: Reponse;
   private _numReponses= 0;
   private _numCorrectAnswers= 0;
-  private _numQuestion= 1;
+  private _numQuestion: number;
   private _passerQuiz: string;
   private _quizView: boolean;
   private _result: any;

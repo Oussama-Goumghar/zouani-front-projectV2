@@ -409,8 +409,8 @@ export class QuizEtudiantComponent implements OnInit {
           this.quizEtudiant.resultat = null;
           this.quizEtudiant.note = 0;
           this.quizEtudiant.id = (this.quizsEtudiant.length + 1);
-          this.quizEtudiant.dateFin = null;
-          this.quizEtudiant.dateDebut = null;
+          //this.quizEtudiant.dateFin = null;
+          //this.quizEtudiant.dateDebut = null;
           this.quizEtudiant.ref = 'qe' + (this.quizsEtudiant.length + 1);
 
           this.service.insertQuizEtudiant().subscribe(

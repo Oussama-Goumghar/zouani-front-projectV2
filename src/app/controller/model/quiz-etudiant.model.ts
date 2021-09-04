@@ -6,10 +6,9 @@ export class QuizEtudiant {
   public id: number;
   public etudiant = new Etudiant();
   public quiz = new Quiz();
-  public dateDebut: Date = new Date();
-  public dateFin: Date = new Date();
   public note: number;
   public resultat: string;
   public ref: string;
+  public questionCurrent: number;
   public reponseEtudiant = new Array<ReponseEtudiant>();
 }

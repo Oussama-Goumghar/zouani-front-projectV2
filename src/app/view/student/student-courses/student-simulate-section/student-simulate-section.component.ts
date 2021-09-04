@@ -82,11 +82,21 @@ export class StudentSimulateSectionComponent implements OnInit {
                             data => {
                                 this.quizEtudiantList = data;
                                 console.log(this.quizEtudiantList);
-                                this.passerQuiz = 'View Quiz';
-                                this.quizView = true;
+                                this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
+                                    dataQuestions => {
+                                        if(data.questionCurrent >= dataQuestions.length){
+                                            this.passerQuiz = 'View Quiz';
+                                            this.quizView = true;
+                                        }
+                                        else {
+                                            this.passerQuiz = 'Continue Quiz';
+                                            this.quizView = false;
+                                        }
+                                    }
+                                );
                             },error =>
                             {
-                                this.passerQuiz = 'Passer Quiz';
+                                this.passerQuiz = 'Take Quiz';
                                 this.quizView = false;
                             }
                         );
@@ -352,11 +362,21 @@ export class StudentSimulateSectionComponent implements OnInit {
                                 data => {
                                     this.quizEtudiantList = data;
                                     console.log(this.quizEtudiantList);
-                                    this.passerQuiz = 'View Quiz';
-                                    this.quizView = true;
+                                    this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
+                                        dataQuestions => {
+                                            if(data.questionCurrent >= dataQuestions.length){
+                                                this.passerQuiz = 'View Quiz';
+                                                this.quizView = true;
+                                            }
+                                            else {
+                                                this.passerQuiz = 'Continue Quiz';
+                                                this.quizView = false;
+                                            }
+                                        }
+                                    );
                                 },error =>
                                 {
-                                    this.passerQuiz = 'Passer Quiz';
+                                    this.passerQuiz = 'Take Quiz';
                                     this.quizView = false;
                                 }
                             );
@@ -426,11 +446,21 @@ export class StudentSimulateSectionComponent implements OnInit {
                                 data => {
                                     this.quizEtudiantList = data;
                                     console.log(this.quizEtudiantList);
-                                    this.passerQuiz = 'View Quiz';
-                                    this.quizView = true;
+                                    this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
+                                        dataQuestions => {
+                                            if(data.questionCurrent >= dataQuestions.length){
+                                                this.passerQuiz = 'View Quiz';
+                                                this.quizView = true;
+                                            }
+                                            else {
+                                                this.passerQuiz = 'Continue Quiz';
+                                                this.quizView = false;
+                                            }
+                                        }
+                                    );
                                 },error =>
                                 {
-                                    this.passerQuiz = 'Passer Quiz';
+                                    this.passerQuiz = 'Take Quiz';
                                     this.quizView = false;
                                 }
                             );

@@ -443,12 +443,20 @@ export class QuizTakeComponent implements OnInit {
     this.quizEtudiant.quiz = this.selectedQuiz;
     this.quizEtudiant.resultat = null;
     this.quizEtudiant.note = 0;
-    this.quizEtudiant.dateDebut = null;
-    this.quizEtudiant.dateFin = null;
     this.quizEtudiant.etudiant = this.login.etudiant;
-    this.service.insertQuizEtudiant().subscribe();
+    this.service.findQuizEtudiant(this.etudiant, this.selectedQuiz).subscribe(
+        data => {
+          this.quizEtudiant = data;
+          this.quizEtudiant.id = data.id;
+          this.numQuestion = data.questionCurrent - 1;
+          this.noteQuiz = data.note;
+          this.start();
+        }, error => {
+          this.service.insertQuizEtudiant().subscribe();
+          this.start();
+        }
+    );
     this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
-    this.start();
     this.dictionnaryService.FindAllWord().subscribe(
         data => {
           this.itemsDict = data;
@@ -501,6 +509,7 @@ export class QuizTakeComponent implements OnInit {
     this.isChecked = false;
     this.answerCorrectOrFalse = new Array<boolean>();
     document.getElementById('translate-correct-mistake').style.visibility = 'hidden';
+    this.translate = '';
     document.getElementById('myAnswer').style.textDecoration = 'none';
     document.getElementById('tooltiptext').style.visibility = 'hidden';
     if (this.numQuestion > 0) {
@@ -523,6 +532,7 @@ export class QuizTakeComponent implements OnInit {
       );
     }
     this.numQuestion = this.numQuestion + 1;
+    console.log(this.numQuestion);
     this.service.findAllQuestions(this.selectedQuiz.ref).subscribe(
         data => {
           this.items = data;
@@ -555,7 +565,6 @@ export class QuizTakeComponent implements OnInit {
           document.getElementById('span-correct-' + i).style.visibility = 'visible';
         }
       }
-      console.log(this.answerCorrectOrFalse);
       document.getElementById('result').style.visibility = 'visible';
       document.getElementById('question').style.visibility = 'hidden';
       document.getElementById('question').style.height = '0px';
@@ -582,6 +591,7 @@ export class QuizTakeComponent implements OnInit {
             }
             this.quizEtudiant.note = this.noteQuiz;
             this.quizEtudiant.id = this.quizEtudiant.id;
+            this.quizEtudiant.questionCurrent = this.numQuestion;
             this.service.updateQuizEtudiant().subscribe();
           }
       );
@@ -663,6 +673,14 @@ export class QuizTakeComponent implements OnInit {
           }
         }
     );
+    this.service.findQuizEtudiant(this.etudiant, this.selectedQuiz).subscribe(
+        data => {
+          this.quizEtudiant = data;
+          this.quizEtudiant.note = this.noteQuiz;
+          this.quizEtudiant.questionCurrent = this.numQuestion;
+          this.service.updateQuizEtudiant().subscribe();
+        }
+    );
   }
 
 
@@ -698,11 +716,9 @@ export class QuizTakeComponent implements OnInit {
               this.question2 = this.question2 + this.selected.libelle[i];
               this.question = this.question + this.selected.libelle[i];
             }
-            console.log(this.question);
             this.service.translate(this.question).subscribe(
                 data => {
                   this.translate = data;
-                  console.log(this.translate);
                 }
             );
           }
@@ -729,16 +745,6 @@ export class QuizTakeComponent implements OnInit {
       this.reponseEtudiant.answer = null;
       this.disable = true;
     }
-   //this.question = this.question + this.question1 ;
-    console.log(this.question);
-    /* this.question = this.question + this.correctAnswers[0].lib ;
-    this.question = this.question + this.question2 ;
-    this.service.translate(this.question).subscribe(
-        data => {
-          this.translate = data;
-    }
-    );
-    */
     document.getElementById('output-correct-mistake').style.visibility = 'hidden';
   }
 
@@ -906,6 +912,14 @@ export class QuizTakeComponent implements OnInit {
   }
 
   public Section(libelle: string){
+    this.service.findQuizEtudiant(this.etudiant, this.selectedQuiz).subscribe(
+        data => {
+          this.quizEtudiant = data;
+          this.quizEtudiant.note = this.noteQuiz;
+          this.quizEtudiant.questionCurrent = this.numQuestion;
+          this.service.updateQuizEtudiant().subscribe();
+        }
+    );
     this.parcoursservice.afficheSection(libelle).subscribe(
         data=> {
           this.selectedsection = data;
@@ -915,7 +929,6 @@ export class QuizTakeComponent implements OnInit {
                 this.service.findQuizEtudiant(this.login.etudiant, this.selectedQuiz).subscribe(
                     data => {
                       this.quizEtudiantList = data;
-                      console.log(this.quizEtudiantList);
                       this.passerQuiz = 'View Quiz';
                       this.quizView = true;
                     },error =>
