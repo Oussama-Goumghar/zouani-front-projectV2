@@ -399,11 +399,28 @@ export class StudentSimulateSectionComponent implements OnInit {
                 if (this.textSeleted.length != 0 && this.selected.word == null) {
                     this.dictionnaryService.Translate(this.textSeleted).subscribe(
                         data => {
-                            this.listSynonymes = data;
-                            console.log(this.listSynonymes);
+                            this.Synonymes = data;
+                            console.log(this.Synonymes);
+                            // @ts-ignore
+                            console.log(this.Synonymes.match(/[\u0600-\u06FF-\[\]-~!"^_`]/g).length);
+                            console.log(this.Synonymes[2]);
                         });
+                    // @ts-ignore
+                    for ( let i=0; i < this.Synonymes.match(/[\u0600-\u06FF-\[\]-~!"^_`]/g).length ; i++){
+                        // tslint:disable-next-line:triple-equals
+                        if(this.Synonymes[i] != '\[' || this.Synonymes[i] != '\]' || this.Synonymes[i] != '\"'){
+                            this.wordDict += this.Synonymes[i].toString();
+                            console.log(this.wordDict);
+                        }else{
+                            console.log(this.listSynonymes);
+                            this.listSynonymes.push(this.wordDict);
+                            this.wordDict ='';
+                        }
+                        break;
+                    }
+                    console.log(this.listSynonymes);
                     this.selected.word = this.textSeleted;
-                    console.log(this.translate);
+                    console.log(this.listSynonymes);
                     console.log(this.selected.word);
                     this.submittedDict = false;
                     this.TranslateSynonymeDialog = true;
