@@ -1,7 +1,7 @@
 
-<p-dialog [(visible)]="TranslateSynonymeDialog" [modal]="true" [style]="{width: '300px', height:'350px' }"
+<p-dialog [(visible)]="TranslateSynonymeDialog"  [style]="{width: '300px'}"
           styleClass="p-fluid">
-    <p-table #dt  [paginator]="true" [rowHover]="true" [rows]="4" [showCurrentPageReport]="true" [value]="listSynonymes"
+    <p-table  [paginator]="true" [rowHover]="true" [rows]="4" [showCurrentPageReport]="true" [value]="listSynonymes"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
              dataKey="id"
              styleClass="p-datatable-customers">

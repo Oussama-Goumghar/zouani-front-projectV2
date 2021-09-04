@@ -414,40 +414,34 @@ export class StudentSimulateSectionComponent implements OnInit {
                         data => {
                             this.Synonymes = data;
                             console.log(this.Synonymes);
-                            // @ts-ignore
-                            //console.log(this.Synonymes.match(/[\u0600-\u06FF-\[\]-~!"^_`]/g).length);
-                            //console.log(this.Synonymes[2]);
-                        });
-                    this.wordDict = '';
-                    this.j = 0;
-                    this.listSynonymes = new Array<any>();
-                    // @ts-ignore
-                    for ( let i=this.j; i < this.Synonymes.length ; i++){
-                        // tslint:disable-next-line:triple-equals
-                        if(this.Synonymes[i] == '\"'){
-                            this.j = i;
-                            // @ts-ignore
-                            for ( let k=this.j + 1; k < this.Synonymes.length ; k++){
+                            this.wordDict = '';
+                            this.j = 0;
+                            this.listSynonymes = new Array<any>();
+                            for ( let i=this.j; i < this.Synonymes.length ; i++){
                                 // tslint:disable-next-line:triple-equals
-                                if(this.Synonymes[k] != '\"' && this.Synonymes[k] != ','){
-                                    this.wordDict = this.wordDict + this.Synonymes[k];
-                                }else if (this.Synonymes[k] == ',') {
-                                    break;
-                                } else
-                                {
-                                    this.listSynonymes.push(this.wordDict);
-                                    this.wordDict ='';
-                                    this.j = k + 1;
-                                    break;
+                                if(this.Synonymes[i] == '\"'){
+                                    this.j = i;
+                                    // @ts-ignore
+                                    for ( let k=this.j + 1; k < this.Synonymes.length ; k++){
+                                        // tslint:disable-next-line:triple-equals
+                                        if(this.Synonymes[k] != '\"' && this.Synonymes[k] != ','){
+                                            this.wordDict = this.wordDict + this.Synonymes[k];
+                                        }else if (this.Synonymes[k] == ',') {
+                                            break;
+                                        } else
+                                        {
+                                            this.listSynonymes.push(this.wordDict);
+                                            this.wordDict ='';
+                                            this.j = k + 1;
+                                            break;
+                                        }
+                                    }
                                 }
-                                //console.log(this.Synonymes[k]);
                             }
-                        }
-                    }
+                        });
+
                     console.log(this.listSynonymes);
                     this.selected.word = this.textSeleted;
-                    //console.log(this.listSynonymes);
-                    //console.log(this.selected.word);
                     this.submittedDict = false;
                     this.TranslateSynonymeDialog = true;
                     // tslint:disable-next-line:triple-equals
