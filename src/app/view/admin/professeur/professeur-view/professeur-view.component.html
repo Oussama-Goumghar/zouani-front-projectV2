@@ -1,33 +1,35 @@
-<p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Professor Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialog" [modal]="true" [style]="{width: '450px'}" header="Professor Details"
+          styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="reference">UserName</label>
-            <input type="text" pInputText id="reference" [(ngModel)]="selected.login" disabled />
+            <input [(ngModel)]="selected.login" disabled id="reference" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="firstName">First Name</label>
-            <input type="text" pInputText id="firstName" [(ngModel)]="selected.prenom" disabled />
+            <input [(ngModel)]="selected.prenom" disabled id="firstName" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="lastName">Last Name</label>
-            <input type="text" pInputText id="lastName" [(ngModel)]="selected.nom" disabled />
+            <input [(ngModel)]="selected.nom" disabled id="lastName" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="phoneNumber">Phone Number</label>
-            <input type="text" pInputText id="phoneNumber" [(ngModel)]="selected.numero" disabled />
+            <input [(ngModel)]="selected.numero" disabled id="phoneNumber" pInputText type="text"/>
         </div>
 
         <div class="p-field">
             <label for="email">Email</label>
-            <input type="text" pInputText id="email" [(ngModel)]="selected.email" disabled />
+            <input [(ngModel)]="selected.email" disabled id="email" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="email">Address</label>
-            <input type="text" pInputText id="address" [(ngModel)]="selected.addresse" disabled />
+            <input [(ngModel)]="selected.addresse" disabled id="address" pInputText type="text"/>
         </div>
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
     </ng-template>
 </p-dialog>

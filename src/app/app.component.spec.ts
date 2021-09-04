@@ -1,18 +1,18 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AppComponent } from './app.component';
-import { AppMainComponent } from './app.main.component';
-import { AppConfigComponent } from './app.config.component';
-import { AppTopBarComponent } from './app.topbar.component';
-import { AppRightMenuComponent } from './app.right-menu.component';
-import { AppFooterComponent } from './app.footer.component';
-import { AppMenuComponent } from './app.menu.component';
-import { ScrollPanelModule } from 'primeng/scrollpanel';
-import { AccordionModule } from 'primeng/accordion';
-import { PanelModule } from 'primeng/panel';
-import { TabViewModule } from 'primeng/tabview';
-import { ProgressBarModule } from 'primeng/progressbar';
+import {async, TestBed} from '@angular/core/testing';
+import {RouterTestingModule} from '@angular/router/testing';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {AppComponent} from './app.component';
+import {AppMainComponent} from './app.main.component';
+import {AppConfigComponent} from './app.config.component';
+import {AppTopBarComponent} from './app.topbar.component';
+import {AppRightMenuComponent} from './app.right-menu.component';
+import {AppFooterComponent} from './app.footer.component';
+import {AppMenuComponent} from './app.menu.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {AccordionModule} from 'primeng/accordion';
+import {PanelModule} from 'primeng/panel';
+import {TabViewModule} from 'primeng/tabview';
+import {ProgressBarModule} from 'primeng/progressbar';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {

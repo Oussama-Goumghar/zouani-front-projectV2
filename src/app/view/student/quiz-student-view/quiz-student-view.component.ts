@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizEtudiant} from '../../../controller/model/quiz-etudiant.model';
 import {EtudiantClassRoom} from '../../../controller/model/etudiant-class-room.model';
 import {QuizClassRoom} from '../../../controller/model/quiz-class-room.model';
@@ -8,89 +8,91 @@ import {ReponseEtudiant} from '../../../controller/model/reponse-etudiant.model'
 import {Quiz} from '../../../controller/model/quiz.model';
 
 @Component({
-  selector: 'app-quiz-student-view',
-  templateUrl: './quiz-student-view.component.html',
-  styleUrls: ['./quiz-student-view.component.scss']
+    selector: 'app-quiz-student-view',
+    templateUrl: './quiz-student-view.component.html',
+    styleUrls: ['./quiz-student-view.component.scss']
 })
 export class QuizStudentViewComponent implements OnInit {
 
-  cols: any[];
+    cols: any[];
 
-  get quizEtudiantList(): QuizEtudiant {
-    return this.service.quizEtudiantList;
-  }
-  set quizEtudiantList(value: QuizEtudiant) {
-    this.service.quizEtudiantList = value;
-  }
+    constructor(private service: QuizEtudiantService, private login: LoginService) {
+    }
 
-  get etudiantsClassroom(): Array<EtudiantClassRoom> {
-    return this.service.etudiantsClassroom;
-  }
+    get quizEtudiantList(): QuizEtudiant {
+        return this.service.quizEtudiantList;
+    }
 
-  set etudiantsClassroom(value: Array<EtudiantClassRoom>) {
-    this.service.etudiantsClassroom = value;
-  }
+    set quizEtudiantList(value: QuizEtudiant) {
+        this.service.quizEtudiantList = value;
+    }
 
-  get quizsClassroom(): Array<QuizClassRoom> {
-    return this.service.quizsClassroom;
-  }
+    get etudiantsClassroom(): Array<EtudiantClassRoom> {
+        return this.service.etudiantsClassroom;
+    }
 
-  set quizsClassroom(value: Array<QuizClassRoom>) {
-    this.service.quizsClassroom = value;
-  }
+    set etudiantsClassroom(value: Array<EtudiantClassRoom>) {
+        this.service.etudiantsClassroom = value;
+    }
 
-  get selectedQuiz(): Quiz {
-    return this.service.selectedQuiz;
-  }
+    get quizsClassroom(): Array<QuizClassRoom> {
+        return this.service.quizsClassroom;
+    }
 
-  set selectedQuiz(value: Quiz) {
-    this.service.selectedQuiz = value;
-  }
+    set quizsClassroom(value: Array<QuizClassRoom>) {
+        this.service.quizsClassroom = value;
+    }
 
-  get viewDialogQuiz(): boolean {
-    return this.service.viewDialogQuiz;
-  }
+    get selectedQuiz(): Quiz {
+        return this.service.selectedQuiz;
+    }
 
-  set viewDialogQuiz(value: boolean) {
-    this.service.viewDialogQuiz = value;
-  }
+    set selectedQuiz(value: Quiz) {
+        this.service.selectedQuiz = value;
+    }
 
-  get selectedQuizClassroom(): QuizClassRoom {
-    return this.service.selectedQuizClassroom;
-  }
+    get viewDialogQuiz(): boolean {
+        return this.service.viewDialogQuiz;
+    }
 
-  set selectedQuizClassroom(value: QuizClassRoom) {
-    this.service.selectedQuizClassroom = value;
-  }
+    set viewDialogQuiz(value: boolean) {
+        this.service.viewDialogQuiz = value;
+    }
 
-  get reponsesEtudiantList(): Array<ReponseEtudiant> {
-    return this.service.reponsesEtudiantList;
-  }
+    get selectedQuizClassroom(): QuizClassRoom {
+        return this.service.selectedQuizClassroom;
+    }
 
-  set reponsesEtudiantList(value: Array<ReponseEtudiant>) {
-    this.service.reponsesEtudiantList = value;
-  }
+    set selectedQuizClassroom(value: QuizClassRoom) {
+        this.service.selectedQuizClassroom = value;
+    }
 
-  constructor(private service: QuizEtudiantService, private login: LoginService) { }
+    get reponsesEtudiantList(): Array<ReponseEtudiant> {
+        return this.service.reponsesEtudiantList;
+    }
 
-  public hideViewDialog() {
-    this.viewDialogQuiz = false;
-  }
+    set reponsesEtudiantList(value: Array<ReponseEtudiant>) {
+        this.service.reponsesEtudiantList = value;
+    }
 
-  private initCol() {
-    this.cols = [
-      {field: 'id', header: 'Id'},
-      {field: 'note', header: 'Note'},
-      {field: 'ref', header: 'Reference'},
-      {field: 'quizEtudiant', header: 'Quiz Etudiant'},
-      {field: 'reponse', header: 'Reponse'}
-    ];
-  }
+    public hideViewDialog() {
+        this.viewDialogQuiz = false;
+    }
 
-  ngOnInit(): void {
+    ngOnInit(): void {
 
-    this.initCol();
+        this.initCol();
 
-  }
+    }
+
+    private initCol() {
+        this.cols = [
+            {field: 'id', header: 'Id'},
+            {field: 'note', header: 'Note'},
+            {field: 'ref', header: 'Reference'},
+            {field: 'quizEtudiant', header: 'Quiz Etudiant'},
+            {field: 'reponse', header: 'Reponse'}
+        ];
+    }
 
 }

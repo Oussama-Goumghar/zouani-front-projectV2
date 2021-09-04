@@ -1,20 +1,22 @@
-<p-dialog [(visible)]="viewDialogFaqContact" [style]="{width: '800px', height: '400px'}"  [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialogFaqContact" [modal]="true" [style]="{width: '800px', height: '400px'}"
+          styleClass="p-fluid">
     <ng-template pTemplate="header">
         <h3>Question</h3>
     </ng-template>
     <ng-template pTemplate="content">
-        <p-tabMenu id="menu" [model]="menu" [activeItem]="menu[0]"></p-tabMenu>
+        <p-tabMenu [activeItem]="menu[0]" [model]="menu" id="menu"></p-tabMenu>
         <div class="box" id="new-question">
-            <p-dropdown [options]="types" [(ngModel)]="selectedType" optionLabel="libelle"></p-dropdown>
-            <textarea rows="5" cols="30" placeholder="Your Question" [(ngModel)]="question" pInputTextarea></textarea>
-            <button pButton pRipple class="p-button-rounded p-button-success p-mr-2" label="Send" (click)="save()"></button>
+            <p-dropdown [(ngModel)]="selectedType" [options]="types" optionLabel="libelle"></p-dropdown>
+            <textarea [(ngModel)]="question" cols="30" pInputTextarea placeholder="Your Question" rows="5"></textarea>
+            <button (click)="save()" class="p-button-rounded p-button-success p-mr-2" label="Send" pButton
+                    pRipple></button>
         </div>
         <div class="box" id="my-questions">
             <p-tree [value]="nodes">
-                <ng-template let-node pTemplate="default" >
+                <ng-template let-node pTemplate="default">
                     <b class="libelle">{{node.label}}</b>
                 </ng-template>
-                <ng-template let-node pTemplate="string" >
+                <ng-template let-node pTemplate="string">
                     <b class="description">{{node.label}}</b>
                 </ng-template>
 
@@ -23,8 +25,10 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
-        <button pButton pRipple label="View My Question" icon="pi pi-times" class="p-button-text" [routerLink]="['/pages/faq-teacher-answer']" (click)="hideViewDialog()"></button>
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
+        <button (click)="hideViewDialog()" [routerLink]="['/pages/faq-teacher-answer']" class="p-button-text" icon="pi pi-times" label="View My Question"
+                pButton pRipple></button>
     </ng-template>
 </p-dialog>
 

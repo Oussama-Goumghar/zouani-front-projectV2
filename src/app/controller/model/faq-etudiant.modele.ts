@@ -6,7 +6,7 @@ export class FaqEtudiant {
     public id: number;
     public libelle: string;
     public description: string;
-    public  faqType = new FaqType();
+    public faqType = new FaqType();
     public etudiant = new Etudiant();
     public admin = new Admin();
 }

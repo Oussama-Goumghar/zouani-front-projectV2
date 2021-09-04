@@ -2,19 +2,21 @@
     <div class="p-grid">
         <div class="p-col">
             <div class="product-grid-item ">
-                <div class="product-grid-item-content" >
+                <div class="product-grid-item-content">
                     <div class="product-name" style="margin-bottom: 15px"><h1>-{{this.selectedsection.libelle}}-</h1>
                     </div>
                     <!-- <iframe *ngIf=" this.selectedsection.libelle != 'Watch the video' && this.selectedsection.urlImage != null"
                                [src]='photoURL() | safe' loading="lazy" width="400" height="200" ></iframe> -->
                     <div style="width: 60%;margin: 0 auto">
-                        <img *ngIf=" this.selectedsection.urlImage && !this.selectedsection.urlVideo" style="width: 100%"
-                             src="{{photoURL()}}">
+                        <img *ngIf=" this.selectedsection.urlImage && !this.selectedsection.urlVideo"
+                             src="{{photoURL()}}"
+                             style="width: 100%">
                         <iframe *ngIf="this.selectedsection.urlVideo && !this.selectedsection.urlImage"
                                 [src]='URLVideo() | safe'
-                                allowfullscreen  loading="lazy" style="width: 600px;height: 300px;" ></iframe>
-                        <div *ngIf="this.selectedsection.urlVideo && this.selectedsection.urlImage" style="width: 100%;">
-                            <img  src="{{photoURL()}}" style="width: 100%">
+                                allowfullscreen loading="lazy" style="width: 600px;height: 300px;"></iframe>
+                        <div *ngIf="this.selectedsection.urlVideo && this.selectedsection.urlImage"
+                             style="width: 100%;">
+                            <img src="{{photoURL()}}" style="width: 100%">
                             <div style="width: 100%">
                                 <iframe [src]='URLVideo() | safe' allowfullscreen
                                         loading="lazy" style="width: 600px;height: 300px;"></iframe>
@@ -25,9 +27,10 @@
                              src="assets/notfound.jpg" style="width: 100%">
 
 
-                    <div *ngIf=" this.selectedsection.contenu != null" ><h3
-                            (mouseup)="dict()"   style="box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); background-color: white;white-space: pre-wrap"   >{{this.selectedsection.contenu}}</h3>
-                    </div>
+                        <div *ngIf=" this.selectedsection.contenu != null"><h3
+                                (mouseup)="dict()"
+                                style="box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); background-color: white;white-space: pre-wrap">{{this.selectedsection.contenu}}</h3>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -42,10 +45,10 @@
                 <button (click)="quiz()" *ngIf="this.selectedsection.categorieSection.libelle != 'Vocabulary'  "
                         [style.visibility]="(this.selectedQuiz.section.id == this.selectedsection.id )? 'visible':'hidden'"
                         class="p-button-rounded" id="quiz"
-                        style="position: absolute;margin: 0;left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);top: 50%;  width: 120px"
                         label="quiz"
                         pButton
-                        pRipple  type="button"></button>
+                        pRipple
+                        style="position: absolute;margin: 0;left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);top: 50%;  width: 120px" type="button"></button>
                 <button (click)="NextSection()"
                         [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'visible':'hidden'"
                         class="p-button-rounded" icon="pi pi-caret-right" id="next" label="Next"
@@ -57,13 +60,13 @@
 
         </div>
 
-        <div class="p-col-3 product-grid-item"  >
-            <div class="product-grid-item-content" >
+        <div class="p-col-3 product-grid-item">
+            <div class="product-grid-item-content">
                 <div style="margin-top: 20px">
 
 
-
-                    <button type="button" pButton pRipple icon="pi pi-plus" style="background-color: #8b8b90; width: 100%" (click)="openCreateDict()" ></button>
+                    <button (click)="openCreateDict()" icon="pi pi-plus" pButton pRipple
+                            style="background-color: #8b8b90; width: 100%" type="button"></button>
 
                     <!-- <input  [(ngModel)]="word" pInputText placeholder="Search" style="width: 180px;" type="text"/>
                      <button pButton pRipple type="button" icon="pi pi-search"  (click)="findByWord()" style="margin-left: 2px;" ></button>
@@ -72,19 +75,21 @@
               -->
                 </div>
                 <div class="card" style="margin-top: 15px">
-                    <p-tabMenu [model]="menu" [activeItem]="menu[0]" style="width: 100%;" ></p-tabMenu>
+                    <p-tabMenu [activeItem]="menu[0]" [model]="menu" style="width: 100%;"></p-tabMenu>
 
 
-                    <div  id="categoriess" style="width: 100%;margin-top: 15px" [style.visibility]="'visible'" >
-                        <p-table id="categ" align="alternate" [value]="itemssection2"  style="margin-top: 20px; width: 100%;">
+                    <div [style.visibility]="'visible'" id="categoriess" style="width: 100%;margin-top: 15px">
+                        <p-table [value]="itemssection2" align="alternate" id="categ"
+                                 style="margin-top: 20px; width: 100%;">
 
-                            <ng-template let-section  pTemplate="body" >
+                            <ng-template let-section pTemplate="body">
                                 <tr class="timeline">
                                     <li>
-                                    <td (click)="Section(section.categorieSection.libelle)"
-                                        [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? '#8b8b90' :'#1BA7AF' "
-                                        style="cursor: pointer; font-weight: 600"><u>{{section.categorieSection.libelle}}</u>
-                                    </td>
+                                        <td (click)="Section(section.categorieSection.libelle)"
+                                            [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? '#8b8b90' :'#1BA7AF' "
+                                            style="cursor: pointer; font-weight: 600">
+                                            <u>{{section.categorieSection.libelle}}</u>
+                                        </td>
                                     </li>
                                 </tr>
                             </ng-template>
@@ -92,7 +97,7 @@
                         </p-table>
 
                     </div>
-                    <app-chat id="chat" [style.visibility]="'hidden'"></app-chat>
+                    <app-chat [style.visibility]="'hidden'" id="chat"></app-chat>
 
                 </div>
 

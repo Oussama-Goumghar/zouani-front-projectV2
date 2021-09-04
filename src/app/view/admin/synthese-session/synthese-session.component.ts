@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-synthese-session',
-  templateUrl: './synthese-session.component.html',
-  styleUrls: ['./synthese-session.component.scss']
+    selector: 'app-synthese-session',
+    templateUrl: './synthese-session.component.html',
+    styleUrls: ['./synthese-session.component.scss']
 })
 export class SyntheseSessionComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

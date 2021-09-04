@@ -1,18 +1,20 @@
-<div class="p-grid" >
+<div class="p-grid">
     <div class="p-col-12 ">
         <p-toast></p-toast>
         <div class="card toolbar-demo">
             <p-toolbar>
                 <div class="p-toolbar-group-left">
-                    <button pButton pRipple  icon="pi pi-eye" class="p-button-secondary p-button-rounded p-mr-2 p-mb-2" (click)="openPreview()"></button>
+                    <button (click)="openPreview()" class="p-button-secondary p-button-rounded p-mr-2 p-mb-2" icon="pi pi-eye" pButton
+                            pRipple></button>
                 </div>
 
                 <div class="p-toolbar-group-right">
-                    <button pButton pRipple type="button"  label="Delete this quiz" icon="pi pi-check" (click)="deleteQuiz()"></button>
+                    <button (click)="deleteQuiz()" icon="pi pi-check" label="Delete this quiz" pButton pRipple
+                            type="button"></button>
                 </div>
             </p-toolbar>
         </div>
-        <p-card   [style]="{width: '100%'}" id="mainCard" styleClass="p-card-shadow" class="container" >
+        <p-card [style]="{width: '100%'}" class="container" id="mainCard" styleClass="p-card-shadow">
             <ng-template pTemplate="header">
                 <p-card [style]="{backgroundColor: ' gainsboro'}">
                     <div class="card-header">
@@ -23,40 +25,45 @@
 
                         <div class="p-field p-col-12 p-md-3">
                             <label class="labelFormat">Quiz's name</label><br/>
-                            <input id="float-input" type="text" [(ngModel)]="selected.lib" pInputText>
+                            <input [(ngModel)]="selected.lib" id="float-input" pInputText type="text">
                         </div>
                         <div class="p-field p-col-12 p-md-3">
                             <label class="labelFormat">debut date</label><br/>
-                            <p-calendar inputId="debut"    [(ngModel)]="selected.dateDebut" dateFormat="yy-mm-dd"></p-calendar>
+                            <p-calendar [(ngModel)]="selected.dateDebut" dateFormat="yy-mm-dd"
+                                        inputId="debut"></p-calendar>
                         </div>
                         <div class="p-field p-col-12 p-md-3">
                             <label class="labelFormat">finish date</label><br/>
-                            <p-calendar inputId="fin" class="refQuiz" [(ngModel)]="selected.dateFin" dateFormat="yy-mm-dd"></p-calendar>
+                            <p-calendar [(ngModel)]="selected.dateFin" class="refQuiz" dateFormat="yy-mm-dd"
+                                        inputId="fin"></p-calendar>
                         </div>
                         <div class="p-field p-col-12 p-md-3">
-                            <label class="labelFormat" >success threshold</label><br/>
-                            <p-inputNumber    class="refQuiz"  [(ngModel)]="selected.seuilReussite"></p-inputNumber>
+                            <label class="labelFormat">success threshold</label><br/>
+                            <p-inputNumber [(ngModel)]="selected.seuilReussite" class="refQuiz"></p-inputNumber>
                         </div>
                         <div class="p-toolbar-group-right" style="margin-left: 40%">
-                            <button pButton pRipple type="button"  label="Update detail quiz" icon="pi pi-check" (click)="updateQuiz()"></button>
+                            <button (click)="updateQuiz()" icon="pi pi-check" label="Update detail quiz" pButton pRipple
+                                    type="button"></button>
                         </div>
 
                     </div>
                 </p-card>
             </ng-template>
             <div class="p-grid">
-                <div class="p-col-fixed" style="width: 60%"  id="formCard">
+                <div class="p-col-fixed" id="formCard" style="width: 60%">
                     <div class="card" styleClass="p-card-shadow">
-                        <div class="p-fluid p-formgrid p-grid" >
+                        <div class="p-fluid p-formgrid p-grid">
                             <div class="p-field p-col-12 p-md-6">
-                                <p-inputNumber id="firstname6" placeholder="Question number" [(ngModel)]="question.numero"></p-inputNumber>
+                                <p-inputNumber [(ngModel)]="question.numero" id="firstname6"
+                                               placeholder="Question number"></p-inputNumber>
                             </div>
                             <div class="p-field p-col-12 p-md-6">
-                                <p-dropdown inputId="type"  [options]="types" [(ngModel)]="question.typeDeQuestion" placeholder="Type of Question" optionLabel="lib"></p-dropdown>
+                                <p-dropdown [(ngModel)]="question.typeDeQuestion" [options]="types" inputId="type"
+                                            optionLabel="lib" placeholder="Type of Question"></p-dropdown>
                             </div>
                             <div class="p-field p-col-12 ">
-                                <label >Question</label>
-                                <textarea type="text" rows="4" pInputTextarea   [(ngModel)]="question.libelle"></textarea>
+                                <label>Question</label>
+                                <textarea [(ngModel)]="question.libelle" pInputTextarea rows="4" type="text"></textarea>
 
                             </div>
                             <div class="p-col-12 " style="text-align: center; margin: 5px; ">
@@ -67,33 +74,38 @@
                                     <p-inputNumber [(ngModel)]="reponse.numero" placeholder="Number"></p-inputNumber>
                                 </div>
                                 <div class="p-field p-col-12 p-md-4">
-                                    <p-inputNumber [(ngModel)]="question.pointReponseJuste" placeholder="True point"  [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+                                    <p-inputNumber [(ngModel)]="question.pointReponseJuste" [maxFractionDigits]="2"
+                                                   [minFractionDigits]="2" placeholder="True point"></p-inputNumber>
                                 </div>
                                 <div class="p-field p-col-12 p-md-4">
-                                    <p-inputNumber [(ngModel)]="question.pointReponsefausse" placeholder="false point"  [minFractionDigits]="2" [maxFractionDigits]="2"></p-inputNumber>
+                                    <p-inputNumber [(ngModel)]="question.pointReponsefausse" [maxFractionDigits]="2"
+                                                   [minFractionDigits]="2" placeholder="false point"></p-inputNumber>
                                 </div>
                             </div>
                             <div class="p-field  p-col-10 ">
-                                <label >Answer</label>
-                                <textarea type="text" rows="2"  pInputTextarea [(ngModel)]="reponse.lib"></textarea>
+                                <label>Answer</label>
+                                <textarea [(ngModel)]="reponse.lib" pInputTextarea rows="2" type="text"></textarea>
                             </div>
-                            <div class="p-field  p-col-2" >
-                                <p-button label="Add Answer" icon="pi pi-plus" iconPos="right" (click)="addReponse()" styleClass="p-button-sm"></p-button>
+                            <div class="p-field  p-col-2">
+                                <p-button (click)="addReponse()" icon="pi pi-plus" iconPos="right" label="Add Answer"
+                                          styleClass="p-button-sm"></p-button>
                             </div>
                             <div class="p-formgroup-inline p-col-12">
                                 <h6>Correct : </h6>
                                 <div class="p-field-radiobutton p-md-1">
-                                    <p-radioButton name="state" value="true" [(ngModel)]="reponse.etatReponse" inputId="city1"></p-radioButton>
+                                    <p-radioButton [(ngModel)]="reponse.etatReponse" inputId="city1" name="state"
+                                                   value="true"></p-radioButton>
                                     <label>true</label>
                                 </div>
                                 <div class="p-field-radiobutton p-md-1">
-                                    <p-radioButton name="state" value="false" [(ngModel)]="reponse.etatReponse" inputId="city2"></p-radioButton>
+                                    <p-radioButton [(ngModel)]="reponse.etatReponse" inputId="city2" name="state"
+                                                   value="false"></p-radioButton>
                                     <label>False</label>
                                 </div>
                             </div>
                         </div>
                         <div class="p-md-12" style="margin: auto">
-                            <p-table [value]="reponses"  >
+                            <p-table [value]="reponses">
                                 <ng-template pTemplate="header">
                                     <tr>
                                         <th>Libelle Answer</th>
@@ -103,13 +115,14 @@
                                         <th>Action</th>
                                     </tr>
                                 </ng-template>
-                                <ng-template pTemplate="body" let-reponse   >
-                                    <tr  >
+                                <ng-template let-reponse pTemplate="body">
+                                    <tr>
                                         <td>{{reponse.lib}}</td>
                                         <td>{{reponse.etatReponse}}</td>
                                         <td>{{question.pointReponseJuste}} pt</td>
                                         <td>{{question.pointReponsefausse}} pt</td>
-                                        <td><span (click)="delete(reponse)" style="cursor: pointer" class="pi pi-trash p-button-rounded p-button-danger" ></span></td>
+                                        <td><span (click)="delete(reponse)" class="pi pi-trash p-button-rounded p-button-danger"
+                                                  style="cursor: pointer"></span></td>
                                     </tr>
                                 </ng-template>
                             </p-table>
@@ -123,18 +136,22 @@
                         </ng-template>
                         <ng-template let-node pTemplate="default">
                             <b>{{node.label}}</b>
-                            <button pButton pRipple type="button" icon="pi pi-undo" class="p-button-rounded p-button-success" (click)="update(node.key)"></button>
-                            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="deleteQuestion(node.key)"></button>
+                            <button (click)="update(node.key)" class="p-button-rounded p-button-success" icon="pi pi-undo" pButton
+                                    pRipple type="button"></button>
+                            <button (click)="deleteQuestion(node.key)" class="p-button-rounded p-button-danger" icon="pi pi-times" pButton
+                                    pRipple
+                                    type="button"></button>
 
                         </ng-template>
                     </p-tree>
                 </div>
             </div>
-            <button pButton pRipple type="button" label="Add question" class="p-button-raised p-button-success" icon="pi pi-plus" iconPos="right" style="margin-left: 20%" (click)="addFormule()"></button>
-            <ng-template  pTemplate="footer">
+            <button (click)="addFormule()" class="p-button-raised p-button-success" icon="pi pi-plus" iconPos="right" label="Add question"
+                    pButton pRipple style="margin-left: 20%" type="button"></button>
+            <ng-template pTemplate="footer">
             </ng-template>
         </p-card>
-        <app-quiz-config ></app-quiz-config>
+        <app-quiz-config></app-quiz-config>
         <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
     </div>
 </div>

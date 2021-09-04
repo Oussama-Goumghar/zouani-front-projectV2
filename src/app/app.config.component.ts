@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { AppComponent } from './app.component';
-import { AppMainComponent } from './app.main.component';
+import {AppComponent} from './app.component';
+import {AppMainComponent} from './app.main.component';
 
 @Component({
     selector: 'app-config',
@@ -128,7 +128,8 @@ export class AppConfigComponent implements OnInit {
 
     topbarColors: any[];
 
-    constructor(public app: AppComponent, public appMain: AppMainComponent) {}
+    constructor(public app: AppComponent, public appMain: AppMainComponent) {
+    }
 
     ngOnInit() {
         this.topbarColors = [
@@ -196,8 +197,7 @@ export class AppConfigComponent implements OnInit {
     replaceLink(linkElement, href) {
         if (this.isIE()) {
             linkElement.setAttribute('href', href);
-        }
-        else {
+        } else {
             const id = linkElement.getAttribute('id');
             const cloneLinkElement = linkElement.cloneNode(true);
 

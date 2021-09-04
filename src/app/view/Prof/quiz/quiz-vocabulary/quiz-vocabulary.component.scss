@@ -1,18 +1,21 @@
-.styleH{
+.styleH {
   font-weight: bold;
   font-family: Palatino Linotype, serif;
   color: #191919;
 }
-#translated{
+
+#translated {
   visibility: hidden;
   height: 0px;
 }
+
 #container {
   display: flex;
   justify-content: center;
   flex-direction: row;
 }
-#mainCard{
+
+#mainCard {
   visibility: hidden;
   display: flex;
   justify-content: center;
@@ -20,56 +23,67 @@
   margin-top: 50px;
 
 }
+
 .container {
   display: flex;
   justify-content: center;
   flex-direction: row;
 
 }
-.styleOfp{
-  font-family: Palatino Linotype,serif;
+
+.styleOfp {
+  font-family: Palatino Linotype, serif;
   font-size: 20px;
   text-align: center;
 }
-.quizTitre{
+
+.quizTitre {
   text-align: center;
   font-size: 40px;
   font-family: Algerian, serif;
-  color:#2e2e33;
+  color: #2e2e33;
 }
-#vocabulary{
+
+#vocabulary {
   visibility: hidden;
 
 }
-#image{
+
+#image {
   margin-left: 300px;
   filter: blur(15px);
   height: 300px;
   width: 300px;
 }
-#btn-start{
-   display: flex;
-   justify-content: center;
-   flex-direction: row;
-   float: left;
-   margin-left: 415px;
- }
-#incorrect{
+
+#btn-start {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  float: left;
+  margin-left: 415px;
+}
+
+#incorrect {
   visibility: hidden;
   height: 0px;
 }
-#filpAnyway{
+
+#filpAnyway {
   visibility: hidden;
 }
-#correct{
-  visibility: hidden;
-  height: 0px;
-}
-#nextTime{
+
+#correct {
   visibility: hidden;
   height: 0px;
 }
-#congrats{
+
+#nextTime {
+  visibility: hidden;
+  height: 0px;
+}
+
+#congrats {
   visibility: hidden;
   height: 0px;
 }

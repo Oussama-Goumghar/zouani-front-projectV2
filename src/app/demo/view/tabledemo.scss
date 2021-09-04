@@ -18,33 +18,33 @@
 
 
 .home {
-	width: 100%;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	text-align: center;
-	color: white;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  color: white;
 }
 
-.home > h1{
-	font-family: "Goudy Old Style";
-	font-size: 40px;
+.home > h1 {
+  font-family: "Goudy Old Style";
+  font-size: 40px;
 }
 
-.home > p{
-	font-family: Garamond;
-	width: 70%;
-	margin-left: 200px;
-	font-size: 20px;
+.home > p {
+  font-family: Garamond;
+  width: 70%;
+  margin-left: 200px;
+  font-size: 20px;
 }
 
 #previous-home {
-	position: absolute;
-	top: 50%;
+  position: absolute;
+  top: 50%;
 }
 
 #next-home {
-	position: absolute;
-	top: 50%;
-	left: 65%;
+  position: absolute;
+  top: 50%;
+  left: 65%;
 }

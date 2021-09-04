@@ -14,31 +14,6 @@ export class SyntheseSessionCoursCreateComponent implements OnInit {
     constructor(private messageService: MessageService, private service: SyntheseSessionCoursService) {
     }
 
-    ngOnInit(): void {
-    }
-
-    public hideCreateDialog() {
-        this.createDialog = false;
-        this.submitted = false;
-    }
-
-    public save() {
-        this.submitted = true;
-        if (this.selected.reference.trim()) {
-            this.service.save().subscribe(data => {
-                this.items.push({...data});
-                this.messageService.add({
-                    severity: 'success',
-                    summary: 'Successful',
-                    detail: 'Synthese-Session-Cours Created',
-                    life: 3000
-                });
-            });
-            this.createDialog = false;
-            this.selected = new SyntheseSessionCours();
-        }
-    }
-
     get selected(): SyntheseSessionCours {
         return this.service.selected;
     }
@@ -69,6 +44,31 @@ export class SyntheseSessionCoursCreateComponent implements OnInit {
 
     set items(value: Array<SyntheseSessionCours>) {
         this.service.items = value;
+    }
+
+    ngOnInit(): void {
+    }
+
+    public hideCreateDialog() {
+        this.createDialog = false;
+        this.submitted = false;
+    }
+
+    public save() {
+        this.submitted = true;
+        if (this.selected.reference.trim()) {
+            this.service.save().subscribe(data => {
+                this.items.push({...data});
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Synthese-Session-Cours Created',
+                    life: 3000
+                });
+            });
+            this.createDialog = false;
+            this.selected = new SyntheseSessionCours();
+        }
     }
 
 

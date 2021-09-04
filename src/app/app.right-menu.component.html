@@ -1,4 +1,5 @@
-<div class="layout-right-panel" [ngClass]="{'layout-right-panel-active': appMain.rightPanelMenuActive}" (click)="appMain.rightMenuClick = true">
+<div (click)="appMain.rightMenuClick = true" [ngClass]="{'layout-right-panel-active': appMain.rightPanelMenuActive}"
+     class="layout-right-panel">
     <p-tabView>
         <p-tabPanel header="Status">
             <div class="status-title">
@@ -6,7 +7,7 @@
                 <i class="pi pi-download"></i>
             </div>
             <div>
-                <p-progressBar [value]="88" [showValue]="false"></p-progressBar>
+                <p-progressBar [showValue]="false" [value]="88"></p-progressBar>
             </div>
             <div class="status-content">
                 <span class="percentage-1">65</span><span class="percentage-2">/88</span> Servers Online
@@ -17,11 +18,11 @@
                 <i class="pi pi-clock"></i>
             </div>
             <div>
-                <p-progressBar [value]="65" [showValue]="false"></p-progressBar>
+                <p-progressBar [showValue]="false" [value]="65"></p-progressBar>
             </div>
             <div class="status-content">
                 <span class="percentage-1">4</span>
-                <span class="percentage-2">/5</span> 
+                <span class="percentage-2">/5</span>
                 Active Pipeline
             </div>
 
@@ -30,11 +31,11 @@
                 <i class="pi pi-cloud"></i>
             </div>
             <div>
-                <p-progressBar [value]="35" [showValue]="false"></p-progressBar>
+                <p-progressBar [showValue]="false" [value]="35"></p-progressBar>
             </div>
             <div class="status-content">
                 <span class="percentage-1">12</span>
-                <span class="percentage-2">/40</span> 
+                <span class="percentage-2">/40</span>
                 Drivers
             </div>
 
@@ -43,10 +44,10 @@
                 <i class="pi pi-map-marker"></i>
             </div>
             <div>
-                <p-progressBar [value]="85" [showValue]="false"></p-progressBar>
+                <p-progressBar [showValue]="false" [value]="85"></p-progressBar>
             </div>
             <div class="status-content">
-                <span class="percentage-1">65</span><span class="percentage-2">/88</span> 
+                <span class="percentage-1">65</span><span class="percentage-2">/88</span>
                 Servers Online
             </div>
         </p-tabPanel>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {QuizEtudiant} from '../../../controller/model/quiz-etudiant.model';
 import {EtudiantClassRoom} from '../../../controller/model/etudiant-class-room.model';
 import {QuizClassRoom} from '../../../controller/model/quiz-class-room.model';
@@ -7,91 +7,93 @@ import {LoginService} from '../../../controller/service/login.service';
 import {Quiz} from '../../../controller/model/quiz.model';
 
 @Component({
-  selector: 'app-classroom-student-list',
-  templateUrl: './classroom-student-list.component.html',
-  styleUrls: ['./classroom-student-list.component.scss']
+    selector: 'app-classroom-student-list',
+    templateUrl: './classroom-student-list.component.html',
+    styleUrls: ['./classroom-student-list.component.scss']
 })
 export class ClassroomStudentListComponent implements OnInit {
-  constructor(private service: QuizEtudiantService, private login: LoginService) { }
+    constructor(private service: QuizEtudiantService, private login: LoginService) {
+    }
 
-  get quizEtudiantList(): QuizEtudiant {
-    return this.service.quizEtudiantList;
-  }
-  set quizEtudiantList(value: QuizEtudiant) {
-    this.service.quizEtudiantList = value;
-  }
+    get quizEtudiantList(): QuizEtudiant {
+        return this.service.quizEtudiantList;
+    }
 
-  get etudiantsClassroom(): Array<EtudiantClassRoom> {
-    return this.service.etudiantsClassroom;
-  }
+    set quizEtudiantList(value: QuizEtudiant) {
+        this.service.quizEtudiantList = value;
+    }
 
-  set etudiantsClassroom(value: Array<EtudiantClassRoom>) {
-    this.service.etudiantsClassroom = value;
-  }
+    get etudiantsClassroom(): Array<EtudiantClassRoom> {
+        return this.service.etudiantsClassroom;
+    }
 
-  get quizsClassroom(): Array<QuizClassRoom> {
-    return this.service.quizsClassroom;
-  }
+    set etudiantsClassroom(value: Array<EtudiantClassRoom>) {
+        this.service.etudiantsClassroom = value;
+    }
 
-  set quizsClassroom(value: Array<QuizClassRoom>) {
-    this.service.quizsClassroom = value;
-  }
+    get quizsClassroom(): Array<QuizClassRoom> {
+        return this.service.quizsClassroom;
+    }
 
-  get viewDialogQuiz(): boolean {
-    return this.service.viewDialogQuiz;
-  }
+    set quizsClassroom(value: Array<QuizClassRoom>) {
+        this.service.quizsClassroom = value;
+    }
 
-  set viewDialogQuiz(value: boolean) {
-    this.service.viewDialogQuiz = value;
-  }
+    get viewDialogQuiz(): boolean {
+        return this.service.viewDialogQuiz;
+    }
 
-  get selectedQuizClassroom(): QuizClassRoom {
-    return this.service.selectedQuizClassroom;
-  }
+    set viewDialogQuiz(value: boolean) {
+        this.service.viewDialogQuiz = value;
+    }
 
-  set selectedQuizClassroom(value: QuizClassRoom) {
-    this.service.selectedQuizClassroom = value;
-  }
+    get selectedQuizClassroom(): QuizClassRoom {
+        return this.service.selectedQuizClassroom;
+    }
 
-  get selectedClassroom(): EtudiantClassRoom {
-    return this.service.selectedClassroom;
-  }
+    set selectedQuizClassroom(value: QuizClassRoom) {
+        this.service.selectedQuizClassroom = value;
+    }
 
-  set selectedClassroom(value: EtudiantClassRoom) {
-    this.service.selectedClassroom = value;
-  }
+    get selectedClassroom(): EtudiantClassRoom {
+        return this.service.selectedClassroom;
+    }
 
-  get selectedQuiz(): Quiz {
-    return this.service.selectedQuiz;
-  }
+    set selectedClassroom(value: EtudiantClassRoom) {
+        this.service.selectedClassroom = value;
+    }
 
-  set selectedQuiz(value: Quiz) {
-    this.service.selectedQuiz = value;
-  }
+    get selectedQuiz(): Quiz {
+        return this.service.selectedQuiz;
+    }
 
-  public findClassRoom() {
-    this.service.findEtudiantClassRoom(this.login.etudiant).subscribe(
-        data => {
-          this.etudiantsClassroom = data;
-          console.log(this.etudiantsClassroom);
-        });
-  }
+    set selectedQuiz(value: Quiz) {
+        this.service.selectedQuiz = value;
+    }
 
-  public view(classes: EtudiantClassRoom) {
-    this.selectedClassroom = {...classes};
-    console.log(this.selectedClassroom);
-    this.service.findQuizEtudiant(this.login.etudiant, this.service.selectedQuizClassroom.quiz).subscribe(
-        data => {
-          this.quizEtudiantList = data;
-        }, error => {
-          this.quizEtudiantList.resultat = 'pas encore repondu';
-          this.quizEtudiantList.note = 0;
-        });
-  }
+    public findClassRoom() {
+        this.service.findEtudiantClassRoom(this.login.etudiant).subscribe(
+            data => {
+                this.etudiantsClassroom = data;
+                console.log(this.etudiantsClassroom);
+            });
+    }
 
-  ngOnInit(): void {
-    this.findClassRoom();
-    console.log(this.etudiantsClassroom);
-  }
+    public view(classes: EtudiantClassRoom) {
+        this.selectedClassroom = {...classes};
+        console.log(this.selectedClassroom);
+        this.service.findQuizEtudiant(this.login.etudiant, this.service.selectedQuizClassroom.quiz).subscribe(
+            data => {
+                this.quizEtudiantList = data;
+            }, error => {
+                this.quizEtudiantList.resultat = 'pas encore repondu';
+                this.quizEtudiantList.note = 0;
+            });
+    }
+
+    ngOnInit(): void {
+        this.findClassRoom();
+        console.log(this.etudiantsClassroom);
+    }
 
 }

@@ -1,44 +1,47 @@
 <div class="p-grid p-nogutter floatlabel-demo">
     <div class="card p-fluid" style="width: 100%">
         <h5>Float Label</h5>
-        <p>All input text components support floating labels by adding (<mark>.p-float-label</mark>) to wrapper class.</p>
+        <p>All input text components support floating labels by adding (
+            <mark>.p-float-label</mark>
+            ) to wrapper class.
+        </p>
         <div class="p-grid">
             <div class="p-col-12 p-md-6">
                 <div class="p-field">
                     <span class="p-float-label">
-                        <input type="text" id="inputtext" pInputText [(ngModel)]="value1">
+                        <input [(ngModel)]="value1" id="inputtext" pInputText type="text">
                         <label for="inputtext">InputText</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label p-input-icon-left">
                         <i class="pi pi-search"></i>
-                        <input type="text" id="lefticon" pInputText [(ngModel)]="value11">
+                        <input [(ngModel)]="value11" id="lefticon" pInputText type="text">
                         <label for="lefticon">Left Icon</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label p-input-icon-right">
-                        <input type="text" id="righticon" pInputText [(ngModel)]="value12">
+                        <input [(ngModel)]="value12" id="righticon" pInputText type="text">
                         <label for="righticon">Right Icon</label>
                         <i class="pi pi-spin pi-spinner"></i>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <p-inputMask inputId="inputmask" mask="99/99/9999" [(ngModel)]="value5"></p-inputMask>
+                        <p-inputMask [(ngModel)]="value5" inputId="inputmask" mask="99/99/9999"></p-inputMask>
                         <label for="inputmask">InputMask</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <p-inputNumber inputId="inputnumber" [(ngModel)]="value6"></p-inputNumber>
+                        <p-inputNumber [(ngModel)]="value6" inputId="inputnumber"></p-inputNumber>
                         <label for="inputnumber">InputNumber</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <p-chips inputId="chips" [(ngModel)]="value4"></p-chips>
+                        <p-chips [(ngModel)]="value4" inputId="chips"></p-chips>
                         <label for="chips">Chips</label>
                     </span>
                 </div>
@@ -51,41 +54,42 @@
                             <i class="pi pi-user"></i>
                         </span>
                         <span class="p-float-label">
-                            <input type="text" id="inputgroup" pInputText [(ngModel)]="value7">
+                            <input [(ngModel)]="value7" id="inputgroup" pInputText type="text">
                             <label for="inputgroup">InputGroup</label>
                         </span>
                     </div>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <p-autoComplete inputId="autocomplete" [(ngModel)]="value2" [suggestions]="filteredCountries"
-                                        (completeMethod)="searchCountry($event)" field="name"></p-autoComplete>
+                        <p-autoComplete (completeMethod)="searchCountry($event)" [(ngModel)]="value2" [suggestions]="filteredCountries"
+                                        field="name" inputId="autocomplete"></p-autoComplete>
                         <label for="autocomplete">AutoComplete</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <p-calendar inputId="calendar" [(ngModel)]="value3"></p-calendar>
+                        <p-calendar [(ngModel)]="value3" inputId="calendar"></p-calendar>
                         <label for="calendar">Calendar</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <p-dropdown inputId="dropdown" [autoDisplayFirst]="false" [options]="cities" [(ngModel)]="value8"
+                        <p-dropdown [(ngModel)]="value8" [autoDisplayFirst]="false" [options]="cities"
+                                    inputId="dropdown"
                                     optionLabel="name"></p-dropdown>
                         <label for="dropdown">Dropdown</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <p-multiSelect inputId="multiselect" [options]="cities" [(ngModel)]="value9" optionLabel="name"
-                                       [filter]="false"></p-multiSelect>
+                        <p-multiSelect [(ngModel)]="value9" [filter]="false" [options]="cities" inputId="multiselect"
+                                       optionLabel="name"></p-multiSelect>
                         <label for="multiselect">MultiSelect</label>
                     </span>
                 </div>
                 <div class="p-field">
                     <span class="p-float-label">
-                        <textarea inputId="textarea" rows="3" cols="30" [(ngModel)]="value10" pInputTextarea></textarea>
+                        <textarea [(ngModel)]="value10" cols="30" inputId="textarea" pInputTextarea rows="3"></textarea>
                         <label for="textarea">Textarea</label>
                     </span>
                 </div>

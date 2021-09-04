@@ -1,4 +1,4 @@
 export class RecommendTeacherVo {
-    public  nom: string;
-    public   prenom: string;
+    public nom: string;
+    public prenom: string;
 }

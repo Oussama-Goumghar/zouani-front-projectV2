@@ -41,7 +41,8 @@ export class AppCrudComponent implements OnInit {
     cols: any[];
 
     constructor(private productService: ProductService, private messageService: MessageService,
-                private confirmationService: ConfirmationService) {}
+                private confirmationService: ConfirmationService) {
+    }
 
     ngOnInit() {
         this.productService.getProducts().then(data => this.products = data);

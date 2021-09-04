@@ -1,35 +1,36 @@
-<p-dialog [(visible)]="viewDialog" [style]="{width: '450px'}" header="Synthese-Session-Cours Details" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialog" [modal]="true" [style]="{width: '450px'}" header="Synthese-Session-Cours Details"
+          styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="p-field">
             <label for="reference">Reference</label>
-            <input type="text" pInputText id="reference" [(ngModel)]="selected.reference" disabled />
+            <input [(ngModel)]="selected.reference" disabled id="reference" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="id">Id</label>
-            <input type="text" pInputText id="id" [(ngModel)]="selected.id" disabled />
+            <input [(ngModel)]="selected.id" disabled id="id" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="username">Username</label>
-            <input type="text" pInputText id="username" [(ngModel)]="selected.username" disabled />
+            <input [(ngModel)]="selected.username" disabled id="username" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="firstName">FirstName</label>
-            <input type="text" pInputText id="firstName" [(ngModel)]="selected.firstName" disabled />
+            <input [(ngModel)]="selected.firstName" disabled id="firstName" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="lastName">LastName</label>
-            <input type="text" pInputText id="lastName" [(ngModel)]="selected.lastName" disabled />
+            <input [(ngModel)]="selected.lastName" disabled id="lastName" pInputText type="text"/>
         </div>
         <div class="p-field">
             <label for="nationallite">Nationnalité</label>
-            <input type="text" pInputText id="nationallite" [(ngModel)]="selected.nationallite" disabled />
+            <input [(ngModel)]="selected.nationallite" disabled id="nationallite" pInputText type="text"/>
         </div>
-
 
 
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
     </ng-template>
 </p-dialog>

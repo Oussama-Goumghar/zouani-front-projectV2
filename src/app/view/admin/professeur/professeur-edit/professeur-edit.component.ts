@@ -1,74 +1,74 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Prof} from '../../../../controller/model/prof.model';
 import {MessageService} from 'primeng/api';
 import {ProfessorService} from '../../../../controller/service/professor.service';
 
 @Component({
-  selector: 'app-professeur-edit',
-  templateUrl: './professeur-edit.component.html',
-  styleUrls: ['./professeur-edit.component.scss']
+    selector: 'app-professeur-edit',
+    templateUrl: './professeur-edit.component.html',
+    styleUrls: ['./professeur-edit.component.scss']
 })
 export class ProfesseurEditComponent implements OnInit {
 
-  constructor(private messageService: MessageService, private service: ProfessorService) {
-  }
+    constructor(private messageService: MessageService, private service: ProfessorService) {
+    }
 
-  ngOnInit(): void {
-  }
+    get selected(): Prof {
+        return this.service.selected;
+    }
 
-  public edit() {
-    this.submitted = true;
-    if (this.selected.id) {
-        this.items[this.service.findIndexById(this.selected.id)] = this.selected;
-        this.service.edit().subscribe(data => {
-          this.selected = data;
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Successful',
-            detail: 'Prof Updated',
-            life: 3000
-          });
-        });
-      }
-    this.editDialog = false;
-    this.selected = new Prof();
-  }
+    set selected(value: Prof) {
+        this.service.selected = value;
+    }
 
-  public hideEditDialog() {
-    this.editDialog = false;
-  }
-  get selected(): Prof {
-    return this.service.selected;
-  }
+    get editDialog(): boolean {
+        return this.service.editDialog;
+    }
 
-  set selected(value: Prof) {
-    this.service.selected = value;
-  }
+    set editDialog(value: boolean) {
+        this.service.editDialog = value;
+    }
 
-  get editDialog(): boolean {
-    return this.service.editDialog;
-  }
+    get submitted(): boolean {
+        return this.service.submitted;
+    }
 
-  set editDialog(value: boolean) {
-    this.service.editDialog = value;
-  }
+    set submitted(value: boolean) {
+        this.service.submitted = value;
+    }
 
-  get submitted(): boolean {
-    return this.service.submitted;
-  }
+    get items(): Array<Prof> {
+        return this.service.items;
+    }
 
-  set submitted(value: boolean) {
-    this.service.submitted = value;
-  }
+    set items(value: Array<Prof>) {
+        this.service.items = value;
+    }
 
-  get items(): Array<Prof> {
-    return this.service.items;
-  }
+    ngOnInit(): void {
+    }
 
-  set items(value: Array<Prof>) {
-    this.service.items = value;
-  }
+    public edit() {
+        this.submitted = true;
+        if (this.selected.id) {
+            this.items[this.service.findIndexById(this.selected.id)] = this.selected;
+            this.service.edit().subscribe(data => {
+                this.selected = data;
+                this.messageService.add({
+                    severity: 'success',
+                    summary: 'Successful',
+                    detail: 'Prof Updated',
+                    life: 3000
+                });
+            });
+        }
+        this.editDialog = false;
+        this.selected = new Prof();
+    }
 
+    public hideEditDialog() {
+        this.editDialog = false;
+    }
 
 
 }

@@ -16,9 +16,13 @@ import {Dictionary} from '../../../../controller/model/dictionary.model';
 import {Router} from '@angular/router';
 import {VocabularyService} from '../../../../controller/service/vocabulary.service';
 import {EtudiantCours} from '../../../../controller/model/etudiant-cours.model';
-@Pipe({ name: 'safe' })
+import {SectionItemService} from '../../../../controller/service/section-item.service';
+
+@Pipe({name: 'safe'})
 export class SafePipe implements PipeTransform {
-    constructor(private sanitizer: DomSanitizer) { }
+    constructor(private sanitizer: DomSanitizer) {
+    }
+
     transform(url) {
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
@@ -37,14 +41,35 @@ export class StudentSimulateSectionComponent implements OnInit {
     translate: any;
     textSeleted: string;
     filteredDict: any[];
-    // tslint:disable-next-line:max-line-lengthg max-line-length
-    constructor(private messageService: MessageService, private router: Router, private dictionnaryService: DictionaryService, private sanitizer: DomSanitizer, private confirmationService: ConfirmationService, private service: ParcoursService, private http: HttpClient, private quizService: QuizEtudiantService, private loginService: LoginService, private  vocab: VocabularyService) { }
+    synonym: any[];
     value = 0;
     word: string;
     wordDict: string;
+
+    // tslint:disable-next-line:max-line-lengthg max-line-length
+    constructor(private messageService: MessageService,
+                private router: Router,
+                private dictionnaryService: DictionaryService,
+                private sanitizer: DomSanitizer,
+                private confirmationService: ConfirmationService,
+                private service: ParcoursService,
+                private http: HttpClient,
+                private quizService: QuizEtudiantService,
+                private loginService: LoginService,
+                private vocab: VocabularyService,
+                private sectionItemService: SectionItemService) {
+    }
+    get contenuSection(): Array<string> {
+        return this.service.contenuSection;
+    }
+
+    set contenuSection(value: Array<string>) {
+        this.service.contenuSection = value;
+    }
     get selected(): Dictionary {
         return this.dictionnaryService.selected;
     }
+
     set selected(value: Dictionary) {
         this.dictionnaryService.selected = value;
     }
@@ -162,11 +187,13 @@ export class StudentSimulateSectionComponent implements OnInit {
             });
         // this.photoURL();
         this.quizService.section.id = this.selectedsection.id;
-        this.quizService.findQuizSection().subscribe( data => this.selectedQuiz = data);
-        this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
+        this.quizService.findQuizSection().subscribe(data => this.selectedQuiz = data);
+        this.vocab.findAllVocabSection().subscribe(data => {
+            this.vocab.nombreVocab = data.length;
         });
         this.menu = [
-            { icon: 'pi pi-list', command: (event) => {
+            {
+                icon: 'pi pi-list', command: (event) => {
                     this.service.affichelistSection().subscribe(
                         data => {
                             this.itemssection2 = data;
@@ -181,14 +208,18 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('categoriess').style.height = '100%';
                     document.getElementById('categ').style.height = '100%';
                     document.getElementById('chat').style.visibility = 'hidden';
-                }}, {icon: 'pi pi-fw pi-comments', command: (event) => {
+                }
+            }, {
+                icon: 'pi pi-fw pi-comments', command: (event) => {
                     document.getElementById('categoriess').style.visibility = 'hidden';
                     document.getElementById('categoriess').style.height = '0px';
                     document.getElementById('word').style.visibility = 'hidden';
                     document.getElementById('word').style.height = '0px';
                     document.getElementById('chat').style.visibility = 'visible';
-                }},
-            { icon: 'pi pi-book', style: {width: '50%'}, command: (event) => {
+                }
+            },
+            {
+                icon: 'pi pi-book', style: {width: '50%'}, command: (event) => {
                     this.dictionnaryService.FindAllWord().subscribe(
                         data => {
                             this.itemsDict = data;
@@ -200,14 +231,16 @@ export class StudentSimulateSectionComponent implements OnInit {
                     document.getElementById('word').style.height = '100%';
                     document.getElementById('wrd').style.height = '100%';
                     document.getElementById('chat').style.visibility = 'hidden';
-                }},
+                }
+            },
         ];
     }
+
     public findCoursEtudiant(cours: Cours) {
         this.selectedEtudiantCours.cours.id = cours.id;
         this.service.findEtudiantCours().subscribe(
-           data => this.selectedEtudiantCours = data
-       );
+            data => this.selectedEtudiantCours = data
+        );
     }
     get submittedDictEdit(): boolean {
         return this.dictionnaryService.submittedDictEdit;
@@ -239,25 +272,49 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.dictionnaryService.FindByWord(this.textSeleted).subscribe(
             data=>{
                 this.selected = data;
-            // tslint:disable-next-line:triple-equals no-unused-expression
-                if (this.textSeleted.length != 0  && this.selected.word == null){
+                // tslint:disable-next-line:triple-equals no-unused-expression
+                if (this.textSeleted.length != 0 && this.selected.word == null) {
                     this.dictionnaryService.Translate(this.textSeleted).subscribe(
                         data => {
-                            this.selected.definition = data;
+                            this.Synonymes = data;
+                            console.log(this.Synonymes);
+                            // @ts-ignore
+                            console.log(this.Synonymes.match(/[\u0600-\u06FF-\[\]-~!"^_`]/g).length);
+                            console.log(this.Synonymes[2]);
                         });
+                    // @ts-ignore
+                    for ( let i=0; i < this.Synonymes.match(/[\u0600-\u06FF-\[\]-~!"^_`]/g).length ; i++){
+                        // tslint:disable-next-line:triple-equals
+                        if(this.Synonymes[i] != '\[' || this.Synonymes[i] != '\]' || this.Synonymes[i] != '\"'){
+                            this.wordDict += this.Synonymes[i].toString();
+                            console.log(this.wordDict);
+                        }else{
+                            console.log(this.listSynonymes);
+                            this.listSynonymes.push(this.wordDict);
+                            this.wordDict ='';
+                        }
+                        break;
+                    }
+                    console.log(this.listSynonymes);
                     this.selected.word = this.textSeleted;
-                    console.log(this.translate);
+                    console.log(this.listSynonymes);
                     console.log(this.selected.word);
-                    console.log(this.selected.definition);
                     this.submittedDict = false;
-                    this.createDialogDict = true;
-            } else if (this.textSeleted.length != 0  && this.selected.word != null){
+                    this.TranslateSynonymeDialog = true;
+                } else if (this.textSeleted.length != 0 && this.selected.word != null) {
                     this.selected.word = this.textSeleted;
                     this.submittedDictEdit = false;
                     this.editDialogDict = true;
                     console.log(this.selected.word);
-         }
-    });
+                }
+            });
+    }
+    get TranslateSynonymeDialog(): boolean {
+        return this.dictionnaryService.TranslateSynonymeDialog;
+    }
+
+    set TranslateSynonymeDialog(value: boolean) {
+        this.dictionnaryService.TranslateSynonymeDialog = value;
     }
     get submittedDict(): boolean {
         return this.dictionnaryService.submittedDict;
@@ -351,7 +408,7 @@ export class StudentSimulateSectionComponent implements OnInit {
             });
         this.selectedsection.numeroOrder = this.selectedsection.numeroOrder - 1;
         // tslint:disable-next-line:triple-equals
-        if (this.selectedsection.numeroOrder != 0){
+        if (this.selectedsection.numeroOrder != 0) {
             this.service.afficheOneSection2().subscribe(
                 data => {
                     this.selectedsection = data;
@@ -395,7 +452,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         // this.service.image = this.selectedsection.urlImage;
         //  }
         //  this.service.image += 'preview';
-        console.log(this.selectedsection.id );
+      //  console.log(this.selectedsection.id);
         // const blob = UrlFetch(this.image,{headers})
         //  return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
         // return this.service.image;
@@ -405,7 +462,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.service.image = this.selectedsection.urlImage;
         //  }
         //  this.service.image += 'preview';
-        console.log(this.service.image);
+      //  console.log(this.service.image);
         this.srcImg = this.service.image;
         return this.srcImg;
 
@@ -421,7 +478,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         //   for (let m = 32; m < 43 ; m++)
         //   {
         //  }
-        console.log( this.service.video);
+     //   console.log(this.service.video);
         // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
         return this.service.video;
 

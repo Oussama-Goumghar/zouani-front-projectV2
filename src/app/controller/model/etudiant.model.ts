@@ -1,8 +1,6 @@
 import {Parcours} from './parcours.model';
 import {QuizEtudiant} from './quiz-etudiant.model';
-import {EtatInscription} from './etat-inscription.model';
 import {Prof} from './prof.model';
-import {Centre} from './centre.model';
 import {EtatEtudiantSchedule} from './etat-etudiant-schedule.model';
 import {ChatMessageDto} from './chatMessageDto';
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Cours} from '../../../../controller/model/cours.model';
 import {Section} from '../../../../controller/model/section.model';
 import {ConfirmationService, MessageService} from 'primeng/api';
@@ -10,66 +10,60 @@ import {Etudiant} from '../../../../controller/model/etudiant.model';
 import {QuizEtudiant} from '../../../../controller/model/quiz-etudiant.model';
 
 @Component({
-  selector: 'app-student-choose-view',
-  templateUrl: './student-choose-view.component.html',
-  styleUrls: ['./student-choose-view.component.scss']
+    selector: 'app-student-choose-view',
+    templateUrl: './student-choose-view.component.html',
+    styleUrls: ['./student-choose-view.component.scss']
 })
 export class StudentChooseViewComponent implements OnInit {
-  value = 0;
-  // tslint:disable-next-line:max-line-length
-  constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService, private quizService: QuizEtudiantService, private loginService: LoginService) { }
-  ngOnInit(): void {
-  }
-  public FindSection(cour: Cours) {
-    this.selectedcours = cour;
-    this.service.affichelistSection().subscribe(
-        data => {
-          this.selectesssection = data;
-        });
-  }
-  get image(): string {
-    return this.service.image;
-  }
+    value = 0;
 
-  set image(value: string) {
-    this.service.image = value;
-  }
+    // tslint:disable-next-line:max-line-length
+    constructor(private messageService: MessageService, private confirmationService: ConfirmationService, private service: ParcoursService, private quizService: QuizEtudiantService, private loginService: LoginService) {
+    }
 
-  get selectedQuiz(): Quiz {
-    return this.quizService.selectedQuiz;
-  }
+    get image(): string {
+        return this.service.image;
+    }
 
-  set selectedQuiz(value: Quiz) {
-    this.quizService.selectedQuiz = value;
-  }
+    set image(value: string) {
+        this.service.image = value;
+    }
 
-  get etudiant(): Etudiant {
-    return this.loginService.etudiant;
-  }
+    get selectedQuiz(): Quiz {
+        return this.quizService.selectedQuiz;
+    }
 
-  set etudiant(value: Etudiant) {
-    this.loginService.etudiant = value;
-  }
+    set selectedQuiz(value: Quiz) {
+        this.quizService.selectedQuiz = value;
+    }
 
-  get quizEtudiantList(): QuizEtudiant {
-    return this.quizService.quizEtudiantList;
-  }
+    get etudiant(): Etudiant {
+        return this.loginService.etudiant;
+    }
 
-  set quizEtudiantList(value: QuizEtudiant) {
-    this.quizService.quizEtudiantList = value;
-  }
+    set etudiant(value: Etudiant) {
+        this.loginService.etudiant = value;
+    }
 
-  get passerQuiz(): string {
-    return this.quizService.passerQuiz;
-  }
+    get quizEtudiantList(): QuizEtudiant {
+        return this.quizService.quizEtudiantList;
+    }
 
-  set passerQuiz(value: string) {
-    this.quizService.passerQuiz = value;
-  }
+    set quizEtudiantList(value: QuizEtudiant) {
+        this.quizService.quizEtudiantList = value;
+    }
 
-  get quizView(): boolean {
-    return this.quizService.quizView;
-  }
+    get passerQuiz(): string {
+        return this.quizService.passerQuiz;
+    }
+
+    set passerQuiz(value: string) {
+        this.quizService.passerQuiz = value;
+    }
+
+    get quizView(): boolean {
+        return this.quizService.quizView;
+    }
 
   set quizView(value: boolean) {
     this.quizService.quizView = value;
@@ -168,5 +162,16 @@ export class StudentChooseViewComponent implements OnInit {
   set selectedsection(value: Section) {
     this.service.selectedsection = value;
   }
+
+    ngOnInit(): void {
+    }
+
+    public FindSection(cour: Cours) {
+        this.selectedcours = cour;
+        this.service.affichelistSection().subscribe(
+            data => {
+                this.selectesssection = data;
+            });
+    }
 
 }

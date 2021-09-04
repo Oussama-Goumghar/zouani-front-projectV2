@@ -1,22 +1,24 @@
-<p-dialog [(visible)]="viewDialogQuiz" [style]="{width: '800px'}"  [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="viewDialogQuiz" [modal]="true" [style]="{width: '800px'}" styleClass="p-fluid">
     <ng-template pTemplate="content">
         <div class="box">
-            <div class="p-col-4" >
+            <div class="p-col-4">
                 <div class="box">
                     <h4>Note : {{this.quizEtudiantList.note}}</h4>
                     <h4>Resultat : {{this.quizEtudiantList.resultat}}</h4>
                 </div>
             </div>
-            <p-table #dt [value]="reponsesEtudiantList" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['quizEtudiant','reponse','note']"
-                     [rowHover]="true" dataKey="id"
-                     styleClass="p-datatable-customers"
-                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+            <p-table #dt [columns]="cols" [globalFilterFields]="['quizEtudiant','reponse','note']" [paginator]="true" [rowHover]="true"
+                     [rows]="4"
+                     [showCurrentPageReport]="true" [value]="reponsesEtudiantList"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                     dataKey="id"
+                     styleClass="p-datatable-customers">
                 <ng-template pTemplate="caption">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
                         <h5 class="p-m-0">Quiz</h5>
                         <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text"  placeholder="Search..." />
+                        <input pInputText placeholder="Search..." type="text"/>
                     </span>
                     </div>
                 </ng-template>
@@ -25,14 +27,22 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="reference">Number <p-sortIcon field="quizEtudiant"></p-sortIcon></th>
-                        <th pSortableColumn="reference">Question <p-sortIcon field="quizEtudiant"></p-sortIcon></th>
-                        <th pSortableColumn="total">Your Answer <p-sortIcon field="reponse"></p-sortIcon></th>
-                        <th pSortableColumn="totalPaye">Note <p-sortIcon field="note"></p-sortIcon></th>
+                        <th pSortableColumn="reference">Number
+                            <p-sortIcon field="quizEtudiant"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="reference">Question
+                            <p-sortIcon field="quizEtudiant"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="total">Your Answer
+                            <p-sortIcon field="reponse"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="totalPaye">Note
+                            <p-sortIcon field="note"></p-sortIcon>
+                        </th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-commande>
+                <ng-template let-commande pTemplate="body">
                     <tr>
                         <td>
                             <p-tableCheckbox [value]="commande"></p-tableCheckbox>
@@ -54,7 +64,9 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
-        <button pButton pRipple label="Passer le quiz" id="quiz" icon="pi pi-arrow-circle-right" class="p-button-text" [routerLink]="['/pages/quiz-etudiant']"></button>
+        <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                pRipple></button>
+        <button [routerLink]="['/pages/quiz-etudiant']" class="p-button-text" icon="pi pi-arrow-circle-right" id="quiz" label="Passer le quiz" pButton
+                pRipple></button>
     </ng-template>
 </p-dialog>

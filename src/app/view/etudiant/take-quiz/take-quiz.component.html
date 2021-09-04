@@ -6,10 +6,10 @@
     <div class="p-col-6" id="question">
         <h3 style="margin-top: 100px; text-align: center">{{this.selected.libelle}}</h3>
     </div>
-    <div class="p-col-6" id="answers" >
+    <div class="p-col-6" id="answers">
         <div style="margin: 50px 50px">
-            <div  *ngFor="let r of reponses" id="answers-radio">
-                <input type="radio"  value="{{r.id}}" [(ngModel)]="selectedValue" name="groupname" ngModel>
+            <div *ngFor="let r of reponses" id="answers-radio">
+                <input [(ngModel)]="selectedValue" name="groupname" ngModel type="radio" value="{{r.id}}">
                 <label>{{r.lib}}</label><br>
             </div>
         </div>

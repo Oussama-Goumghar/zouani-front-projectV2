@@ -1,31 +1,30 @@
-<p-dialog [(visible)]="createDialog" [style]="{width: '450px'}"
-          header="Registration Create" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="createDialog" [modal]="true"
+          [style]="{width: '450px'}" header="Registration Create" styleClass="p-fluid">
     <ng-template pTemplate="content">
-
 
 
         <div class="p-field">
             <label for="prof">Teacher</label>
-            <input type="text" pInputText id="prof" [(ngModel)]="selected.prof.numero" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.prof.numero">prof is required.</small>
+            <input [(ngModel)]="selected.prof.numero" autofocus id="prof" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.prof.numero" class="p-invalid">prof is required.</small>
         </div>
         <div class="p-field">
             <label for="etat">Registration status</label>
-            <input type="text" pInputText id="etat" [(ngModel)]="selected.etatInscription.ref" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.etatInscription.ref">etat is required.</small>
+            <input [(ngModel)]="selected.etatInscription.ref" autofocus id="etat" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.etatInscription.ref" class="p-invalid">etat is required.</small>
         </div>
 
 
         <div class="p-field">
             <label for="etudiant">Student</label>
-            <input type="text" pInputText id="etudiant" [(ngModel)]="selected.nom" required autofocus />
-            <small class="p-invalid" *ngIf="submitted && !selected.nom">etudiant LastNme is required.</small>
+            <input [(ngModel)]="selected.nom" autofocus id="etudiant" pInputText required type="text"/>
+            <small *ngIf="submitted && !selected.nom" class="p-invalid">etudiant LastNme is required.</small>
         </div>
 
         <div class="p-formgrid p-grid">
             <div class="p-field p-col">
                 <label for="numeroInscription">Registration Number</label>
-                <p-inputNumber id="numeroInscription" [(ngModel)]="selected.numeroInscription"></p-inputNumber>
+                <p-inputNumber [(ngModel)]="selected.numeroInscription" id="numeroInscription"></p-inputNumber>
             </div>
         </div>
 
@@ -33,8 +32,9 @@
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideCreateDialog()"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" class="p-button-text" (click)="save()"></button>
+        <button (click)="hideCreateDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
+        <button (click)="save()" class="p-button-text" icon="pi pi-check" label="Save" pButton pRipple></button>
     </ng-template>
 </p-dialog>
 

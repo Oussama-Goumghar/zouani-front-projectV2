@@ -71,33 +71,43 @@
     <div class="p-col">
         <div class="p-grid" id="bodyRadio">
             <div class="p-col-6" id="question">
-                <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.question1}} <span id="AnswerCorrect" style="color: #1af045"> {{this.correctAnswers[0].lib}} </span> {{this.question2}}</h3>
+                <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.question1}} <span
+                        id="AnswerCorrect"
+                        style="color: #1af045"> {{this.correctAnswers[0].lib}} </span> {{this.question2}}</h3>
             </div>
-            <div class="p-col-6" id="answers" >
+            <div class="p-col-6" id="answers">
                 <div style="margin: 50px 50px">
-                    <div  *ngFor="let r of reponses" id="answers-radio">
-                        <input type="radio"  value="{{r.id}}" [(ngModel)]="selectedValue" [attr.disabled]="true" name="groupname" >
+                    <div *ngFor="let r of reponses" id="answers-radio">
+                        <input [(ngModel)]="selectedValue" [attr.disabled]="true" name="groupname" type="radio"
+                               value="{{r.id}}">
                         <label>{{r.lib}}</label><br>
                     </div>
                 </div>
             </div>
 
-            <div style="background-color: white; width: 100%" id="mistake">
+            <div id="mistake" style="background-color: white; width: 100%">
         <span class="p-float-label" style="margin-left: 10%; margin-bottom: 20px">
-            <textarea id="float-input-correct-mistake" [disabled]="true" rows="1" [(ngModel)]="this.selected.libelle"  pInputTextarea></textarea>
-            <h3 style="color: black; font-family: 'Goudy Old Style';"> The correct answer :  <span style="color: #1af045; font-family: 'Goudy Old Style';">{{this.trueAnswerCorrectMistake}}</span></h3>
+            <textarea [(ngModel)]="this.selected.libelle" [disabled]="true" id="float-input-correct-mistake" pInputTextarea
+                      rows="1"></textarea>
+            <h3 style="color: black; font-family: 'Goudy Old Style';"> The correct answer :  <span
+                    style="color: #1af045; font-family: 'Goudy Old Style';">{{this.trueAnswerCorrectMistake}}</span></h3>
         </span>
             </div>
             <div id="button-next" style="margin-left: 40%; margin-top: 50px">
-                <button pButton pRipple type="button" style="width: 200px;" label="Next" (click)="start()" class="p-button-outlined p-button-success"></button>
+                <button (click)="start()" class="p-button-outlined p-button-success" label="Next" pButton pRipple style="width: 200px;"
+                        type="button"></button>
             </div>
 
         </div>
         <div id="result" style="visibility: hidden; height: 60%; width: 60%">
             <h3 style="margin-top: 200px; margin-left: 40%; margin-bottom: 100px">You finish this quiz</h3>
-            <button pButton pRipple type="button" style="margin-left: 10%" icon="pi pi-angle-double-left" label="Back to parcours list" (click)="backToParcoursList()" class="p-button-raised p-button-help"></button>
-            <button pButton pRipple type="button" style="margin-left: 10%" icon="pi pi-align-justify" label="View quiz student" (click)="viewQuizEtudiant()" class="p-button-raised"></button>
-            <button pButton pRipple type="button" style="margin-left: 10%" icon="pi pi-undo" label="Update this quiz" (click)="openUpdate()" class="p-button-raised p-button-success"></button>
+            <button (click)="backToParcoursList()" class="p-button-raised p-button-help" icon="pi pi-angle-double-left" label="Back to parcours list" pButton
+                    pRipple style="margin-left: 10%"
+                    type="button"></button>
+            <button (click)="viewQuizEtudiant()" class="p-button-raised" icon="pi pi-align-justify" label="View quiz student" pButton
+                    pRipple style="margin-left: 10%" type="button"></button>
+            <button (click)="openUpdate()" class="p-button-raised p-button-success" icon="pi pi-undo" label="Update this quiz" pButton pRipple
+                    style="margin-left: 10%" type="button"></button>
         </div>
     </div>
 </div>

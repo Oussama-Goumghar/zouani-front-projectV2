@@ -1,42 +1,55 @@
-<div class="col-md-8 mt-lg-5"  style="margin-left: 140px;">
-    <div class="card" id="card" >
+<div class="col-md-8 mt-lg-5" style="margin-left: 140px;">
+    <div class="card" id="card">
         <div class="card-header">
             <output id="quizGrammar">Quiz</output>
         </div>
         <div class="card-body" id="quiz">
             <div class="start" id="start">
-                <div id="welcome"><h1>Welcome {{this.etudiant.nom}} {{this.etudiant.prenom}}</h1></div><br>
-                <div><h3>In the {{this.selectedQuiz.lib}}'s quiz</h3></div><br>
-                <div>Quiz will start at {{this.quiz.dateDebut}}</div><br>
-                <div>And will end at {{this.quiz.dateFin}}</div><br>
-                <div>You have 1 hour</div><br>
-                <div>Good luck</div><br>
+                <div id="welcome"><h1>Welcome {{this.etudiant.nom}} {{this.etudiant.prenom}}</h1></div>
+                <br>
+                <div><h3>In the {{this.selectedQuiz.lib}}'s quiz</h3></div>
+                <br>
+                <div>Quiz will start at {{this.quiz.dateDebut}}</div>
+                <br>
+                <div>And will end at {{this.quiz.dateFin}}</div>
+                <br>
+                <div>You have 1 hour</div>
+                <br>
+                <div>Good luck</div>
+                <br>
 
-                <button pButton pRipple class="p-button-rounded p-mr-2" id="btn-start" label="Start" (click)="start()"></button>
+                <button (click)="start()" class="p-button-rounded p-mr-2" id="btn-start" label="Start" pButton
+                        pRipple></button>
             </div>
 
             <div class="question" id="question">
                 <p-progressBar [value]="numQuestion*100/items.length"></p-progressBar>
 
-                <br><br><br><output><B>{{selected.numero}} - {{selected.libelle}} </B></output>
+                <br><br><br>
+                <output><B>{{selected.numero}} - {{selected.libelle}} </B></output>
 
                 <div *ngFor="let r of reponses" class="question_answer" id="div-{{r.id}}">
-                    <input type="{{this.type}}" (click)="selectionChanged($event,r)" value="{{r.id}}" [(ngModel)]="selectedValue" name="groupname" ngModel>
+                    <input (click)="selectionChanged($event,r)" [(ngModel)]="selectedValue" name="groupname"
+                           ngModel type="{{this.type}}" value="{{r.id}}">
                     <label>{{r.lib}}</label><br>
                 </div>
             </div>
 
             <div class="card-body2" id="finish">
-                <output>You finish this quiz</output><br>
-                <output id="congratulations">Congratulations</output><br>
-                <output id="hard-luck">Hard-luck next time</output><br>
-                <output >Your result is = {{this.noteQuiz}}</output>
+                <output>You finish this quiz</output>
+                <br>
+                <output id="congratulations">Congratulations</output>
+                <br>
+                <output id="hard-luck">Hard-luck next time</output>
+                <br>
+                <output>Your result is = {{this.noteQuiz}}</output>
             </div>
 
 
         </div>
         <div class="card-footer">
-            <button pButton pRipple class="p-button-rounded p-mr-2" id="btn-next" style="background-color: #0C8990" label="{{this.button}}" (click)="next()"></button>
+            <button (click)="next()" class="p-button-rounded p-mr-2" id="btn-next" label="{{this.button}}" pButton
+                    pRipple style="background-color: #0C8990"></button>
         </div>
     </div>
 </div>

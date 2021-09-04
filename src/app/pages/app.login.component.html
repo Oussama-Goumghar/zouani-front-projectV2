@@ -1,70 +1,81 @@
 <div class="login-body">
-        <div class="card login-panel p-fluid">
-            <div class="login-panel-content">
-                <div class="p-grid">
-                    <div class="p-col-12 p-sm-6 p-md-6 logo-container">
-                        <img src="assets/layout/images/logo-roma.svg" />
-                        <span class="guest-sign-in">Welcome, please use the form to sign-in Roma network</span>
+    <div class="card login-panel p-fluid">
+        <div class="login-panel-content">
+            <div class="p-grid">
+                <div class="p-col-12 p-sm-6 p-md-6 logo-container">
+                    <img src="assets/layout/images/logo-roma.svg"/>
+                    <span class="guest-sign-in">Welcome, please use the form to sign-in Roma network</span>
+                </div>
+                <div class="p-col-12 username-container">
+                    <!-- <h:panelGroup> -->
+                    <label>Username</label>
+                    <div class="login-input">
+                        <input [(ngModel)]="login" autofocus id="login" pInputText required type="text"/>
+                        <small *ngIf="!login" class="p-invalid">ref is required.</small>
                     </div>
-                    <div class="p-col-12 username-container"  >
-                        <!-- <h:panelGroup> -->
-                            <label>Username</label>
-                            <div class="login-input">
-                                <input type="text" pInputText id="login" [(ngModel)]="login" required autofocus />
-                                <small class="p-invalid"  *ngIf="!login">ref is required.</small>
-                            </div>
-                        <!-- </h:panelGroup> -->
+                    <!-- </h:panelGroup> -->
+                </div>
+                <div class="p-col-12 password-container">
+                    <!-- <h:panelGroup> -->
+                    <label>Password</label>
+                    <div class="login-input">
+                        <input #prt [(ngModel)]="password" autofocus id="password" pInputText required type="password"/>
+                        <small *ngIf="!password" class="p-invalid">ref is required.</small>
+                        <p-message id="log-pass" severity="error" style="visibility: hidden"
+                                   text="{{this.error}}"></p-message>
                     </div>
-                    <div class="p-col-12 password-container">
-                        <!-- <h:panelGroup> -->
-                            <label>Password</label>
-                            <div class="login-input">
-                                <input type="password" pInputText id="password"  #prt [(ngModel)]="password" required autofocus />
-                                <small class="p-invalid" *ngIf="!password">ref is required.</small>
-                                <p-message severity="error" style="visibility: hidden" id="log-pass" text="{{this.error}}"></p-message>
-                            </div>
-                        <!-- </h:panelGroup> -->
-                    </div>
+                    <!-- </h:panelGroup> -->
+                </div>
 
-                    <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">
-                        <p-checkbox></p-checkbox>
-                        <label> Remember me</label>
-                    </div>
+                <div class="p-col-12 p-sm-6 p-md-6 rememberme-container">
+                    <p-checkbox></p-checkbox>
+                    <label> Remember me</label>
+                </div>
 
-                    <div class="p-col-12 p-sm-6 p-md-6 forgetpassword-container">
-                        <a href="#" class="forget-password">Forget Password</a>
-                    </div>
+                <div class="p-col-12 p-sm-6 p-md-6 forgetpassword-container">
+                    <a class="forget-password" href="#">Forget Password</a>
+                </div>
 
-                    <div class="p-col-12 p-sm-6 p-md-6" >
-                            <button   pButton type="button" icon="pi pi-check" label="Sign In" [routerLink]="['/pages/home']" (click)="findPersonne()"></button>
-                            <button   pButton type="button" icon="pi pi-check" label="Choose"(click)="openVideDialog()"></button>
-                    </div>
+                <div class="p-col-12 p-sm-6 p-md-6">
+                    <button (click)="findPersonne()" [routerLink]="['/pages/home']" icon="pi pi-check" label="Sign In" pButton
+                            type="button"></button>
+                    <button (click)="openVideDialog()" icon="pi pi-check" label="Choose" pButton type="button"></button>
                 </div>
             </div>
         </div>
-    <p-dialog [(visible)]="viewDialogRole" [style]="{width: '800px'}"  [modal]="true" styleClass="p-fluid">
-        <ng-template pTemplate="content" >
-            <div class="box" >
-                <div class="p-d-flex" >
-                    <div class="p-grid" >
-                        <div class="p-col-4 " style="margin-top: 50px; width: 150px; height: 150px; background-color: #B3E5FC; margin-left: 50px; border-radius: 15%">
-                            <img src="assets/layout/images/prof.png" style="height: 70%; width: 100%;" alt="">
-                            <p-radioButton name="groupname" value="prof" style="margin-left: 20px; margin-top: 10px" label="Teacher" (onClick)="choose()" [(ngModel)]="role"></p-radioButton>
+    </div>
+    <p-dialog [(visible)]="viewDialogRole" [modal]="true" [style]="{width: '800px'}" styleClass="p-fluid">
+        <ng-template pTemplate="content">
+            <div class="box">
+                <div class="p-d-flex">
+                    <div class="p-grid">
+                        <div class="p-col-4 "
+                             style="margin-top: 50px; width: 150px; height: 150px; background-color: #B3E5FC; margin-left: 50px; border-radius: 15%">
+                            <img alt="" src="assets/layout/images/prof.png" style="height: 70%; width: 100%;">
+                            <p-radioButton (onClick)="choose()" [(ngModel)]="role" label="Teacher"
+                                           name="groupname" style="margin-left: 20px; margin-top: 10px" value="prof"></p-radioButton>
                         </div>
-                        <div class="p-col-4" style="margin-top: 50px; width: 150px; height: 150px; background-color: #B3E5FC; margin-left: 100px; border-radius: 15%">
-                            <img src="assets/layout/images/admin.png" style="height: 70%; width: 100%; margin-left: 10px" alt="">
-                            <p-radioButton name="groupname" value="admin" style="margin-left: 20px; margin-top: 10px" label="Admin" (onClick)="choose()" [(ngModel)]="role"></p-radioButton>
+                        <div class="p-col-4"
+                             style="margin-top: 50px; width: 150px; height: 150px; background-color: #B3E5FC; margin-left: 100px; border-radius: 15%">
+                            <img alt=""
+                                 src="assets/layout/images/admin.png" style="height: 70%; width: 100%; margin-left: 10px">
+                            <p-radioButton (onClick)="choose()" [(ngModel)]="role" label="Admin"
+                                           name="groupname" style="margin-left: 20px; margin-top: 10px" value="admin"></p-radioButton>
                         </div>
-                        <div class="p-col-4" style="margin-top: 50px; width: 150px; height: 150px; background-color: #B3E5FC; margin-left: 100px; border-radius: 15%">
-                            <img src="assets/layout/images/etudiant.png" style="height: 70%; width: 100%; margin-left: 10px" alt="">
-                            <p-radioButton name="groupname" value="etudiant" style="margin-left: 20px; margin-top: 10px" label="Student" (onClick)="choose()" [(ngModel)]="role"></p-radioButton>
+                        <div class="p-col-4"
+                             style="margin-top: 50px; width: 150px; height: 150px; background-color: #B3E5FC; margin-left: 100px; border-radius: 15%">
+                            <img alt=""
+                                 src="assets/layout/images/etudiant.png" style="height: 70%; width: 100%; margin-left: 10px">
+                            <p-radioButton (onClick)="choose()" [(ngModel)]="role" label="Student"
+                                           name="groupname" style="margin-left: 20px; margin-top: 10px" value="etudiant"></p-radioButton>
                         </div>
                     </div>
                 </div>
             </div>
         </ng-template>
         <ng-template pTemplate="footer">
-            <button pButton pRipple label="Fermer" icon="pi pi-times" class="p-button-text" (click)="hideViewDialog()"></button>
+            <button (click)="hideViewDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton
+                    pRipple></button>
         </ng-template>
     </p-dialog>
 

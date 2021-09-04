@@ -41,7 +41,8 @@ export class TableDemoComponent implements OnInit {
 
     @ViewChild('dt') table: Table;
 
-    constructor(private customerService: CustomerService, private productService: ProductService) {}
+    constructor(private customerService: CustomerService, private productService: ProductService) {
+    }
 
     ngOnInit() {
         this.customerService.getCustomersLarge().then(customers => {
@@ -89,16 +90,14 @@ export class TableDemoComponent implements OnInit {
                 const representativeName = rowData.representative.name;
 
                 if (i === 0) {
-                    this.rowGroupMetadata[representativeName] = { index: 0, size: 1 };
-                }
-                else {
+                    this.rowGroupMetadata[representativeName] = {index: 0, size: 1};
+                } else {
                     const previousRowData = this.customers3[i - 1];
                     const previousRowGroup = previousRowData.representative.name;
                     if (representativeName === previousRowGroup) {
                         this.rowGroupMetadata[representativeName].size++;
-                    }
-                    else {
-                        this.rowGroupMetadata[representativeName] = { index: i, size: 1 };
+                    } else {
+                        this.rowGroupMetadata[representativeName] = {index: i, size: 1};
                     }
                 }
             }

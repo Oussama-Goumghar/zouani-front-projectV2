@@ -1,40 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MessageService} from 'primeng/api';
 import {SyntheseSessionCoursService} from '../../../../controller/service/synthese-session-cours.service';
 import {SyntheseSessionCours} from '../../../../controller/model/synthese-session-cours.model';
 
 @Component({
-  selector: 'app-synthese-session-cours-view',
-  templateUrl: './synthese-session-cours-view.component.html',
-  styleUrls: ['./synthese-session-cours-view.component.scss']
+    selector: 'app-synthese-session-cours-view',
+    templateUrl: './synthese-session-cours-view.component.html',
+    styleUrls: ['./synthese-session-cours-view.component.scss']
 })
 export class SyntheseSessionCoursViewComponent implements OnInit {
 
 
-  constructor(private messageService: MessageService, private service: SyntheseSessionCoursService) {
-  }
+    constructor(private messageService: MessageService, private service: SyntheseSessionCoursService) {
+    }
 
-  ngOnInit(): void {
-  }
+    get selected(): SyntheseSessionCours {
+        return this.service.selected;
+    }
 
-  public hideViewDialog() {
-    this.viewDialog = false;
-  }
+    set selected(value: SyntheseSessionCours) {
+        this.service.selected = value;
+    }
 
-  get selected(): SyntheseSessionCours {
-    return this.service.selected;
-  }
+    get viewDialog(): boolean {
+        return this.service.viewDialog;
+    }
 
-  set selected(value: SyntheseSessionCours) {
-    this.service.selected = value;
-  }
+    set viewDialog(value: boolean) {
+        this.service.viewDialog = value;
+    }
 
-  get viewDialog(): boolean {
-    return this.service.viewDialog;
-  }
+    ngOnInit(): void {
+    }
 
-  set viewDialog(value: boolean) {
-    this.service.viewDialog = value;
-  }
+    public hideViewDialog() {
+        this.viewDialog = false;
+    }
 
 }

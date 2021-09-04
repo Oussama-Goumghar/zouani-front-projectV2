@@ -1,19 +1,22 @@
-<p-dialog [(visible)]="editDialogDict" [style]="{width: '700px', height:'250px' }"  header="Edit Dictionary" [modal]="true" styleClass="p-fluid">
+<p-dialog [(visible)]="editDialogDict" [modal]="true" [style]="{width: '700px', height:'250px' }"
+          header="Edit Dictionary" styleClass="p-fluid">
     <ng-template pTemplate="p-field">
 
         <div class="p-field">
             <label for="word">Word</label>
-            <input id="word" type="text" pInputText [(ngModel)]="selected.word"> </div>
+            <input [(ngModel)]="selected.word" id="word" pInputText type="text"></div>
         <div class="p-field">
             <label for="definition">defintion</label>
-            <textarea id="definition" type="text" pInputTextarea [(ngModel)]="selected.definition"></textarea></div>
+            <textarea [(ngModel)]="selected.definition" id="definition" pInputTextarea type="text"></textarea></div>
     </ng-template>
 
 
     <ng-template pTemplate="footer" style="background-color: lavender;">
-        <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-text " (click)="delete(selected.word)" ></button>
-        <button pButton pRipple  type="button"  label="Submit" class="p-button-text" (click)="edit()"></button>
-        <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideEditDialog()"></button>
+        <button (click)="delete(selected.word)" class="p-button-text " icon="pi pi-trash" label="Delete" pButton
+                pRipple></button>
+        <button (click)="edit()" class="p-button-text" label="Submit" pButton pRipple type="button"></button>
+        <button (click)="hideEditDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
+                pRipple></button>
 
     </ng-template>
 </p-dialog>

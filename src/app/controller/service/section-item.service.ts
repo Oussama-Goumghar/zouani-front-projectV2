@@ -10,33 +10,10 @@ import {Observable} from 'rxjs';
 })
 export class SectionItemService {
 
-    private _host = environment.sectionItemUrl;
-    private _sectionSelected: Section;
-    private _sectionItem: SectionItemModel;
-
-
-
     constructor(private http: HttpClient) {
     }
 
-
-    public createSectionItems() {
-        return this.http.post(
-            this.host + 'sectionId/' + this.sectionSelected.id,
-            this.sectionSelected.sectionItems);
-    }
-
-    public deleteSectionItems(ids:Array<number>) {
-        return this.http.post(
-            this.host + 'deleteMultiple/',
-            ids
-        );
-    }
-
-    public getSectionItems():Observable<SectionItemModel[]>{
-        console.log("Hadaa howa id="+this.sectionSelected?.id)
-        return this.http.get<SectionItemModel[]>(this.host + 'sectionId/' + this.sectionSelected?.id)
-    }
+    private _host = environment.sectionItemUrl;
 
     get host(): string {
         return this._host;
@@ -46,6 +23,8 @@ export class SectionItemService {
         this._host = value;
     }
 
+    private _sectionSelected: Section;
+
     get sectionSelected(): Section {
         return this._sectionSelected;
     }
@@ -54,12 +33,32 @@ export class SectionItemService {
         this._sectionSelected = value;
     }
 
+    private _sectionItem: SectionItemModel;
+
     get sectionItem(): SectionItemModel {
         return this._sectionItem;
     }
 
     set sectionItem(value: SectionItemModel) {
         this._sectionItem = value;
+    }
+
+    public createSectionItems() {
+        return this.http.post(
+            this.host + 'sectionId/' + this.sectionSelected.id,
+            this.sectionSelected.sectionItems);
+    }
+
+    public deleteSectionItems(ids: Array<number>) {
+        return this.http.post(
+            this.host + 'deleteMultiple/',
+            ids
+        );
+    }
+
+    public getSectionItems(): Observable<SectionItemModel[]> {
+        console.log('Hadaa howa id=' + this.sectionSelected?.id);
+        return this.http.get<SectionItemModel[]>(this.host + 'sectionId/' + this.sectionSelected?.id);
     }
 
 

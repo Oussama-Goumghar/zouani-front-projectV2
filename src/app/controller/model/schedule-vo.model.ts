@@ -1,5 +1,3 @@
-import {Prof} from "./prof.model";
-
 export class ScheduleVo {
     public id: number;
     public ref: string;

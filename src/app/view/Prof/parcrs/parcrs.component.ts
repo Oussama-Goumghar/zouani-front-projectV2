@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-parcrs',
-  templateUrl: './parcrs.component.html',
-  styleUrls: ['./parcrs.component.scss']
+    selector: 'app-parcrs',
+    templateUrl: './parcrs.component.html',
+    styleUrls: ['./parcrs.component.scss']
 })
 export class ParcrsComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

@@ -6,26 +6,32 @@
         <div class="card">
             <p-toolbar styleClass="p-mb-4">
                 <ng-template pTemplate="left">
-                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2 p-mb-2" (click)="openCreate()"></button>
-                    <button pButton pRipple label="Delete" icon="pi pi-trash" class="p-button-danger p-mb-2" (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length"></button>
+                    <button (click)="openCreate()" class="p-button-success p-mr-2 p-mb-2" icon="pi pi-plus" label="New" pButton
+                            pRipple></button>
+                    <button (click)="deleteMultiple()" [disabled]="!selectes || !selectes.length" class="p-button-danger p-mb-2" icon="pi pi-trash" label="Delete"
+                            pButton pRipple></button>
                 </ng-template>
 
                 <ng-template pTemplate="right">
-                    <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"></p-fileUpload>
-                    <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help p-mb-2" (click)="dt.exportCSV()"></button>
+                    <p-fileUpload [maxFileSize]="1000000" accept="image/*" chooseLabel="Import" class="p-mr-2 p-mb-2 p-d-inline-block"
+                                  label="Import" mode="basic"></p-fileUpload>
+                    <button (click)="dt.exportCSV()" class="p-button-help p-mb-2" icon="pi pi-upload" label="Export" pButton
+                            pRipple></button>
                 </ng-template>
             </p-toolbar>
 
-            <p-table #dt [value]="items" [columns]="cols" [rows]="4" [paginator]="true" [globalFilterFields]="['reference','total','totalPaye']"
-                     [(selection)]="selectes" [rowHover]="true" dataKey="id"
-                     styleClass="p-datatable-customers"
-                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [showCurrentPageReport]="true">
+            <p-table #dt [(selection)]="selectes" [columns]="cols" [globalFilterFields]="['reference','total','totalPaye']" [paginator]="true"
+                     [rowHover]="true"
+                     [rows]="4" [showCurrentPageReport]="true" [value]="items"
+                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                     dataKey="id"
+                     styleClass="p-datatable-customers">
                 <ng-template pTemplate="caption">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
                         <h5 class="p-m-0">Manage Commandes</h5>
                         <span class="p-input-icon-left">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text"  placeholder="Search..." />
+                        <input pInputText placeholder="Search..." type="text"/>
                     </span>
                     </div>
                 </ng-template>
@@ -34,13 +40,19 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="reference">Reference <p-sortIcon field="reference"></p-sortIcon></th>
-                        <th pSortableColumn="total">Total <p-sortIcon field="total"></p-sortIcon></th>
-                        <th pSortableColumn="totalPaye">Total Paye <p-sortIcon field="totalPaye"></p-sortIcon></th>
+                        <th pSortableColumn="reference">Reference
+                            <p-sortIcon field="reference"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="total">Total
+                            <p-sortIcon field="total"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="totalPaye">Total Paye
+                            <p-sortIcon field="totalPaye"></p-sortIcon>
+                        </th>
                         <th></th>
                     </tr>
                 </ng-template>
-                <ng-template pTemplate="body" let-commande>
+                <ng-template let-commande pTemplate="body">
                     <tr>
                         <td>
                             <p-tableCheckbox [value]="commande"></p-tableCheckbox>
@@ -50,9 +62,12 @@
                         <td>{{commande.totalPaye}}</td>
 
                         <td>
-                            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="edit(commande)"></button>
-                            <button pButton pRipple icon="pi pi-list" class="p-button-rounded p-button-info p-mr-2" (click)="view(commande)"></button>
-                            <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="delete(commande)"></button>
+                            <button (click)="edit(commande)" class="p-button-rounded p-button-success p-mr-2" icon="pi pi-pencil" pButton
+                                    pRipple></button>
+                            <button (click)="view(commande)" class="p-button-rounded p-button-info p-mr-2" icon="pi pi-list" pButton
+                                    pRipple></button>
+                            <button (click)="delete(commande)" class="p-button-rounded p-button-warning" icon="pi pi-trash" pButton
+                                    pRipple></button>
                         </td>
                     </tr>
                 </ng-template>

@@ -13,32 +13,6 @@ export class CommandeEditComponent implements OnInit {
     constructor(private messageService: MessageService, private service: CommandeService) {
     }
 
-    ngOnInit(): void {
-    }
-
-    public edit() {
-        this.submitted = true;
-        if (this.selected.reference.trim()) {
-            if (this.selected.id) {
-                this.items[this.service.findIndexById(this.selected.id)] = this.selected;
-                this.service.edit().subscribe(data => {
-                    this.selected = data;
-                    this.messageService.add({
-                        severity: 'success',
-                        summary: 'Successful',
-                        detail: 'Commande Updated',
-                        life: 3000
-                    });
-                });
-            }
-            this.editDialog = false;
-            this.selected = new Commande();
-        }
-    }
-
-  public hideEditDialog() {
-    this.editDialog = false;
-  }
     get selected(): Commande {
         return this.service.selected;
     }
@@ -69,6 +43,33 @@ export class CommandeEditComponent implements OnInit {
 
     set items(value: Array<Commande>) {
         this.service.items = value;
+    }
+
+    ngOnInit(): void {
+    }
+
+    public edit() {
+        this.submitted = true;
+        if (this.selected.reference.trim()) {
+            if (this.selected.id) {
+                this.items[this.service.findIndexById(this.selected.id)] = this.selected;
+                this.service.edit().subscribe(data => {
+                    this.selected = data;
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Successful',
+                        detail: 'Commande Updated',
+                        life: 3000
+                    });
+                });
+            }
+            this.editDialog = false;
+            this.selected = new Commande();
+        }
+    }
+
+    public hideEditDialog() {
+        this.editDialog = false;
     }
 
 

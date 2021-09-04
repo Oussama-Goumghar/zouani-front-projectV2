@@ -1,17 +1,18 @@
-<div class="login-body"  style="background-image: url('assets/layout/images/etudiant-login.jpg')">
+<div class="login-body" style="background-image: url('assets/layout/images/etudiant-login.jpg')">
     <div class="card login-panel p-fluid">
         <div class="login-panel-content">
             <div class="p-grid">
                 <div class="p-col-12 p-sm-6 p-md-6 logo-container">
-                    <h1 style="background-color: transparent; margin-left: 20px;  font-family: Verdana"><b>American Center</b></h1>
+                    <h1 style="background-color: transparent; margin-left: 20px;  font-family: Verdana"><b>American
+                        Center</b></h1>
                     <span class="guest-sign-in">Welcome, please use the form to sign-in American Center</span>
                 </div>
-                <div class="p-col-12 username-container"  >
+                <div class="p-col-12 username-container">
                     <!-- <h:panelGroup> -->
                     <label>Login</label>
                     <div class="login-input">
-                        <input type="text" pInputText id="login" [(ngModel)]="login" required autofocus />
-                        <small class="p-invalid"  *ngIf="!login">Login is required.</small>
+                        <input [(ngModel)]="login" autofocus id="login" pInputText required type="text"/>
+                        <small *ngIf="!login" class="p-invalid">Login is required.</small>
                     </div>
                     <!-- </h:panelGroup> -->
                 </div>
@@ -19,9 +20,10 @@
                     <!-- <h:panelGroup> -->
                     <label>Password</label>
                     <div class="login-input">
-                        <input type="password" pInputText id="password"  #prt [(ngModel)]="password" required autofocus />
-                        <small class="p-invalid" *ngIf="!password">Password is required.</small>
-                        <p-message severity="error" style="visibility: hidden" id="log-pass" text="Login or Password invalid"></p-message>
+                        <input #prt [(ngModel)]="password" autofocus id="password" pInputText required type="password"/>
+                        <small *ngIf="!password" class="p-invalid">Password is required.</small>
+                        <p-message id="log-pass" severity="error" style="visibility: hidden"
+                                   text="Login or Password invalid"></p-message>
                     </div>
                     <!-- </h:panelGroup> -->
                 </div>
@@ -32,11 +34,11 @@
                 </div>
 
                 <div class="p-col-12 p-sm-6 p-md-6 forgetpassword-container">
-                    <a href="#" class="forget-password">Forget Password</a>
+                    <a class="forget-password" href="#">Forget Password</a>
                 </div>
 
-                <div class="p-col-12 p-sm-6 p-md-6" >
-                    <button   pButton type="button" icon="pi pi-check" label="Sign In" (click)="findEtudiant()"></button>
+                <div class="p-col-12 p-sm-6 p-md-6">
+                    <button (click)="findEtudiant()" icon="pi pi-check" label="Sign In" pButton type="button"></button>
                 </div>
             </div>
         </div>
