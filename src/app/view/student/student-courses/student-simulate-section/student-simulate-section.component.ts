@@ -44,7 +44,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     synonym: any[];
     value = 0;
     word: string;
-    wordDict: string;
+    wordDict: any;
 
     // tslint:disable-next-line:max-line-lengthg max-line-length
     constructor(private messageService: MessageService,
@@ -73,6 +73,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     set selected(value: Dictionary) {
         this.dictionnaryService.selected = value;
     }
+
     get itemsDict(): Array<Dictionary> {
         return this.dictionnaryService.itemsDict;
     }
@@ -80,6 +81,7 @@ export class StudentSimulateSectionComponent implements OnInit {
     set itemsDict(value: Array<Dictionary>) {
         this.dictionnaryService.itemsDict = value;
     }
+
     get image(): string {
         return this.service.image;
     }
@@ -88,17 +90,164 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.service.image = value;
     }
 
-    public findByWord(){
+    get selectedDict(): Dictionary {
+        return this.dictionnaryService.selectedDict;
+    }
+
+    set selectedDict(value: Dictionary) {
+        this.dictionnaryService.selectedDict = value;
+    }
+
+    get selectedEtudiantCours(): EtudiantCours {
+        return this.service.selectedEtudiantCours;
+    }
+
+    set selectedEtudiantCours(value: EtudiantCours) {
+        this.service.selectedEtudiantCours = value;
+    }
+
+    get itemsEtudiantCours(): Array<EtudiantCours> {
+        return this.service.itemsEtudiantCours;
+    }
+
+    set itemsEtudiantCours(value: Array<EtudiantCours>) {
+        this.service.itemsEtudiantCours = value;
+    }
+
+    get submittedDictEdit(): boolean {
+        return this.dictionnaryService.submittedDictEdit;
+    }
+
+    set submittedDictEdit(value: boolean) {
+        this.dictionnaryService.submittedDictEdit = value;
+    }
+
+    get editDialogDict(): boolean {
+        return this.dictionnaryService.editDialogDict;
+    }
+
+    set editDialogDict(value: boolean) {
+        this.dictionnaryService.editDialogDict = value;
+    }
+
+    get submittedDict(): boolean {
+        return this.dictionnaryService.submittedDict;
+    }
+
+    set submittedDict(value: boolean) {
+        this.dictionnaryService.submittedDict = value;
+    }
+
+    get createDialogDict(): boolean {
+        return this.dictionnaryService.createDialogDict;
+    }
+
+    set createDialogDict(value: boolean) {
+        this.dictionnaryService.createDialogDict = value;
+    }
+
+    get progress(): number {
+        return this.service.progress;
+    }
+
+    // tslint:disable-next-line:adjacent-overload-signatures
+    set progress(value: number) {
+        this.service.progress = value;
+    }
+
+    get selectedsection(): Section {
+        return this.service.selectedsection;
+    }
+
+    // tslint:disable-next-line:adjacent-overload-signatures
+    set selectedsection(value: Section) {
+        this.service.selectedsection = value;
+    }
+
+    get section(): Section {
+        return this.quizService.section;
+    }
+
+    set section(value: Section) {
+        this.quizService.section = value;
+    }
+
+    get selectedQuiz(): Quiz {
+        return this.quizService.selectedQuiz;
+    }
+
+    set selectedQuiz(value: Quiz) {
+        this.quizService.selectedQuiz = value;
+    }
+
+    get etudiant(): Etudiant {
+        return this.loginService.etudiant;
+    }
+
+    set etudiant(value: Etudiant) {
+        this.loginService.etudiant = value;
+    }
+
+    get quizEtudiantList(): QuizEtudiant {
+        return this.quizService.quizEtudiantList;
+    }
+
+    set quizEtudiantList(value: QuizEtudiant) {
+        this.quizService.quizEtudiantList = value;
+    }
+
+    get passerQuiz(): string {
+        return this.quizService.passerQuiz;
+    }
+
+    set passerQuiz(value: string) {
+        this.quizService.passerQuiz = value;
+    }
+
+    get quizView(): boolean {
+        return this.quizService.quizView;
+    }
+
+    set quizView(value: boolean) {
+        this.quizService.quizView = value;
+    }
+
+    get selectedcours(): Cours {
+        return this.service.selectedcours;
+    }
+
+    set selectedcours(value: Cours) {
+        this.service.selectedcours = value;
+    }
+
+    get itemssection2(): Array<Section> {
+        return this.service.itemssection2;
+    }
+
+    set itemssection2(value: Array<Section>) {
+        this.service.itemssection2 = value;
+    }
+
+    get selectessection(): Array<Section> {
+        return this.service.selectessection;
+    }
+
+    set selectessection(value: Array<Section>) {
+        this.service.selectessection = value;
+    }
+
+    public findByWord() {
         this.dictionnaryService.FindByWord(this.word).subscribe(
-            data=>{
+            data => {
                 this.selectedDict = data;
                 document.getElementById('dictionary').style.visibility = 'visible';
-            },error => console.log('erreeeeeeeeeeeeeeeeur') );
+            }, error => console.log('erreeeeeeeeeeeeeeeeur'));
         document.getElementById('dictionary').style.visibility = 'visible';
     }
-    public Section(libelle: string){
+
+    public Section(libelle: string) {
         this.service.afficheSection(libelle).subscribe(
-            data=>{
+            data => {
                 this.selectedsection = data;
                 this.quizService.findQuizBySectionId(this.selectedsection).subscribe(
                     data => {
@@ -127,50 +276,33 @@ export class StudentSimulateSectionComponent implements OnInit {
                         );
                     },
                 );
-            },error => console.log('erreeeeeeeeeeeeeeeeur') );
-    }
-    get selectedDict(): Dictionary {
-        return this.dictionnaryService.selectedDict;
-    }
-    get selectedEtudiantCours(): EtudiantCours {
-        return this.service.selectedEtudiantCours;
+            }, error => console.log('erreeeeeeeeeeeeeeeeur'));
     }
 
-    set selectedEtudiantCours(value: EtudiantCours) {
-        this.service.selectedEtudiantCours = value;
-    }
     public finish() {
         this.selectedEtudiantCours.etudiant.id = this.loginService.etudiant.id;
         console.log(this.selectedEtudiantCours.etudiant.id);
         this.selectedEtudiantCours.cours.id = this.selectedcours.id;
         console.log(this.selectedEtudiantCours.cours.id);
         this.service.saveEtudiantCours().subscribe(data => {
-                // @ts-ignore
-                this.itemsEtudiantCours.push({...data});
-            });
+            // @ts-ignore
+            this.itemsEtudiantCours.push({...data});
+        });
         this.router.navigate(['/pages/etudiantcours']);
     }
-    get itemsEtudiantCours(): Array<EtudiantCours> {
-        return this.service.itemsEtudiantCours;
-    }
 
-    set itemsEtudiantCours(value: Array<EtudiantCours>) {
-        this.service.itemsEtudiantCours = value;
-    }
-    set selectedDict(value: Dictionary) {
-        this.dictionnaryService.selectedDict = value;
-    }
     public openCreateDict() {
         this.submittedDict = false;
         this.createDialogDict = true;
         this.selectedDict = new Dictionary();
     }
+
     filterDict(event) {
         const filtered: any[] = [];
         const query = event.query;
 
         // tslint:disable-next-line:prefer-for-of
-        for(let i = 0; i < this.itemsDict.length; i++) {
+        for (let i = 0; i < this.itemsDict.length; i++) {
             const dict = this.itemsDict[i];
             // tslint:disable-next-line:triple-equals
             if (dict.word.toLowerCase().indexOf(query.toLowerCase()) == 0) {
@@ -180,6 +312,7 @@ export class StudentSimulateSectionComponent implements OnInit {
 
         this.filteredDict = filtered;
     }
+
     ngOnInit(): void {
         this.dictionnaryService.FindAllWord().subscribe(
             data => {
@@ -191,6 +324,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.vocab.findAllVocabSection().subscribe(data => {
             this.vocab.nombreVocab = data.length;
         });
+
         this.menu = [
             {
                 icon: 'pi pi-list', command: (event) => {
@@ -242,36 +376,37 @@ export class StudentSimulateSectionComponent implements OnInit {
             data => this.selectedEtudiantCours = data
         );
     }
-    get submittedDictEdit(): boolean {
-        return this.dictionnaryService.submittedDictEdit;
-    }
 
-    set submittedDictEdit(value: boolean) {
-        this.dictionnaryService.submittedDictEdit = value;
-    }
-
-    get editDialogDict(): boolean {
-        return this.dictionnaryService.editDialogDict;
-    }
-
-    set editDialogDict(value: boolean) {
-        this.dictionnaryService.editDialogDict = value;
-    }
-    public dictEdit(dict: Dictionary){
+    public dictEdit(dict: Dictionary) {
         this.selected = dict;
-        if(this.selected.word != null){
+        if (this.selected.word != null) {
             this.submittedDictEdit = false;
             this.editDialogDict = true;
         }
     }
-    public dict(){
+    get listSynonymes(): Array<any> {
+        return this.dictionnaryService.listSynonymes;
+    }
+
+    set listSynonymes(value: Array<any>) {
+        this.dictionnaryService.listSynonymes = value;
+    }
+    get Synonymes(): Array<any> {
+        return this.dictionnaryService.Synonymes;
+    }
+
+    set Synonymes(value: Array<any>) {
+        this.dictionnaryService.Synonymes = value;
+    }
+    public dict() {
         const selection = window.getSelection();
         this.textSeleted = selection.toString();
         this.selected = new Dictionary();
 
         this.dictionnaryService.FindByWord(this.textSeleted).subscribe(
-            data=>{
+            data => {
                 this.selected = data;
+                this.wordDict = '';
                 // tslint:disable-next-line:triple-equals no-unused-expression
                 if (this.textSeleted.length != 0 && this.selected.word == null) {
                     this.dictionnaryService.Translate(this.textSeleted).subscribe(
@@ -301,6 +436,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                     console.log(this.selected.word);
                     this.submittedDict = false;
                     this.TranslateSynonymeDialog = true;
+                    // tslint:disable-next-line:triple-equals
                 } else if (this.textSeleted.length != 0 && this.selected.word != null) {
                     this.selected.word = this.textSeleted;
                     this.submittedDictEdit = false;
@@ -316,90 +452,11 @@ export class StudentSimulateSectionComponent implements OnInit {
     set TranslateSynonymeDialog(value: boolean) {
         this.dictionnaryService.TranslateSynonymeDialog = value;
     }
-    get submittedDict(): boolean {
-        return this.dictionnaryService.submittedDict;
-    }
-    set submittedDict(value: boolean) {
-        this.dictionnaryService.submittedDict = value;
-    }
-    Vocab(id: number) {
-        console.log(id);
-        this.vocab.numVocabulary = 1;
-        this.vocab.idSection = id;
-        console.log('id section ',  this.vocab.idSection );
-        this.vocab.findAllVocabSection().subscribe(data => {this.vocab.nombreVocab = data.length;
-        });
-        console.log(this.vocab.nombreVocab);
-        this.router.navigate(['/view/quiz-vocabulary']);
-    }
-    get createDialogDict(): boolean {
-        return this.dictionnaryService.createDialogDict;
+    Vocab(section: Section) {
+        this.sectionItemService.sectionSelected=section;
+        this.router.navigate(['/pages/preview-section-items']);
     }
 
-    set createDialogDict(value: boolean) {
-        this.dictionnaryService.createDialogDict = value;
-    }
-    get progress(): number {
-        return this.service.progress;
-    }
-    get selectedsection(): Section {
-        return this.service.selectedsection;
-    }
-    get section(): Section {
-        return this.quizService.section;
-    }
-
-    set section(value: Section) {
-        this.quizService.section = value;
-    }
-    // tslint:disable-next-line:adjacent-overload-signatures
-    set selectedsection(value: Section) {
-        this.service.selectedsection = value;
-    }
-    // tslint:disable-next-line:adjacent-overload-signatures
-    set progress(value: number) {
-        this.service.progress = value;
-    }
-
-    get selectedQuiz(): Quiz {
-        return this.quizService.selectedQuiz;
-    }
-
-    set selectedQuiz(value: Quiz) {
-        this.quizService.selectedQuiz = value;
-    }
-
-    get etudiant(): Etudiant {
-        return this.loginService.etudiant;
-    }
-
-    set etudiant(value: Etudiant) {
-        this.loginService.etudiant = value;
-    }
-
-    get quizEtudiantList(): QuizEtudiant {
-        return this.quizService.quizEtudiantList;
-    }
-
-    set quizEtudiantList(value: QuizEtudiant) {
-        this.quizService.quizEtudiantList = value;
-    }
-
-    get passerQuiz(): string {
-        return this.quizService.passerQuiz;
-    }
-
-    set passerQuiz(value: string) {
-        this.quizService.passerQuiz = value;
-    }
-
-    get quizView(): boolean {
-        return this.quizService.quizView;
-    }
-
-    set quizView(value: boolean) {
-        this.quizService.quizView = value;
-    }
     PreviousSection() {
         this.service.affichelistSection().subscribe(
             data => {
@@ -440,11 +497,12 @@ export class StudentSimulateSectionComponent implements OnInit {
                         },
                     );
                 });
-        }else{
-            this.selectedsection.numeroOrder = this.itemssection2.length + 1 ;
+        } else {
+            this.selectedsection.numeroOrder = this.itemssection2.length + 1;
             this.NextSection();
         }
     }
+
     photoURL() {
         // this.service.image = '';
         //  for (let j = 0; j < 76 ; j++)
@@ -452,7 +510,7 @@ export class StudentSimulateSectionComponent implements OnInit {
         // this.service.image = this.selectedsection.urlImage;
         //  }
         //  this.service.image += 'preview';
-      //  console.log(this.selectedsection.id);
+        //  console.log(this.selectedsection.id);
         // const blob = UrlFetch(this.image,{headers})
         //  return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
         // return this.service.image;
@@ -462,12 +520,13 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.service.image = this.selectedsection.urlImage;
         //  }
         //  this.service.image += 'preview';
-      //  console.log(this.service.image);
+        //  console.log(this.service.image);
         this.srcImg = this.service.image;
         return this.srcImg;
 
         //   return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.image);
     }
+
     URLVideo() {
         this.service.video = '';
         // tslint:disable-next-line:prefer-for-of
@@ -478,11 +537,12 @@ export class StudentSimulateSectionComponent implements OnInit {
         //   for (let m = 32; m < 43 ; m++)
         //   {
         //  }
-     //   console.log(this.service.video);
+        //   console.log(this.service.video);
         // return this.sanitizer.bypassSecurityTrustResourceUrl(this.service.video);
         return this.service.video;
 
     }
+
     NextSection() {
         this.service.affichelistSection().subscribe(
             data => {
@@ -491,7 +551,7 @@ export class StudentSimulateSectionComponent implements OnInit {
             });
         this.selectedsection.numeroOrder = this.selectedsection.numeroOrder + 1;
         // tslint:disable-next-line:triple-equals
-        if (this.selectedsection.numeroOrder <= this.itemssection2.length ){
+        if (this.selectedsection.numeroOrder <= this.itemssection2.length) {
             this.service.afficheOneSection2().subscribe(
                 data => {
                     this.selectedsection = data;
@@ -524,28 +584,10 @@ export class StudentSimulateSectionComponent implements OnInit {
                         },
                     );
                 });
-        }else{
+        } else {
             this.selectedsection.numeroOrder = 0;
             this.PreviousSection();
         }
-    }
-    set selectedcours(value: Cours) {
-        this.service.selectedcours = value;
-    }
-    get selectedcours(): Cours{
-        return this.service.selectedcours;
-    }
-    set itemssection2(value: Array<Section>) {
-        this.service.itemssection2 = value;
-    }
-    get itemssection2(): Array<Section> {
-        return this.service.itemssection2;
-    }
-    get selectessection(): Array<Section> {
-        return this.service.selectessection;
-    }
-    set selectessection(value: Array<Section>) {
-        this.service.selectessection = value;
     }
 
 }
