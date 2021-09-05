@@ -33,14 +33,35 @@
         </span>
             </div>
             <div style="margin-left: 40%; margin-top: 50px">
-                <button pButton pRipple type="button" style="width: 200px;" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
+                <button pButton pRipple type="button" style="width: 200px;" [disabled]="disable? null: true" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
             </div>
 
         </div>
 
         <div id="result" style="visibility: hidden">
-            <img src="{{this.image}}" style="width: 60%; height: 40%; margin-left: 20%" alt="">
-            <h3 style="margin-top: 100px; margin-left: 40%">Your note is = {{this.noteQuiz}} / {{this.items.length}}</h3>
+            <div class="p-grid">
+                <div class="p-col">
+                    <h1 style="text-align: center; font-family: 'Times New Roman'">Quiz Result</h1>
+                    <h4 style="text-align: center; margin-top: 100px">{{this.resultat}}</h4>
+                </div>
+                <div class="p-col">
+                    <img src="{{this.image}}" style="width: 90%; height: 90%" alt="">
+                </div>
+            </div>
+            <div class="p-grid">
+                <div class="p-col">
+                    <div style="text-align: center; border: solid 1px black; margin-left: 20px">
+                        <h2>{{this.noteQuiz}}/{{this.items.length}}</h2>
+                        <h4>Your note</h4>
+                    </div>
+                </div>
+                <div class="p-col" style="text-align: center">
+                    <div style="text-align: center; border: solid 1px black; margin-left: -10px; margin-right: 20px">
+                        <h2>{{this.selectedQuiz.seuilReussite}}/{{this.items.length}}</h2>
+                        <h4>Passing note</h4>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="p-col-3">
