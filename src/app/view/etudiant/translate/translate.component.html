@@ -16,15 +16,11 @@
         <ng-template let-synon pTemplate="body">
             <tr>
 
-                <td style="white-space: pre-wrap" (click)="create(synon)">{{synon}}</td>
+                <td style="white-space: pre-wrap; cursor: pointer" (click)="create(synon)">{{synon}}</td>
 
 
 
             </tr>
-        </ng-template>
-        <ng-template pTemplate="summary">
-            <div class="p-d-flex p-ai-center p-jc-between">
-            </div>
         </ng-template>
     </p-table>
 </p-dialog>
