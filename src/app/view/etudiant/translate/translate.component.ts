@@ -3,6 +3,7 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {LoginService} from '../../../controller/service/login.service';
 import {DictionaryService} from '../../../controller/service/dictionary.service';
 import {Dictionary} from '../../../controller/model/dictionary.model';
+import {DictionaryCreateComponent} from '../dictionary-create/dictionary-create.component';
 
 @Component({
   selector: 'app-translate',
@@ -73,6 +74,19 @@ export class TranslateComponent implements OnInit {
 
   set TranslateSynonymeDialog(value: boolean) {
     this.dictionnaryService.TranslateSynonymeDialog = value;
+  }
+  get selectedNow(): Dictionary {
+    return this.dictionnaryService.selectedNow;
+  }
+
+  set selectedNow(value: Dictionary) {
+    this.dictionnaryService.selectedNow = value;
+  }
+  public create(translation){
+    this.selectedNow.definition = translation;
+    this.selectedNow.word = this.selected.word;
+    this.hideTranslateDialog();
+    this.createDialogDict = true;
   }
 
 }

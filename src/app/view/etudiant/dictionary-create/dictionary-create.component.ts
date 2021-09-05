@@ -10,11 +10,16 @@ import {DictionaryService} from '../../../controller/service/dictionary.service'
     styleUrls: ['./dictionary-create.component.scss']
 })
 export class DictionaryCreateComponent implements OnInit {
-
-    selectedNow:Dictionary
     constructor(private messageService: MessageService,
                 private serviceUser: LoginService,
                 private confirmationService: ConfirmationService, private dictionnaryService: DictionaryService) {
+    }
+    get selectedNow(): Dictionary {
+        return this.dictionnaryService.selectedNow;
+    }
+
+    set selectedNow(value: Dictionary) {
+        this.dictionnaryService.selectedNow = value;
     }
 
     get selected(): Dictionary {
@@ -80,7 +85,7 @@ export class DictionaryCreateComponent implements OnInit {
     }
 
     public save() {
-        this.selected=this.selectedNow
+        this.selected = this.selectedNow;
         this.selected.etudiant = this.serviceUser.etudiant;
         this.dictionnaryService.save().subscribe(data => {
             this.dictionnaryService.FindAllWord().subscribe(
@@ -110,14 +115,14 @@ export class DictionaryCreateComponent implements OnInit {
             });
         });
 
-        this.selectedNow=new Dictionary()
+        this.selectedNow = new Dictionary();
         this.selected = new Dictionary();
         this.createDialogDict = false;
     }
 
 
     ngOnInit(): void {
-        this.selectedNow=new Dictionary()
+        this.selectedNow = new Dictionary();
     }
 
 
