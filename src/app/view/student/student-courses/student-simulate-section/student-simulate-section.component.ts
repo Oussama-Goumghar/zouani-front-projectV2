@@ -259,7 +259,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                                 console.log(this.quizEtudiantList);
                                 this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
                                     dataQuestions => {
-                                        if(data.questionCurrent >= dataQuestions.length){
+                                        if(data.questionCurrent > dataQuestions.length){
                                             this.passerQuiz = 'View Quiz';
                                             this.quizView = true;
                                         }
@@ -487,7 +487,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                                     console.log(this.quizEtudiantList);
                                     this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
                                         dataQuestions => {
-                                            if(data.questionCurrent >= dataQuestions.length){
+                                            if(data.questionCurrent > dataQuestions.length){
                                                 this.passerQuiz = 'View Quiz';
                                                 this.quizView = true;
                                             }
@@ -574,7 +574,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                                     console.log(this.quizEtudiantList);
                                     this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
                                         dataQuestions => {
-                                            if(data.questionCurrent >= dataQuestions.length){
+                                            if(data.questionCurrent > dataQuestions.length){
                                                 this.passerQuiz = 'View Quiz';
                                                 this.quizView = true;
                                             }
