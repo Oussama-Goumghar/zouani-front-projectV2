@@ -11,9 +11,20 @@ import {HttpClient} from '@angular/common/http';
 export class DictionaryService {
     constructor(private http: HttpClient, public serviceUser: LoginService) {
     }
+    private _selectedNow: Dictionary;
 private _listSynonymes: Array<any>;
 private _Synonymes: Array<any>;
     private _selected: Dictionary;
+    get selectedNow(): Dictionary {
+        if (this._selectedNow == null) {
+            this._selectedNow = new Dictionary();
+        }
+        return this._selectedNow;
+    }
+
+    set selectedNow(value: Dictionary) {
+        this._selectedNow = value;
+    }
 
     get Synonymes(): Array<any> {
         return this._Synonymes;

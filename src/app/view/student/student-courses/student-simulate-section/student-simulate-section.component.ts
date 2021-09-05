@@ -408,6 +408,7 @@ export class StudentSimulateSectionComponent implements OnInit {
             data => {
                 this.selected = data;
                 this.wordDict = '';
+                this.listSynonymes = new Array<any>();
                 // tslint:disable-next-line:triple-equals no-unused-expression
                 if (this.textSeleted.length != 0 && this.selected.word == null) {
                     this.dictionnaryService.Translate(this.textSeleted).subscribe(
