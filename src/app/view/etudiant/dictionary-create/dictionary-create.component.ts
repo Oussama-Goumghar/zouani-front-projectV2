@@ -80,6 +80,8 @@ export class DictionaryCreateComponent implements OnInit {
     }
 
     public hideCreateDialog() {
+        this.selectedNow = new Dictionary();
+        this.selected = new Dictionary();
         this.createDialogDict = false;
         this.submittedDict = false;
     }

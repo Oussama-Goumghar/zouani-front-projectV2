@@ -4,6 +4,7 @@ import {LoginService} from '../../../controller/service/login.service';
 import {DictionaryService} from '../../../controller/service/dictionary.service';
 import {Dictionary} from '../../../controller/model/dictionary.model';
 import {DictionaryCreateComponent} from '../dictionary-create/dictionary-create.component';
+import {$} from 'protractor';
 
 @Component({
   selector: 'app-translate',
@@ -11,7 +12,9 @@ import {DictionaryCreateComponent} from '../dictionary-create/dictionary-create.
   styleUrls: ['./translate.component.scss']
 })
 export class TranslateComponent implements OnInit {
-
+  word = '';
+  wordDict: any;
+  j: number;
   constructor(private messageService: MessageService,
               private serviceUser: LoginService,
               private confirmationService: ConfirmationService, private dictionnaryService: DictionaryService) {
@@ -34,12 +37,25 @@ export class TranslateComponent implements OnInit {
     this.TranslateSynonymeDialog = false;
     this.submittedDict = false;
   }
+  public sound(word: string) {
+    const text = encodeURIComponent(word);
+    console.log(text);
+    const url = 'http://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=' + text + '&tl=En-gb';
+    const audio = new Audio(url);
+    audio.play();
+  }
   ngOnInit(): void {
   }
   get selected(): Dictionary {
     return this.dictionnaryService.selected;
   }
-
+public trans(){
+  this.selectedNow.definition = this.word;
+  this.selectedNow.word = this.selected.word;
+  this.word = '';
+  this.hideTranslateDialog();
+  this.createDialogDict = true;
+}
   // tslint:disable-next-line:adjacent-overload-signatures
   set selected(value: Dictionary) {
     this.dictionnaryService.selected = value;
