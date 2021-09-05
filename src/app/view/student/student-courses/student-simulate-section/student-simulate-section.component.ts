@@ -241,9 +241,13 @@ export class StudentSimulateSectionComponent implements OnInit {
         this.dictionnaryService.FindByWord(this.word).subscribe(
             data => {
                 this.selectedDict = data;
-                document.getElementById('dictionary').style.visibility = 'visible';
+                document.getElementById('dictionnair').style.visibility = 'visible';
+                document.getElementById('dictionnair').style.width = '90%';
+                document.getElementById('dictionnair').style.height = '100%';
             }, error => console.log('erreeeeeeeeeeeeeeeeur'));
-        document.getElementById('dictionary').style.visibility = 'visible';
+        document.getElementById('dictionnair').style.visibility = 'hidden';
+        document.getElementById('dictionnair').style.width = '0px';
+        document.getElementById('dictionnair').style.height = '0px';
     }
 
     public Section(libelle: string) {
@@ -293,6 +297,9 @@ export class StudentSimulateSectionComponent implements OnInit {
     }
 
     public openCreateDict() {
+        document.getElementById('dictionnair').style.visibility = 'hidden';
+        document.getElementById('dictionnair').style.width = '0px';
+        document.getElementById('dictionnair').style.height = '0px';
         this.submittedDict = false;
         this.createDialogDict = true;
         this.selectedDict = new Dictionary();

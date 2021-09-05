@@ -83,12 +83,13 @@
              </p-timeline>
          </div>-->
         <div class="p-col-3 product-grid-item">
-            <div class="product-grid-item-content">
-                <div style="margin-top: 20px">
-
-                    <h5>
-                        <u style="color: #8b8b90; margin-left: 5px">{{this.selectedDict.word}}</u>  {{this.selectedDict.definition}}
+            <div class="product-grid-item-content" style="margin-top: 0">
+                <div style="margin-top: 0px">
+                    <div id="dictionnair"  class="p-inputgroup" style="width: 0%; height: 0px; visibility: hidden; margin-bottom: 10px">
+                    <h5 style="margin-left: 5px; text-align: center"><b style="font-size: 20px; color: #1BA7AF;" >+</b>
+                        <u style="color: #8b8b90; margin-left: 10px">{{this.selectedDict.word}}</u> :  {{this.selectedDict.definition}}
                     </h5>
+                    </div>
                     <div class="p-inputgroup" style="width: 100%; align-content: center">
                         <p-autoComplete (completeMethod)="filterDict($event)" [(ngModel)]="word"
                                         [minLength]="1" [suggestions]="filteredDict"
