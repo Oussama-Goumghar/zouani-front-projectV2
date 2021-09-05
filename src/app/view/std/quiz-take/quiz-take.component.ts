@@ -958,6 +958,49 @@ export class QuizTakeComponent implements OnInit {
     }
   }
 
+  restart(){
+
+  }
+  public restartQuiz(){
+    this.service.deleteQuizEtudiant(this.quizEtudiant).subscribe(
+        data => {
+          document.getElementById('result').style.visibility = 'hidden';
+          document.getElementById('question').style.height = 'auto';
+          document.getElementById('answers').style.height = 'auto';
+          document.getElementById('mistake').style.height = 'auto';
+          document.getElementById('header').style.visibility = 'visible';
+          document.getElementById('bodyRadio').style.visibility = 'visible';
+          document.getElementById('bodyRadio').style.height = 'auto';
+          this.quizEtudiant = new QuizEtudiant();
+          this.numQuestion = 0;
+          this.noteQuiz = 0;
+          this.etudiant = this.login.etudiant;
+          this.service.findAllQuestions(this.selectedQuiz.ref).subscribe(
+              data => {
+                this.items = data;
+              }
+          );
+          this.quizEtudiant.quiz = this.selectedQuiz;
+          this.quizEtudiant.resultat = null;
+          this.quizEtudiant.note = 0;
+          this.quizEtudiant.etudiant = this.login.etudiant;
+          this.service.findQuizEtudiant(this.etudiant, this.selectedQuiz).subscribe(
+              data => {
+                this.quizEtudiant = data;
+                this.quizEtudiant.id = data.id;
+                this.numQuestion = data.questionCurrent - 1;
+                this.noteQuiz = data.note;
+                this.start();
+              }, error => {
+                this.service.insertQuizEtudiant().subscribe();
+                this.start();
+              }
+          );
+          this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
+        }
+    );
+  }
+
   public sound(word: string){
     const text = encodeURIComponent(word);
     const url = 'http://translate.google.com/translate_tts?ie=UTF-8&total=1&idx=0&textlen=32&client=tw-ob&q=' + text + '&tl=En-gb';
