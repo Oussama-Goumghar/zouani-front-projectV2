@@ -244,6 +244,7 @@ export class StudentSimulateSectionComponent implements OnInit {
                 document.getElementById('dictionnair').style.visibility = 'visible';
                 document.getElementById('dictionnair').style.width = '90%';
                 document.getElementById('dictionnair').style.height = '100%';
+                this.word ='';
             }, error => console.log('erreeeeeeeeeeeeeeeeur'));
         document.getElementById('dictionnair').style.visibility = 'hidden';
         document.getElementById('dictionnair').style.width = '0px';
