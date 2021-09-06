@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ConfirmationService, MessageService} from 'primeng/api';
-import {InscriptionService} from '../../controller/service/inscription.service';
-import {Inscription} from '../../controller/model/inscription.model';
-import {Etudiant} from '../../controller/model/etudiant.model';
-import {Parcours} from '../../controller/model/parcours.model';
-import {Centre} from '../../controller/model/centre.model';
+import {InscriptionService} from '../../../controller/service/inscription.service';
+import {Inscription} from '../../../controller/model/inscription.model';
+import {Etudiant} from '../../../controller/model/etudiant.model';
+import {Parcours} from '../../../controller/model/parcours.model';
+import {Centre} from '../../../controller/model/centre.model';
 import {Router} from '@angular/router';
 
 @Component({

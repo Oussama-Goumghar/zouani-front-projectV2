@@ -102,7 +102,7 @@ import {AppMenuitemComponent} from './app.menuitem.component';
 import {AppRightMenuComponent} from './app.right-menu.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
-import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
+import {FormLayoutDemoComponent} from './view/etudiant/Inscription-student/formlayoutdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
 import {InputDemoComponent} from './demo/view/inputdemo.component';

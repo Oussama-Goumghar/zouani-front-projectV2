@@ -1,6 +1,6 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {FormLayoutDemoComponent} from './demo/view/formlayoutdemo.component';
+import {FormLayoutDemoComponent} from './view/etudiant/Inscription-student/formlayoutdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
