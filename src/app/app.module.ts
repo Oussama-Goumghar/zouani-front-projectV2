@@ -139,11 +139,6 @@ import {CustomerService} from './demo/service/customerservice';
 import {PhotoService} from './demo/service/photoservice';
 import {ProductService} from './demo/service/productservice';
 import {IconService} from './demo/service/iconservice';
-import {CommandeCreateComponent} from './view/admin/commandes/commande-create/commande-create.component';
-import {CommandesComponent} from './view/admin/commandes/commandes.component';
-import {CommandeListComponent} from './view/admin/commandes/commande-list/commande-list.component';
-import {CommandeViewComponent} from './view/admin/commandes/commande-view/commande-view.component';
-import {CommandeEditComponent} from './view/admin/commandes/commande-edit/commande-edit.component';
 
 import {ParcoursEditComponent} from './view/admin/learn/parcours-edit/parcours-edit.component';
 import {CoursListComponent} from './view/admin/learn/cours-list/cours-list.component';
@@ -163,35 +158,33 @@ import {EtudiantttViewComponent} from './view/Prof/Classes/profclasses/etudiantt
 import {EtudiantCreateComponent} from './view/Prof/etudiants/etudiant-create/etudiant-create.component';
 import {EtudiantEditComponent} from './view/Prof/etudiants/etudiant-edit/etudiant-edit.component';
 import {EtudiantListComponent} from './view/Prof/etudiants/etudiant-list/etudiant-list.component';
-import {InscriptionCreateComponent} from './view/Prof/inscriptions/inscription-create/inscription-create.component';
-import {InscriptionEditComponent} from './view/Prof/inscriptions/inscription-edit/inscription-edit.component';
-import {InscriptionListComponent} from './view/Prof/inscriptions/inscription-list/inscription-list.component';
-import {InscriptionViewComponent} from './view/Prof/inscriptions/inscription-view/inscription-view.component';
-import {InscriptionsComponent} from './view/Prof/inscriptions/inscriptions.component';
-import {CategorieProfViewComponent} from './view/Prof/parcrs/categorie-prof-view/categorie-prof-view.component';
-import {CoursesComponent} from './view/Prof/parcrs/courses/courses.component';
-import {EdCoursesComponent} from './view/Prof/parcrs/ed-courses/ed-courses.component';
-import {SalaryComponent} from './view/Prof/parcrs/salary/salary.component';
-import {SafePipe2, SectionsComponent} from './view/Prof/parcrs/sections/sections.component';
-import {ParcrsComponent} from './view/Prof/parcrs/parcrs.component';
+import {InscriptionCreateComponent} from './view/admin/validate-inscriptions/inscription-create/inscription-create.component';
+import {InscriptionEditComponent} from './view/admin/validate-inscriptions/inscription-edit/inscription-edit.component';
+import {InscriptionListComponent} from './view/admin/validate-inscriptions/inscription-list/inscription-list.component';
+import {InscriptionViewComponent} from './view/admin/validate-inscriptions/inscription-view/inscription-view.component';
+import {InscriptionsComponent} from './view/admin/validate-inscriptions/inscriptions.component';
+import {CategorieProfViewComponent} from './view/Prof/salary-teacher/categorie-prof-view/categorie-prof-view.component';
+import {CoursesComponent} from './view/Prof/learn-teacher/courses/courses.component';
+import {EdCoursesComponent} from './view/Prof/learn-teacher/parcours/ed-courses.component';
+import {SalaryComponent} from './view/Prof/salary-teacher/salary/salary.component';
+import {SafePipe2, SectionsComponent} from './view/Prof/learn-teacher/sections/sections.component';
 import {EtudiantsComponent} from './view/Prof/etudiants/etudiants.component';
-import {QuizPreviewComponent} from './view/Prof/quiz/quiz-preview/quiz-preview.component';
-import {QuizConfigComponent} from './view/Prof/quiz/quiz-config/quiz-config.component';
+import {QuizPreviewComponent} from './view/admin/quiz/quiz-preview/quiz-preview.component';
+import {QuizConfigComponent} from './view/admin/quiz/quiz-config/quiz-config.component';
 import {ScheduleComponent} from './view/Prof/schedule/schedule.component';
 import {FaqAnswerComponent} from './view/admin/faq-admin/faq-answer/faq-answer.component';
 import {NewsAdminListComponent} from './view/admin/news-admin/news-admin-list/news-admin-list.component';
 import {NewsAdminViewComponent} from './view/admin/news-admin/news-admin-view/news-admin-view.component';
 import {NewsAdminCreateComponent} from './view/admin/news-admin/news-admin-create/news-admin-create.component';
-import {NewsTeacherListComponent} from './view/teacher/news/news-teacher-list/news-teacher-list.component';
-import {NewsTeacherViewComponent} from './view/teacher/news/news-teacher-view/news-teacher-view.component';
-import {FaqListComponent} from './view/teacher/faq/faq-list/faq-list.component';
-import {FaqContactComponent} from './view/teacher/faq/faq-contact/faq-contact.component';
+import {NewsTeacherListComponent} from './view/Prof/news/news-teacher-list/news-teacher-list.component';
+import {NewsTeacherViewComponent} from './view/Prof/news/news-teacher-view/news-teacher-view.component';
+import {FaqListComponent} from './view/Prof/faq/faq-list/faq-list.component';
+import {FaqContactComponent} from './view/Prof/faq/faq-contact/faq-contact.component';
 import {LoginEtudiantComponent} from './view/etudiant/login-etudiant/login-etudiant.component';
-import {LoginProfComponent} from './view/teacher/login-prof/login-prof.component';
+import {LoginProfComponent} from './view/Prof/login-prof/login-prof.component';
 import {LoginAdminComponent} from './view/admin/login-admin/login-admin.component';
-import {QuizEtudiantComponent} from './view/etudiant/quiz-etudiant/quiz-etudiant.component';
-import {SafePipe1, SectionSimulateComponent} from './view/Prof/parcrs/section-simulate/section-simulate.component';
-import {ChooseViewComponent} from './view/Prof/parcrs/choose-view/choose-view.component';
+import {SafePipe1, SectionSimulateComponent} from './view/Prof/learn-teacher/section-simulate/section-simulate.component';
+import {ChooseViewComponent} from './view/Prof/learn-teacher/choose-view/choose-view.component';
 import {InscriptionAdminComponent} from './view/admin/inscription-admin/inscription-admin.component';
 import {ParcoursCreateComponent} from './view/admin/learn/parcours-create/parcours-create.component';
 import {CoursCreateComponent} from './view/admin/learn/cours-create/cours-create.component';
@@ -206,10 +199,8 @@ import {RecommendationComponent} from './view/Prof/recommend/recommendation/reco
 import {RecommendEditComponent} from './view/Prof/recommend/recommend-edit/recommend-edit.component';
 import {RecommendListComponent} from './view/Prof/recommend/recommend-list/recommend-list.component';
 import {RecommendViewComponent} from './view/Prof/recommend/recommend-view/recommend-view.component';
-import {QuizCreateComponent} from './view/Prof/quiz/quiz-create/quiz-create.component';
-import {ClassroomEtudiantComponent} from './view/std/classroom-etudiant/classroom-etudiant.component';
-import {QuizEtudiantListComponent} from './view/std/quiz-etudiant-list/quiz-etudiant-list.component';
-import {QuizEtudiantViewComponent} from './view/std/quiz-etudiant-view/quiz-etudiant-view.component';
+import {QuizCreateComponent} from './view/admin/quiz/quiz-create/quiz-create.component';
+import {QuizEtudiantViewComponent} from './view/etudiant/Quiz/quiz-etudiant-view/quiz-etudiant-view.component';
 import {SessionCoursEditComponent} from './view/admin/session-cours/session-cours-edit/session-cours-edit.component';
 import {SessionCoursCreateComponent} from './view/admin/session-cours/session-cours-create/session-cours-create.component';
 import {SyntheseSessionComponent} from './view/admin/synthese-session/synthese-session.component';
@@ -224,42 +215,37 @@ import {ProfesseurListComponent} from './view/admin/professeur/professeur-list/p
 import {ProfesseurCreateComponent} from './view/admin/professeur/professeur-create/professeur-create.component';
 import {ProfesseurEditComponent} from './view/admin/professeur/professeur-edit/professeur-edit.component';
 import {ProfesseurViewComponent} from './view/admin/professeur/professeur-view/professeur-view.component';
-import {EtudiantSectionsComponent} from './view/student/student-courses/etudiant-sections/etudiant-sections.component';
-import {EtudiantParcoursComponent} from './view/student/student-courses/etudiant-parcours/etudiant-parcours.component';
-import {EtudiantCoursesComponent} from './view/student/student-courses/etudiant-courses/etudiant-courses.component';
-import {StudentChooseViewComponent} from './view/student/student-courses/student-choose-view/student-choose-view.component';
+import {EtudiantSectionsComponent} from './view/etudiant/learn-etudiant/etudiant-sections/etudiant-sections.component';
+import {EtudiantParcoursComponent} from './view/etudiant/learn-etudiant/etudiant-parcours/etudiant-parcours.component';
+import {EtudiantCoursesComponent} from './view/etudiant/learn-etudiant/etudiant-courses/etudiant-courses.component';
+import {StudentChooseViewComponent} from './view/etudiant/learn-etudiant/student-choose-view/student-choose-view.component';
 import {
     SafePipe,
     StudentSimulateSectionComponent
-} from './view/student/student-courses/student-simulate-section/student-simulate-section.component';
-import {QuizStudentViewComponent} from './view/student/quiz-student-view/quiz-student-view.component';
-import {QuizStudentListComponent} from './view/student/quiz-student-list/quiz-student-list.component';
-import {ClassroomStudentListComponent} from './view/student/classroom-student-list/classroom-student-list.component';
+} from './view/etudiant/learn-etudiant/student-simulate-section/student-simulate-section.component';
 import {SyntheseSessionHistoryComponent} from './view/admin/synthese-session/synthese-session-history/synthese-session-history.component';
 import {RecommendAdminComponent} from './view/admin/recommend-admin/recommend-admin.component';
 import {FaqCreateComponent} from './view/admin/faq-admin/faq-create/faq-create.component';
-import {FaqStudentListComponent} from './view/std/faq-student/faq-student-list/faq-student-list.component';
+import {FaqStudentListComponent} from './view/etudiant/FAQ-etudiant/faq-student/faq-student-list/faq-student-list.component';
 import {FaqAdminListComponent} from './view/admin/faq-admin/faq-admin-list/faq-admin-list.component';
-import {FaqContactListComponent} from './view/teacher/faq/faq-contact-list/faq-contact-list.component';
-import {FaqStudentContactComponent} from './view/std/faq/faq-student-contact/faq-student-contact.component';
-import {FaqStudentContactListeComponent} from './view/std/faq/faq-student-contact-liste/faq-student-contact-liste.component';
+import {FaqContactListComponent} from './view/Prof/faq/faq-contact-list/faq-contact-list.component';
+import {FaqStudentContactComponent} from './view/etudiant/FAQ-etudiant/faq-student-contact/faq-student-contact.component';
+import {FaqStudentContactListeComponent} from './view/etudiant/FAQ-etudiant/faq-student-contact-liste/faq-student-contact-liste.component';
 import {DictionaryCreateComponent} from './view/etudiant/dictionary-create/dictionary-create.component';
-import {NewsEtudiantListComponent} from './view/std/news-etudiant/news-etudiant-list/news-etudiant-list.component';
-import {NewsEtudiantViewComponent} from './view/std/news-etudiant/news-etudiant-view/news-etudiant-view.component';
+import {NewsEtudiantListComponent} from './view/etudiant/news-etudiant/news-etudiant-list/news-etudiant-list.component';
+import {NewsEtudiantViewComponent} from './view/etudiant/news-etudiant/news-etudiant-view/news-etudiant-view.component';
 import {NewsAdminEditComponent} from './view/admin/news-admin/news-admin-edit/news-admin-edit.component';
 import {NewsAdminDeleteComponent} from './view/admin/news-admin/news-admin-delete/news-admin-delete.component';
 import {PaiementComponent} from './view/admin/paiement/paiement.component';
 import {PaiementListComponent} from './view/admin/paiement/paiement-list/paiement-list.component';
-import {QuizCreateVocabularyComponent} from './view/Prof/quiz/quiz-create-vocabulary/quiz-create-vocabulary.component';
-import {QuizVocabularyComponent} from './view/Prof/quiz/quiz-vocabulary/quiz-vocabulary.component';
 import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin.component';
-import {ScheduleStudentComponent} from './view/student/schedule-student/schedule-student.component';
-import {QuizUpdateComponent} from './view/teacher/quiz-update/quiz-update.component';
+import {ScheduleStudentComponent} from './view/etudiant/schedule-student/schedule-student.component';
+import {QuizUpdateComponent} from './view/admin/quiz/quiz-update/quiz-update.component';
 import {SectionItemComponent} from './view/admin/learn/section-item/section-item.component';
 import {SectionCreateComponent} from './view/admin/learn/section-create/section-create.component';
-import {QuizTakeComponent} from './view/std/quiz-take/quiz-take.component';
-import {ChatComponent} from './view/Prof/chat/chat.component';
-import {Chat1Component} from './view/student/chat1/chat1-component.component';
+import {QuizTakeComponent} from './view/etudiant/Quiz/quiz-take/quiz-take.component';
+import {ChatComponent} from './view/Prof/learn-teacher/chat/chat.component';
+import {Chat1Component} from './view/etudiant/learn-etudiant/chat/chat1-component.component';
 import {DictionaryEditComponent} from './view/etudiant/dictionary-edit/dictionary-edit.component';
 import {ViewQuizEtudiantComponent} from './view/admin/view-quiz-etudiant/view-quiz-etudiant.component';
 import {SectionItemListComponent} from './view/admin/learn/section-item/section-item-list/section-item-list.component';
@@ -401,11 +387,6 @@ import { TranslateComponent } from './view/etudiant/translate/translate.componen
         AppErrorComponent,
         AppAccessdeniedComponent,
         AppLoginComponent,
-        CommandeCreateComponent,
-        CommandesComponent,
-        CommandeListComponent,
-        CommandeEditComponent,
-        CommandeViewComponent,
         LearnComponent,
         ParcoursListComponent,
         ParcoursEditComponent,
@@ -426,7 +407,6 @@ import { TranslateComponent } from './view/etudiant/translate/translate.componen
         InscriptionViewComponent,
         CategorieProfViewComponent,
         SectionsComponent,
-        ParcrsComponent,
         CoursesComponent,
         EdCoursesComponent,
         SalaryComponent,
@@ -453,7 +433,6 @@ import { TranslateComponent } from './view/etudiant/translate/translate.componen
         LoginEtudiantComponent,
         LoginProfComponent,
         LoginAdminComponent,
-        QuizEtudiantComponent,
         ChooseViewComponent,
         SectionSimulateComponent,
         ParcoursCreateComponent,
@@ -471,8 +450,6 @@ import { TranslateComponent } from './view/etudiant/translate/translate.componen
         RecommendViewComponent,
         QuizCreateComponent,
         InscriptionProfComponent,
-        ClassroomEtudiantComponent,
-        QuizEtudiantListComponent,
         QuizEtudiantViewComponent,
         SessionCoursEditComponent,
         SessionCoursComponent,
@@ -492,9 +469,6 @@ import { TranslateComponent } from './view/etudiant/translate/translate.componen
         EtudiantParcoursComponent,
         EtudiantCoursesComponent,
         ProfesseurViewComponent,
-        QuizStudentViewComponent,
-        QuizStudentListComponent,
-        ClassroomStudentListComponent,
         StudentSimulateSectionComponent,
         SyntheseSessionHistoryComponent,
         StudentChooseViewComponent,
@@ -512,8 +486,6 @@ import { TranslateComponent } from './view/etudiant/translate/translate.componen
         NewsAdminDeleteComponent,
         PaiementComponent,
         PaiementListComponent,
-        QuizCreateVocabularyComponent,
-        QuizVocabularyComponent,
         ScheduleAdminComponent,
         ScheduleStudentComponent,
         QuizUpdateComponent,
