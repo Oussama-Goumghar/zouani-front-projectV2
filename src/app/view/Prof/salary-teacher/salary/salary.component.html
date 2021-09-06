@@ -1,14 +1,15 @@
 <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
-                 <span>
+                 <span style="margin-left: 65%">
 
-                     <input [(ngModel)]="selectedsalaryVo.mois" pInputText placeholder="Month" style="margin-left: 1000px;width: 80px; margin-top: 20px"
+                     <input [(ngModel)]="selectedsalaryVo.mois" pInputText placeholder="Month" style="width:25% ; margin-top: 10%"
                             type="text"/>
-                        <input [(ngModel)]="selectedsalaryVo.annee" pInputText placeholder="Year" style="margin-left: 10px;width: 80px; margin-top: 20px"
+                        <input [(ngModel)]="selectedsalaryVo.annee" pInputText placeholder="Year" style="margin-left: 2%; width:25% ; margin-top: 10%"
                                type="text"/>
 
-                          <i (click)="findSalary()" class="pi pi-search" style="margin-top: 20px"></i>
+                          <p-button (click)="findSalary()" icon="pi pi-search" style="margin-left: 2%;margin-top: 10%; "></p-button>
 
-                 </span></div>
+                 </span>
+</div>
 <div class="p-grid-transparent p-col-10" style="margin-left: 15%; background-color: transparent">
     <div class="p-col-10 ">
         <div class="expenses card card-w-title" style="background-color: gainsboro">
