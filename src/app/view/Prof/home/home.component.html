@@ -1,8 +1,8 @@
 <div class="p-fluid p-formgrid p-grid">
     <div class="p-field p-col-4 p-md-4 ">
-        <p-card [style]="{width: '460px'}" header="Professor" styleClass="p-card-shadow">
-            <ng-template pTemplate="header" style="  height: 350px;width: 460px">
-                <img alt="Card" src="{{this.serviceUser.prof.image}}" style=" height: 350px;width: 460px">
+        <p-card [style]="{width: '100%'}" header="Professor" styleClass="p-card-shadow">
+            <ng-template pTemplate="header" style="  height: 50%;width: 100%">
+                <img alt="Card" src="{{this.serviceUser.prof.image}}" style=" height: 50%;width: 100%">
             </ng-template>
             <p>Hello!! {{this.serviceUser.prof.nom}} you can add A student </p>
             <ng-template pTemplate="footer">
@@ -16,7 +16,7 @@
 
 
     <div class="p-field p-col-4 p-md-4">
-        <p-card [style]="{'width': '35rem', 'margin-bottom': '2em','height' : '500px','backgroundColor':'white'}">
+        <p-card [style]="{'width': '100%', 'margin-bottom': '2em','height' : '100%','backgroundColor':'white'}">
             <ng-template pTemplate="header">
                 <img [style]="{'height': '15rem'}"
                      alt="Card"
@@ -46,8 +46,8 @@
             </ul>
         </p-card>
     </div>
-    <div class="p-field p-col-6 p-md-4">
-        <p-card [style]="{'width': '35rem', 'margin-bottom': '2em','height' : '500px','backgroundColor':'white'}"
+    <div class="p-field p-col-4 p-md-4">
+        <p-card [style]="{'width': '100%', 'margin-bottom': '2em','height' : '100%','backgroundColor':'white'}"
                 header="What's News">
 
             <ul>

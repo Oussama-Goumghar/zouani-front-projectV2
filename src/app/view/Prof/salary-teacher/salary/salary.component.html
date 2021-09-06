@@ -1,9 +1,9 @@
 <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between table-header">
                  <span style="margin-left: 65%">
 
-                     <input [(ngModel)]="selectedsalaryVo.mois" pInputText placeholder="Month" style="width:25% ; margin-top: 10%"
+                     <input [(ngModel)]="mois" pInputText placeholder="Month" style="width:25% ; margin-top: 10%"
                             type="text"/>
-                        <input [(ngModel)]="selectedsalaryVo.annee" pInputText placeholder="Year" style="margin-left: 2%; width:25% ; margin-top: 10%"
+                        <input [(ngModel)]="annee" pInputText placeholder="Year" style="margin-left: 2%; width:25% ; margin-top: 10%"
                                type="text"/>
 
                           <p-button (click)="findSalary()" icon="pi pi-search" style="margin-left: 2%;margin-top: 10%; "></p-button>
@@ -31,11 +31,9 @@
 
 
                     <h6>Current Month Pay</h6>
-                    <h1>{{this.selectedsalaryVo.nbrSessionMensuel * this.selectedsalaryVo.prof.categorieProf.lessonRate}}
-                        $</h1>
+                    <h1>{{this.selectedsalaryVo.nbrSessionMensuel * this.selectedsalaryVo.prof.categorieProf.lessonRate}}$</h1>
                     <h6>Global Pay</h6>
-                    <h1>{{this.selectedsalaryVo.nbrSessionGlobale * this.selectedsalaryVo.prof.categorieProf.lessonRate}}
-                        $</h1>
+                    <h1>{{this.selectedsalaryVo.nbrSessionGlobale * this.selectedsalaryVo.prof.categorieProf.lessonRate}}$</h1>
 
                 </div>
                 <div class="p-col">

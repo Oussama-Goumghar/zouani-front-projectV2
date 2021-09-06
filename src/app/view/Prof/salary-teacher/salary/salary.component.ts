@@ -14,6 +14,8 @@ export class SalaryComponent implements OnInit {
     data: any;
     items: MenuItem[];
     activeItem: MenuItem;
+    mois: '';
+    annee: '';
 
     constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
                 private service: ClassRoomService, private serviceUser: LoginService) {
@@ -78,6 +80,8 @@ export class SalaryComponent implements OnInit {
 
     public findSalary() {
         this.selectedsalaryVo.prof.id = this.serviceUser.prof.id;
+        this.selectedsalaryVo.mois = this.mois;
+        this.selectedsalaryVo.annee = this.annee;
         this.service.findSalaryByDate().subscribe(data => {
             this.selectedsalaryVo = data;
         });
