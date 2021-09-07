@@ -33,7 +33,7 @@
                 </span>
             </div>
             <div class="p-col-6" id="on-off-question" style="background: white;">
-                <h3 style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.selected.libelle}}</h3>
+                <h3 id="question-on-off" style="margin-top: 100px;margin-bottom: 100px; text-align: center">{{this.selected.libelle}}</h3>
                 <h3 id="translate-on-off" style="text-align: right"> {{this.translate}}</h3>
             </div>
             <div class="p-col-6" id="on-off-answer" >
@@ -73,7 +73,8 @@
                     </div>
                 </div>
             </div>
-            <button pButton pRipple style="width: 80%; margin-left: 10%; margin-bottom: 50px" icon="pi pi-undo" type="button" label="Restart the quiz" (click)="restartQuiz()" class="p-button-raised p-button-success"></button>
+            <button pButton pRipple type="button" style="width: 30%; margin-left: 10%; margin-bottom: 50px" icon="pi pi-undo" type="button" label="Restart the quiz" (click)="restartQuiz()" class="p-button-raised p-button-danger"></button>
+            <button pButton pRipple style="width: 30%; margin-left: 20%; margin-bottom: 50px" icon="pi pi-caret-right" type="button" label="Next Section" (click)="NextSection()" class="p-button-raised p-button-success"></button>
         </div>
     </div>
     <div class="p-col-3">
