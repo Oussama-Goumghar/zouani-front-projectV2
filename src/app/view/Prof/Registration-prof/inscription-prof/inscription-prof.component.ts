@@ -42,6 +42,10 @@ export class InscriptionProfComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        document.getElementById('log-pass').style.visibility = 'hidden';
+        document.getElementById('log-pass').style.height = '0px';
+        document.getElementById('log-pass').style.width = '0px';
+        this.selectedProf = new Prof();
     }
 
     public save() {
@@ -57,7 +61,14 @@ export class InscriptionProfComponent implements OnInit {
                     detail: 'Inscription added',
                     life: 3000
                 });
+                document.getElementById('log-pass').style.visibility = 'hidden';
+                document.getElementById('log-pass').style.height = '0%';
+                document.getElementById('log-pass').style.width = '0%';
                 this.router.navigate(['/']);
+            }, error => {
+                document.getElementById('log-pass').style.visibility = 'visible';
+                document.getElementById('log-pass').style.height = '100%';
+                document.getElementById('log-pass').style.width = '100%';
             });
     }
 

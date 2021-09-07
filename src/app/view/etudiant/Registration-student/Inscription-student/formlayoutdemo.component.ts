@@ -92,6 +92,9 @@ export class FormLayoutDemoComponent implements OnInit {
 
     ngOnInit(): void {
         this.selected = new Inscription();
+        document.getElementById('log-pass').style.visibility = 'hidden';
+        document.getElementById('log-pass').style.height = '0%';
+        document.getElementById('log-pass').style.width = '0%';
         this.service.findAllParcours().subscribe(data => this.parcoursList = data);
     }
 
@@ -108,6 +111,13 @@ export class FormLayoutDemoComponent implements OnInit {
                 life: 3000
             });
             this.router.navigate(['/']);
+            document.getElementById('log-pass').style.visibility = 'hidden';
+            document.getElementById('log-pass').style.height = '0%';
+            document.getElementById('log-pass').style.width = '0%';
+        }, error => {
+            document.getElementById('log-pass').style.visibility = 'visible';
+            document.getElementById('log-pass').style.height = '100%';
+            document.getElementById('log-pass').style.width = '100%';
         });
         this.selected = new Inscription();
     }
