@@ -90,10 +90,14 @@
                 <input type="number" name="phone_number" id="phone_number" placeholder="age" required [(ngModel)]="selected.age"/>
                 <input type="text" name="Address" id="Address" placeholder="Address" required [(ngModel)]="selected.address"/>
                 <input type="text" name="City" id="City" placeholder="City" required [(ngModel)]="selected.ville"/>
-                <div class="select-list">
-                    <select name="Parcours" id="course_type"  (click)="findAllParcours()" [(ngModel)]="selected.parcours.id">
-                        <option value="">--Please choose parcours--</option>
+                <div >
+                    <label for="parcours" style="color: black;">Parcours</label>
+                    <select (click)="findAllParcours()" [(ngModel)]="selected.parcours.id" class="btn btn-block btn-outline-light form-control" id="parcours"
+                            name="Parcours"
+                            style=" border-color: darkgray;" >
+                        <option value="">--Please choose Parcours--</option>
                         <option *ngFor="let p of parcoursList" [ngValue]="p.id" selected="selected"> {{p.libelle}}</option>
+
                     </select>
                     <small *ngIf="submitted && !selected.parcours.id" class="p-invalid">Parcours is required.</small>
 
