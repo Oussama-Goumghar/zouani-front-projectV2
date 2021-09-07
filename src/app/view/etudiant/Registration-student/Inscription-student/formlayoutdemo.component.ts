@@ -107,8 +107,8 @@ export class FormLayoutDemoComponent implements OnInit {
                 detail: 'Inscription added',
                 life: 3000
             });
+            this.router.navigate(['/']);
         });
-        this.router.navigate(['/']);
         this.selected = new Inscription();
     }
 
