@@ -93,6 +93,7 @@ export class FormLayoutDemoComponent implements OnInit {
 
     ngOnInit(): void {
         this.selected = new Inscription();
+        this.service.findAllParcours().subscribe(data => this.parcoursList = data);
     }
 
     // tslint:disable-next-line:typedef

@@ -8,6 +8,7 @@ export class Etudiant {
     public id: number;
     public ref: string;
     public nom: string;
+    public numero: string;
     public prenom: string;
     public age: number;
     public login: string;
