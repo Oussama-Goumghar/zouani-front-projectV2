@@ -6,7 +6,7 @@ import {ChatMessageDto} from './chatMessageDto';
 
 export class Prof {
     public id: number;
-    public numero: number;
+    public numero: string;
     public nom: string;
     public image: string;
     public prenom: string;

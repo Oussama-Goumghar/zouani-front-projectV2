@@ -3,12 +3,12 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {Section} from '../../../../controller/model/section.model';
 import {DomSanitizer} from '@angular/platform-browser';
+import {Cours} from '../../../../controller/model/cours.model';
 
 @Pipe({name: 'safe'})
 export class SafePipe2 implements PipeTransform {
     constructor(private sanitizer: DomSanitizer) {
     }
-
     transform(url) {
         return this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
@@ -32,7 +32,22 @@ export class SectionsComponent implements OnInit {
     get itemssection(): Array<Section> {
         return this.service.itemssection;
     }
+    // tslint:disable-next-line:adjacent-overload-signatures
+    set itemssection2(value: Array<Section>) {
+        this.service.itemssection2 = value;
+    }
+    public sectionSimulate(section: Section){
+        this.selectedsection = section;
+        this.service.affichelistSection().subscribe(
+            data => {
+                this.itemssection2 = data;
+                // tslint:disable-next-line:no-shadowed-variable
+            });
 
+    }
+    get selectedcours(): Cours {
+        return this.service.selectedcours;
+    }
     set itemssection(value: Array<Section>) {
         this.service.itemssection = value;
     }
