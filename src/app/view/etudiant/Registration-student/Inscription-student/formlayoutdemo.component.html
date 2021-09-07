@@ -93,7 +93,7 @@
                 <input type="text" name="City" id="City" placeholder="City" required [(ngModel)]="selected.ville"/>
                 <div style="margin-bottom: 25px">
                     <p-dropdown [(ngModel)]="selected.parcours.id" [options]="parcoursList" inputId="type"
-                                optionLabel="libelle" placeholder="--Please choose Parcours--"></p-dropdown>
+                                optionLabel="libelle" autoWidth="false" placeholder="--Please choose Parcours--" [style]="{'width': '100%'}" ></p-dropdown>
                     <small *ngIf="submitted && !selected.parcours.id" class="p-invalid">Parcours is required.</small>
 
                 </div>
