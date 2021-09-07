@@ -699,6 +699,7 @@ export class QuizTakeComponent implements OnInit {
             document.getElementById('on-off-question').style.height = 'auto';
             document.getElementById('on-off-answer').style.visibility = 'visible';
             document.getElementById('on-off-answer').style.height = 'auto';
+            document.getElementById('question-on-off').style.color = 'black';
             document.getElementById('mistake').style.visibility = 'hidden';
             document.getElementById('mistake').style.height = '0px';
             document.getElementById('question').style.visibility = 'hidden';
@@ -806,6 +807,7 @@ export class QuizTakeComponent implements OnInit {
       this.button = 'Next';
       if((this.on_off == true && this.correctAnswers[0].lib == 'true') || (this.on_off == false && this.correctAnswers[0].lib == 'false'))
       {
+        document.getElementById('question-on-off').style.color = '#1af045';
         this.noteQst = this.selected.pointReponseJuste;
         this.noteQuiz = this.noteQuiz + this.selected.pointReponseJuste;
         this.reponseEtudiant.note = this.selected.pointReponseJuste;
@@ -817,6 +819,7 @@ export class QuizTakeComponent implements OnInit {
         this.reponseEtudiant.answer = null;
       }
       else {
+        document.getElementById('question-on-off').style.color = 'red';
         this.noteQst = this.selected.pointReponsefausse;
         this.noteQuiz = this.noteQuiz + this.selected.pointReponsefausse;
         this.reponseEtudiant.note = this.selected.pointReponsefausse;
@@ -1080,6 +1083,54 @@ export class QuizTakeComponent implements OnInit {
           this.reponseEtudiant.quizEtudiant = this.quizEtudiant;
         }
     );
+  }
+
+  NextSection() {
+    this.parcoursservice.affichelistSection().subscribe(
+        data => {
+          this.itemssection2 = data;
+          // tslint:disable-next-line:no-shadowed-variable
+        });
+    this.selectedsection.numeroOrder = this.selectedsection.numeroOrder + 1;
+    // tslint:disable-next-line:triple-equals
+    if (this.selectedsection.numeroOrder <= this.itemssection2.length) {
+      this.parcoursservice.afficheOneSection2().subscribe(
+          data => {
+            this.selectedsection = data;
+            this.service.findQuizBySectionId(this.selectedsection).subscribe(
+                data => {
+                  this.selectedQuiz = data;
+
+                  this.service.findQuizEtudiant(this.login.etudiant, this.selectedQuiz).subscribe(
+                      data => {
+                        this.quizEtudiantList = data;
+                        console.log(this.quizEtudiantList);
+                        this.service.findAllQuestions(this.selectedQuiz.ref).subscribe(
+                            dataQuestions => {
+                              if(data.questionCurrent > dataQuestions.length){
+                                this.passerQuiz = 'View Quiz';
+                                this.quizView = true;
+                              }
+                              else {
+                                this.passerQuiz = 'Continue Quiz';
+                                this.quizView = false;
+                              }
+                            }
+                        );
+                      },error =>
+                      {
+                        this.passerQuiz = 'Take Quiz';
+                        this.quizView = false;
+                      }
+                  );
+                },
+            );
+          });
+      this.router.navigate(['/pages/etudiantsimulatesections']);
+    } /*else {
+      this.selectedsection.numeroOrder = 0;
+      this.PreviousSection();
+    }*/
   }
 
   public sound(word: string){
