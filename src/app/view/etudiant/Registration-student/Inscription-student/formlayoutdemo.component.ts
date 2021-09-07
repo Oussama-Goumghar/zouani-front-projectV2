@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
     styleUrls: ['./formlayoutdemo.css']
 })
 export class FormLayoutDemoComponent implements OnInit {
-
     constructor(private messageService: MessageService, private confirmationService: ConfirmationService,
                 private service: InscriptionService, private router: Router) {
     }
@@ -99,6 +98,7 @@ export class FormLayoutDemoComponent implements OnInit {
     // tslint:disable-next-line:typedef
     public save() {
         this.submitted = true;
+        console.log(this.selected.parcours.id);
         this.service.save().subscribe(data => {
             this.selectes.push({...data});
             this.messageService.add({
@@ -114,9 +114,5 @@ export class FormLayoutDemoComponent implements OnInit {
 
     public findAllCentre() {
         this.service.findAllCentre().subscribe(data => this.centreList = data);
-    }
-
-    public findAllParcours() {
-        this.service.findAllParcours().subscribe(data => this.parcoursList = data);
     }
 }

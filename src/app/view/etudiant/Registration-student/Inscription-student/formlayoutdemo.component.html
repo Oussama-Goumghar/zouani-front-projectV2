@@ -82,8 +82,8 @@
         <form method="POST" class="appointment-form" id="appointment-form">
             <h2>Registration form</h2>
             <div class="form-group-1">
-                <input type="text" name="title" id="title" placeholder="Firstname" [(ngModel)]="selected.prenom" required />
-                <input type="text" name="name" id="name" placeholder="Lastname" [(ngModel)]="selected.nom" required />
+                <input type="text" name="Firstname" id="Firstname" placeholder="Firstname" [(ngModel)]="selected.prenom" required />
+                <input type="text" name="lastname" id="Lastname" placeholder="Lastname" [(ngModel)]="selected.nom" required />
                 <input type="text" name="UserName" id="UserName" placeholder="UserName" required [(ngModel)]="selected.login"/>
                 <input type="email" name="gmail" id="gmail" placeholder="email" required [(ngModel)]="selected.gmail"/>
                 <input type="password" name="Password" id="Password" placeholder="Password" required [(ngModel)]="selected.password"/>
@@ -91,15 +91,13 @@
                 <input type="tel" name="phone_number" id="phone_number" placeholder="phone number" required [(ngModel)]="selected.numero"/>
                 <input type="text" name="Address" id="Address" placeholder="Address" required [(ngModel)]="selected.address"/>
                 <input type="text" name="City" id="City" placeholder="City" required [(ngModel)]="selected.ville"/>
-                <div style="margin-bottom: 25px">
-                    <p-dropdown [(ngModel)]="selected.parcours.id" [options]="parcoursList" inputId="type"
-                                optionLabel="libelle" autoWidth="false" placeholder="--Please choose Parcours--" [style]="{'width': '100%'}" ></p-dropdown>
-                    <small *ngIf="submitted && !selected.parcours.id" class="p-invalid">Parcours is required.</small>
-
+                <div class="p-field" style="margin-bottom: 25px">
+                    <p-dropdown [(ngModel)]="selected.parcours" [options]="parcoursList"
+                                 optionLabel="libelle" name="libelle" autoWidth="false" placeholder="--Please choose Parcours--" [style]="{'width': '100%'}" ></p-dropdown>
                 </div>
             </div>
             <div class="form-submit">
-                <input type="submit" name="submit" id="submit" class="submit" value="Submit" (click)="save()" [routerLink]="submitted? ['']: ['/inscriptionAdmin']"/>
+                <input type="button" name="submit" id="submit" class="submit" value="Submit" (click)="save()" [routerLink]="submitted? ['']: ['/inscriptionAdmin']"/>
             </div>
         </form>
     </div>
