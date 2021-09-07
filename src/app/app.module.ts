@@ -102,7 +102,7 @@ import {AppMenuitemComponent} from './app.menuitem.component';
 import {AppRightMenuComponent} from './app.right-menu.component';
 import {AppTopBarComponent} from './app.topbar.component';
 import {AppFooterComponent} from './app.footer.component';
-import {FormLayoutDemoComponent} from './view/etudiant/Inscription-student/formlayoutdemo.component';
+import {FormLayoutDemoComponent} from './view/etudiant/Registration-student/Inscription-student/formlayoutdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
 import {InputDemoComponent} from './demo/view/inputdemo.component';
@@ -185,10 +185,10 @@ import {LoginProfComponent} from './view/Prof/login-prof/login-prof.component';
 import {LoginAdminComponent} from './view/admin/login-admin/login-admin.component';
 import {SafePipe1, SectionSimulateComponent} from './view/Prof/learn-teacher/section-simulate/section-simulate.component';
 import {ChooseViewComponent} from './view/Prof/learn-teacher/choose-view/choose-view.component';
-import {InscriptionAdminComponent} from './view/admin/inscription-admin/inscription-admin.component';
+import {InscriptionAdminComponent} from './view/admin/Registration/inscription-admin/inscription-admin.component';
 import {ParcoursCreateComponent} from './view/admin/learn/parcours-create/parcours-create.component';
 import {CoursCreateComponent} from './view/admin/learn/cours-create/cours-create.component';
-import {InscriptionProfComponent} from './view/Prof/inscription-prof/inscription-prof.component';
+import {InscriptionProfComponent} from './view/Prof/Registration-prof/inscription-prof/inscription-prof.component';
 import {HomeTeacherComponent} from './view/Prof/home-teacher/home-teacher.component';
 import {TeacherRubComponent} from './view/Prof/home-teacher/teacher-rub/teacher-rub.component';
 import {ProfNewsComponent} from './view/Prof/home-teacher/prof-news/prof-news.component';
@@ -231,7 +231,7 @@ import {FaqAdminListComponent} from './view/admin/faq-admin/faq-admin-list/faq-a
 import {FaqContactListComponent} from './view/Prof/faq/faq-contact-list/faq-contact-list.component';
 import {FaqStudentContactComponent} from './view/etudiant/FAQ-etudiant/faq-student-contact/faq-student-contact.component';
 import {FaqStudentContactListeComponent} from './view/etudiant/FAQ-etudiant/faq-student-contact-liste/faq-student-contact-liste.component';
-import {DictionaryCreateComponent} from './view/etudiant/dictionary-create/dictionary-create.component';
+import {DictionaryCreateComponent} from './view/etudiant/learn-etudiant/Dictionnary/dictionary-create/dictionary-create.component';
 import {NewsEtudiantListComponent} from './view/etudiant/news-etudiant/news-etudiant-list/news-etudiant-list.component';
 import {NewsEtudiantViewComponent} from './view/etudiant/news-etudiant/news-etudiant-view/news-etudiant-view.component';
 import {NewsAdminEditComponent} from './view/admin/news-admin/news-admin-edit/news-admin-edit.component';
@@ -246,12 +246,12 @@ import {SectionCreateComponent} from './view/admin/learn/section-create/section-
 import {QuizTakeComponent} from './view/etudiant/Quiz/quiz-take/quiz-take.component';
 import {ChatComponent} from './view/Prof/learn-teacher/chat/chat.component';
 import {Chat1Component} from './view/etudiant/learn-etudiant/chat/chat1-component.component';
-import {DictionaryEditComponent} from './view/etudiant/dictionary-edit/dictionary-edit.component';
+import {DictionaryEditComponent} from './view/etudiant/learn-etudiant/Dictionnary/dictionary-edit/dictionary-edit.component';
 import {ViewQuizEtudiantComponent} from './view/admin/view-quiz-etudiant/view-quiz-etudiant.component';
 import {SectionItemListComponent} from './view/admin/learn/section-item/section-item-list/section-item-list.component';
 import {SectionItemPreviewComponent} from './view/admin/learn/section-item-preview/section-item-preview.component';
 import {ImageItemComponent} from './view/admin/learn/section-item-preview/image-item/image-item.component';
-import { TranslateComponent } from './view/etudiant/translate/translate.component';
+import { TranslateComponent } from './view/etudiant/learn-etudiant/Dictionnary/translate/translate.component';
 
 
 @NgModule({

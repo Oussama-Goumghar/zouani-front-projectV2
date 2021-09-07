@@ -1,6 +1,6 @@
 import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
-import {FormLayoutDemoComponent} from './view/etudiant/Inscription-student/formlayoutdemo.component';
+import {FormLayoutDemoComponent} from './view/etudiant/Registration-student/Inscription-student/formlayoutdemo.component';
 import {FloatLabelDemoComponent} from './demo/view/floatlabeldemo.component';
 import {InvalidStateDemoComponent} from './demo/view/invalidstatedemo.component';
 import {DashboardDemoComponent} from './demo/view/dashboarddemo.component';
@@ -56,8 +56,8 @@ import {LoginAdminComponent} from './view/admin/login-admin/login-admin.componen
 import {LoginProfComponent} from './view/Prof/login-prof/login-prof.component';
 import {LoginEtudiantComponent} from './view/etudiant/login-etudiant/login-etudiant.component';
 import {SectionSimulateComponent} from './view/Prof/learn-teacher/section-simulate/section-simulate.component';
-import {InscriptionAdminComponent} from './view/admin/inscription-admin/inscription-admin.component';
-import {InscriptionProfComponent} from './view/Prof/inscription-prof/inscription-prof.component';
+import {InscriptionAdminComponent} from './view/admin/Registration/inscription-admin/inscription-admin.component';
+import {InscriptionProfComponent} from './view/Prof/Registration-prof/inscription-prof/inscription-prof.component';
 import {HomeTeacherComponent} from './view/Prof/home-teacher/home-teacher.component';
 import {RecommendationComponent} from './view/Prof/recommend/recommendation/recommendation.component';
 import {RecommendComponent} from './view/Prof/recommend/recommend.component';
@@ -77,7 +77,7 @@ import {FaqAdminListComponent} from './view/admin/faq-admin/faq-admin-list/faq-a
 import {FaqContactListComponent} from './view/Prof/faq/faq-contact-list/faq-contact-list.component';
 import {FaqStudentContactComponent} from './view/etudiant/FAQ-etudiant/faq-student-contact/faq-student-contact.component';
 import {FaqStudentContactListeComponent} from './view/etudiant/FAQ-etudiant/faq-student-contact-liste/faq-student-contact-liste.component';
-import {DictionaryCreateComponent} from './view/etudiant/dictionary-create/dictionary-create.component';
+import {DictionaryCreateComponent} from './view/etudiant/learn-etudiant/Dictionnary/dictionary-create/dictionary-create.component';
 import {NewsEtudiantListComponent} from './view/etudiant/news-etudiant/news-etudiant-list/news-etudiant-list.component';
 import {PaiementComponent} from './view/admin/paiement/paiement.component';
 import {ScheduleAdminComponent} from './view/admin/schedule-admin/schedule-admin.component';
