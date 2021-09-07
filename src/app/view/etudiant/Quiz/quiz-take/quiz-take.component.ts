@@ -69,6 +69,7 @@ export class QuizTakeComponent implements OnInit {
   nodes: TreeNode[];
   menu: MenuItem[];
   resultat: string;
+  on_off : boolean;
 
   get answerCorrectOrFalse(): Array<boolean> {
     if(this._answerCorrectOrFalse == null)
@@ -510,6 +511,7 @@ export class QuizTakeComponent implements OnInit {
     this.disable = false;
     this.isChecked = false;
     this.next = false;
+    this.on_off = false;
     this.answerCorrectOrFalse = new Array<boolean>();
     document.getElementById('translate-correct-mistake').style.visibility = 'hidden';
     this.translate = '';
@@ -579,6 +581,10 @@ export class QuizTakeComponent implements OnInit {
       document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
       document.getElementById('div-output').style.visibility = 'hidden';
       document.getElementById('output-correct-mistake').style.visibility = 'hidden';
+      document.getElementById('on-off-question').style.visibility = 'hidden';
+      document.getElementById('on-off-question').style.height = '0px';
+      document.getElementById('on-off-answer').style.visibility = 'hidden';
+      document.getElementById('on-off-answer').style.height = '0px';
 
       this.isChecked = false;
       this.service.findQuizEtudiant(this.etudiant, this.selectedQuiz).subscribe(
@@ -630,6 +636,10 @@ export class QuizTakeComponent implements OnInit {
             document.getElementById('question').style.height = 'auto';
             document.getElementById('answers').style.visibility = 'visible';
             document.getElementById('answers').style.height = 'auto';
+            document.getElementById('on-off-question').style.visibility = 'hidden';
+            document.getElementById('on-off-question').style.height = '0px';
+            document.getElementById('on-off-answer').style.visibility = 'hidden';
+            document.getElementById('on-off-answer').style.height = '0px';
             this.isSelected = false;
             for (let i = 0; i < this.selected.libelle.length; i++) {
               if (this.selected.libelle[i] == '.' && this.selected.libelle[i + 1] == '.' && this.selected.libelle[i + 2] == '.') {
@@ -662,11 +672,40 @@ export class QuizTakeComponent implements OnInit {
             this.correctMistakeAnswer = null;
             document.getElementById('mistake').style.visibility = 'visible';
             document.getElementById('mistake').style.height = 'auto';
+            document.getElementById('on-off-question').style.visibility = 'hidden';
+            document.getElementById('on-off-question').style.height = '0px';
+            document.getElementById('on-off-answer').style.visibility = 'hidden';
+            document.getElementById('on-off-answer').style.height = '0px';
             document.getElementById('question').style.visibility = 'hidden';
             document.getElementById('question').style.height = '0px';
             document.getElementById('answers').style.visibility = 'hidden';
             document.getElementById('answers').style.height = '0px';
             document.getElementById('float-input-correct-mistake').style.visibility = 'visible';
+            document.getElementById('div-output').style.visibility = 'hidden';
+            document.getElementById('output-correct-mistake').style.visibility = 'hidden';
+            this.answerCorrectOrFalse = new Array<boolean>();
+            for(let i = 0 ; i < this.myanswers.length ; i++)
+            {
+              this.answerCorrectOrFalse.push(true);
+            }
+            this.isChecked = false;
+          }else if (this.selected.typeDeQuestion.ref == 't5') {
+            for(let i = 0 ; i < this.myanswers.length ; i++)
+            {
+              this.answerCorrectOrFalse.push(true);
+            }
+            this.correctMistakeAnswer = null;
+            document.getElementById('on-off-question').style.visibility = 'visible';
+            document.getElementById('on-off-question').style.height = 'auto';
+            document.getElementById('on-off-answer').style.visibility = 'visible';
+            document.getElementById('on-off-answer').style.height = 'auto';
+            document.getElementById('mistake').style.visibility = 'hidden';
+            document.getElementById('mistake').style.height = '0px';
+            document.getElementById('question').style.visibility = 'hidden';
+            document.getElementById('question').style.height = '0px';
+            document.getElementById('answers').style.visibility = 'hidden';
+            document.getElementById('answers').style.height = '0px';
+            document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
             document.getElementById('div-output').style.visibility = 'hidden';
             document.getElementById('output-correct-mistake').style.visibility = 'hidden';
             this.answerCorrectOrFalse = new Array<boolean>();
@@ -756,8 +795,50 @@ export class QuizTakeComponent implements OnInit {
 
   ///////////////// correct mistake /////////
   checkCorrectMistake() {
-    this.check();
-    this.check();
+    if(this.selected.typeDeQuestion.ref == 't4')
+    {
+      this.check();
+      this.check();
+    }
+    else if (this.selected.typeDeQuestion.ref == 't5')
+    {
+      this.next = true;
+      this.button = 'Next';
+      if((this.on_off == true && this.correctAnswers[0].lib == 'true') || (this.on_off == false && this.correctAnswers[0].lib == 'false'))
+      {
+        this.noteQst = this.selected.pointReponseJuste;
+        this.noteQuiz = this.noteQuiz + this.selected.pointReponseJuste;
+        this.reponseEtudiant.note = this.selected.pointReponseJuste;
+        this.service.findReponses(this.selected.id).subscribe(
+            dataAnswers => {
+              this.reponseEtudiant.reponse = dataAnswers[0];
+            }
+        );
+        this.reponseEtudiant.answer = null;
+      }
+      else {
+        this.noteQst = this.selected.pointReponsefausse;
+        this.noteQuiz = this.noteQuiz + this.selected.pointReponsefausse;
+        this.reponseEtudiant.note = this.selected.pointReponsefausse;
+        this.service.findReponses(this.selected.id).subscribe(
+            dataAnswers => {
+              this.reponseEtudiant.reponse = dataAnswers[1];
+            }
+        );
+        this.reponseEtudiant.answer = null;
+      }
+      this.service.translate(this.selected.libelle).subscribe(
+          data => {
+            this.translate = data;
+          }
+      );
+      this.disable = true;
+      this.reponseEtudiant.reponse = null;
+      this.reponseEtudiant.answer = this.correctMistakeAnswer;
+      document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
+      document.getElementById('div-output').style.visibility = 'visible';
+      document.getElementById('div-output').style.marginTop = '-100px';
+    }
   }
 
 

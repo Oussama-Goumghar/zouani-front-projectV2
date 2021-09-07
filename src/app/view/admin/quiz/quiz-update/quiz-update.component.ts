@@ -28,6 +28,8 @@ export class QuizUpdateComponent implements OnInit {
     oldAnswers: Array<Reponse>;
     reponseExiste = 'false';
     answerExiste = 'false';
+    onOff_true = true;
+    onOff_false = false;
 
     constructor(private service: QuizService, private messageService: MessageService, private confirmationService: ConfirmationService, private router: Router, private serviceParcours: ParcoursService) {
     }
@@ -145,6 +147,14 @@ export class QuizUpdateComponent implements OnInit {
 
     get selectedsection(): Section {
         return this.service.sectionSelected;
+    }
+
+    get viewOnOffDialog(): boolean {
+        return this.service.viewOnOffDialog;
+    }
+
+    set viewOnOffDialog(value: boolean) {
+        this.service.viewOnOffDialog = value;
     }
 
     public deleteCard(index: number) {
@@ -582,4 +592,60 @@ export class QuizUpdateComponent implements OnInit {
         ];
     }
 
+    chooseType(){
+        if(this.question.typeDeQuestion.ref == 't5')
+        {
+            this.viewOnOffDialog = true;
+        }
+    }
+
+    hideOnOffDialog () {
+        this.question = new Question();
+        this.question.numero = this.questionNumero ;
+        this.question.pointReponsefausse = 0;
+        this.question.pointReponseJuste = 1;
+        this.viewOnOffDialog = false;
+    }
+
+    submitOnOff(){
+        this.reponses.length = 0;
+        this.reponse.lib = 'true';
+        if(this.onOff_true == true)
+        {
+            this.reponse.etatReponse = 'true';
+        }
+        else {
+            this.reponse.etatReponse = 'false';
+        }
+        this.reponse.numero = 1;
+        this.addReponse();
+        this.reponse.lib = 'false';
+        if(this.onOff_false == true)
+        {
+            this.reponse.etatReponse = 'true';
+        }
+        else {
+            this.reponse.etatReponse = 'false';
+        }
+        this.reponse.numero = 2;
+        this.addReponse();
+        this.viewOnOffDialog = false;
+    }
+
+    onOffTrue(){
+        if(this.onOff_true == true){
+            this.onOff_false = false;
+        }
+        else {
+            this.onOff_false = true;
+        }
+    }
+    onOffFalse(){
+        if(this.onOff_false == true){
+            this.onOff_true = false;
+        }
+        else {
+            this.onOff_true = true;
+        }
+    }
 }

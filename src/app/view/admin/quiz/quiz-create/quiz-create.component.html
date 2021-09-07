@@ -49,7 +49,7 @@
                             </div>
                             <div class="p-field p-col-12 p-md-6">
                                 <p-dropdown [(ngModel)]="question.typeDeQuestion" [options]="types" inputId="type"
-                                            optionLabel="lib" placeholder="Type of Question"></p-dropdown>
+                                            optionLabel="lib" placeholder="Type of Question" (click)="chooseType()"></p-dropdown>
                             </div>
                             <div class="p-field p-col-12 ">
                                 <label>Question</label>
@@ -158,4 +158,23 @@
                 pRipple></button>
     </ng-template>
 </p-dialog>
-<!-- -->
+
+<p-dialog [(visible)]="viewOnOffDialog" [modal]="true" [style]="{width: '800px'}" styleClass="p-fluid">
+    <ng-template pTemplate="content">
+        <div class="box">
+            <div class="p-field p-col-12 ">
+                <label>Question</label>
+                <textarea [(ngModel)]="question.libelle" pInputTextarea rows="4" type="text"></textarea>
+
+            </div>
+            <output style="margin-left: 20px; margin-right: 30px; font-size: 30px; font-family: 'Goudy Old Style'">True  : </output> <p-inputSwitch [(ngModel)]="onOff_true" (click)="onOffTrue()"></p-inputSwitch>
+            <br>
+            <output style="margin-left: 20px; margin-right: 30px; font-size: 30px; font-family: 'Goudy Old Style'">False : </output> <p-inputSwitch [(ngModel)]="onOff_false" (click)="onOffFalse()"></p-inputSwitch>
+        </div>
+    </ng-template>
+
+    <ng-template pTemplate="footer">
+        <button (click)="submitOnOff()" class="p-button-text" icon="pi pi-check" label="Submit" pButton pRipple></button>
+        <button (click)="hideOnOffDialog()" class="p-button-text" icon="pi pi-times" label="Fermer" pButton pRipple></button>
+    </ng-template>
+</p-dialog>

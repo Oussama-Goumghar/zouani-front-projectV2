@@ -23,8 +23,28 @@ export class QuizService {
     private _urlReponse = 'learn/reponse';
     private _urlQuiz = 'learn/quiz';
     private nombreReponseJuste: number = 0;
+    private _viewOnOffDialog: boolean;
+    private _viewOnOffUpdateDialog: boolean;
 
     constructor(private http: HttpClient, private messageService: MessageService,) {
+    }
+
+
+    get viewOnOffDialog(): boolean {
+        return this._viewOnOffDialog;
+    }
+
+    set viewOnOffDialog(value: boolean) {
+        this._viewOnOffDialog = value;
+    }
+
+
+    get viewOnOffUpdateDialog(): boolean {
+        return this._viewOnOffUpdateDialog;
+    }
+
+    set viewOnOffUpdateDialog(value: boolean) {
+        this._viewOnOffUpdateDialog = value;
     }
 
     private _selected: Quiz;
@@ -453,7 +473,7 @@ export class QuizService {
 
     public addReponse() {
 
-        if (this.question.typeDeQuestion.ref == 't1') {
+        if (this.question.typeDeQuestion.ref == 't1' || this.question.typeDeQuestion.ref == 't5') {
             const cloneReponse = JSON.parse(JSON.stringify(this.reponse));
             this.question.reponses.push(cloneReponse);
             this.reponse = null;
