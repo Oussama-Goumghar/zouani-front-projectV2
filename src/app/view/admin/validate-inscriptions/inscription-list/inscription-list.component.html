@@ -48,25 +48,25 @@
                         <th style="width: 3rem">
                             <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                         </th>
-                        <th pSortableColumn="numeroInscription">Registration Number
-                            <p-sortIcon field="numeroInscription"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="datedebutinscription">Registration Start date
-                            <p-sortIcon field="datedebutinscription"></p-sortIcon>
-                        </th>
-                        <th pSortableColumn="datefininscription">Registration End date
-                            <p-sortIcon field="datefininscription"></p-sortIcon>
-                        </th>
                         <th pSortableColumn="nom">LastName
                             <p-sortIcon field="nom"></p-sortIcon>
                         </th>
                         <th pSortableColumn="prenom">FirstName
                             <p-sortIcon field="prenom"></p-sortIcon>
                         </th>
-                        <th pSortableColumn="etatInscription">Registration status
-                            <p-sortIcon field="etatInscription"></p-sortIcon>
+                        <th pSortableColumn="Address">Address
+                            <p-sortIcon field="Address"></p-sortIcon>
                         </th>
-                        <th></th>
+                        <th pSortableColumn="mail">E-mail
+                            <p-sortIcon field="mail"></p-sortIcon>
+                        </th>
+                        <th pSortableColumn="Age">Age
+                            <p-sortIcon field="Age"></p-sortIcon>
+                        </th>
+                        <th>Validate Registration</th>
+                        <th>View Details</th>
+                        <th>Delete Registration</th>
+
                     </tr>
                 </ng-template>
                 <ng-template let-inscription pTemplate="body">
@@ -74,24 +74,20 @@
                         <td>
                             <p-tableCheckbox [value]="inscription"></p-tableCheckbox>
                         </td>
-                        <td>{{inscription.numeroInscription }}</td>
-                        <td>{{inscription.datedebutinscription}}</td>
-                        <td>{{inscription.datefininscription}}</td>
                         <td>{{inscription.nom}}</td>
                         <td>{{inscription.prenom}}</td>
-                        <td>{{inscription.etatInscription.libelle}}</td>
-
-
+                        <td>{{inscription.address}}</td>
+                        <td>{{inscription.gmail}}</td>
+                        <td>{{inscription.age}}</td>
                         <td>
-                            <button (click)="edit(inscription)" class="p-button-rounded p-button-success p-mr-2" icon="pi pi-pencil" pButton
-                                    pRipple></button>
-                            <button (click)="view(inscription)" class="p-button-rounded p-button-info p-mr-2" icon="pi pi-list" pButton
-                                    pRipple></button>
-                            <button (click)="delete(inscription)" class="p-button-rounded p-button-danger" icon="pi pi-trash" pButton
-                                    pRipple></button>
+                            <button (click)="edit(inscription)"  [style.visibility]="(inscription.etatInscription.libelle) == 'Validated'?'hidden':'visible'" class=" p-button-success " label="Validate" pButton
+                                    pRipple></button></td>
+                        <td>  <button (click)="view(inscription)" class="p-button-info " label="details" pButton
+                                    pRipple></button></td>
+                        <td>  <button (click)="delete(inscription)" class="p-button-danger" label="delete" pButton
+                                    pRipple></button></td>
 
 
-                        </td>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="summary">

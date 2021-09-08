@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {MessageService} from 'primeng/api';
+import {ConfirmationService, MessageService} from 'primeng/api';
 import {InscriptionService} from '../../../../controller/service/inscription.service';
 import {Inscription} from '../../../../controller/model/inscription.model';
 import {Parcours} from '../../../../controller/model/parcours.model';
@@ -13,7 +13,19 @@ import {Prof} from '../../../../controller/model/prof.model';
 })
 export class InscriptionEditComponent implements OnInit {
 
-    constructor(private messageService: MessageService, private service: InscriptionService) {
+    // tslint:disable-next-line:max-line-length
+    constructor(private messageService: MessageService, private service: InscriptionService, private confirmationService: ConfirmationService,) {
+    }
+    public view(inscription: Inscription) {
+        this.selected = {...inscription};
+        this.viewDialog = true;
+    }
+    get viewDialog(): boolean {
+        return this.service.viewDialog;
+    }
+
+    set viewDialog(value: boolean) {
+        this.service.viewDialog = value;
     }
 
     get parcoursList(): Array<Parcours> {
@@ -71,8 +83,28 @@ export class InscriptionEditComponent implements OnInit {
     set items(value: Array<Inscription>) {
         this.service.items = value;
     }
+    get prof(): Array<Prof> {
+        return this.service.prof;
+    }
 
+    set prof(value: Array<Prof>) {
+        this.service.prof = value;
+    }
     ngOnInit(): void {
+        this.service.findAllProf().subscribe(
+            data => {
+                this.prof = data;
+            }, error => {
+                console.log(error);
+            }
+        );;
+        this.service.findAllEtat().subscribe(
+            data => {
+                this.etatinscriptionslist = data;
+            }, error => {
+                console.log(error);
+            }
+        );
     }
 
     findAllProf(): void {
@@ -106,6 +138,7 @@ export class InscriptionEditComponent implements OnInit {
                 detail: 'InscriptionUpdated',
                 life: 3000
             });
+            this.service.findAll().subscribe(data => this.items = data);
         });
         this.editDialog = false;
         this.selected = new Inscription();
@@ -113,9 +146,23 @@ export class InscriptionEditComponent implements OnInit {
 
     public delete(selected: Inscription) {
         this.selected = selected;
-        this.service.deleteByNumeroInscription().subscribe(data => {
-            this.items = this.items.filter(val => val.id !== this.selected.id);
-            this.selected = new Inscription();
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete ' + selected.nom + '?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+                this.service.deleteByNumeroInscription().subscribe(data => {
+                    this.items = this.items.filter(val => val.id !== this.selected.id);
+                    this.selected = new Inscription();
+                    this.messageService.add({
+                        severity: 'success',
+                        summary: 'Successful',
+                        detail: 'Inscription Deleted',
+                        life: 3000
+                    });
+                    this.hideEditDialog();
+                });
+            }
         });
     }
 

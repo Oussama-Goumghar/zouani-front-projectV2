@@ -92,6 +92,7 @@ export class FormLayoutDemoComponent implements OnInit {
 
     ngOnInit(): void {
         this.selected = new Inscription();
+        this.selected.datedebutinscription = new Date();
         document.getElementById('log-pass').style.visibility = 'hidden';
         document.getElementById('log-pass').style.height = '0%';
         document.getElementById('log-pass').style.width = '0%';
@@ -101,6 +102,7 @@ export class FormLayoutDemoComponent implements OnInit {
     // tslint:disable-next-line:typedef
     public save() {
         this.submitted = true;
+        this.selected.datefininscription = new Date();
         console.log(this.selected.parcours.id);
         this.service.save().subscribe(data => {
             this.selectes.push({...data});

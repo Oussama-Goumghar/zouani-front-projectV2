@@ -246,14 +246,8 @@ export class InscriptionService {
         return this.http.post<Array<Inscription>>('http://localhost:8036/learn/inscription/search', this.selected);
     }
 
-    public findAllProf() {
-        this.http.get<Array<Prof>>('http://localhost:8036/learn/prof/').subscribe(
-            data => {
-                this.prof = data;
-            }, error => {
-                console.log(error);
-            }
-        );
+    public findAllProf(): Observable<Array<Prof>> {
+        return this.http.get<Array<Prof>>('http://localhost:8036/learn/prof/');
     }
 
     public findAllCentre(): Observable<Array<Centre>> {

@@ -19,8 +19,8 @@ export class Inscription {
     public quizEtudiant = new Array<QuizEtudiant>();
     public image: string;
     public numeroInscription: string;
-    public datedebutinscription: string;
-    public datefininscription: string;
+    public datedebutinscription: Date;
+    public datefininscription: Date;
     public prof = new Prof();
     public etatInscription = new EtatInscription();
 }
