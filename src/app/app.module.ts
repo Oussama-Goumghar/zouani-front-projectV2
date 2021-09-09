@@ -215,10 +215,8 @@ import {ProfesseurListComponent} from './view/admin/professeur/professeur-list/p
 import {ProfesseurCreateComponent} from './view/admin/professeur/professeur-create/professeur-create.component';
 import {ProfesseurEditComponent} from './view/admin/professeur/professeur-edit/professeur-edit.component';
 import {ProfesseurViewComponent} from './view/admin/professeur/professeur-view/professeur-view.component';
-import {EtudiantSectionsComponent} from './view/etudiant/learn-etudiant/etudiant-sections/etudiant-sections.component';
 import {EtudiantParcoursComponent} from './view/etudiant/learn-etudiant/etudiant-parcours/etudiant-parcours.component';
 import {EtudiantCoursesComponent} from './view/etudiant/learn-etudiant/etudiant-courses/etudiant-courses.component';
-import {StudentChooseViewComponent} from './view/etudiant/learn-etudiant/student-choose-view/student-choose-view.component';
 import {
     SafePipe,
     StudentSimulateSectionComponent
@@ -465,13 +463,11 @@ import { TranslateComponent } from './view/etudiant/learn-etudiant/Dictionnary/t
         ProfesseurListComponent,
         ProfesseurCreateComponent,
         ProfesseurEditComponent,
-        EtudiantSectionsComponent,
         EtudiantParcoursComponent,
         EtudiantCoursesComponent,
         ProfesseurViewComponent,
         StudentSimulateSectionComponent,
         SyntheseSessionHistoryComponent,
-        StudentChooseViewComponent,
         RecommendAdminComponent,
         FaqCreateComponent,
         FaqStudentListComponent,

@@ -66,7 +66,6 @@ import {QuizEtudiantViewComponent} from './view/etudiant/Quiz/quiz-etudiant-view
 import {SessionCoursComponent} from './view/admin/session-cours/session-cours.component';
 import {SyntheseSessionComponent} from './view/admin/synthese-session/synthese-session.component';
 import {ProfesseurListComponent} from './view/admin/professeur/professeur-list/professeur-list.component';
-import {EtudiantSectionsComponent} from './view/etudiant/learn-etudiant/etudiant-sections/etudiant-sections.component';
 import {EtudiantParcoursComponent} from './view/etudiant/learn-etudiant/etudiant-parcours/etudiant-parcours.component';
 import {EtudiantCoursesComponent} from './view/etudiant/learn-etudiant/etudiant-courses/etudiant-courses.component';
 import {StudentSimulateSectionComponent} from './view/etudiant/learn-etudiant/student-simulate-section/student-simulate-section.component';
@@ -115,7 +114,6 @@ import {SectionItemPreviewComponent} from './view/admin/learn/section-item-previ
                     {path: 'pages/courses', component: EdCoursesComponent},
                     {path: 'pages/etudiantcours', component: EtudiantCoursesComponent},
                     {path: 'pages/etudiantparcours', component: EtudiantParcoursComponent},
-                    {path: 'pages/etudiantsections', component: EtudiantSectionsComponent},
                     {path: 'pages/etudiantsimulatesections', component: StudentSimulateSectionComponent},
                     {path: 'pages/cours', component: CoursesComponent},
                     {path: 'pages/sections', component: SectionsComponent},

@@ -5,6 +5,10 @@ import {ConfirmationService, MessageService} from 'primeng/api';
 import {ParcoursService} from '../../../../controller/service/parcours.service';
 import {EtudiantCours} from '../../../../controller/model/etudiant-cours.model';
 import {LoginService} from '../../../../controller/service/login.service';
+import {Quiz} from '../../../../controller/model/quiz.model';
+import {Etudiant} from '../../../../controller/model/etudiant.model';
+import {QuizEtudiant} from '../../../../controller/model/quiz-etudiant.model';
+import {QuizEtudiantService} from '../../../../controller/service/quiz-etudiant.service';
 
 @Component({
     selector: 'app-etudiant-courses',
@@ -18,9 +22,58 @@ export class EtudiantCoursesComponent implements OnInit {
     cols: any[];
 
     // tslint:disable-next-line:max-line-length
-    constructor(private messageService: MessageService, private loginService: LoginService, private confirmationService: ConfirmationService, private service: ParcoursService) {
+    constructor(private messageService: MessageService, private quizService: QuizEtudiantService, private loginService: LoginService, private confirmationService: ConfirmationService, private service: ParcoursService) {
     }
-
+    public FindSectionOneByOne(cour: Cours) {
+        this.selectedcours = cour;
+        let i = 0;
+        i = i + 1;
+        this.service.affichelistSection().subscribe(
+            data => {
+                this.itemssection2 = data;
+                // tslint:disable-next-line:no-shadowed-variable
+            });
+        this.service.image = '';
+        this.service.afficheOneSection().subscribe(
+            data => {
+                this.selectedsection = data;
+                //    for (let j = 0; j < 66 ; j++)
+                //    {
+                this.service.image = this.service.selectedsection.urlImage;
+                //    }
+                // this.service.image += 'preview';
+                this.quizService.findQuizBySectionId(this.selectedsection).subscribe(
+                    data => {
+                        this.selectedQuiz = data;
+                        // document.getElementById('dict1').style.visibility = 'hidden';
+                        // document.getElementById('quiz').style.visibility = 'visible';
+                        console.log('teeeeeeeeest');
+                        this.quizService.findQuizEtudiant(this.loginService.etudiant, this.selectedQuiz).subscribe(
+                            data => {
+                                this.quizEtudiantList = data;
+                                console.log(this.quizEtudiantList);
+                                this.quizService.findAllQuestions(this.selectedQuiz.ref).subscribe(
+                                    dataQuestions => {
+                                        if(data.questionCurrent > dataQuestions.length){
+                                            this.passerQuiz = 'View Quiz';
+                                            this.quizView = true;
+                                        }
+                                        else {
+                                            this.passerQuiz = 'Continue Quiz';
+                                            this.quizView = false;
+                                        }
+                                    }
+                                );
+                            },error =>
+                            {
+                                this.passerQuiz = 'Take Quiz';
+                                this.quizView = false;
+                            }
+                        );
+                    }, error => document.getElementById('quiz').style.visibility = 'hidden'
+                );
+            });
+    }
     get itemsEtudiantCours(): Array<EtudiantCours> {
         return this.service.itemsEtudiantCours;
     }
@@ -32,15 +85,36 @@ export class EtudiantCoursesComponent implements OnInit {
     get selectedEtudiantCours(): EtudiantCours {
         return this.service.selectedEtudiantCours;
     }
-
-    set selectedEtudiantCours(value: EtudiantCours) {
-        this.service.selectedEtudiantCours = value;
+    set selectesssection(value: Array<Section>) {
+        this.service.selectesssection = value;
     }
-
+    public viewType2() {
+        this.viewChooseType2 = true;
+    }
     get viewChooseType2(): boolean {
         return this.service.viewChooseType2;
     }
+// tslint:disable-next-line:adjacent-overload-signatures
+    get itemssection2(): Array<Section> {
+        return this.service.itemssection2;
+    }
+    get selectescours(): Array<Cours> {
+        return this.service.selectescours;
+    }
+    // tslint:disable-next-line:adjacent-overload-signatures
+    set itemssection2(value: Array<Section>) {
+        this.service.itemssection2 = value;
+    }
+    get selectedsection(): Section {
+        return this.service.selectedsection;
+    }
 
+    set selectedsection(value: Section) {
+        this.service.selectedsection = value;
+    }
+    set selectedEtudiantCours(value: EtudiantCours) {
+        this.service.selectedEtudiantCours = value;
+    }
     // tslint:disable-next-line:adjacent-overload-signatures
     set viewChooseType2(value: boolean) {
         this.service.viewChooseType2 = value;
@@ -50,11 +124,6 @@ export class EtudiantCoursesComponent implements OnInit {
     set submittedCours(value: boolean) {
         this.service.submittedCours = value;
     }
-
-    set selectesssection(value: Array<Section>) {
-        this.service.selectesssection = value;
-    }
-
     get createDialogCours(): boolean {
         return this.service.createDialogCours;
     }
@@ -134,9 +203,52 @@ export class EtudiantCoursesComponent implements OnInit {
         }
     }
 
-    public viewType2(cours: Cours) {
-        this.selectedcours = {...cours};
-        this.viewChooseType2 = true;
+    get image(): string {
+        return this.service.image;
+    }
+
+    set image(value: string) {
+        this.service.image = value;
+    }
+
+    get selectedQuiz(): Quiz {
+        return this.quizService.selectedQuiz;
+    }
+
+    set selectedQuiz(value: Quiz) {
+        this.quizService.selectedQuiz = value;
+    }
+
+    get etudiant(): Etudiant {
+        return this.loginService.etudiant;
+    }
+
+    set etudiant(value: Etudiant) {
+        this.loginService.etudiant = value;
+    }
+
+    get quizEtudiantList(): QuizEtudiant {
+        return this.quizService.quizEtudiantList;
+    }
+
+    set quizEtudiantList(value: QuizEtudiant) {
+        this.quizService.quizEtudiantList = value;
+    }
+
+    get passerQuiz(): string {
+        return this.quizService.passerQuiz;
+    }
+
+    set passerQuiz(value: string) {
+        this.quizService.passerQuiz = value;
+    }
+
+    get quizView(): boolean {
+        return this.quizService.quizView;
+    }
+
+    set quizView(value: boolean) {
+        this.quizService.quizView = value;
     }
 
     public openCreateCours() {
