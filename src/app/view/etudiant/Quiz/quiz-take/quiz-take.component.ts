@@ -70,6 +70,7 @@ export class QuizTakeComponent implements OnInit {
   menu: MenuItem[];
   resultat: string;
   on_off : boolean;
+  totalNote = 0;
 
   get answerCorrectOrFalse(): Array<boolean> {
     if(this._answerCorrectOrFalse == null)
@@ -441,6 +442,10 @@ export class QuizTakeComponent implements OnInit {
     this.service.findAllQuestions(this.selectedQuiz.ref).subscribe(
         data => {
           this.items = data;
+          for(let i = 0 ; i < data.length ; i++)
+          {
+            this.totalNote += data[i].pointReponseJuste;
+          }
         }
     );
     this.quizEtudiant.quiz = this.selectedQuiz;
@@ -585,6 +590,8 @@ export class QuizTakeComponent implements OnInit {
       document.getElementById('on-off-question').style.height = '0px';
       document.getElementById('on-off-answer').style.visibility = 'hidden';
       document.getElementById('on-off-answer').style.height = '0px';
+      document.getElementById('check-on-off').style.visibility = 'hidden';
+      document.getElementById('check-correct-mistake').style.visibility = 'hidden';
 
       this.isChecked = false;
       this.service.findQuizEtudiant(this.etudiant, this.selectedQuiz).subscribe(
@@ -640,6 +647,8 @@ export class QuizTakeComponent implements OnInit {
             document.getElementById('on-off-question').style.height = '0px';
             document.getElementById('on-off-answer').style.visibility = 'hidden';
             document.getElementById('on-off-answer').style.height = '0px';
+            document.getElementById('check-on-off').style.visibility = 'hidden';
+            document.getElementById('check-correct-mistake').style.visibility = 'hidden';
             this.isSelected = false;
             for (let i = 0; i < this.selected.libelle.length; i++) {
               if (this.selected.libelle[i] == '.' && this.selected.libelle[i + 1] == '.' && this.selected.libelle[i + 2] == '.') {
@@ -672,6 +681,7 @@ export class QuizTakeComponent implements OnInit {
             this.correctMistakeAnswer = null;
             document.getElementById('mistake').style.visibility = 'visible';
             document.getElementById('mistake').style.height = 'auto';
+            document.getElementById('check-correct-mistake').style.visibility = 'visible';
             document.getElementById('on-off-question').style.visibility = 'hidden';
             document.getElementById('on-off-question').style.height = '0px';
             document.getElementById('on-off-answer').style.visibility = 'hidden';
@@ -683,6 +693,7 @@ export class QuizTakeComponent implements OnInit {
             document.getElementById('float-input-correct-mistake').style.visibility = 'visible';
             document.getElementById('div-output').style.visibility = 'hidden';
             document.getElementById('output-correct-mistake').style.visibility = 'hidden';
+            document.getElementById('check-on-off').style.visibility = 'hidden';
             this.answerCorrectOrFalse = new Array<boolean>();
             for(let i = 0 ; i < this.myanswers.length ; i++)
             {
@@ -700,6 +711,7 @@ export class QuizTakeComponent implements OnInit {
             document.getElementById('on-off-answer').style.visibility = 'visible';
             document.getElementById('on-off-answer').style.height = 'auto';
             document.getElementById('question-on-off').style.color = 'black';
+            document.getElementById('check-on-off').style.visibility = 'visible';
             document.getElementById('mistake').style.visibility = 'hidden';
             document.getElementById('mistake').style.height = '0px';
             document.getElementById('question').style.visibility = 'hidden';
@@ -709,6 +721,7 @@ export class QuizTakeComponent implements OnInit {
             document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
             document.getElementById('div-output').style.visibility = 'hidden';
             document.getElementById('output-correct-mistake').style.visibility = 'hidden';
+            document.getElementById('check-correct-mistake').style.visibility = 'hidden';
             this.answerCorrectOrFalse = new Array<boolean>();
             for(let i = 0 ; i < this.myanswers.length ; i++)
             {
@@ -841,6 +854,8 @@ export class QuizTakeComponent implements OnInit {
       document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
       document.getElementById('div-output').style.visibility = 'visible';
       document.getElementById('div-output').style.marginTop = '-100px';
+      document.getElementById('check-on-off').style.visibility = 'hidden';
+      document.getElementById('check-correct-mistake').style.visibility = 'hidden';
     }
   }
 
@@ -959,6 +974,8 @@ export class QuizTakeComponent implements OnInit {
     document.getElementById('float-input-correct-mistake').style.visibility = 'hidden';
     document.getElementById('div-output').style.visibility = 'visible';
     document.getElementById('div-output').style.marginTop = '-100px';
+    document.getElementById('check-on-off').style.visibility = 'hidden';
+    document.getElementById('check-correct-mistake').style.visibility = 'hidden';
   }
 
 

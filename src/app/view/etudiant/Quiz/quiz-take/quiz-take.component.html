@@ -29,7 +29,7 @@
                         <output *ngFor="let i of numberofword" id="output-correct-mistake"> <span id="span-output-{{i}}" [style.visibility]="isChecked? 'visible' : 'hidden'"> {{this.myanswers[i]}} </span> <span id="span-correct-{{i}}" class="span-correct" [style.visibility]="answerCorrectOrFalse[i]? 'hidden' : 'visible'"> {{this.correctanswers[i]}} </span> </output>
                     </div>
                     <h3 id="translate-correct-mistake" style="text-align: right"> {{this.translate}}</h3>
-                    <button pButton pRipple type="button" style="width: 200px; margin-left: 30%; margin-top: 50px" label="Check" (click)="checkCorrectMistake()" class="p-button-outlined p-button-success"></button>
+                    <button pButton pRipple id="check-correct-mistake" type="button" style="width: 200px; margin-left: 30%; margin-top: 50px" label="Check" (click)="checkCorrectMistake()" class="p-button-outlined p-button-success"></button>
                 </span>
             </div>
             <div class="p-col-6" id="on-off-question" style="background: white;">
@@ -39,12 +39,12 @@
             <div class="p-col-6" id="on-off-answer" >
                 <div style="margin: 50px 50px">
                     <output style="margin-left: 20px; margin-right: 10px; font-size: 30px; font-family: 'Goudy Old Style'">False </output><p-inputSwitch [(ngModel)]="on_off"></p-inputSwitch> <output style="margin-left: 10px; font-size: 30px; font-family: 'Goudy Old Style'">True</output>
-                    <button pButton pRipple type="button" style="width: 200px; margin-left: 30%; margin-top: 50px" label="Check" (click)="checkCorrectMistake()" class="p-button-outlined p-button-success"></button>
+                    <button pButton pRipple id="check-on-off" type="button" style="width: 200px; margin-left: 30%; margin-top: 50px" label="Check"(click)="checkCorrectMistake()" class="p-button-outlined p-button-success"></button>
 
                 </div>
             </div>
             <div style="margin-left: 40%; margin-top: 50px">
-                <button pButton pRipple type="button" style="width: 200px;" [disabled]="disable? null: true" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
+                <button pButton pRipple type="button" style="width: 200px;" [style.visibility]="disable? 'visible' : 'hidden'" label="{{this.button}}" (click)="start()" class="p-button-outlined p-button-success"></button>
             </div>
 
         </div>
@@ -62,13 +62,13 @@
             <div class="p-grid">
                 <div class="p-col">
                     <div style="text-align: center; border: solid 1px black; margin-left: 20px">
-                        <h2>{{this.noteQuiz}}/{{this.items.length}}</h2>
+                        <h2>{{this.noteQuiz}}/{{this.totalNote}}</h2>
                         <h4>Your note</h4>
                     </div>
                 </div>
                 <div class="p-col" style="text-align: center">
                     <div style="text-align: center; border: solid 1px black; margin-left: -10px; margin-right: 20px">
-                        <h2>{{this.selectedQuiz.seuilReussite}}/{{this.items.length}}</h2>
+                        <h2>{{this.selectedQuiz.seuilReussite}}/{{this.totalNote}}</h2>
                         <h4>Passing note</h4>
                     </div>
                 </div>

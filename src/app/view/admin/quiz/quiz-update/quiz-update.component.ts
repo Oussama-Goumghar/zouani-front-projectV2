@@ -222,7 +222,7 @@ export class QuizUpdateComponent implements OnInit {
 
                                         this.nodes.push(
                                             {
-                                                key: i.toString(),
+                                                key: this.selected.questions[i].id.toString(),
                                                 label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
                                                 children: list
                                             },
@@ -295,81 +295,6 @@ export class QuizUpdateComponent implements OnInit {
     }
 
     deleteQuestion(key: string) {
-        /*this.deleteNumber = Number(key);
-        this.selected.questions.splice(this.deleteNumber,1);
-        for(let i = this.deleteNumber ; i < this.selected.questions.length ; i++)
-        {
-          this.selected.questions[i].numero = this.selected.questions[i].numero - 1;
-        }
-        this.nodes = [];
-        for(let i = 0 ; i < this.selected.questions.length ; i++)
-        {
-          if(this.selected.questions[i].reponses.length == 1)
-          {
-            this.nodes.push(
-                {
-                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                  children: [
-                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                  ]
-                },
-            );
-          }
-          else if(this.selected.questions[i].reponses.length == 2)
-          {
-            this.nodes.push(
-                {
-                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                  children: [
-                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                  ]
-                },
-            );
-          }
-          else if(this.selected.questions[i].reponses.length == 3)
-          {
-            this.nodes.push(
-                {
-                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                  children: [
-                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                  ]
-                },
-            );
-          }
-          else if(this.selected.questions[i].reponses.length == 4)
-          {
-            this.nodes.push(
-                {
-                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                  children: [
-                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'}
-                  ]
-                },
-            );
-          }
-          else if(this.selected.questions[i].reponses.length == 5)
-          {
-            this.nodes.push(
-                {
-                  key: i.toString() ,label: 'Question ' + this.selected.questions[i].numero + ' : ' + this.selected.questions[i].libelle + ' ( ' + this.selected.questions[i].typeDeQuestion.lib + ' ) ',
-                  children: [
-                    {label: this.selected.questions[i].reponses[0].lib + '\t (' + this.selected.questions[i].reponses[0].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[1].lib + '\t (' + this.selected.questions[i].reponses[1].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[2].lib + '\t (' + this.selected.questions[i].reponses[2].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[3].lib + '\t (' + this.selected.questions[i].reponses[3].etatReponse + ' )',  type: 'url'},
-                    {label: this.selected.questions[i].reponses[4].lib + '\t (' + this.selected.questions[i].reponses[4].etatReponse + ' )',  type: 'url'}
-                  ]
-                },
-            );
-          }
-        }*/
         this.service.deleteQuestion(key).subscribe(
             data => {
                 this.messageService.add({
