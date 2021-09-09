@@ -1,30 +1,55 @@
-<p-dialog [(visible)]="editDialog" [modal]="true" [style]="{width: '450px'}" header="Edit Registration"
+<p-dialog [(visible)]="editDialog" [modal]="true" [style]="{width: '550px', color: 'red'}" header="Validate Registration"
           styleClass="p-fluid">
-    <ng-template pTemplate="content">
-        <div>
-            <label class="primaryLab">Registration status</label><br>
-            <select (click)="findAllEtat()" [(ngModel)]="selected.etatInscription.id" class="btn btn-block btn-outline-light form-control" name="fieldName"
-                    name="etat" pInputText style="background-color: gainsboro"
-                    type="text">
-                <option *ngFor="let e of etatinscriptionslist" [ngValue]="e.id"
-                        selected="selected"> {{e.libelle}}</option>
-            </select>
+    <ng-template pTemplate="content" >
+        <!--
+        <div class="p-field p-col">
+            <div class=" p-col-6" style="float: right">
+            <label for="nom">LastName</label>
+            <input [(ngModel)]="selected.nom" disabled id="nom" pInputText type="text"/>
+            </div>
+                <div class=" p-col-6" style="float: left">
+            <label for="prenom">FirstName</label>
+            <input [(ngModel)]="selected.prenom" disabled id="prenom" pInputText type="text"/>
+                </div>
         </div>
 
-        <div class="p-field">
+        <div class="p-field p-col">
+            <div class=" p-col-6" style="float: right">
+            <label for="age">Age</label>
+            <input [(ngModel)]="selected.age" disabled id="age" pInputText type="text"/>
+            </div>
+            <div class=" p-col-6" style="float: left">
+            <label for="libelle">Parcours</label>
+            <input [(ngModel)]="selected.parcours.libelle" disabled id="libelle" pInputText
+                    ="text"/>
+        </div>
+        </div>-->
+        <div class="p-field p-col">
+            <div class=" p-col-6" style="float: left">
+            <h5><b>Student name</b>:<br>  <u style="color: #0d8e4f"> {{selected.nom}} {{selected.prenom}}</u></h5>
+            </div>
+            <div class=" p-col-6" style="float: right">
+            <h5 ><b>Parcours</b>:<br> <u style="color: #0d8e4f"> {{selected.parcours.libelle}}</u></h5>
+            </div>
+        </div>
+        <div class="p-field p-col">
+            <div class=" p-col-6" style="float: left">
+            <label class="primaryLab">Registration status</label><br>
+            <p-dropdown [(ngModel)]="selected.etatInscription" [options]="etatinscriptionslist"
+                        optionLabel="libelle" name="libelle"  placeholder="--choose Registration status--" ></p-dropdown>
+            </div>
+                <div class=" p-col-6" style="float: right">
             <label class="primaryLab">Teacher</label>
-            <select (click)="findAllProf()" [(ngModel)]="selected.prof.id" class="btn btn-block btn-outline-light form-control " name="fieldName"
-                    name="prof" pInputText style="background-color: gainsboro"
-                    type="text">
-                <option *ngFor="let c of profList " [ngValue]="c.id" selected="selected"> {{c.prenom}}</option>
-            </select>
+            <p-dropdown [(ngModel)]="selected.prof" [options]="prof"
+                        optionLabel="nom" name="nom" placeholder="--choose Teacher--"  ></p-dropdown>
+                </div>
         </div>
 
 
     </ng-template>
 
     <ng-template pTemplate="footer">
-        <button (click)="edit()" class="p-button-text" icon="pi pi-check" label="Edit" pButton pRipple></button>
+         <button (click)="edit()" class="p-button-text" icon="pi pi-check" label="Edit" pButton pRipple></button>
         <button (click)="hideEditDialog()" class="p-button-text" icon="pi pi-times" label="Cancel" pButton
                 pRipple></button>
 

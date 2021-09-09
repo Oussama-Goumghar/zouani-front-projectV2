@@ -1,13 +1,13 @@
-<p-dialog [(visible)]="createDialogDict" [modal]="true" [style]="{width: '700px', height:'250px' }" header="Dictionary"
+<p-dialog [(visible)]="createDialogDict" [modal]="true" [style]="{width: '700px', height:'300px' }" header="Dictionary"
           styleClass="p-fluid">
     <ng-template pTemplate="p-field">
 
         <div class="p-field">
             <label for="word">Word</label>
-            <input [(ngModel)]="selectedNow.word" id="word" pInputText type="text"></div>
+            <input  style="font-size: 20px" [(ngModel)]="selectedNow.word" id="word" pInputText type="text"></div>
         <div class="p-field">
             <label for="definition">defintion</label>
-            <textarea [(ngModel)]="selectedNow.definition" id="definition" pInputTextarea type="text"></textarea></div>
+            <textarea  style="font-size: 20px" [(ngModel)]="selectedNow.definition" id="definition" pInputTextarea type="text"></textarea></div>
     </ng-template>
 
 

@@ -63,11 +63,11 @@
                         pButton
                         pRipple style="margin-left: 360px; width: 120px"
                         type="button"></button>
-                <!-- <button (click)="finish()"
+                <button (click)="finish()"
                          [style.visibility]="(this.selectedsection.numeroOrder < this.itemssection2.length)? 'hidden':'visible'"
-                         class="p-button-rounded" icon="pi " label="Finish" pButton pRipple
-                         style="position: absolute;margin: 0;left: 50%; -ms-transform: translate(-50%, -50%); transform: translate(-50%, -50%);top: 50%;  width: 120px"
-                         type="button"></button>-->
+                         class="p-button-rounded" icon="pi pi-check" label="Finish" pButton pRipple
+                        style=" width: 130px;  position: absolute;right: 15px;"
+                        type="button"></button>
             </div>
 
 
@@ -116,7 +116,7 @@
                                     <li>
                                         <td (click)="Section(section.categorieSection.libelle)"
                                             [style.color]="(section.categorieSection.libelle) == (this.selectedsection.categorieSection.libelle)? '#8b8b90' :'#1BA7AF' "
-                                            style="cursor: pointer; font-weight: 600;margin-left: 5px">
+                                            style="cursor: pointer; font-weight: 600;margin-left: 5px; font-size: 15px">
                                             <u>{{section.categorieSection.libelle}}</u></td>
                                     </li>
                                 </tr>
@@ -132,7 +132,7 @@
                                 <tr>
 
                                     <td (click)="dictEdit(dict)"
-                                        style="font-weight: 800; text-align: center; color: #1BA7AF;cursor: pointer"><b>{{dict.word}}</b></td>
+                                        style="font-weight: 800; text-align: center; color: #1BA7AF;cursor: pointer"><b style="font-size: 20px">{{dict.word}} : {{dict.definition}}</b></td>
                                 </tr>
                             </ng-template>
 

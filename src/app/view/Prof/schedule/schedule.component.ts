@@ -175,7 +175,7 @@ export class ScheduleComponent implements OnInit {
         this.service.getStudents().subscribe(data => this.students = data);
         this.service.findByProf();
         this.service.findEtat().subscribe(data => this.service.etatEtudiantSchedule = data);
-        this.changedEvent = {title: '', etat: '', teacher: '', start: null, end: '', allDay: null};
+        this.changedEvent = {title: '', etat: '', titleProf: '', start: null, end: '', allDay: null};
 
         this.options = {
             plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
@@ -186,7 +186,6 @@ export class ScheduleComponent implements OnInit {
                 right: 'dayGridMonth,timeGridWeek,timeGridDay',
             },
             allDaySlot: false,
-            firstDay: 1,
             editable: true,
             selectable: true,
             defaultView: 'timeGridWeek',
